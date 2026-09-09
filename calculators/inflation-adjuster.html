@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inflation Adjuster — Simple Macro Guide</title>
+<meta name="description" content="Offline inflation adjuster: estimate purchasing-power change across years with vanilla JavaScript.">
+<link rel="canonical" href="https://simplemacroguide.com/calculators/inflation-adjuster.html">
+<meta name="theme-color" content="#2a6f6f">
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="header-inner">
+<a class="logo" href="../">Simple <span>Macro</span> Guide</a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav class="site-nav" id="site-nav" aria-label="Primary">
+<ul>
+<li><a href="../">Home</a></li>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../calculators/" aria-current="page">Calculators</a></li>
+<li><a href="../contact/">Contact</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="main">
+
+<div class="wrap narrow">
+<header class="hero" style="border:none;margin:0;padding-bottom:0.5rem">
+<h1>Inflation adjuster</h1>
+<p class="lede">Estimate what an amount in one year is worth in another year, assuming a constant average annual inflation rate. Runs entirely offline in your browser.</p>
+</header>
+
+<div class="calc-panel" id="inflation-calculator">
+<label for="amount">Amount (currency units)</label>
+<input id="amount" type="number" min="0" step="any" value="100" inputmode="decimal">
+
+<label for="from-year">From year</label>
+<input id="from-year" type="number" min="1800" max="2200" step="1" value="2000">
+
+<label for="to-year">To year</label>
+<input id="to-year" type="number" min="1800" max="2200" step="1" value="2024">
+
+<label for="avg-rate">Average annual inflation rate (%)</label>
+<input id="avg-rate" type="number" step="0.1" value="2.5" inputmode="decimal">
+
+<div class="calc-actions">
+<button type="button" class="btn" id="calc-inflate">Calculate</button>
+<button type="button" class="btn btn-secondary" id="calc-reset">Reset</button>
+</div>
+
+<p class="calc-error" id="calc-error" role="alert"></p>
+
+<div class="calc-result" id="calc-result" role="status" aria-live="polite">
+<div class="amount" id="result-amount"></div>
+<p class="detail" id="result-detail"></p>
+</div>
+</div>
+
+<div class="callout" style="margin-top:1.5rem">
+<strong>How it works.</strong> Adjusted ≈ Amount × (1 + rate/100)<sup>(to − from)</sup>.
+You can project forward or backward by swapping years. For historical accuracy, use year-by-year official index ratios from
+<a href="https://www.bls.gov/cpi/" rel="noopener noreferrer">BLS CPI</a> or
+<a href="https://www.ons.gov.uk/economy/inflationandpriceindices" rel="noopener noreferrer">ONS</a>
+instead of a single average rate.
+</div>
+
+<div class="callout warning">
+<span class="example-label">Example defaults</span>
+<p style="margin:0">Defaults ($100 from 2000 to 2024 at 2.5%) are illustrative. They are not a claim about actual US or UK inflation over that span.</p>
+</div>
+
+<p><a href="index.html">All calculators</a> · <a href="../topics/inflation.html">Inflation topic</a> · <a href="../glossary/#purchasing-power">Purchasing power</a></p>
+</div>
+</main>
+<footer class="site-footer">
+<div class="footer-inner">
+<div>
+<a class="logo" href="../" style="color:#fff;text-decoration:none">Simple <span style="color:#a8d4d4">Macro</span> Guide</a>
+<p style="margin:0.6rem 0 0;max-width:28rem">Clear, calm explanations of how economies work — with a UK and US focus. Educational only; not investment advice.</p>
+</div>
+<div>
+<h2>Explore</h2>
+<ul>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../calculators/">Calculators</a></li>
+</ul>
+</div>
+<div>
+<h2>About</h2>
+<ul>
+<li><a href="../contact/">Contact</a></li>
+<li><a href="../disclaimer/">Disclaimer</a></li>
+<li><a href="mailto:joshuaofisrael@gmail.com?subject=%5BContact%3A%20simplemacroguide%5D">Email</a></li>
+</ul>
+</div>
+<p class="footer-note">© Joshua Israel Ventures LLC. Content is for education. Not financial, investment, tax, or legal advice. Verify figures with primary sources such as the World Bank, ONS, and FRED.</p>
+</div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>
