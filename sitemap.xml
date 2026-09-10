@@ -33,6 +33,34 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://simplemacroguide.com/explainers/</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/phillips-curve.html</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/quantitative-easing.html</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/real-interest-rates.html</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/exchange-rates-ppp.html</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/fiscal-multipliers.html</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/recession-definitions.html</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://simplemacroguide.com/glossary/</loc>
     <changefreq>monthly</changefreq>
   </url>
@@ -49,11 +77,19 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://simplemacroguide.com/data/</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://simplemacroguide.com/calculators/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://simplemacroguide.com/calculators/inflation-adjuster.html</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/sources/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>

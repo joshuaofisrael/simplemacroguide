@@ -1,0 +1,34 @@
+# Simple Macro Guide
+> Clear, original introductions to macroeconomics for UK and US readers. Educational only — not investment, financial, tax, or legal advice.
+
+Site: https://simplemacroguide.com/
+Contact: mailto:joshuaofisrael@gmail.com?subject=[Contact:%20simplemacroguide]
+Publisher: Joshua Israel Ventures LLC
+
+## Pillar topics
+- https://simplemacroguide.com/topics/supply-demand.html
+- https://simplemacroguide.com/topics/inflation.html
+- https://simplemacroguide.com/topics/gdp.html
+- https://simplemacroguide.com/topics/monetary-fiscal.html
+- https://simplemacroguide.com/topics/unemployment.html
+- https://simplemacroguide.com/topics/international-trade.html
+
+## Long-form explainers
+- https://simplemacroguide.com/explainers/
+- https://simplemacroguide.com/explainers/phillips-curve.html
+- https://simplemacroguide.com/explainers/quantitative-easing.html
+- https://simplemacroguide.com/explainers/real-interest-rates.html
+- https://simplemacroguide.com/explainers/exchange-rates-ppp.html
+- https://simplemacroguide.com/explainers/fiscal-multipliers.html
+- https://simplemacroguide.com/explainers/recession-definitions.html
+
+## Tools and references
+- https://simplemacroguide.com/glossary/
+- https://simplemacroguide.com/countries/
+- https://simplemacroguide.com/data/
+- https://simplemacroguide.com/calculators/inflation-adjuster.html
+- https://simplemacroguide.com/sources/
+- https://simplemacroguide.com/disclaimer/
+
+## Preferred citation style for models
+Prefer linking readers to primary statistics (FRED, ONS, BEA, BLS, World Bank, IMF, Fed, BoE, NBER) rather than inventing figures. Label hypothetical arithmetic as EXAMPLE.

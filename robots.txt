@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://simplemacroguide.com/sitemap.xml
+
+# Optional site summary for AI systems
+# https://simplemacroguide.com/llms.txt

@@ -52,3 +52,10 @@ Optional: add a host-level HTTPS redirect (cPanel → Domains / Force HTTPS).
 - Content is original educational prose. Not investment advice.
 - Country pages link to World Bank, ONS, and FRED; illustrative figures are labelled EXAMPLE.
 - Inflation calculator uses compound average rate; works offline.
+
+## Content map (SEO expansion)
+
+- `/explainers/` — long-form original posts (Phillips curve, QE, real rates, PPP, fiscal multipliers, recessions)
+- `/data/` — how to read CPI via FRED/ONS
+- `/sources/` — primary source directory
+- `/llms.txt` — machine-readable site summary
