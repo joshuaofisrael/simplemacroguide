@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CPI vs PCE — Which Inflation Measure Matters? — Simple Macro Guide</title>
+<meta name="description" content="A plain-language guide to US CPI and PCE inflation, how each index is built, why the Fed often discusses PCE, and how UK CPI/CPIH compares — educational only.">
+<link rel="canonical" href="https://simplemacroguide.com/explainers/cpi-vs-pce.html">
+<meta name="theme-color" content="#2a6f6f">
+<meta property="og:title" content="CPI vs PCE — Which Inflation Measure Matters? — Simple Macro Guide">
+<meta property="og:description" content="A plain-language guide to US CPI and PCE inflation, how each index is built, why the Fed often discusses PCE, and how UK CPI/CPIH compares — educational only.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://simplemacroguide.com/explainers/cpi-vs-pce.html">
+<meta property="og:site_name" content="Simple Macro Guide">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CPI vs PCE — Which Inflation Measure Matters? — Simple Macro Guide">
+<meta name="twitter:description" content="A plain-language guide to US CPI and PCE inflation, how each index is built, why the Fed often discusses PCE, and how UK CPI/CPIH compares — educational only.">
+<link rel="stylesheet" href="../css/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CPI vs PCE — Which Inflation Measure Matters?",
+  "description": "A plain-language guide to US CPI and PCE inflation, how each index is built, why the Fed often discusses PCE, and how UK CPI/CPIH compares — educational only.",
+  "url": "https://simplemacroguide.com/explainers/cpi-vs-pce.html",
+  "author": {
+    "@type": "Organization",
+    "name": "Joshua Israel Ventures LLC"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Joshua Israel Ventures LLC"
+  },
+  "isAccessibleForFree": true,
+  "inLanguage": "en",
+  "datePublished": "2026-09-14",
+  "dateModified": "2026-09-14"
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="header-inner">
+<a class="logo" href="../">Simple <span>Macro</span> Guide</a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav class="site-nav" id="site-nav" aria-label="Primary">
+<ul>
+<li><a href="../">Home</a></li>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/" aria-current="page">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data</a></li>
+<li><a href="../calculators/">Calculators</a></li>
+<li><a href="../contact/">Contact</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="main">
+<div class="wrap">
+<article class="narrow">
+<header class="hero" style="border:none;margin:0;padding-bottom:0">
+<h1>CPI vs PCE — which inflation measure matters?</h1>
+<p class="article-meta">Explainer · ~long-form · UK &amp; US framing · Educational only · Updated 14 Sep 2026</p>
+</header>
+<div class="article-body">
+
+<p>News stories often quote “inflation” as if it were a single number. In the United States, two closely watched price indexes — the <strong>Consumer Price Index (CPI)</strong> from the Bureau of Labor Statistics and the <strong>Personal Consumption Expenditures (PCE) price index</strong> from the Bureau of Economic Analysis — frequently diverge by a few tenths of a percentage point. This explainer compares what each measures, how they are constructed, why Federal Reserve communications often emphasise PCE (especially core PCE), and how UK CPI and CPIH fit the same conversation. It is educational only — not investment advice.</p>
+
+<h2>What CPI and PCE are</h2>
+<p>Both indexes track changes in the prices of goods and services that households consume. A rising index means the same basket (or a closely related spending concept) costs more than before. The twelve-month percentage change is the familiar year-over-year inflation rate; month-to-month changes capture shorter-run momentum.</p>
+<p>CPI is built primarily from a survey of urban consumer out-of-pocket spending and price quotes collected by the BLS. PCE is the price index associated with personal consumption expenditures in the national accounts — the consumption component of GDP. For a broader map of inflation concepts, see the <a href="../topics/inflation.html">inflation pillar</a> and glossary entries for <a href="../glossary/#cpi">CPI</a> and <a href="../glossary/#inflation">inflation</a>.</p>
+
+<h2>How each index is built</h2>
+<p>Agencies start with detailed product categories, collect or impute prices, apply weights that reflect relative importance, and aggregate into headline and special aggregates (food, energy, shelter, and so on). Methodological choices — whose spending counts, which formula combines prices, how often weights update, and how housing is treated — drive most of the CPI–PCE gap.</p>
+<ul>
+<li><strong>CPI (BLS).</strong> Weights draw heavily on the Consumer Expenditure Survey. The all-urban CPI-U is the series most often cited in media and many contracts. FRED publishes the seasonally adjusted CPI for all urban consumers as series such as <em>CPIAUCSL</em>.</li>
+<li><strong>PCE (BEA).</strong> Weights and coverage align with national-accounts consumption, including categories financed by employers or government on households’ behalf (for example some medical care). FRED’s headline PCE price index is commonly listed as <em>PCEPI</em>.</li>
+</ul>
+<p>Neither series is “wrong”; they answer slightly different measurement questions. Use <a href="../data/">data guides</a> and primary agency pages when you need the exact vintage and seasonal adjustment.</p>
+
+<h2>Methodological differences that move the needle</h2>
+<p>Four differences show up repeatedly in explanations of why CPI inflation can run above or below PCE inflation:</p>
+<ul>
+<li><strong>Scope.</strong> PCE covers a wider set of consumption, including spending that does not show up as household out-of-pocket outlays in the same way CPI does. Medical care is a classic example of divergent treatment and weight.</li>
+<li><strong>Formula.</strong> CPI historically leans on a Laspeyres-type fixed-basket approach (with ongoing improvements), while PCE uses a Fisher ideal chain-type index that more readily captures substitution when relative prices change. That substitution effect often pulls PCE inflation a little lower than CPI when households shift toward cheaper goods.</li>
+<li><strong>Weights and updates.</strong> PCE weights refresh more frequently from comprehensive spending data; CPI weight updates have historically been less frequent (schedules evolve — check current BLS practice). Stale weights can exaggerate or understate category contributions after big relative-price shifts.</li>
+<li><strong>Housing.</strong> Owner-occupied shelter is a large CPI weight via owners’ equivalent rent. PCE treats housing differently and typically assigns shelter a smaller relative influence. When rents and OER surge, CPI can look “hotter” than PCE even if other categories move similarly.</li>
+</ul>
+<blockquote>When CPI and PCE disagree, ask which categories and which construction choices are doing the work — not which headline is the “true” inflation rate in some absolute sense.</blockquote>
+
+<h2>Why the Fed often discusses PCE and core PCE</h2>
+<p>The Federal Reserve’s longer-run inflation goal is stated in terms of the PCE price index. Fed materials explain that PCE is preferred for several educational reasons tied to the differences above: broader coverage of consumption, weights that update from business and government surveys as well as households, and a formula that accounts for substitution. Policymakers also watch <em>core</em> PCE — excluding food and energy — because energy and food prices are volatile and can obscure the underlying trend that monetary policy influences more slowly.</p>
+<p>That preference does not make CPI irrelevant. Markets, labour contracts, Social Security cost-of-living adjustments, and everyday reporting still lean heavily on CPI. Educational takeaway: know which index a speech, forecast, or chart is using before comparing numbers across sources. For how inflation-adjusted rates enter policy stance discussions, see <a href="real-interest-rates.html">real interest rates explained</a> and the <a href="../topics/monetary-fiscal.html">monetary and fiscal policy</a> pillar. Links between slack, wages, and prices are covered in the <a href="phillips-curve.html">Phillips curve explainer</a>.</p>
+
+<h2>UK CPI and CPIH: a useful contrast</h2>
+<p>In the United Kingdom, the Office for National Statistics publishes <strong>CPI</strong> and <strong>CPIH</strong>. CPIH includes owner-occupiers’ housing costs and is ONS’s lead measure for consumer price inflation in many analytical settings; the Bank of England’s 2% target is defined on CPI. Housing treatment again matters: comparing US CPI shelter dynamics with UK CPIH is more careful than mixing unrelated housing concepts.</p>
+<p>UK and US readers should treat cross-country percentage points as similar vocabulary, not identical baskets. Country pages for the <a href="../countries/us.html">United States</a> and the <a href="../countries/uk.html">United Kingdom</a> give macro context; always note the agency, the exact index name, and whether the figure is headline or a core variant.</p>
+
+<h2>How to read inflation charts carefully</h2>
+<p>Charts can be honest and still misleading if the label is skimmed:</p>
+<ul>
+<li><strong>Headline vs core.</strong> Headline includes food and energy; core strips some volatile items to highlight persistence. Neither is automatically “better” — they answer different questions.</li>
+<li><strong>Year-over-year vs month-to-month.</strong> YoY rates smooth noise but lag turning points; MoM (especially annualised) reacts faster but swings more. Base effects can make YoY look high or low even when recent monthly momentum has changed.</li>
+<li><strong>Seasonal adjustment.</strong> Policy commentary usually uses seasonally adjusted series; raw indexes matter for some contracts and historical tables.</li>
+<li><strong>Levels vs rates.</strong> An index level of 300 is not “300% inflation”; inflation is the growth rate of the index.</li>
+</ul>
+<p>Prefer BLS, BEA, ONS, or FRED charts with clear series IDs over anonymous screenshots. For a simple purchasing-power illustration (not a forecast), try the <a href="../calculators/inflation-adjuster.html">inflation adjuster</a>.</p>
+<div class="callout warning">
+<span class="example-label">Example (illustrative)</span>
+<p style="margin:0">Suppose CPI inflation prints at 3.1% year-over-year while PCE inflation prints at 2.6% in the same month. Headlines may emphasise the higher CPI figure. An educational reading asks whether shelter weights, medical-care scope, or substitution formula differences explain most of the gap — then checks core measures and recent monthly momentum. This scenario is hypothetical; open FRED series CPIAUCSL and PCEPI, plus BLS and BEA releases, for live figures.</p>
+</div>
+
+<h2>What these indexes do not tell you</h2>
+<p>Price indexes summarise average consumer prices; they do not measure every household’s personal inflation equally, asset-price bubbles, or the “right” policy rate. They omit many quality-of-life dimensions and can struggle with rapid product change. A single print does not prescribe portfolio trades, wage demands, or fiscal choices. Treat CPI and PCE as carefully defined statistics for following macro debates — then verify claims against primary releases.</p>
+
+<h2>Sources</h2>
+<ul class="source-list">
+<li><a href="https://www.bls.gov/cpi/" rel="noopener noreferrer">U.S. Bureau of Labor Statistics — Consumer Price Index</a></li>
+<li><a href="https://www.bea.gov/data/personal-consumption-expenditures-price-index" rel="noopener noreferrer">U.S. Bureau of Economic Analysis — Personal Consumption Expenditures Price Index</a></li>
+<li><a href="https://fred.stlouisfed.org/series/CPIAUCSL" rel="noopener noreferrer">FRED — Consumer Price Index for All Urban Consumers (CPIAUCSL)</a></li>
+<li><a href="https://fred.stlouisfed.org/series/PCEPI" rel="noopener noreferrer">FRED — Personal Consumption Expenditures: Chain-type Price Index (PCEPI)</a></li>
+<li><a href="https://www.federalreserve.gov/faqs/economy_14419.htm" rel="noopener noreferrer">Federal Reserve — Why does the Federal Reserve aim for inflation of 2 percent over the longer run? (FAQ on PCE)</a></li>
+<li><a href="https://www.ons.gov.uk/economy/inflationandpriceindices" rel="noopener noreferrer">ONS — Inflation and price indices (CPI / CPIH)</a></li>
+</ul>
+
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related</h2>
+<ul>
+<li><a href="index.html">All explainers</a></li>
+<li><a href="../topics/inflation.html">Inflation</a></li>
+<li><a href="real-interest-rates.html">Real interest rates</a></li>
+<li><a href="phillips-curve.html">Phillips curve</a></li>
+<li><a href="../calculators/inflation-adjuster.html">Inflation adjuster</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../data/">Data guides</a></li>
+</ul>
+</section>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+<div class="footer-inner">
+<div>
+<a class="logo" href="../" style="color:#fff;text-decoration:none">Simple <span style="color:#a8d4d4">Macro</span> Guide</a>
+<p style="margin:0.6rem 0 0;max-width:28rem">Clear, calm explanations of how economies work — with a UK and US focus. Educational only; not investment advice.</p>
+</div>
+<div>
+<h2>Explore</h2>
+<ul>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data guides</a></li>
+<li><a href="../calculators/">Calculators</a></li>
+</ul>
+</div>
+<div>
+<h2>About</h2>
+<ul>
+<li><a href="../contact/">Contact</a></li>
+<li><a href="../disclaimer/">Disclaimer</a></li>
+<li><a href="../sources/">Sources</a></li>
+<li><a href="mailto:joshuaofisrael@gmail.com?subject=%5BContact%3A%20simplemacroguide%5D">Email</a></li>
+</ul>
+</div>
+<p class="footer-note">© Joshua Israel Ventures LLC. Content is for education. Not financial, investment, tax, or legal advice. Verify figures with primary sources such as the World Bank, ONS, and FRED.</p>
+</div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>
