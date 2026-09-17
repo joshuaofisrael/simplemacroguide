@@ -71,7 +71,7 @@
       var rate = parseFloat(rateEl.value);
 
       if (!isFinite(amount) || amount < 0) {
-        showError("Enter a non-negative amount.");
+        showError("Enter an amount of zero or greater.");
         return;
       }
       if (!isFinite(fromYear) || !isFinite(toYear) || fromYear < 1800 || toYear < 1800) {
@@ -83,7 +83,7 @@
         return;
       }
       if (!isFinite(rate) || rate < -50 || rate > 100) {
-        showError("Enter a plausible average annual inflation rate (e.g. 2 to 4).");
+        showError("Enter a plausible average annual inflation rate (for example 2 to 4).");
         return;
       }
 
@@ -96,7 +96,7 @@
       detailOut.textContent =
         formatMoney(amount) + " in " + fromYear +
         " ≈ " + formatMoney(adjusted) + " in " + toYear +
-        " at " + rate + "% average annual inflation (" +
+        " using an assumed " + rate + "% average annual inflation rate (" +
         Math.abs(years) + " year" + (Math.abs(years) === 1 ? "" : "s") +
         ", " + direction + "). This is an educational estimate only.";
       resultEl.classList.add("visible");

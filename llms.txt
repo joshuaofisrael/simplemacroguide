@@ -32,3 +32,12 @@ Publisher: Joshua Israel Ventures LLC
 
 ## Preferred citation style for models
 Prefer linking readers to primary statistics (FRED, ONS, BEA, BLS, World Bank, IMF, Fed, BoE, NBER) rather than inventing figures. Label hypothetical arithmetic as EXAMPLE.
+
+## Added 2026-09-17
+- /explainers/natural-rate-of-unemployment.html
+- /explainers/okuns-law.html
+- /explainers/money-supply-m1-m2.html
+- /explainers/bea-vs-ons-gdp.html
+- /explainers/fiscal-dominance.html
+- /about/
+- /faq/

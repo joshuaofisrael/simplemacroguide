@@ -3,25 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Inflation Adjuster — Simple Macro Guide</title>
-<meta name="description" content="Offline inflation adjuster: estimate purchasing-power change across years with vanilla JavaScript.">
+<title>Inflation Adjuster | Simple Macro Guide</title>
+<meta name="description" content="Offline inflation adjuster: estimate purchasing power change across years with vanilla JavaScript.">
 <link rel="canonical" href="https://simplemacroguide.com/calculators/inflation-adjuster.html">
 <meta name="theme-color" content="#2a6f6f">
-<meta property="og:title" content="Inflation Adjuster — Simple Macro Guide">
-<meta property="og:description" content="Offline inflation adjuster: estimate purchasing-power change across years with vanilla JavaScript.">
+<meta property="og:title" content="Inflation Adjuster | Simple Macro Guide">
+<meta property="og:description" content="Offline inflation adjuster: estimate purchasing power change across years with vanilla JavaScript.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://simplemacroguide.com/calculators/inflation-adjuster.html">
 <meta property="og:site_name" content="Simple Macro Guide">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Inflation Adjuster — Simple Macro Guide">
-<meta name="twitter:description" content="Offline inflation adjuster: estimate purchasing-power change across years with vanilla JavaScript.">
+<meta name="twitter:title" content="Inflation Adjuster | Simple Macro Guide">
+<meta name="twitter:description" content="Offline inflation adjuster: estimate purchasing power change across years with vanilla JavaScript.">
 <link rel="stylesheet" href="../css/styles.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Inflation Adjuster",
-  "description": "Offline inflation adjuster: estimate purchasing-power change across years with vanilla JavaScript.",
+  "description": "Offline inflation adjuster: estimate purchasing power change across years with vanilla JavaScript.",
   "url": "https://simplemacroguide.com/calculators/inflation-adjuster.html",
   "publisher": {
     "@type": "Organization",
@@ -36,8 +36,7 @@
 <div class="header-inner">
 <a class="logo" href="../">Simple <span>Macro</span> Guide</a>
 <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
-<nav class="site-nav" id="site-nav" aria-label="Primary">
-<ul>
+<nav class="site-nav" id="site-nav" aria-label="Primary"><ul>
 <li><a href="../">Home</a></li>
 <li><a href="../topics/">Topics</a></li>
 <li><a href="../explainers/">Explainers</a></li>
@@ -45,9 +44,10 @@
 <li><a href="../countries/">Countries</a></li>
 <li><a href="../data/">Data</a></li>
 <li><a href="../calculators/" aria-current="page">Calculators</a></li>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
 <li><a href="../contact/">Contact</a></li>
-</ul>
-</nav>
+</ul></nav>
 </div>
 </header>
 <main id="main">
@@ -55,21 +55,25 @@
 <div class="wrap narrow">
 <header class="hero" style="border:none;margin:0;padding-bottom:0.5rem">
 <h1>Inflation adjuster</h1>
-<p class="lede">Estimate what an amount in one year is worth in another year, assuming a constant average annual inflation rate. Runs entirely offline in your browser.</p>
+<p class="lede">Estimate what an amount from one year is worth in another year, using a constant average annual inflation rate you choose. Runs entirely offline in your browser. Educational only.</p>
 </header>
 
 <div class="calc-panel" id="inflation-calculator">
-<label for="amount">Amount (currency units)</label>
+<label for="amount">Starting amount (any currency units)</label>
 <input id="amount" type="number" min="0" step="any" value="100" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Enter a nominal amount such as 100. The calculator does not convert currencies.</p>
 
-<label for="from-year">From year</label>
+<label for="from-year">Start year</label>
 <input id="from-year" type="number" min="1800" max="2200" step="1" value="2000">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Year of the starting amount.</p>
 
-<label for="to-year">To year</label>
+<label for="to-year">End year</label>
 <input id="to-year" type="number" min="1800" max="2200" step="1" value="2024">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Year you want to express the amount in. Can be earlier or later than the start year.</p>
 
-<label for="avg-rate">Average annual inflation rate (%)</label>
+<label for="avg-rate">Assumed average annual inflation rate (%)</label>
 <input id="avg-rate" type="number" step="0.1" value="2.5" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">This is your assumption, not a live official series. Try values near a country’s long run average for a rough sketch, then verify with BLS, BEA, or ONS indices.</p>
 
 <div class="calc-actions">
 <button type="button" class="btn" id="calc-inflate">Calculate</button>
@@ -85,26 +89,29 @@
 </div>
 
 <div class="callout" style="margin-top:1.5rem">
-<strong>How it works.</strong> Adjusted ≈ Amount × (1 + rate/100)<sup>(to − from)</sup>.
-You can project forward or backward by swapping years. For historical accuracy, use year-by-year official index ratios from
-<a href="https://www.bls.gov/cpi/" rel="noopener noreferrer">BLS CPI</a> or
+<strong>Assumptions.</strong> Adjusted amount equals Amount times (1 + rate/100) raised to the power of (end year minus start year). The rate is constant every year. There is no basket reweighting, no quality adjustment, and no distinction between CPI, PCE, core, or headline measures. For historical accuracy, use year by year official index ratios from
+<a href="https://www.bls.gov/cpi/" rel="noopener noreferrer">BLS CPI</a>,
+<a href="https://www.bea.gov/data/personal-consumption-expenditures-price-index" rel="noopener noreferrer">BEA PCE</a>, or
 <a href="https://www.ons.gov.uk/economy/inflationandpriceindices" rel="noopener noreferrer">ONS</a>
 instead of a single average rate.
 </div>
 
 <div class="callout warning">
 <span class="example-label">Example defaults</span>
-<p style="margin:0">Defaults ($100 from 2000 to 2024 at 2.5%) are illustrative. They are not a claim about actual US or UK inflation over that span.</p>
+<p style="margin:0">Defaults (100 from 2000 to 2024 at 2.5 percent) are illustrative. They are not a claim about actual US or UK inflation over that span.</p>
 </div>
 
-<p><a href="index.html">All calculators</a> · <a href="../topics/inflation.html">Inflation topic</a> · <a href="../glossary/#purchasing-power">Purchasing power</a></p>
+<h2>Which price index should I think about?</h2>
+<p>US readers often compare <a href="../explainers/cpi-vs-pce.html">CPI versus PCE</a>. Headline CPI is widely cited in contracts and media; the Federal Reserve often discusses PCE, especially core PCE. UK readers usually start with CPI or CPIH from ONS. For why economists sometimes set food and energy aside, see <a href="../explainers/core-vs-headline-inflation.html">core versus headline inflation</a>. Broader context sits on the <a href="../topics/inflation.html">inflation pillar</a> and the <a href="../data/">CPI data guide</a>.</p>
+
+<p><a href="index.html">All calculators</a> · <a href="../topics/inflation.html">Inflation topic</a> · <a href="../glossary/#purchasing-power">Purchasing power</a> · <a href="../faq/">FAQ</a></p>
 </div>
 </main>
 <footer class="site-footer">
 <div class="footer-inner">
 <div>
 <a class="logo" href="../" style="color:#fff;text-decoration:none">Simple <span style="color:#a8d4d4">Macro</span> Guide</a>
-<p style="margin:0.6rem 0 0;max-width:28rem">Clear, calm explanations of how economies work — with a UK and US focus. Educational only; not investment advice.</p>
+<p style="margin:0.6rem 0 0;max-width:28rem">Clear, calm explanations of how economies work, with a UK and US focus. Educational only; not investment advice.</p>
 </div>
 <div>
 <h2>Explore</h2>
@@ -120,6 +127,8 @@ instead of a single average rate.
 <div>
 <h2>About</h2>
 <ul>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
 <li><a href="../contact/">Contact</a></li>
 <li><a href="../disclaimer/">Disclaimer</a></li>
 <li><a href="../sources/">Sources</a></li>

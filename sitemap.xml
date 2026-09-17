@@ -120,4 +120,32 @@
     <loc>https://simplemacroguide.com/disclaimer/</loc>
     <changefreq>monthly</changefreq>
   </url>
+  <url>
+    <loc>https://simplemacroguide.com/about/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/faq/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/natural-rate-of-unemployment.html</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/okuns-law.html</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/money-supply-m1-m2.html</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/bea-vs-ons-gdp.html</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/fiscal-dominance.html</loc>
+    <changefreq>weekly</changefreq>
+  </url>
 </urlset>
