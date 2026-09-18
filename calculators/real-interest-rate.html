@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Real interest rate calculator | Simple Macro Guide</title>
+<meta name="description" content="Estimate a real interest rate from a nominal rate and an inflation rate you choose. Shows the subtraction shortcut and the more precise multiplicative form. Educational only.">
+<link rel="canonical" href="https://simplemacroguide.com/calculators/real-interest-rate.html">
+<meta name="theme-color" content="#2a6f6f">
+<meta property="og:title" content="Real interest rate calculator | Simple Macro Guide">
+<meta property="og:description" content="Estimate a real interest rate from a nominal rate and an inflation rate you choose. Shows the subtraction shortcut and the more precise multiplicative form. Educational only.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://simplemacroguide.com/calculators/real-interest-rate.html">
+<meta property="og:site_name" content="Simple Macro Guide">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Real interest rate calculator | Simple Macro Guide">
+<meta name="twitter:description" content="Estimate a real interest rate from a nominal rate and an inflation rate you choose. Shows the subtraction shortcut and the more precise multiplicative form. Educational only.">
+<link rel="stylesheet" href="../css/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Real interest rate calculator",
+  "description": "Estimate a real interest rate from a nominal rate and an inflation rate you choose. Shows the subtraction shortcut and the more precise multiplicative form. Educational only.",
+  "url": "https://simplemacroguide.com/calculators/real-interest-rate.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Joshua Israel Ventures LLC"
+  }
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="header-inner">
+<a class="logo" href="../">Simple <span>Macro</span> Guide</a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav class="site-nav" id="site-nav" aria-label="Primary"><ul>
+<li><a href="../">Home</a></li>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data</a></li>
+<li><a href="../calculators/" aria-current="page">Calculators</a></li>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+</ul></nav>
+</div>
+</header>
+<main id="main">
+
+<div class="wrap narrow">
+<header class="hero" style="border:none;margin:0;padding-bottom:0.5rem">
+<h1>Real interest rate calculator</h1>
+<p class="lede">Estimate the real interest rate from a nominal rate and an inflation rate you choose. The tool shows the classroom subtraction shortcut and the more precise multiplicative form. It runs entirely in your browser. Educational only.</p>
+</header>
+
+<div class="calc-panel calc-panel-wide" id="real-rate-calculator">
+<label for="nominal-rate">Nominal interest rate (%)</label>
+<input id="nominal-rate" type="number" step="0.1" value="5" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">The quoted rate on a loan, deposit, Bank Rate, or the federal funds rate. This is your input, not a live official series.</p>
+
+<label for="inflation-rate">Inflation rate (%)</label>
+<input id="inflation-rate" type="number" step="0.1" value="2" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Past inflation or expected inflation, depending on the question you want to ask. Look up CPI or PCE figures from ONS, BLS, BEA, or FRED, then type the number yourself.</p>
+
+<div class="calc-actions">
+<button type="button" class="btn" id="calc-real">Calculate</button>
+<button type="button" class="btn btn-secondary" id="calc-real-reset">Reset</button>
+</div>
+
+<p class="calc-error" id="calc-real-error" role="alert"></p>
+
+<div class="calc-result" id="calc-real-result" role="status" aria-live="polite">
+<div class="result-block">
+<p class="result-label">Approximate real rate (subtraction)</p>
+<div class="amount" id="result-approx"></div>
+<p class="detail">Nominal minus inflation. Fast classroom shortcut.</p>
+</div>
+<div class="result-block">
+<p class="result-label">More precise real rate (multiplicative)</p>
+<div class="amount" id="result-exact"></div>
+<p class="detail">One plus nominal, divided by one plus inflation, then minus one.</p>
+</div>
+<p class="detail" id="result-real-detail"></p>
+</div>
+</div>
+
+<div class="callout" style="margin-top:1.5rem">
+<strong>Assumptions.</strong> Educational only. Not investment advice. The rates are numbers you type, not live official series from the Bank of England, the Federal Reserve, ONS, BLS, or FRED. The calculator does not add risk premia, taxes, fees, or a term structure. It does not say whether policy is tight or loose. For the ideas behind the two formulas, read <a href="../explainers/real-interest-rates.html">real interest rates explained</a>.
+</div>
+
+<div class="callout warning">
+<span class="example-label">Example defaults</span>
+<p style="margin:0">Defaults (5 percent nominal, 2 percent inflation) are illustrative. They are not a claim about current Bank Rate, the federal funds rate, CPI, or PCE.</p>
+</div>
+
+<h2>When each formula is useful</h2>
+<p>The subtraction form, nominal minus inflation, is the usual classroom shortcut. It is close enough when inflation is moderate, say a few percent a year, and you want a fast intuition check.</p>
+<p>The multiplicative form is the more precise Fisher identity: one plus the nominal rate, divided by one plus the inflation rate, then minus one. Use it when inflation is high, or when you want the exact change in purchasing power over one period.</p>
+<p>The two answers drift apart as inflation rises. At 2 percent inflation the gap is tiny. At 20 percent inflation the gap is large enough to notice. Neither answer is a forecast, and neither is a recommended portfolio return.</p>
+
+<h2>Where to find the inputs</h2>
+<p>Type your own rates. For a UK sketch, look up Bank Rate at the Bank of England and CPI or CPIH at ONS. For a US sketch, look up the federal funds rate at the Federal Reserve or on FRED, and CPI at BLS or PCE at BEA. Then enter those published figures yourself. This page does not fetch them.</p>
+<p>Past inflation answers “what was the real return after prices moved?” Expected inflation answers “what real return am I bargaining for?” Policy talk is mostly about the second question, even though expectations are hard to observe. Indexed bond yields, such as TIPS on FRED or index linked gilts in the UK, embed market real rates plus premia this tool does not model.</p>
+
+<h2>UK and US framing</h2>
+<p>UK readers often compare Bank Rate with CPI or CPIH from ONS. US readers often compare the federal funds rate with CPI from BLS or PCE from BEA. Cross country comparisons should note different baskets and different indexation conventions. Broader context sits on the <a href="../topics/inflation.html">inflation pillar</a> and the <a href="../topics/monetary-fiscal.html">monetary and fiscal policy pillar</a>.</p>
+
+<h2>Sources</h2>
+<ul class="source-list">
+<li><a href="https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate" rel="noopener noreferrer">Bank of England, Bank Rate</a></li>
+<li><a href="https://www.federalreserve.gov/monetarypolicy/fomc.htm" rel="noopener noreferrer">Federal Reserve, FOMC</a></li>
+<li><a href="https://fred.stlouisfed.org/series/FEDFUNDS" rel="noopener noreferrer">FRED, Federal Funds Effective Rate (FEDFUNDS)</a></li>
+<li><a href="https://fred.stlouisfed.org/series/DFII10" rel="noopener noreferrer">FRED, 10 Year TIPS rate (DFII10)</a></li>
+<li><a href="https://www.ons.gov.uk/economy/inflationandpriceindices" rel="noopener noreferrer">ONS, Inflation and price indices</a></li>
+<li><a href="https://www.bls.gov/cpi/" rel="noopener noreferrer">BLS, Consumer Price Index</a></li>
+<li><a href="https://www.bea.gov/data/personal-consumption-expenditures-price-index" rel="noopener noreferrer">BEA, PCE price index</a></li>
+</ul>
+
+<p><a href="index.html">All calculators</a> · <a href="inflation-adjuster.html">Inflation adjuster</a> · <a href="../explainers/real-interest-rates.html">Real interest rates explained</a> · <a href="../topics/inflation.html">Inflation topic</a> · <a href="../glossary/#real-interest-rate">Real interest rate</a> · <a href="../faq/">FAQ</a></p>
+</div>
+</main>
+<footer class="site-footer">
+<div class="footer-inner">
+<div>
+<a class="logo" href="../" style="color:#fff;text-decoration:none">Simple <span style="color:#a8d4d4">Macro</span> Guide</a>
+<p style="margin:0.6rem 0 0;max-width:28rem">Clear, calm explanations of how economies work, with a UK and US focus. Educational only; not investment advice.</p>
+</div>
+<div>
+<h2>Explore</h2>
+<ul>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data guides</a></li>
+<li><a href="../calculators/">Calculators</a></li>
+</ul>
+</div>
+<div>
+<h2>About</h2>
+<ul>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+<li><a href="../disclaimer/">Disclaimer</a></li>
+<li><a href="../sources/">Sources</a></li>
+<li><a href="mailto:joshuaofisrael@gmail.com?subject=%5BContact%3A%20simplemacroguide%5D">Email</a></li>
+</ul>
+</div>
+<p class="footer-note">© Joshua Israel Ventures LLC. Content is for education. Not financial, investment, tax, or legal advice. Verify figures with primary sources such as the World Bank, ONS, and FRED.</p>
+</div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>
