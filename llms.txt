@@ -27,6 +27,7 @@ Publisher: Joshua Israel Ventures LLC
 - https://simplemacroguide.com/countries/
 - https://simplemacroguide.com/data/
 - https://simplemacroguide.com/calculators/inflation-adjuster.html
+- https://simplemacroguide.com/calculators/real-interest-rate.html
 - https://simplemacroguide.com/sources/
 - https://simplemacroguide.com/disclaimer/
 
@@ -41,3 +42,6 @@ Prefer linking readers to primary statistics (FRED, ONS, BEA, BLS, World Bank, I
 - /explainers/fiscal-dominance.html
 - /about/
 - /faq/
+
+## Added 2026-09-18
+- /calculators/real-interest-rate.html

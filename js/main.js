@@ -113,4 +113,71 @@
       });
     }
   }
+
+  /* Real interest rate calculator */
+  var realCalcBtn = document.getElementById("calc-real");
+  if (realCalcBtn) {
+    var nominalEl = document.getElementById("nominal-rate");
+    var inflationEl = document.getElementById("inflation-rate");
+    var realResultEl = document.getElementById("calc-real-result");
+    var approxOut = document.getElementById("result-approx");
+    var exactOut = document.getElementById("result-exact");
+    var realDetailOut = document.getElementById("result-real-detail");
+    var realErrorEl = document.getElementById("calc-real-error");
+    var realResetBtn = document.getElementById("calc-real-reset");
+
+    function showRealError(msg) {
+      realErrorEl.textContent = msg;
+      realErrorEl.classList.add("visible");
+      realResultEl.classList.remove("visible");
+    }
+    function clearRealError() {
+      realErrorEl.classList.remove("visible");
+      realErrorEl.textContent = "";
+    }
+    function formatRatePct(decimalRate) {
+      return (decimalRate * 100).toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }) + "%";
+    }
+
+    realCalcBtn.addEventListener("click", function () {
+      clearRealError();
+      var nominalPct = parseFloat(nominalEl.value);
+      var inflationPct = parseFloat(inflationEl.value);
+
+      if (!isFinite(nominalPct) || nominalPct < -50 || nominalPct > 200) {
+        showRealError("Enter a plausible nominal interest rate, for example 0 to 10.");
+        return;
+      }
+      if (!isFinite(inflationPct) || inflationPct <= -100 || inflationPct > 200) {
+        showRealError("Enter a plausible inflation rate above minus 100 percent. The precise formula is undefined at minus 100 percent.");
+        return;
+      }
+
+      var n = nominalPct / 100;
+      var i = inflationPct / 100;
+      var approx = n - i;
+      var exact = (1 + n) / (1 + i) - 1;
+
+      approxOut.textContent = formatRatePct(approx);
+      exactOut.textContent = formatRatePct(exact);
+      realDetailOut.textContent =
+        "Approximate real rate " + formatRatePct(approx) +
+        " using nominal minus inflation. More precise real rate " +
+        formatRatePct(exact) +
+        " using the multiplicative form. Educational estimate only. Rates are your inputs, not live official series.";
+      realResultEl.classList.add("visible");
+    });
+
+    if (realResetBtn) {
+      realResetBtn.addEventListener("click", function () {
+        nominalEl.value = "5";
+        inflationEl.value = "2";
+        clearRealError();
+        realResultEl.classList.remove("visible");
+      });
+    }
+  }
 })();
