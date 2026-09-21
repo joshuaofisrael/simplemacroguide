@@ -180,4 +180,159 @@
       });
     }
   }
+
+  /* Taylor rule calculator (classic educational 1993 form) */
+  var taylorCalcBtn = document.getElementById("calc-taylor");
+  if (taylorCalcBtn) {
+    var rStarEl = document.getElementById("taylor-rstar");
+    var taylorInflEl = document.getElementById("taylor-inflation");
+    var targetEl = document.getElementById("taylor-target");
+    var outputGapEl = document.getElementById("taylor-output-gap");
+    var inflCoeffEl = document.getElementById("taylor-infl-coeff");
+    var outputCoeffEl = document.getElementById("taylor-output-coeff");
+    var actualEl = document.getElementById("taylor-actual");
+    var taylorResultEl = document.getElementById("calc-taylor-result");
+    var suggestedOut = document.getElementById("result-taylor-suggested");
+    var neutralOut = document.getElementById("result-taylor-neutral");
+    var inflGapOut = document.getElementById("result-taylor-infl-gap");
+    var inflGapDetail = document.getElementById("result-taylor-infl-gap-detail");
+    var outputGapOut = document.getElementById("result-taylor-output-gap");
+    var outputGapDetail = document.getElementById("result-taylor-output-gap-detail");
+    var realOut = document.getElementById("result-taylor-real");
+    var actualBlock = document.getElementById("result-taylor-actual-block");
+    var actualGapOut = document.getElementById("result-taylor-actual-gap");
+    var actualDetail = document.getElementById("result-taylor-actual-detail");
+    var taylorSummary = document.getElementById("result-taylor-summary");
+    var taylorErrorEl = document.getElementById("calc-taylor-error");
+    var taylorResetBtn = document.getElementById("calc-taylor-reset");
+
+    function showTaylorError(msg) {
+      taylorErrorEl.textContent = msg;
+      taylorErrorEl.classList.add("visible");
+      taylorResultEl.classList.remove("visible");
+    }
+    function clearTaylorError() {
+      taylorErrorEl.classList.remove("visible");
+      taylorErrorEl.textContent = "";
+    }
+    function formatTaylorPct(pctPoints) {
+      return pctPoints.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }) + "%";
+    }
+    function parseOptionalActual(raw) {
+      var trimmed = (raw || "").toString().trim();
+      if (trimmed === "") {
+        return { present: false, value: null };
+      }
+      var n = parseFloat(trimmed);
+      if (!isFinite(n)) {
+        return { present: true, value: NaN };
+      }
+      return { present: true, value: n };
+    }
+
+    taylorCalcBtn.addEventListener("click", function () {
+      clearTaylorError();
+      var rStar = parseFloat(rStarEl.value);
+      var inflation = parseFloat(taylorInflEl.value);
+      var target = parseFloat(targetEl.value);
+      var outputGap = parseFloat(outputGapEl.value);
+      var inflCoeff = parseFloat(inflCoeffEl.value);
+      var outputCoeff = parseFloat(outputCoeffEl.value);
+      var actual = parseOptionalActual(actualEl.value);
+
+      if (!isFinite(rStar) || rStar < -20 || rStar > 20) {
+        showTaylorError("Enter a plausible equilibrium real rate, for example 0 to 4.");
+        return;
+      }
+      if (!isFinite(inflation) || inflation < -50 || inflation > 200) {
+        showTaylorError("Enter a plausible inflation rate, for example 0 to 10.");
+        return;
+      }
+      if (!isFinite(target) || target < -10 || target > 50) {
+        showTaylorError("Enter a plausible inflation target, for example 2.");
+        return;
+      }
+      if (!isFinite(outputGap) || outputGap < -50 || outputGap > 50) {
+        showTaylorError("Enter a plausible output gap as a percent of potential, for example -2 to 2.");
+        return;
+      }
+      if (!isFinite(inflCoeff) || inflCoeff < -5 || inflCoeff > 5) {
+        showTaylorError("Enter a plausible inflation gap coefficient, for example 0.5.");
+        return;
+      }
+      if (!isFinite(outputCoeff) || outputCoeff < -5 || outputCoeff > 5) {
+        showTaylorError("Enter a plausible output gap coefficient, for example 0.5.");
+        return;
+      }
+      if (actual.present && !isFinite(actual.value)) {
+        showTaylorError("Enter a plausible actual policy rate, or leave that box blank.");
+        return;
+      }
+      if (actual.present && (actual.value < -50 || actual.value > 200)) {
+        showTaylorError("Enter a plausible actual policy rate, for example 0 to 10, or leave that box blank.");
+        return;
+      }
+
+      var inflGap = inflation - target;
+      var inflContrib = inflCoeff * inflGap;
+      var outputContrib = outputCoeff * outputGap;
+      var neutral = rStar + inflation;
+      var suggested = neutral + inflContrib + outputContrib;
+      var impliedReal = suggested - inflation;
+
+      suggestedOut.textContent = formatTaylorPct(suggested);
+      neutralOut.textContent = formatTaylorPct(neutral);
+      inflGapOut.textContent = formatTaylorPct(inflContrib);
+      inflGapDetail.textContent =
+        inflCoeff.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 2 }) +
+        " × (" + formatTaylorPct(inflation) + " minus " + formatTaylorPct(target) +
+        "). Inflation gap is " + formatTaylorPct(inflGap) + ".";
+      outputGapOut.textContent = formatTaylorPct(outputContrib);
+      outputGapDetail.textContent =
+        outputCoeff.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 2 }) +
+        " × " + formatTaylorPct(outputGap) + " output gap.";
+      realOut.textContent = formatTaylorPct(impliedReal);
+
+      if (actual.present) {
+        var stanceGap = suggested - actual.value;
+        actualGapOut.textContent = formatTaylorPct(stanceGap);
+        actualDetail.textContent =
+          "Suggested " + formatTaylorPct(suggested) +
+          " minus actual " + formatTaylorPct(actual.value) +
+          ". A positive number means the rule sits above the rate you typed. Educational comparison only.";
+        actualBlock.hidden = false;
+      } else {
+        actualBlock.hidden = true;
+        actualGapOut.textContent = "";
+        actualDetail.textContent = "";
+      }
+
+      taylorSummary.textContent =
+        "Suggested nominal policy rate " + formatTaylorPct(suggested) +
+        " from neutral " + formatTaylorPct(neutral) +
+        " plus inflation gap contribution " + formatTaylorPct(inflContrib) +
+        " plus output gap contribution " + formatTaylorPct(outputContrib) +
+        ". Approximate implied real suggestion " + formatTaylorPct(impliedReal) +
+        " by subtraction. Educational estimate only. Inputs are yours, not live official series.";
+      taylorResultEl.classList.add("visible");
+    });
+
+    if (taylorResetBtn) {
+      taylorResetBtn.addEventListener("click", function () {
+        rStarEl.value = "2";
+        taylorInflEl.value = "2";
+        targetEl.value = "2";
+        outputGapEl.value = "0";
+        inflCoeffEl.value = "0.5";
+        outputCoeffEl.value = "0.5";
+        actualEl.value = "";
+        actualBlock.hidden = true;
+        clearTaylorError();
+        taylorResultEl.classList.remove("visible");
+      });
+    }
+  }
 })();

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taylor rule calculator | Simple Macro Guide</title>
+<meta name="description" content="Estimate a suggested policy rate from inflation, an output gap, and r star using a classic Taylor 1993 classroom formula. Educational only.">
+<link rel="canonical" href="https://simplemacroguide.com/calculators/taylor-rule.html">
+<meta name="theme-color" content="#2a6f6f">
+<meta property="og:title" content="Taylor rule calculator | Simple Macro Guide">
+<meta property="og:description" content="Estimate a suggested policy rate from inflation, an output gap, and r star using a classic Taylor 1993 classroom formula. Educational only.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://simplemacroguide.com/calculators/taylor-rule.html">
+<meta property="og:site_name" content="Simple Macro Guide">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Taylor rule calculator | Simple Macro Guide">
+<meta name="twitter:description" content="Estimate a suggested policy rate from inflation, an output gap, and r star using a classic Taylor 1993 classroom formula. Educational only.">
+<link rel="stylesheet" href="../css/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Taylor rule calculator",
+  "description": "Estimate a suggested policy rate from inflation, an output gap, and r star using a classic Taylor 1993 classroom formula. Educational only.",
+  "url": "https://simplemacroguide.com/calculators/taylor-rule.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Joshua Israel Ventures LLC"
+  }
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="header-inner">
+<a class="logo" href="../">Simple <span>Macro</span> Guide</a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav class="site-nav" id="site-nav" aria-label="Primary"><ul>
+<li><a href="../">Home</a></li>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data</a></li>
+<li><a href="../calculators/" aria-current="page">Calculators</a></li>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+</ul></nav>
+</div>
+</header>
+<main id="main">
+
+<div class="wrap narrow">
+<header class="hero" style="border:none;margin:0;padding-bottom:0.5rem">
+<h1>Taylor rule calculator</h1>
+<p class="lede">Turn an equilibrium real rate, inflation, an inflation target, and an output gap into a suggested short term policy rate. This is a transparent classroom yardstick from the classic Taylor 1993 sketch. It is not a forecast, not a voting rule, and not investment advice. The arithmetic runs entirely in your browser.</p>
+</header>
+
+<div class="calc-panel calc-panel-wide" id="taylor-rule-calculator">
+<label for="taylor-rstar">Equilibrium real rate, r* (%)</label>
+<input id="taylor-rstar" type="number" step="0.1" value="2" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">A long run real rate thought to be consistent with stable inflation when the economy is at potential. This is an assumption you type, not a live official series.</p>
+
+<label for="taylor-inflation">Inflation rate, π (%)</label>
+<input id="taylor-inflation" type="number" step="0.1" value="2" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">The inflation reading you want to feed the rule. Look up CPI, CPIH, or PCE from ONS, BLS, BEA, or FRED, then type the number yourself.</p>
+
+<label for="taylor-target">Inflation target, π* (%)</label>
+<input id="taylor-target" type="number" step="0.1" value="2" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">A numerical goal such as 2 percent. The Bank of England’s CPI target and the Federal Reserve’s longer run PCE goal are both commonly stated at 2 percent.</p>
+
+<label for="taylor-output-gap">Output gap, y (% of potential)</label>
+<input id="taylor-output-gap" type="number" step="0.1" value="0" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Positive means actual output sits above potential. Negative means slack. The gap is an estimate, not a shop receipt. See the <a href="../explainers/output-gap.html">output gap explainer</a>.</p>
+
+<label for="taylor-infl-coeff">Inflation gap coefficient</label>
+<input id="taylor-infl-coeff" type="number" step="0.1" value="0.5" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Classic Taylor 1993 classroom weight on (π − π*). Default 0.5. Raise or lower it to explore later variants.</p>
+
+<label for="taylor-output-coeff">Output gap coefficient</label>
+<input id="taylor-output-coeff" type="number" step="0.1" value="0.5" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Classic classroom weight on the output gap. Default 0.5. Some later rules use a different activity weight.</p>
+
+<label for="taylor-actual">Actual policy rate (%), optional</label>
+<input id="taylor-actual" type="number" step="0.1" value="" inputmode="decimal" placeholder="Leave blank to hide the comparison">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Optional. Type a federal funds rate or Bank Rate if you want the gap between the suggestion and that actual rate. Leave blank to hide the comparison.</p>
+
+<div class="calc-actions">
+<button type="button" class="btn" id="calc-taylor">Calculate</button>
+<button type="button" class="btn btn-secondary" id="calc-taylor-reset">Reset</button>
+</div>
+
+<p class="calc-error" id="calc-taylor-error" role="alert"></p>
+
+<div class="calc-result" id="calc-taylor-result" role="status" aria-live="polite">
+<div class="result-block">
+<p class="result-label">Suggested nominal policy rate</p>
+<div class="amount" id="result-taylor-suggested"></div>
+<p class="detail">Classic classroom form: r* + π + (inflation gap coefficient × inflation gap) + (output gap coefficient × output gap).</p>
+</div>
+<div class="result-block">
+<p class="result-label">Neutral nominal rate (r* + π)</p>
+<div class="amount" id="result-taylor-neutral"></div>
+<p class="detail">Starting point before the two gap adjustments.</p>
+</div>
+<div class="result-block">
+<p class="result-label">Inflation gap contribution</p>
+<div class="amount" id="result-taylor-infl-gap"></div>
+<p class="detail" id="result-taylor-infl-gap-detail"></p>
+</div>
+<div class="result-block">
+<p class="result-label">Output gap contribution</p>
+<div class="amount" id="result-taylor-output-gap"></div>
+<p class="detail" id="result-taylor-output-gap-detail"></p>
+</div>
+<div class="result-block">
+<p class="result-label">Approximate implied real suggested rate</p>
+<div class="amount" id="result-taylor-real"></div>
+<p class="detail">Suggested nominal rate minus inflation. Fast classroom subtraction. It is not the more precise multiplicative real rate, and it is not a recommended return.</p>
+</div>
+<div class="result-block" id="result-taylor-actual-block" hidden>
+<p class="result-label">Suggested minus actual policy rate</p>
+<div class="amount" id="result-taylor-actual-gap"></div>
+<p class="detail" id="result-taylor-actual-detail"></p>
+</div>
+<p class="detail" id="result-taylor-summary"></p>
+</div>
+</div>
+
+<div class="callout" style="margin-top:1.5rem">
+<strong>How to read this.</strong> The headline number is a suggested nominal policy rate from a transparent formula, not a prediction of the next Bank of England or Federal Reserve decision. Neutral nominal is r* plus current inflation. The inflation gap term then adds (or subtracts) a share of how far inflation sits from target. The output gap term does the same for activity versus potential. Adding those three pieces recovers the suggestion. The implied real figure is only subtraction, so treat it as a sketch. Compare it with the <a href="real-interest-rate.html">real interest rate calculator</a> if you want the multiplicative form. A gap versus an actual rate you typed is a comparison of two numbers you chose, not a verdict that policy is “too easy” or “too tight.”
+</div>
+
+<div class="callout warning">
+<span class="example-label">Example defaults</span>
+<p style="margin:0">Defaults (r* = 2, inflation = 2, target = 2, output gap = 0, both coefficients = 0.5) give a suggested nominal rate of 4 percent. If you change inflation to 3 and the output gap to 1, the same coefficients give 6 percent. Those figures are classroom arithmetic. They are not a claim about current Bank Rate or the federal funds rate.</p>
+</div>
+
+<div class="callout warning">
+<span class="example-label">Educational only</span>
+<p style="margin:0">Not investment advice. Nothing here recommends buying, selling, or holding any security, currency, or derivative, or timing a policy meeting. r* and the output gap are estimates that researchers revise. US and UK policy instruments differ: the usual US comparison is the federal funds rate, while the usual UK comparison is Bank Rate. The calculator does not fetch live data, add rate smoothing, or model quantitative easing.</p>
+</div>
+
+<h2>The classroom formula</h2>
+<p>This page uses the classic educational sketch associated with Taylor’s 1993 illustration:</p>
+<blockquote>Suggested policy rate ≈ r* + π + 0.5 × (π − π*) + 0.5 × y</blockquote>
+<p>Here r* is the equilibrium real rate, π is inflation, π* is the inflation target, and y is the output gap as a percent of potential. The 0.5 weights are the usual classroom starting point. You can edit both coefficients above to see how later variants change the suggestion. Because inflation appears both as the starting addend and inside the inflation gap, the total response of the suggested nominal rate to inflation is stronger than one for one when the inflation coefficient is 0.5. That is the classroom version of leaning against price pressure in real terms.</p>
+<p>For the ideas, caveats, and why people treat the rule as a benchmark rather than a law, read <a href="../explainers/taylor-rule.html">what the Taylor rule is</a>. For the activity input, read <a href="../explainers/output-gap.html">the output gap</a>. For nominal versus inflation adjusted rates, read <a href="../explainers/real-interest-rates.html">real interest rates explained</a>.</p>
+
+<h2>Where to find the inputs</h2>
+<p>Type your own numbers. This page does not download official series. For a US sketch, look up inflation at BLS (CPI) or BEA (PCE), and look up the federal funds rate on FRED or Federal Reserve materials. Potential output and gap estimates circulate from the CBO and research variants. For a UK sketch, look up CPI or CPIH at ONS and Bank Rate at the Bank of England. Spare capacity is discussed in Bank communications, not as a single barcode reading. Broader context sits on the <a href="../topics/monetary-fiscal.html">monetary and fiscal policy pillar</a> and the <a href="../topics/inflation.html">inflation pillar</a>.</p>
+
+<h2>UK and US framing</h2>
+<p>Cross country readers should not paste a US calibrated recipe onto UK data without checking the inflation target concept, the gap measure, and the instrument name. A 4 percent suggestion next to the federal funds rate is not the same comparison as a 4 percent suggestion next to Bank Rate. Mandates, price indexes, and operating frameworks differ. Use primary materials from the Federal Reserve and the Bank of England before treating percentage points as interchangeable.</p>
+
+<h2>Sources</h2>
+<ul class="source-list">
+<li><a href="https://web.stanford.edu/~johntayl/Papers/Discretion.PDF" rel="noopener noreferrer">John B. Taylor (1993), “Discretion versus policy rules in practice,” Carnegie Rochester Conference Series (Stanford hosted PDF)</a></li>
+<li><a href="https://www.federalreserve.gov/monetarypolicy/policy-rules-and-how-policymakers-use-them.htm" rel="noopener noreferrer">Board of Governors of the Federal Reserve System : Policy Rules and How Policymakers Use Them</a></li>
+<li><a href="https://fred.stlouisfed.org/series/FEDFUNDS" rel="noopener noreferrer">FRED, Federal Funds Effective Rate (FEDFUNDS)</a></li>
+<li><a href="https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate" rel="noopener noreferrer">Bank of England, Bank Rate</a></li>
+</ul>
+
+<p><a href="index.html">All calculators</a> · <a href="real-interest-rate.html">Real interest rate calculator</a> · <a href="inflation-adjuster.html">Inflation adjuster</a> · <a href="../explainers/taylor-rule.html">Taylor rule explained</a> · <a href="../explainers/output-gap.html">Output gap</a> · <a href="../explainers/real-interest-rates.html">Real interest rates</a> · <a href="../topics/monetary-fiscal.html">Monetary and fiscal policy</a> · <a href="../topics/inflation.html">Inflation topic</a> · <a href="../faq/">FAQ</a></p>
+</div>
+</main>
+<footer class="site-footer">
+<div class="footer-inner">
+<div>
+<a class="logo" href="../" style="color:#fff;text-decoration:none">Simple <span style="color:#a8d4d4">Macro</span> Guide</a>
+<p style="margin:0.6rem 0 0;max-width:28rem">Clear, calm explanations of how economies work, with a UK and US focus. Educational only; not investment advice.</p>
+</div>
+<div>
+<h2>Explore</h2>
+<ul>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data guides</a></li>
+<li><a href="../calculators/">Calculators</a></li>
+</ul>
+</div>
+<div>
+<h2>About</h2>
+<ul>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+<li><a href="../disclaimer/">Disclaimer</a></li>
+<li><a href="../sources/">Sources</a></li>
+<li><a href="mailto:joshuaofisrael@gmail.com?subject=%5BContact%3A%20simplemacroguide%5D">Email</a></li>
+</ul>
+</div>
+<p class="footer-note">© Joshua Israel Ventures LLC. Content is for education. Not financial, investment, tax, or legal advice. Verify figures with primary sources such as the World Bank, ONS, and FRED.</p>
+</div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>
