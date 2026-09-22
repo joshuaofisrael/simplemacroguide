@@ -29,6 +29,7 @@ Publisher: Joshua Israel Ventures LLC
 - https://simplemacroguide.com/calculators/inflation-adjuster.html
 - https://simplemacroguide.com/calculators/real-interest-rate.html
 - https://simplemacroguide.com/calculators/taylor-rule.html
+- https://simplemacroguide.com/calculators/okuns-law.html
 - https://simplemacroguide.com/sources/
 - https://simplemacroguide.com/disclaimer/
 
@@ -49,3 +50,6 @@ Prefer linking readers to primary statistics (FRED, ONS, BEA, BLS, World Bank, I
 
 ## Added 2026-09-21
 - /calculators/taylor-rule.html
+
+## Added 2026-09-22
+- /calculators/okuns-law.html

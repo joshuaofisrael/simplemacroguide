@@ -335,4 +335,164 @@
       });
     }
   }
+
+  /* Okun's law calculator (classroom difference form) */
+  var okunCalcBtn = document.getElementById("calc-okun");
+  if (okunCalcBtn) {
+    var okunCoeffEl = document.getElementById("okun-coeff");
+    var okunDuEl = document.getElementById("okun-du");
+    var okunGapEl = document.getElementById("okun-gap");
+    var okunUnemploymentFields = document.getElementById("okun-unemployment-fields");
+    var okunGrowthFields = document.getElementById("okun-growth-fields");
+    var okunModeUnemploymentBtn = document.getElementById("okun-mode-unemployment");
+    var okunModeGrowthBtn = document.getElementById("okun-mode-growth");
+    var okunResultEl = document.getElementById("calc-okun-result");
+    var okunPrimaryLabel = document.getElementById("okun-primary-label");
+    var okunPrimaryAmount = document.getElementById("okun-primary-amount");
+    var okunPrimaryDetail = document.getElementById("okun-primary-detail");
+    var okunArithmetic = document.getElementById("okun-arithmetic");
+    var okunWords = document.getElementById("okun-words");
+    var okunBeta = document.getElementById("okun-beta");
+    var okunSummary = document.getElementById("okun-summary");
+    var okunErrorEl = document.getElementById("calc-okun-error");
+    var okunResetBtn = document.getElementById("calc-okun-reset");
+    var okunMode = "unemployment";
+
+    function showOkunError(msg) {
+      okunErrorEl.textContent = msg;
+      okunErrorEl.classList.add("visible");
+      okunResultEl.classList.remove("visible");
+    }
+    function clearOkunError() {
+      okunErrorEl.classList.remove("visible");
+      okunErrorEl.textContent = "";
+    }
+    function formatOkunAbs(n) {
+      return Math.abs(n).toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+    function formatOkunSigned(n) {
+      var abs = formatOkunAbs(n);
+      if (n < -0.0000001) return "\u2212" + abs;
+      if (n > 0.0000001) return "+" + abs;
+      return "0.00";
+    }
+    function wordsForGap(gap) {
+      var abs = formatOkunAbs(gap);
+      if (gap < -0.005) {
+        return "Real GDP growth sits " + abs + " percentage points below trend.";
+      }
+      if (gap > 0.005) {
+        return "Real GDP growth sits " + abs + " percentage points above trend.";
+      }
+      return "Real GDP growth matches trend.";
+    }
+    function wordsForDu(du) {
+      var abs = formatOkunAbs(du);
+      if (du > 0.005) {
+        return "The unemployment rate rises by " + abs + " percentage points.";
+      }
+      if (du < -0.005) {
+        return "The unemployment rate falls by " + abs + " percentage points.";
+      }
+      return "The unemployment rate does not change.";
+    }
+    function signedWords(n) {
+      var abs = formatOkunAbs(n);
+      if (n < -0.0000001) return "minus " + abs;
+      if (n > 0.0000001) return abs;
+      return "0.00";
+    }
+    function hideOkunResult() {
+      okunResultEl.classList.remove("visible");
+      clearOkunError();
+    }
+    function setOkunMode(mode) {
+      okunMode = mode;
+      var fromUnemployment = mode === "unemployment";
+      okunUnemploymentFields.hidden = !fromUnemployment;
+      okunGrowthFields.hidden = fromUnemployment;
+      okunModeUnemploymentBtn.className = fromUnemployment ? "btn" : "btn btn-secondary";
+      okunModeGrowthBtn.className = fromUnemployment ? "btn btn-secondary" : "btn";
+      okunModeUnemploymentBtn.setAttribute("aria-pressed", fromUnemployment ? "true" : "false");
+      okunModeGrowthBtn.setAttribute("aria-pressed", fromUnemployment ? "false" : "true");
+      hideOkunResult();
+    }
+
+    okunModeUnemploymentBtn.addEventListener("click", function () {
+      setOkunMode("unemployment");
+    });
+    okunModeGrowthBtn.addEventListener("click", function () {
+      setOkunMode("growth");
+    });
+
+    okunCalcBtn.addEventListener("click", function () {
+      clearOkunError();
+      var coeff = parseFloat(okunCoeffEl.value);
+      if (!isFinite(coeff) || coeff <= 0 || coeff > 20) {
+        showOkunError("Enter a positive Okun coefficient up to 20, for example 2. Zero does not work, because one direction divides by the coefficient.");
+        return;
+      }
+
+      var gap;
+      var du;
+      var arithmetic;
+      if (okunMode === "unemployment") {
+        du = parseFloat(okunDuEl.value);
+        if (!isFinite(du) || du < -30 || du > 30) {
+          showOkunError("Enter a change in the unemployment rate between minus 30 and 30 percentage points.");
+          return;
+        }
+        gap = -coeff * du;
+        okunPrimaryLabel.textContent = "Implied GDP growth gap";
+        okunPrimaryAmount.textContent = formatOkunSigned(gap);
+        okunPrimaryDetail.textContent = "Percentage points. Actual real GDP growth minus trend growth. Negative means growth below trend.";
+        arithmetic =
+          "Growth gap equals minus " + formatOkunAbs(coeff) +
+          " times " + signedWords(du) +
+          ", which is " + signedWords(gap) +
+          " percentage points.";
+      } else {
+        gap = parseFloat(okunGapEl.value);
+        if (!isFinite(gap) || gap < -40 || gap > 40) {
+          showOkunError("Enter a GDP growth gap between minus 40 and 40 percentage points.");
+          return;
+        }
+        du = -gap / coeff;
+        okunPrimaryLabel.textContent = "Implied change in unemployment";
+        okunPrimaryAmount.textContent = formatOkunSigned(du);
+        okunPrimaryDetail.textContent = "Percentage points. Positive means the unemployment rate rises. Negative means it falls.";
+        arithmetic =
+          "Change in unemployment equals minus (" + signedWords(gap) +
+          " divided by " + formatOkunAbs(coeff) +
+          "), which is " + signedWords(du) +
+          " percentage points.";
+      }
+
+      var beta = 1 / coeff;
+      okunArithmetic.textContent = arithmetic + " Shown to two decimal places.";
+      okunWords.textContent = wordsForGap(gap) + " " + wordsForDu(du);
+      okunBeta.textContent =
+        "One divided by the coefficient is " + formatOkunAbs(beta) +
+        ". Each extra percentage point of real GDP growth above trend lines up with the unemployment rate changing by about " +
+        formatOkunAbs(beta) + " percentage points in the opposite direction.";
+      okunSummary.textContent =
+        "Coefficient " + formatOkunAbs(coeff) +
+        ". GDP growth gap " + signedWords(gap) +
+        " percentage points. Unemployment change " + signedWords(du) +
+        " percentage points. Educational estimate only. Inputs are yours, not live official series.";
+      okunResultEl.classList.add("visible");
+    });
+
+    if (okunResetBtn) {
+      okunResetBtn.addEventListener("click", function () {
+        okunCoeffEl.value = "2";
+        okunDuEl.value = "1";
+        okunGapEl.value = "2";
+        setOkunMode("unemployment");
+      });
+    }
+  }
 })();
