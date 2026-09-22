@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Okun's law calculator | Simple Macro Guide</title>
+<meta name="description" content="Turn an Okun coefficient and either an unemployment change or a GDP growth gap into the other side of a classroom sketch. Educational only.">
+<link rel="canonical" href="https://simplemacroguide.com/calculators/okuns-law.html">
+<meta name="theme-color" content="#2a6f6f">
+<meta property="og:title" content="Okun's law calculator | Simple Macro Guide">
+<meta property="og:description" content="Turn an Okun coefficient and either an unemployment change or a GDP growth gap into the other side of a classroom sketch. Educational only.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://simplemacroguide.com/calculators/okuns-law.html">
+<meta property="og:site_name" content="Simple Macro Guide">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Okun's law calculator | Simple Macro Guide">
+<meta name="twitter:description" content="Turn an Okun coefficient and either an unemployment change or a GDP growth gap into the other side of a classroom sketch. Educational only.">
+<link rel="stylesheet" href="../css/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Okun's law calculator",
+  "description": "Turn an Okun coefficient and either an unemployment change or a GDP growth gap into the other side of a classroom sketch. Educational only.",
+  "url": "https://simplemacroguide.com/calculators/okuns-law.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Joshua Israel Ventures LLC"
+  }
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="header-inner">
+<a class="logo" href="../">Simple <span>Macro</span> Guide</a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav class="site-nav" id="site-nav" aria-label="Primary"><ul>
+<li><a href="../">Home</a></li>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data</a></li>
+<li><a href="../calculators/" aria-current="page">Calculators</a></li>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+</ul></nav>
+</div>
+</header>
+<main id="main">
+
+<div class="wrap narrow">
+<header class="hero" style="border:none;margin:0;padding-bottom:0.5rem">
+<h1>Okun's law calculator</h1>
+<p class="lede">See how a change in the unemployment rate lines up with real GDP growth relative to trend, or run the arithmetic the other way. You choose the Okun coefficient. Every step stays visible. This is a classroom rule of thumb, an empirical regularity, not a law of nature, and not a forecast. The arithmetic runs entirely in your browser.</p>
+</header>
+
+<div class="calc-panel calc-panel-wide" id="okuns-law-calculator">
+<label for="okun-coeff">Okun coefficient</label>
+<input id="okun-coeff" type="number" step="0.1" value="2" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">A common textbook starting point is about 2. A rise in unemployment of 1 percentage point then lines up with real GDP growth about 2 percentage points below trend. Okun's 1962 illustration was closer to 3. Later US samples often sit nearer 2. This number is an assumption you type, not a live official estimate.</p>
+
+<p id="okun-direction-label" style="font-weight:600;font-size:0.9rem;margin:0.85rem 0 0.35rem">Direction</p>
+<div class="calc-actions" style="margin-top:0" role="group" aria-labelledby="okun-direction-label">
+<button type="button" class="btn" id="okun-mode-unemployment" aria-pressed="true">From an unemployment change</button>
+<button type="button" class="btn btn-secondary" id="okun-mode-growth" aria-pressed="false">From a GDP growth gap</button>
+</div>
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.55rem 0 0.75rem">From an unemployment change, the growth gap equals minus the coefficient times that change. From a GDP growth gap, the unemployment change equals minus the gap divided by the coefficient.</p>
+
+<div id="okun-unemployment-fields">
+<label for="okun-du">Change in the unemployment rate (percentage points)</label>
+<input id="okun-du" type="number" step="0.1" value="1" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Positive means the unemployment rate rose. Negative means it fell. Example: 1 means the rate moved from 4 percent to 5 percent. Type the change yourself. This is not a live BLS or ONS print.</p>
+</div>
+
+<div id="okun-growth-fields" hidden>
+<label for="okun-gap">GDP growth gap (percentage points)</label>
+<input id="okun-gap" type="number" step="0.1" value="2" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Actual real GDP growth minus trend or potential growth. Positive means growth above trend. Example: actual growth of 4 percent and trend growth of 2 percent is a gap of 2. Look up BEA or ONS growth, choose a trend, then type the difference.</p>
+</div>
+
+<div class="calc-actions">
+<button type="button" class="btn" id="calc-okun">Calculate</button>
+<button type="button" class="btn btn-secondary" id="calc-okun-reset">Reset</button>
+</div>
+
+<p class="calc-error" id="calc-okun-error" role="alert"></p>
+
+<div class="calc-result" id="calc-okun-result" role="status" aria-live="polite">
+<div class="result-block">
+<p class="result-label" id="okun-primary-label"></p>
+<div class="amount" id="okun-primary-amount"></div>
+<p class="detail" id="okun-primary-detail"></p>
+</div>
+<div class="result-block">
+<p class="result-label">Arithmetic</p>
+<p class="detail" id="okun-arithmetic"></p>
+</div>
+<div class="result-block">
+<p class="result-label">In words</p>
+<p class="detail" id="okun-words"></p>
+</div>
+<div class="result-block">
+<p class="result-label">Reciprocal slope</p>
+<p class="detail" id="okun-beta"></p>
+</div>
+<p class="detail" id="okun-summary"></p>
+</div>
+</div>
+
+<div class="callout" style="margin-top:1.5rem">
+<strong>How to read this.</strong> The headline number is classroom arithmetic from numbers you typed. A negative GDP growth gap means real GDP growth sits below your trend assumption. A positive gap means growth sits above that trend. A positive unemployment change means the rate rises. A negative unemployment change means the rate falls. The reciprocal slope is 1 divided by the coefficient. With a coefficient of 2, that slope is 0.5, so each extra percentage point of growth above trend lines up with unemployment falling by about half a percentage point. None of these figures is a forecast of the next BLS, ONS, or BEA release.
+</div>
+
+<div class="callout warning">
+<span class="example-label">Example defaults</span>
+<p style="margin:0">Defaults use a coefficient of 2 and an unemployment rise of 1 percentage point. The implied GDP growth gap is minus 2 percentage points, so growth sits 2 points below trend. Switch to the growth gap direction and enter 2. The implied unemployment change is minus 1 percentage point, so the rate falls by 1 point. Those figures are classroom arithmetic. They are not a claim about current unemployment or GDP.</p>
+</div>
+
+<div class="callout warning">
+<span class="example-label">Educational only</span>
+<p style="margin:0">Not investment advice and not policy advice. Okun's law is an empirical regularity, not a law of nature. Coefficients vary by country and by period. The mapping also misses hours, productivity, and people entering or leaving the labour force. Nothing here recommends buying, selling, or holding any security, or choosing a tax, spending, or interest rate. The calculator does not fetch live data.</p>
+</div>
+
+<h2>The classroom formula</h2>
+<p>This page uses a simple difference form taught alongside Okun's 1962 discussion of potential output:</p>
+<blockquote>GDP growth gap ≈ minus Okun coefficient × change in unemployment</blockquote>
+<blockquote>Change in unemployment ≈ minus GDP growth gap ÷ Okun coefficient</blockquote>
+<p>The GDP growth gap means actual real GDP growth minus trend or potential growth, in percentage points. The unemployment input is a change in the unemployment rate, also in percentage points. It is not the level of the rate. A coefficient of 2 is a familiar modern textbook starting point. It is the inverse of a slope near one half. Okun's 1962 rule of thumb was nearer a coefficient of 3, so a 1 point unemployment change lined up with about a 3 percent output gap. Research such as Ball, Leigh, and Loungani finds US slopes often nearer 0.4 or 0.5, which is a coefficient near 2 to 2.5, and finds that the number differs across countries. Say which coefficient you used.</p>
+<p>For the ideas and the loose spots, read <a href="../explainers/okuns-law.html">Okun's law explained</a>. For the level version of slack, read <a href="../explainers/output-gap.html">the output gap</a>. For a benchmark unemployment rate, which is a different question from a cyclical change, read <a href="../explainers/natural-rate-of-unemployment.html">the natural rate of unemployment</a>.</p>
+
+<h2>Where to find the inputs</h2>
+<p>Type your own numbers. This page does not download official series. For a US sketch, look up the unemployment rate at BLS or on FRED (UNRATE) and real GDP at BEA or FRED (GDPC1). For a UK sketch, look up Labour Force Survey unemployment and real GDP at ONS. Then choose a trend or potential growth assumption and subtract it from actual growth yourself. Broader context sits on the <a href="../topics/unemployment.html">unemployment pillar</a> and the <a href="../topics/gdp.html">GDP pillar</a>.</p>
+
+<h2>UK and US framing</h2>
+<p>Do not paste a US coefficient onto UK data and call the result a fact. Labour market institutions, hours adjustment, job support schemes, and survey definitions differ. A quarterly US growth rate that is annualised is not the same unit as a UK quarter on quarter rate. Match the units before you type. Use primary releases from BLS, BEA, and ONS.</p>
+
+<h2>Sources</h2>
+<ul class="source-list">
+<li><a href="https://cowles.yale.edu/node/142137" rel="noopener noreferrer">Arthur M. Okun, “Potential GNP: Its Measurement and Significance,” Cowles Foundation Paper 190 (1962)</a></li>
+<li><a href="https://fraser.stlouisfed.org/title/statements-speeches-arthur-m-okun-9876/full-employment-gnp-measure-significance-731375" rel="noopener noreferrer">FRASER, St. Louis Fed: Arthur M. Okun, “Full Employment GNP: Its Measure and Significance,” American Statistical Association meetings, 8 September 1962</a></li>
+<li><a href="https://www.imf.org/external/pubs/ft/wp/2013/wp1310.pdf" rel="noopener noreferrer">Laurence Ball, Daniel Leigh, and Prakash Loungani, “Okun's Law: Fit at 50?” IMF Working Paper 13/10 (2013)</a></li>
+<li><a href="https://www.nber.org/papers/w18668" rel="noopener noreferrer">NBER Working Paper 18668, Ball, Leigh, and Loungani, “Okun's Law: Fit at Fifty?”</a></li>
+<li><a href="https://www.bls.gov/cps/" rel="noopener noreferrer">BLS, Current Population Survey</a></li>
+<li><a href="https://fred.stlouisfed.org/series/UNRATE" rel="noopener noreferrer">FRED, Civilian unemployment rate (UNRATE)</a></li>
+<li><a href="https://www.bea.gov/data/gdp/gross-domestic-product" rel="noopener noreferrer">BEA, Gross Domestic Product</a></li>
+<li><a href="https://fred.stlouisfed.org/series/GDPC1" rel="noopener noreferrer">FRED, Real Gross Domestic Product (GDPC1)</a></li>
+<li><a href="https://www.ons.gov.uk/employmentandlabourmarket" rel="noopener noreferrer">ONS, Employment and labour market</a></li>
+<li><a href="https://www.ons.gov.uk/economy/grossdomesticproductgdp" rel="noopener noreferrer">ONS, Gross Domestic Product (GDP)</a></li>
+</ul>
+
+<p><a href="index.html">All calculators</a> · <a href="taylor-rule.html">Taylor rule calculator</a> · <a href="../explainers/okuns-law.html">Okun's law explained</a> · <a href="../explainers/output-gap.html">Output gap</a> · <a href="../explainers/natural-rate-of-unemployment.html">Natural rate of unemployment</a> · <a href="../topics/unemployment.html">Unemployment topic</a> · <a href="../topics/gdp.html">GDP topic</a> · <a href="../faq/">FAQ</a></p>
+</div>
+</main>
+<footer class="site-footer">
+<div class="footer-inner">
+<div>
+<a class="logo" href="../" style="color:#fff;text-decoration:none">Simple <span style="color:#a8d4d4">Macro</span> Guide</a>
+<p style="margin:0.6rem 0 0;max-width:28rem">Clear, calm explanations of how economies work, with a UK and US focus. Educational only; not investment advice.</p>
+</div>
+<div>
+<h2>Explore</h2>
+<ul>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data guides</a></li>
+<li><a href="../calculators/">Calculators</a></li>
+</ul>
+</div>
+<div>
+<h2>About</h2>
+<ul>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+<li><a href="../disclaimer/">Disclaimer</a></li>
+<li><a href="../sources/">Sources</a></li>
+<li><a href="mailto:joshuaofisrael@gmail.com?subject=%5BContact%3A%20simplemacroguide%5D">Email</a></li>
+</ul>
+</div>
+<p class="footer-note">© Joshua Israel Ventures LLC. Content is for education. Not financial, investment, tax, or legal advice. Verify figures with primary sources such as the World Bank, ONS, and FRED.</p>
+</div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>
