@@ -559,8 +559,9 @@
       ycLongLabel.textContent = copy.longLabel;
       return copy;
     }
-    function readTypedYield(raw) {
-      var trimmed = (raw || "").toString().trim();
+    function readTypedYield(el) {
+      if (el.validity && el.validity.badInput) return { empty: false, value: NaN };
+      var trimmed = (el.value || "").toString().trim();
       if (trimmed === "") return { empty: true, value: NaN };
       if (!/^[+-]?(?:\d+\.?\d*|\.\d+)$/.test(trimmed)) return { empty: false, value: NaN };
       var n = Number(trimmed);
@@ -576,8 +577,8 @@
     function calculateYieldSpread() {
       clearYieldSpreadError();
       var copy = applyPairLabels();
-      var shortYield = readTypedYield(ycShortEl.value);
-      var longYield = readTypedYield(ycLongEl.value);
+      var shortYield = readTypedYield(ycShortEl);
+      var longYield = readTypedYield(ycLongEl);
 
       if (shortYield.empty) {
         showYieldSpreadError("Enter a short term yield. That box is empty.");
