@@ -495,4 +495,168 @@
       });
     }
   }
+
+  /* Yield curve spread calculator (long minus short, classroom labels only) */
+  var yieldSpreadBtn = document.getElementById("calc-yield-spread");
+  if (yieldSpreadBtn) {
+    var ycPairEl = document.getElementById("yc-pair");
+    var ycShortEl = document.getElementById("yc-short");
+    var ycLongEl = document.getElementById("yc-long");
+    var ycShortLabel = document.getElementById("yc-short-label");
+    var ycLongLabel = document.getElementById("yc-long-label");
+    var ycResultEl = document.getElementById("calc-yield-spread-result");
+    var ycSpreadAmount = document.getElementById("yc-spread-amount");
+    var ycSpreadFormula = document.getElementById("yc-spread-formula");
+    var ycShapeAmount = document.getElementById("yc-shape-amount");
+    var ycShapeDetail = document.getElementById("yc-shape-detail");
+    var ycWords = document.getElementById("yc-words");
+    var ycSummary = document.getElementById("yc-summary");
+    var ycErrorEl = document.getElementById("calc-yield-spread-error");
+    var ycResetBtn = document.getElementById("calc-yield-spread-reset");
+    var YC_FLAT_BAND = 0.25;
+
+    function showYieldSpreadError(msg) {
+      ycErrorEl.textContent = msg;
+      ycErrorEl.classList.add("visible");
+      ycResultEl.classList.remove("visible");
+    }
+    function clearYieldSpreadError() {
+      ycErrorEl.classList.remove("visible");
+      ycErrorEl.textContent = "";
+    }
+    function formatYieldAbs(n) {
+      return Math.abs(n).toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+    function yieldWords(n) {
+      var abs = formatYieldAbs(n);
+      if (n < -0.0000001) return "minus " + abs;
+      return abs;
+    }
+    function pairCopy(value) {
+      if (value === "10y3m") {
+        return {
+          shortLabel: "Short term yield, 3 month (%)",
+          longLabel: "Long term yield, 10 year (%)",
+          pairName: "10 year minus 3 month",
+          shortName: "3 month yield",
+          longName: "10 year yield"
+        };
+      }
+      return {
+        shortLabel: "Short term yield, 2 year (%)",
+        longLabel: "Long term yield, 10 year (%)",
+        pairName: "10 year minus 2 year",
+        shortName: "2 year yield",
+        longName: "10 year yield"
+      };
+    }
+    function applyPairLabels() {
+      var copy = pairCopy(ycPairEl.value);
+      ycShortLabel.textContent = copy.shortLabel;
+      ycLongLabel.textContent = copy.longLabel;
+      return copy;
+    }
+    function readTypedYield(el) {
+      if (el.validity && el.validity.badInput) return { empty: false, value: NaN };
+      var trimmed = (el.value || "").toString().trim();
+      if (trimmed === "") return { empty: true, value: NaN };
+      if (!/^[+-]?(?:\d+\.?\d*|\.\d+)$/.test(trimmed)) return { empty: false, value: NaN };
+      var n = Number(trimmed);
+      if (!isFinite(n)) return { empty: false, value: NaN };
+      return { empty: false, value: n };
+    }
+    function shapeOf(spread) {
+      if (spread < 0) return "inverted";
+      if (spread <= YC_FLAT_BAND) return "flat";
+      return "normal";
+    }
+
+    function calculateYieldSpread() {
+      clearYieldSpreadError();
+      var copy = applyPairLabels();
+      var shortYield = readTypedYield(ycShortEl);
+      var longYield = readTypedYield(ycLongEl);
+
+      if (shortYield.empty) {
+        showYieldSpreadError("Enter a short term yield. That box is empty.");
+        return;
+      }
+      if (!isFinite(shortYield.value)) {
+        showYieldSpreadError("Enter a short term yield as a finite number, for example 4.50.");
+        return;
+      }
+      if (shortYield.value < -10 || shortYield.value > 40) {
+        showYieldSpreadError("Enter a short term yield between minus 10 and 40 percent.");
+        return;
+      }
+      if (longYield.empty) {
+        showYieldSpreadError("Enter a long term yield. That box is empty.");
+        return;
+      }
+      if (!isFinite(longYield.value)) {
+        showYieldSpreadError("Enter a long term yield as a finite number, for example 4.10.");
+        return;
+      }
+      if (longYield.value < -10 || longYield.value > 40) {
+        showYieldSpreadError("Enter a long term yield between minus 10 and 40 percent.");
+        return;
+      }
+
+      var spread = longYield.value - shortYield.value;
+      var shape = shapeOf(spread);
+      var spreadWords = yieldWords(spread);
+      var shapeLabel = "Upward sloping (normal)";
+      var shapeDetail = "The spread is above 0.25 percentage points.";
+      var words =
+        "The " + copy.pairName + " spread is " + spreadWords +
+        " percentage points. The long yield is above the short yield by more than 0.25 percentage points, so this classroom pairing is upward sloping, the usual normal shape. This describes the numbers you typed. It is not a forecast of growth or of the next policy decision.";
+      if (shape === "inverted") {
+        shapeLabel = "Inverted";
+        shapeDetail = "The spread is below 0. The short yield is higher than the long yield.";
+        words =
+          "The " + copy.pairName + " spread is " + spreadWords +
+          " percentage points. The long yield is below the short yield, so this classroom pairing is inverted. Research literature has discussed a historical association between some inversions and later recessions. Timing varies. This is a description of the two yields you typed, not a recession probability and not a forecast.";
+      } else if (shape === "flat") {
+        shapeLabel = "Flat";
+        shapeDetail = "The spread is from 0 through 0.25 percentage points, the classroom band this page calls near zero.";
+        words =
+          "The " + copy.pairName + " spread is " + spreadWords +
+          " percentage points. It is not negative, and it sits within 0.25 percentage points of zero, so this page calls the shape flat. A flat reading describes these two yields. It is not a forecast.";
+      }
+
+      ycSpreadAmount.textContent = spreadWords;
+      ycSpreadFormula.textContent =
+        copy.longName + " " + yieldWords(longYield.value) +
+        " minus " + copy.shortName + " " + yieldWords(shortYield.value) +
+        " equals " + spreadWords + " percentage points.";
+      ycShapeAmount.textContent = shapeLabel;
+      ycShapeDetail.textContent = shapeDetail;
+      ycWords.textContent = words;
+      ycSummary.textContent =
+        copy.pairName + " spread " + spreadWords +
+        " percentage points. Shape: " + shapeLabel +
+        ". Educational estimate only. Inputs are yours, not live official series.";
+      ycResultEl.classList.add("visible");
+    }
+
+    yieldSpreadBtn.addEventListener("click", calculateYieldSpread);
+    ycPairEl.addEventListener("change", function () {
+      applyPairLabels();
+      if (ycResultEl.classList.contains("visible")) calculateYieldSpread();
+    });
+
+    if (ycResetBtn) {
+      ycResetBtn.addEventListener("click", function () {
+        ycPairEl.value = "10y2y";
+        ycShortEl.value = "4.50";
+        ycLongEl.value = "4.10";
+        applyPairLabels();
+        clearYieldSpreadError();
+        ycResultEl.classList.remove("visible");
+      });
+    }
+  }
 })();
