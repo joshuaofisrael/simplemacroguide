@@ -659,4 +659,256 @@
       });
     }
   }
+
+  /* Phillips curve calculator (expectations augmented classroom sketch) */
+  var phillipsCalcBtn = document.getElementById("calc-phillips");
+  if (phillipsCalcBtn) {
+    var phillipsExpectedEl = document.getElementById("phillips-expected");
+    var phillipsNaturalEl = document.getElementById("phillips-natural");
+    var phillipsSlopeEl = document.getElementById("phillips-slope");
+    var phillipsUEl = document.getElementById("phillips-u");
+    var phillipsInflEl = document.getElementById("phillips-inflation");
+    var phillipsUnemploymentFields = document.getElementById("phillips-unemployment-fields");
+    var phillipsInflationFields = document.getElementById("phillips-inflation-fields");
+    var phillipsModeUnemploymentBtn = document.getElementById("phillips-mode-unemployment");
+    var phillipsModeInflationBtn = document.getElementById("phillips-mode-inflation");
+    var phillipsResultEl = document.getElementById("calc-phillips-result");
+    var phillipsPrimaryLabel = document.getElementById("phillips-primary-label");
+    var phillipsPrimaryAmount = document.getElementById("phillips-primary-amount");
+    var phillipsPrimaryDetail = document.getElementById("phillips-primary-detail");
+    var phillipsUgapAmount = document.getElementById("phillips-ugap-amount");
+    var phillipsUgapDetail = document.getElementById("phillips-ugap-detail");
+    var phillipsIgapAmount = document.getElementById("phillips-igap-amount");
+    var phillipsIgapDetail = document.getElementById("phillips-igap-detail");
+    var phillipsArithmetic = document.getElementById("phillips-arithmetic");
+    var phillipsWords = document.getElementById("phillips-words");
+    var phillipsSummary = document.getElementById("phillips-summary");
+    var phillipsErrorEl = document.getElementById("calc-phillips-error");
+    var phillipsResetBtn = document.getElementById("calc-phillips-reset");
+    var phillipsMode = "unemployment";
+
+    function showPhillipsError(msg) {
+      phillipsErrorEl.textContent = msg;
+      phillipsErrorEl.classList.add("visible");
+      phillipsResultEl.classList.remove("visible");
+    }
+    function clearPhillipsError() {
+      phillipsErrorEl.classList.remove("visible");
+      phillipsErrorEl.textContent = "";
+    }
+    function formatPhillipsAbs(n) {
+      return Math.abs(n).toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+    function formatPhillipsSigned(n) {
+      var abs = formatPhillipsAbs(n);
+      if (n < -0.0000001) return "\u2212" + abs;
+      if (n > 0.0000001) return "+" + abs;
+      return "0.00";
+    }
+    function formatPhillipsLevel(n) {
+      var abs = formatPhillipsAbs(n);
+      if (n < -0.0000001) return "\u2212" + abs + "%";
+      return abs + "%";
+    }
+    function phillipsNumberWords(n) {
+      var abs = formatPhillipsAbs(n);
+      if (n < -0.0000001) return "minus " + abs;
+      if (n > 0.0000001) return abs;
+      return "0.00";
+    }
+    function phillipsPointPhrase(n) {
+      var absValue = Math.abs(n);
+      var unit = Math.abs(absValue - 1) < 0.005 ? "percentage point" : "percentage points";
+      return formatPhillipsAbs(n) + " " + unit;
+    }
+    function readPhillipsNumber(el) {
+      if (el.validity && el.validity.badInput) return { empty: false, value: NaN };
+      var trimmed = (el.value || "").toString().trim();
+      if (trimmed === "") return { empty: true, value: NaN };
+      if (!/^[+-]?(?:\d+\.?\d*|\.\d+)$/.test(trimmed)) return { empty: false, value: NaN };
+      var n = Number(trimmed);
+      if (!isFinite(n)) return { empty: false, value: NaN };
+      return { empty: false, value: n };
+    }
+    function hidePhillipsResult() {
+      phillipsResultEl.classList.remove("visible");
+      clearPhillipsError();
+    }
+    function setPhillipsMode(mode) {
+      phillipsMode = mode;
+      var fromUnemployment = mode === "unemployment";
+      phillipsUnemploymentFields.hidden = !fromUnemployment;
+      phillipsInflationFields.hidden = fromUnemployment;
+      phillipsModeUnemploymentBtn.className = fromUnemployment ? "btn" : "btn btn-secondary";
+      phillipsModeInflationBtn.className = fromUnemployment ? "btn btn-secondary" : "btn";
+      phillipsModeUnemploymentBtn.setAttribute("aria-pressed", fromUnemployment ? "true" : "false");
+      phillipsModeInflationBtn.setAttribute("aria-pressed", fromUnemployment ? "false" : "true");
+      hidePhillipsResult();
+    }
+    function wordsForUnemploymentGap(gap) {
+      if (gap > 0.005) {
+        return "Unemployment sits " + phillipsPointPhrase(gap) + " above the natural rate.";
+      }
+      if (gap < -0.005) {
+        return "Unemployment sits " + phillipsPointPhrase(gap) + " below the natural rate.";
+      }
+      return "Unemployment matches the natural rate.";
+    }
+    function wordsForInflationGap(gap) {
+      if (gap > 0.005) {
+        return "Inflation sits " + phillipsPointPhrase(gap) + " above expected inflation.";
+      }
+      if (gap < -0.005) {
+        return "Inflation sits " + phillipsPointPhrase(gap) + " below expected inflation.";
+      }
+      return "Inflation matches expected inflation.";
+    }
+
+    phillipsModeUnemploymentBtn.addEventListener("click", function () {
+      setPhillipsMode("unemployment");
+    });
+    phillipsModeInflationBtn.addEventListener("click", function () {
+      setPhillipsMode("inflation");
+    });
+
+    phillipsCalcBtn.addEventListener("click", function () {
+      clearPhillipsError();
+      var expected = readPhillipsNumber(phillipsExpectedEl);
+      var natural = readPhillipsNumber(phillipsNaturalEl);
+      var slope = readPhillipsNumber(phillipsSlopeEl);
+
+      if (expected.empty) {
+        showPhillipsError("Enter expected inflation. That box is empty.");
+        return;
+      }
+      if (!isFinite(expected.value) || expected.value < -20 || expected.value > 100) {
+        showPhillipsError("Enter expected inflation between minus 20 and 100 percent.");
+        return;
+      }
+      if (natural.empty) {
+        showPhillipsError("Enter a natural rate of unemployment. That box is empty.");
+        return;
+      }
+      if (!isFinite(natural.value) || natural.value < 0 || natural.value > 40) {
+        showPhillipsError("Enter a natural rate of unemployment between 0 and 40 percent.");
+        return;
+      }
+      if (slope.empty) {
+        showPhillipsError("Enter a slope. That box is empty.");
+        return;
+      }
+      if (!isFinite(slope.value) || slope.value < 0.01 || slope.value > 10) {
+        showPhillipsError("Enter a positive slope from 0.01 to 10. Example: 0.5. The formula already subtracts slope times the unemployment gap, and one direction divides by the slope.");
+        return;
+      }
+
+      var u;
+      var pi;
+      var arithmetic;
+      if (phillipsMode === "unemployment") {
+        var typedU = readPhillipsNumber(phillipsUEl);
+        if (typedU.empty) {
+          showPhillipsError("Enter an unemployment rate. That box is empty.");
+          return;
+        }
+        if (!isFinite(typedU.value) || typedU.value < 0 || typedU.value > 50) {
+          showPhillipsError("Enter an unemployment rate between 0 and 50 percent.");
+          return;
+        }
+        u = typedU.value;
+        var uGapFromU = u - natural.value;
+        pi = expected.value - slope.value * uGapFromU;
+        phillipsPrimaryLabel.textContent = "Implied inflation";
+        phillipsPrimaryAmount.textContent = formatPhillipsLevel(pi);
+        phillipsPrimaryDetail.textContent = "Percent. Expected inflation minus the slope times the unemployment gap.";
+        arithmetic =
+          "Inflation equals " + phillipsNumberWords(expected.value) +
+          " minus " + formatPhillipsAbs(slope.value) +
+          " times " + phillipsNumberWords(uGapFromU) +
+          ", which is " + phillipsNumberWords(pi) +
+          " percent.";
+      } else {
+        var typedPi = readPhillipsNumber(phillipsInflEl);
+        if (typedPi.empty) {
+          showPhillipsError("Enter an inflation rate. That box is empty.");
+          return;
+        }
+        if (!isFinite(typedPi.value) || typedPi.value < -20 || typedPi.value > 100) {
+          showPhillipsError("Enter an inflation rate between minus 20 and 100 percent.");
+          return;
+        }
+        pi = typedPi.value;
+        var iGapInput = pi - expected.value;
+        var uGapSolved = -iGapInput / slope.value;
+        u = natural.value + uGapSolved;
+        phillipsPrimaryLabel.textContent = "Implied unemployment rate";
+        phillipsPrimaryAmount.textContent = formatPhillipsLevel(u);
+        phillipsPrimaryDetail.textContent = "Percent. The natural rate plus the unemployment gap implied by the inflation gap.";
+        arithmetic =
+          "The unemployment gap equals minus (" + phillipsNumberWords(iGapInput) +
+          " divided by " + formatPhillipsAbs(slope.value) +
+          "), which is " + phillipsNumberWords(uGapSolved) +
+          ". Unemployment equals the natural rate of " + phillipsNumberWords(natural.value) +
+          " plus a gap of " + phillipsNumberWords(uGapSolved) +
+          ", which is " + phillipsNumberWords(u) +
+          " percent.";
+      }
+
+      if (!isFinite(pi) || !isFinite(u)) {
+        showPhillipsError("Those inputs do not produce a finite result. Check the slope and try again.");
+        return;
+      }
+
+      var uGap = u - natural.value;
+      var iGap = pi - expected.value;
+      var outside = "";
+      if (u < -0.005) {
+        outside = " The implied unemployment rate is below zero. That is arithmetic from these assumptions, not a labour market that can exist.";
+      } else if (u > 50.005) {
+        outside = " The implied unemployment rate is above 50 percent. Treat that as a sign the slope or the inflation gap is outside a usual classroom range.";
+      }
+
+      phillipsUgapAmount.textContent = formatPhillipsSigned(uGap);
+      phillipsUgapDetail.textContent =
+        "Percentage points. Unemployment rate " + phillipsNumberWords(u) +
+        " minus natural rate " + phillipsNumberWords(natural.value) +
+        ". " + wordsForUnemploymentGap(uGap);
+      phillipsIgapAmount.textContent = formatPhillipsSigned(iGap);
+      phillipsIgapDetail.textContent =
+        "Percentage points. Inflation " + phillipsNumberWords(pi) +
+        " minus expected inflation " + phillipsNumberWords(expected.value) +
+        ". " + wordsForInflationGap(iGap);
+      phillipsArithmetic.textContent =
+        arithmetic + " The inflation gap equals minus " + formatPhillipsAbs(slope.value) +
+        " times the unemployment gap, which is " + phillipsNumberWords(iGap) +
+        " percentage points. Shown to two decimal places.";
+      phillipsWords.textContent =
+        wordsForUnemploymentGap(uGap) + " " + wordsForInflationGap(iGap) +
+        " With a slope of " + formatPhillipsAbs(slope.value) +
+        ", a higher unemployment gap lines up with inflation further below expectations." +
+        outside;
+      phillipsSummary.textContent =
+        "Expected inflation " + phillipsNumberWords(expected.value) +
+        " percent. Natural rate " + phillipsNumberWords(natural.value) +
+        " percent. Slope " + formatPhillipsAbs(slope.value) +
+        ". Unemployment " + phillipsNumberWords(u) +
+        " percent. Inflation " + phillipsNumberWords(pi) +
+        " percent. Educational estimate only. Not a forecast, not policy advice, and not investment advice. Inputs are yours, not live official series.";
+      phillipsResultEl.classList.add("visible");
+    });
+
+    if (phillipsResetBtn) {
+      phillipsResetBtn.addEventListener("click", function () {
+        phillipsExpectedEl.value = "2";
+        phillipsNaturalEl.value = "4.5";
+        phillipsSlopeEl.value = "0.5";
+        phillipsUEl.value = "5.5";
+        phillipsInflEl.value = "2.5";
+        setPhillipsMode("unemployment");
+      });
+    }
+  }
 })();
