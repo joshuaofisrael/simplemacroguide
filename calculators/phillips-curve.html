@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phillips curve calculator | Simple Macro Guide</title>
+<meta name="description" content="Turn expected inflation, a natural rate, a slope, and either unemployment or inflation into the other side of a classroom Phillips curve sketch. Educational only.">
+<link rel="canonical" href="https://simplemacroguide.com/calculators/phillips-curve.html">
+<meta name="theme-color" content="#2a6f6f">
+<meta property="og:title" content="Phillips curve calculator | Simple Macro Guide">
+<meta property="og:description" content="Turn expected inflation, a natural rate, a slope, and either unemployment or inflation into the other side of a classroom Phillips curve sketch. Educational only.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://simplemacroguide.com/calculators/phillips-curve.html">
+<meta property="og:site_name" content="Simple Macro Guide">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Phillips curve calculator | Simple Macro Guide">
+<meta name="twitter:description" content="Turn expected inflation, a natural rate, a slope, and either unemployment or inflation into the other side of a classroom Phillips curve sketch. Educational only.">
+<link rel="stylesheet" href="../css/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Phillips curve calculator",
+  "description": "Turn expected inflation, a natural rate, a slope, and either unemployment or inflation into the other side of a classroom Phillips curve sketch. Educational only.",
+  "url": "https://simplemacroguide.com/calculators/phillips-curve.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Joshua Israel Ventures LLC"
+  }
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="header-inner">
+<a class="logo" href="../">Simple <span>Macro</span> Guide</a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav class="site-nav" id="site-nav" aria-label="Primary"><ul>
+<li><a href="../">Home</a></li>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data</a></li>
+<li><a href="../calculators/" aria-current="page">Calculators</a></li>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+</ul></nav>
+</div>
+</header>
+<main id="main">
+
+<div class="wrap narrow">
+<header class="hero" style="border:none;margin:0;padding-bottom:0.5rem">
+<h1>Phillips curve calculator</h1>
+<p class="lede">See how an unemployment rate lines up with inflation in a simple expectations augmented sketch, or solve the arithmetic the other way. You choose expected inflation, a natural rate, and a positive slope. Every step stays visible. This is classroom arithmetic, not a forecast, and not a claim that a central bank steers from one scatter plot. The arithmetic runs entirely in your browser.</p>
+</header>
+
+<div class="calc-panel calc-panel-wide" id="phillips-curve-calculator">
+<label for="phillips-expected">Expected inflation, πe (%)</label>
+<input id="phillips-expected" type="number" step="0.1" value="2" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">What people are assumed to expect for inflation, in percent. A classroom example is 2, near common Bank of England and Federal Reserve goals. This number is an assumption you type, not a live survey.</p>
+
+<label for="phillips-natural">Natural rate of unemployment, u* (%)</label>
+<input id="phillips-natural" type="number" step="0.1" value="4.5" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">A benchmark unemployment rate, sometimes discussed as the rate consistent with stable inflation. Default 4.5 is a classroom example, not an official BLS, ONS, or central bank estimate. Read <a href="../explainers/natural-rate-of-unemployment.html">the natural rate of unemployment</a>.</p>
+
+<label for="phillips-slope">Slope coefficient, β</label>
+<input id="phillips-slope" type="number" step="0.1" value="0.5" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Positive. How many percentage points inflation falls when unemployment rises 1 point above the natural rate. Default 0.5 is a classroom example. The formula already subtracts this slope times the unemployment gap, so type a positive number.</p>
+
+<p id="phillips-direction-label" style="font-weight:600;font-size:0.9rem;margin:0.85rem 0 0.35rem">Direction</p>
+<div class="calc-actions" style="margin-top:0" role="group" aria-labelledby="phillips-direction-label">
+<button type="button" class="btn" id="phillips-mode-unemployment" aria-pressed="true">From an unemployment rate</button>
+<button type="button" class="btn btn-secondary" id="phillips-mode-inflation" aria-pressed="false">From an inflation rate</button>
+</div>
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.55rem 0 0.75rem">From an unemployment rate, implied inflation equals expected inflation minus the slope times the unemployment gap. From an inflation rate, the calculator solves for the unemployment rate that lines up with that inflation.</p>
+
+<div id="phillips-unemployment-fields">
+<label for="phillips-u">Unemployment rate, u (%)</label>
+<input id="phillips-u" type="number" step="0.1" value="5.5" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Example default 5.5, which sits 1 point above the default natural rate of 4.5. Type the rate yourself. This is not a live BLS or ONS print.</p>
+</div>
+
+<div id="phillips-inflation-fields" hidden>
+<label for="phillips-inflation">Inflation rate, π (%)</label>
+<input id="phillips-inflation" type="number" step="0.1" value="2.5" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Actual or observed inflation you want to feed the sketch. Example default 2.5. Look up CPI, CPIH, or PCE from ONS, BLS, BEA, or FRED, then type the number yourself.</p>
+</div>
+
+<div class="calc-actions">
+<button type="button" class="btn" id="calc-phillips">Calculate</button>
+<button type="button" class="btn btn-secondary" id="calc-phillips-reset">Reset</button>
+</div>
+
+<p class="calc-error" id="calc-phillips-error" role="alert"></p>
+
+<div class="calc-result" id="calc-phillips-result" role="status" aria-live="polite">
+<div class="result-block">
+<p class="result-label" id="phillips-primary-label"></p>
+<div class="amount" id="phillips-primary-amount"></div>
+<p class="detail" id="phillips-primary-detail"></p>
+</div>
+<div class="result-block">
+<p class="result-label">Unemployment gap (u minus u*)</p>
+<div class="amount" id="phillips-ugap-amount"></div>
+<p class="detail" id="phillips-ugap-detail"></p>
+</div>
+<div class="result-block">
+<p class="result-label">Inflation gap versus expectations (π minus πe)</p>
+<div class="amount" id="phillips-igap-amount"></div>
+<p class="detail" id="phillips-igap-detail"></p>
+</div>
+<div class="result-block">
+<p class="result-label">Arithmetic</p>
+<p class="detail" id="phillips-arithmetic"></p>
+</div>
+<div class="result-block">
+<p class="result-label">In words</p>
+<p class="detail" id="phillips-words"></p>
+</div>
+<p class="detail" id="phillips-summary"></p>
+</div>
+</div>
+
+<div class="callout" style="margin-top:1.5rem">
+<strong>How to read this.</strong> The headline number is classroom arithmetic from numbers you typed. The unemployment gap is the unemployment rate minus the natural rate. Positive means unemployment sits above that benchmark. Negative means it sits below. The inflation gap is inflation minus expected inflation. Positive means inflation sits above expectations. Negative means it sits below. In this sketch the inflation gap equals minus the slope times the unemployment gap. None of these figures is a forecast of the next BLS, ONS, Bank of England, or Federal Reserve release.
+</div>
+
+<div class="callout warning">
+<span class="example-label">Example defaults</span>
+<p style="margin:0">Defaults use expected inflation of 2 percent, a natural rate of 4.5 percent, a slope of 0.5, and an unemployment rate of 5.5 percent. The unemployment gap is 1 percentage point. Implied inflation is 1.5 percent, which is 0.5 percentage points below expected inflation. Switch to the inflation direction and enter 2.5. Implied unemployment is 3.5 percent, which is 1 percentage point below the natural rate. Those figures are classroom arithmetic. They are not a claim about current inflation or unemployment.</p>
+</div>
+
+<div class="callout warning">
+<span class="example-label">Educational only</span>
+<p style="margin:0">Not a forecast, not policy advice, and not investment advice. The slope and the natural rate are assumptions. The curve shifts when expectations change or when supply shocks hit prices. Modern central banks do not steer from one scatter plot. Nothing here recommends buying, selling, or holding any security, or choosing a tax, spending, or interest rate. The calculator does not fetch live data.</p>
+</div>
+
+<h2>The classroom formula</h2>
+<p>This page uses an expectations augmented short run sketch taught after the original Phillips diagram:</p>
+<blockquote>inflation ≈ expected inflation minus slope × (unemployment rate minus natural rate)</blockquote>
+<blockquote>inflation gap ≈ minus slope × unemployment gap</blockquote>
+<p>The unemployment gap means the unemployment rate minus the natural rate, in percentage points. The inflation gap means inflation minus expected inflation, also in percentage points. A slope of 0.5 is a familiar classroom starting point. It is not a law. Research slopes differ by country, by inflation measure, and by sample. Say which slope and which natural rate you used.</p>
+<p>For the ideas and the loose spots, read <a href="../explainers/phillips-curve.html">the Phillips curve explained</a>. For the benchmark unemployment rate, read <a href="../explainers/natural-rate-of-unemployment.html">the natural rate of unemployment</a>. For a related classroom link from growth to unemployment, read <a href="../explainers/okuns-law.html">Okun's law</a> and try the <a href="okuns-law.html">Okun's law calculator</a>.</p>
+
+<h2>Where to find the inputs</h2>
+<p>Type your own numbers. This page does not download official series. For a US sketch, look up the unemployment rate at BLS or on FRED (UNRATE) and an inflation measure at BLS (CPI) or BEA (PCE). For a UK sketch, look up Labour Force Survey unemployment and CPI or CPIH at ONS. Expected inflation can be a target, such as 2 percent, or a survey you have already read. The natural rate is an assumption. Broader context sits on the <a href="../topics/inflation.html">inflation pillar</a> and the <a href="../topics/unemployment.html">unemployment pillar</a>.</p>
+
+<h2>UK and US framing</h2>
+<p>Do not paste a US slope onto UK data and call the result a fact. Labour market institutions, price indexes, and the meaning of slack differ. US discussions often pair unemployment with PCE inflation and the Federal Reserve dual mandate. UK discussions often pair unemployment with CPI and the Bank of England inflation target. A classroom slope is not a policy rule. For a separate benchmark that maps inflation and an output gap into a suggested policy rate, see the <a href="taylor-rule.html">Taylor rule calculator</a>.</p>
+
+<h2>Sources</h2>
+<ul class="source-list">
+<li><a href="https://onlinelibrary.wiley.com/doi/10.1111/j.1468-0335.1958.tb00003.x" rel="noopener noreferrer">A. W. Phillips, “The Relation between Unemployment and the Rate of Change of Money Wage Rates in the United Kingdom, 1861 to 1957,” Economica (1958)</a></li>
+<li><a href="https://www.frbsf.org/research-and-insights/publications/doctor-econ/2008/03/phillips-curve-inflation/" rel="noopener noreferrer">Federal Reserve Bank of San Francisco, Dr. Econ: the Phillips curve and modern economies</a></li>
+<li><a href="https://www.federalreserve.gov/newsevents/speech/kugler20250220a.htm" rel="noopener noreferrer">Board of Governors of the Federal Reserve System, Governor Kugler speech on inflation and the Phillips curve (20 February 2025)</a></li>
+<li><a href="https://www.federalreserve.gov/monetarypolicy.htm" rel="noopener noreferrer">Board of Governors of the Federal Reserve System, Monetary Policy</a></li>
+<li><a href="https://www.bankofengland.co.uk/monetary-policy" rel="noopener noreferrer">Bank of England, Monetary policy</a></li>
+<li><a href="https://www.bls.gov/cps/" rel="noopener noreferrer">BLS, Current Population Survey</a></li>
+<li><a href="https://www.bls.gov/cpi/" rel="noopener noreferrer">BLS, Consumer Price Index</a></li>
+<li><a href="https://fred.stlouisfed.org/series/UNRATE" rel="noopener noreferrer">FRED, Civilian unemployment rate (UNRATE)</a></li>
+<li><a href="https://www.ons.gov.uk/employmentandlabourmarket" rel="noopener noreferrer">ONS, Employment and labour market</a></li>
+<li><a href="https://www.ons.gov.uk/economy/inflationandpriceindices" rel="noopener noreferrer">ONS, Inflation and price indices</a></li>
+</ul>
+
+<p><a href="index.html">All calculators</a> · <a href="okuns-law.html">Okun's law calculator</a> · <a href="taylor-rule.html">Taylor rule calculator</a> · <a href="../explainers/phillips-curve.html">Phillips curve explained</a> · <a href="../explainers/natural-rate-of-unemployment.html">Natural rate of unemployment</a> · <a href="../explainers/output-gap.html">Output gap</a> · <a href="../topics/inflation.html">Inflation topic</a> · <a href="../topics/unemployment.html">Unemployment topic</a> · <a href="../faq/">FAQ</a></p>
+</div>
+</main>
+<footer class="site-footer">
+<div class="footer-inner">
+<div>
+<a class="logo" href="../" style="color:#fff;text-decoration:none">Simple <span style="color:#a8d4d4">Macro</span> Guide</a>
+<p style="margin:0.6rem 0 0;max-width:28rem">Clear, calm explanations of how economies work, with a UK and US focus. Educational only; not investment advice.</p>
+</div>
+<div>
+<h2>Explore</h2>
+<ul>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data guides</a></li>
+<li><a href="../calculators/">Calculators</a></li>
+</ul>
+</div>
+<div>
+<h2>About</h2>
+<ul>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+<li><a href="../disclaimer/">Disclaimer</a></li>
+<li><a href="../sources/">Sources</a></li>
+<li><a href="mailto:joshuaofisrael@gmail.com?subject=%5BContact%3A%20simplemacroguide%5D">Email</a></li>
+</ul>
+</div>
+<p class="footer-note">© Joshua Israel Ventures LLC. Content is for education. Not financial, investment, tax, or legal advice. Verify figures with primary sources such as the World Bank, ONS, and FRED.</p>
+</div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>
