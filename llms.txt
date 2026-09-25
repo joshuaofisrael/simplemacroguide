@@ -31,6 +31,7 @@ Publisher: Joshua Israel Ventures LLC
 - https://simplemacroguide.com/calculators/taylor-rule.html
 - https://simplemacroguide.com/calculators/okuns-law.html
 - https://simplemacroguide.com/calculators/phillips-curve.html
+- https://simplemacroguide.com/calculators/output-gap.html
 - https://simplemacroguide.com/sources/
 - https://simplemacroguide.com/disclaimer/
 
@@ -57,3 +58,6 @@ Prefer linking readers to primary statistics (FRED, ONS, BEA, BLS, World Bank, I
 
 ## Added 2026-09-24
 - /calculators/phillips-curve.html
+
+## Added 2026-09-25
+- /calculators/output-gap.html
