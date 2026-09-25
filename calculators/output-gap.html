@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Output gap calculator | Simple Macro Guide</title>
+<meta name="description" content="How to calculate the output gap from actual output and potential output, or solve for the missing level. Transparent classroom formula. Educational only.">
+<link rel="canonical" href="https://simplemacroguide.com/calculators/output-gap.html">
+<meta name="theme-color" content="#2a6f6f">
+<meta property="og:title" content="Output gap calculator | Simple Macro Guide">
+<meta property="og:description" content="How to calculate the output gap from actual output and potential output, or solve for the missing level. Transparent classroom formula. Educational only.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://simplemacroguide.com/calculators/output-gap.html">
+<meta property="og:site_name" content="Simple Macro Guide">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Output gap calculator | Simple Macro Guide">
+<meta name="twitter:description" content="How to calculate the output gap from actual output and potential output, or solve for the missing level. Transparent classroom formula. Educational only.">
+<link rel="stylesheet" href="../css/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Output gap calculator",
+  "description": "How to calculate the output gap from actual output and potential output, or solve for the missing level. Transparent classroom formula. Educational only.",
+  "url": "https://simplemacroguide.com/calculators/output-gap.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Joshua Israel Ventures LLC"
+  }
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="header-inner">
+<a class="logo" href="../">Simple <span>Macro</span> Guide</a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav class="site-nav" id="site-nav" aria-label="Primary"><ul>
+<li><a href="../">Home</a></li>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data</a></li>
+<li><a href="../calculators/" aria-current="page">Calculators</a></li>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+</ul></nav>
+</div>
+</header>
+<main id="main">
+
+<div class="wrap narrow">
+<header class="hero" style="border:none;margin:0;padding-bottom:0.5rem">
+<h1>Output gap calculator</h1>
+<p class="lede">Compare actual output with potential output and read the gap as a percent of potential, plus the absolute difference in levels. Or start from a gap percent and solve for the missing level. This is the standard classroom definition. It is not an official estimate, not a forecast, and not investment advice. The arithmetic runs entirely in your browser.</p>
+</header>
+
+<div class="calc-panel calc-panel-wide" id="output-gap-calculator">
+<p id="gap-mode-label" style="font-weight:600;font-size:0.9rem;margin:0 0 0.35rem">Mode</p>
+<div class="calc-actions" style="margin-top:0" role="group" aria-labelledby="gap-mode-label">
+<button type="button" class="btn" id="gap-mode-percent" aria-pressed="true">Percent of potential</button>
+<button type="button" class="btn btn-secondary" id="gap-mode-levels" aria-pressed="false">From levels</button>
+<button type="button" class="btn btn-secondary" id="gap-mode-potential" aria-pressed="false">Implied potential</button>
+<button type="button" class="btn btn-secondary" id="gap-mode-actual" aria-pressed="false">Implied actual</button>
+</div>
+<p class="hint" id="gap-mode-hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.55rem 0 0.75rem">Percent of potential uses actual output Y and potential output Y*. The gap in percent is ((Y minus Y*) divided by Y*) times 100. From levels uses the same two inputs and also reports the absolute gap, Y minus Y*.</p>
+
+<div id="gap-levels-fields">
+<label for="gap-actual">Actual output, Y</label>
+<input id="gap-actual" type="number" step="any" value="102" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">The activity level you want to compare. An index such as 102 works. A GDP level works too, if potential uses the same units. Type the number yourself. This page does not download a BEA, ONS, or CBO series.</p>
+
+<label for="gap-potential">Potential output, Y*</label>
+<input id="gap-potential" type="number" step="any" value="100" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">The sustainable benchmark. Potential output is an estimate, not a shop receipt. Use the same units as actual output. The percent gap divides by this number, so zero does not work.</p>
+</div>
+
+<div id="gap-potential-fields" hidden>
+<label for="gap-solve-actual">Actual output, Y</label>
+<input id="gap-solve-actual" type="number" step="any" value="102" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Known actual output. The calculator solves for the potential level that would produce the gap percent below.</p>
+
+<label for="gap-solve-from-actual">Output gap (% of potential)</label>
+<input id="gap-solve-from-actual" type="number" step="0.1" value="2" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Positive means actual output sits above potential. Example: 2 with actual output of 102 solves for potential of 100.</p>
+</div>
+
+<div id="gap-actual-fields" hidden>
+<label for="gap-solve-potential">Potential output, Y*</label>
+<input id="gap-solve-potential" type="number" step="any" value="100" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Known potential output. The calculator solves for the actual level that would produce the gap percent below.</p>
+
+<label for="gap-solve-from-potential">Output gap (% of potential)</label>
+<input id="gap-solve-from-potential" type="number" step="0.1" value="2" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Positive means actual output sits above potential. Example: 2 with potential of 100 solves for actual output of 102.</p>
+</div>
+
+<div class="calc-actions">
+<button type="button" class="btn" id="calc-output-gap">Calculate</button>
+<button type="button" class="btn btn-secondary" id="calc-output-gap-reset">Reset</button>
+</div>
+
+<p class="calc-error" id="calc-output-gap-error" role="alert"></p>
+
+<div class="calc-result" id="calc-output-gap-result" role="status" aria-live="polite">
+<div class="result-block">
+<p class="result-label">Output gap (%)</p>
+<div class="amount" id="gap-percent-amount"></div>
+<p class="detail" id="gap-percent-detail"></p>
+</div>
+<div class="result-block">
+<p class="result-label">Absolute gap</p>
+<div class="amount" id="gap-absolute-amount"></div>
+<p class="detail" id="gap-absolute-detail"></p>
+</div>
+<div class="result-block">
+<p class="result-label">How to read this</p>
+<p class="detail" id="gap-read-note"></p>
+</div>
+<div class="result-block">
+<p class="result-label">Arithmetic</p>
+<p class="detail" id="gap-arithmetic"></p>
+</div>
+<p class="detail" id="gap-summary"></p>
+</div>
+</div>
+
+<div class="callout" style="margin-top:1.5rem">
+<strong>How to read this.</strong> The percent gap is ((actual output minus potential output) divided by potential output) times 100. A positive percent means actual output sits above the potential level you typed. A negative percent means it sits below that level. Teaching notes often call a negative gap spare capacity in output. The absolute gap is actual minus potential, in the same units you typed, before that division. Dividing by potential, rather than by actual, is the usual classroom choice. None of these figures is a live CBO, OBR, or Bank of England estimate. Potential is a model, and models get revised.
+</div>
+
+<div class="callout warning">
+<span class="example-label">Example defaults</span>
+<p style="margin:0">Defaults use actual output of 102 and potential output of 100. The output gap is plus 2 percent of potential. The absolute gap is plus 2 in the same units. Switch to implied potential, keep actual output at 102, and enter a gap of 2 percent. Potential comes back to 100. Switch to implied actual, keep potential at 100, and enter a gap of 2 percent. Actual output comes back to 102. Those figures are classroom arithmetic. They are not a claim about current GDP.</p>
+</div>
+
+<div class="callout warning">
+<span class="example-label">Educational only</span>
+<p style="margin:0">Not investment advice and not policy advice. Nothing here recommends buying, selling, or holding any security, or choosing a tax, spending, or interest rate. A positive gap is not a signal to trade. A negative gap is not a forecast of the next GDP release. The calculator does not fetch live data and does not invent an official series.</p>
+</div>
+
+<h2>The classroom formula</h2>
+<p>This page uses the percent of potential definition common in textbooks and in public discussions of the gap:</p>
+<blockquote>Output gap (%) ≈ ((Y − Y*) / Y*) × 100</blockquote>
+<blockquote>Absolute gap ≈ Y − Y*</blockquote>
+<blockquote>Y* ≈ Y / (1 + output gap as a decimal)</blockquote>
+<blockquote>Y ≈ Y* × (1 + output gap as a decimal)</blockquote>
+<p>Y is actual output. Y* is potential output. A gap of 2 percent has decimal form 0.02, so potential equals actual divided by 1.02, and actual equals potential times 1.02. Say which levels you used. Potential is an assumption you type, or a published estimate you have already read, not a fact this page looks up.</p>
+<p>For the ideas and the loose spots, read <a href="../explainers/output-gap.html">the output gap</a>. The same percent is an input on the <a href="taylor-rule.html">Taylor rule calculator</a>. A related sketch, <a href="../explainers/okuns-law.html">Okun's law</a>, links a GDP growth gap to unemployment. Try the <a href="okuns-law.html">Okun's law calculator</a>. The <a href="phillips-curve.html">Phillips curve calculator</a> uses an unemployment gap, which is a different object from this output gap.</p>
+
+<h2>Where to find the inputs</h2>
+<p>Type your own numbers. This page does not download official series. For a US sketch, look up real GDP at BEA and a potential GDP discussion at the Congressional Budget Office. FRED charts a real potential GDP series under GDPPOT next to BEA real GDP. For a UK sketch, look up real GDP at ONS. The Office for Budget Responsibility discusses potential output and the output gap, and treats a negative gap as spare capacity. The Bank of England discusses spare capacity in its Monetary Policy Report. Those publications are estimates with methods attached. Copy a figure only after you have read the notes, then type it here. Broader context sits on the <a href="../topics/gdp.html">GDP pillar</a> and the <a href="../topics/unemployment.html">unemployment pillar</a>.</p>
+
+<h2>UK and US framing</h2>
+<p>Do not paste a US potential series onto UK data and call the result a fact. CBO potential GDP is built for the US national accounts. UK spare capacity talk from the OBR and the Bank of England uses different models, different price concepts, and a different policy horizon. The OBR has noted that its output gap and the Bank’s slack measure are not the same object, because the time horizon differs. A 2 percent gap next to an index of 100 is classroom arithmetic. A 2 percent gap in a published chart is an estimate that can be revised. Match the units before you type.</p>
+
+<h2>Sources</h2>
+<ul class="source-list">
+<li><a href="https://www.cbo.gov/publication/49890" rel="noopener noreferrer">Congressional Budget Office, “Why CBO Projects That Actual Output Will Be Below Potential Output on Average”</a></li>
+<li><a href="https://www.cbo.gov/publication/57014" rel="noopener noreferrer">Congressional Budget Office, “Additional Information About the Economic Outlook: 2021 to 2031” (defines the output gap as GDP minus potential GDP, as a percentage of potential GDP)</a></li>
+<li><a href="https://fred.stlouisfed.org/series/GDPPOT" rel="noopener noreferrer">FRED, Real Potential Gross Domestic Product (GDPPOT)</a></li>
+<li><a href="https://www.bea.gov/data/gdp/gross-domestic-product" rel="noopener noreferrer">BEA, Gross Domestic Product</a></li>
+<li><a href="https://obr.uk/forecasts-in-depth/the-economy-forecast/potential-output-and-the-output-gap/" rel="noopener noreferrer">Office for Budget Responsibility, Potential output and the output gap</a></li>
+<li><a href="https://obr.uk/box/spare-capacity-in-the-february-2014-inflation-report/" rel="noopener noreferrer">Office for Budget Responsibility, Spare capacity in the February 2014 Inflation Report (why the OBR output gap and Bank of England slack are not the same object)</a></li>
+<li><a href="https://www.bankofengland.co.uk/monetary-policy-report/2026/february-2026" rel="noopener noreferrer">Bank of England, Monetary Policy Report, February 2026 (spare capacity discussion)</a></li>
+<li><a href="https://www.ons.gov.uk/economy/grossdomesticproductgdp" rel="noopener noreferrer">ONS, Gross Domestic Product (GDP)</a></li>
+<li><a href="https://www.imf.org/external/pubs/ft/fandd/basics/22_output-gap.htm" rel="noopener noreferrer">Sarwat Jahan and Ahmed Saber Mahmud, “The Output Gap: Veering from Potential,” IMF Finance and Development, Back to Basics</a></li>
+</ul>
+
+<p><a href="index.html">All calculators</a> · <a href="taylor-rule.html">Taylor rule calculator</a> · <a href="okuns-law.html">Okun's law calculator</a> · <a href="phillips-curve.html">Phillips curve calculator</a> · <a href="../explainers/output-gap.html">Output gap explained</a> · <a href="../explainers/okuns-law.html">Okun's law</a> · <a href="../topics/gdp.html">GDP topic</a> · <a href="../topics/unemployment.html">Unemployment topic</a> · <a href="../faq/">FAQ</a></p>
+</div>
+</main>
+<footer class="site-footer">
+<div class="footer-inner">
+<div>
+<a class="logo" href="../" style="color:#fff;text-decoration:none">Simple <span style="color:#a8d4d4">Macro</span> Guide</a>
+<p style="margin:0.6rem 0 0;max-width:28rem">Clear, calm explanations of how economies work, with a UK and US focus. Educational only; not investment advice.</p>
+</div>
+<div>
+<h2>Explore</h2>
+<ul>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data guides</a></li>
+<li><a href="../calculators/">Calculators</a></li>
+</ul>
+</div>
+<div>
+<h2>About</h2>
+<ul>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+<li><a href="../disclaimer/">Disclaimer</a></li>
+<li><a href="../sources/">Sources</a></li>
+<li><a href="mailto:joshuaofisrael@gmail.com?subject=%5BContact%3A%20simplemacroguide%5D">Email</a></li>
+</ul>
+</div>
+<p class="footer-note">© Joshua Israel Ventures LLC. Content is for education. Not financial, investment, tax, or legal advice. Verify figures with primary sources such as the World Bank, ONS, and FRED.</p>
+</div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

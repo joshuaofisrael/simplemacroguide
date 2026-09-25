@@ -911,4 +911,276 @@
       });
     }
   }
+
+  /* Output gap calculator (percent of potential, classroom definition) */
+  var outputGapCalcBtn = document.getElementById("calc-output-gap");
+  if (outputGapCalcBtn) {
+    var gapActualEl = document.getElementById("gap-actual");
+    var gapPotentialEl = document.getElementById("gap-potential");
+    var gapSolveActualEl = document.getElementById("gap-solve-actual");
+    var gapSolveFromActualEl = document.getElementById("gap-solve-from-actual");
+    var gapSolvePotentialEl = document.getElementById("gap-solve-potential");
+    var gapSolveFromPotentialEl = document.getElementById("gap-solve-from-potential");
+    var gapLevelsFields = document.getElementById("gap-levels-fields");
+    var gapPotentialFields = document.getElementById("gap-potential-fields");
+    var gapActualFields = document.getElementById("gap-actual-fields");
+    var gapModeHint = document.getElementById("gap-mode-hint");
+    var gapModePercentBtn = document.getElementById("gap-mode-percent");
+    var gapModeLevelsBtn = document.getElementById("gap-mode-levels");
+    var gapModePotentialBtn = document.getElementById("gap-mode-potential");
+    var gapModeActualBtn = document.getElementById("gap-mode-actual");
+    var gapResultEl = document.getElementById("calc-output-gap-result");
+    var gapPercentAmount = document.getElementById("gap-percent-amount");
+    var gapPercentDetail = document.getElementById("gap-percent-detail");
+    var gapAbsoluteAmount = document.getElementById("gap-absolute-amount");
+    var gapAbsoluteDetail = document.getElementById("gap-absolute-detail");
+    var gapReadNote = document.getElementById("gap-read-note");
+    var gapArithmetic = document.getElementById("gap-arithmetic");
+    var gapSummary = document.getElementById("gap-summary");
+    var gapErrorEl = document.getElementById("calc-output-gap-error");
+    var gapResetBtn = document.getElementById("calc-output-gap-reset");
+    var gapMode = "percent";
+    var gapModeButtons = [gapModePercentBtn, gapModeLevelsBtn, gapModePotentialBtn, gapModeActualBtn];
+    var gapLevelMax = 1000000000000000;
+
+    function showGapError(msg) {
+      gapErrorEl.textContent = msg;
+      gapErrorEl.classList.add("visible");
+      gapResultEl.classList.remove("visible");
+    }
+    function clearGapError() {
+      gapErrorEl.classList.remove("visible");
+      gapErrorEl.textContent = "";
+    }
+    function formatGapAbs(n) {
+      return Math.abs(n).toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+    function formatGapSigned(n) {
+      var abs = formatGapAbs(n);
+      if (n < -0.0000001) return "\u2212" + abs;
+      if (n > 0.0000001) return "+" + abs;
+      return "0.00";
+    }
+    function formatGapLevel(n) {
+      return n.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+    function gapSignedWords(n) {
+      var abs = formatGapAbs(n);
+      if (n < -0.0000001) return "minus " + abs;
+      if (n > 0.0000001) return "plus " + abs;
+      return "0.00";
+    }
+    function formatGapDecimal(n) {
+      var rounded = Math.round(n * 10000) / 10000;
+      var text = rounded.toLocaleString(undefined, {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 4
+      });
+      return text;
+    }
+    function hideGapResult() {
+      gapResultEl.classList.remove("visible");
+      clearGapError();
+    }
+    function readGapLevel(el, label, allowZero) {
+      var n = parseFloat(el.value);
+      if (!isFinite(n) || n > gapLevelMax || n < 0 || (n === 0 && !allowZero)) {
+        return {
+          ok: false,
+          message: allowZero
+            ? "Enter " + label + " as a number from 0 up to 1,000,000,000,000,000. Use the same units for actual and potential output."
+            : "Enter " + label + " as a positive number up to 1,000,000,000,000,000. The percent gap divides by potential, so zero does not work."
+        };
+      }
+      return { ok: true, value: n };
+    }
+    function readGapPercent(el) {
+      var n = parseFloat(el.value);
+      if (!isFinite(n) || n <= -100 || n > 500) {
+        return {
+          ok: false,
+          message: "Enter an output gap greater than minus 100 and up to 500 percent. A gap of minus 100 percent would put actual output at zero."
+        };
+      }
+      return { ok: true, value: n };
+    }
+    function setGapMode(mode) {
+      gapMode = mode;
+      gapLevelsFields.hidden = mode !== "percent" && mode !== "levels";
+      gapPotentialFields.hidden = mode !== "implied-potential";
+      gapActualFields.hidden = mode !== "implied-actual";
+      var activeBtn = gapModePercentBtn;
+      var hint = "Percent of potential uses actual output Y and potential output Y*. The gap in percent is ((Y minus Y*) divided by Y*) times 100.";
+      if (mode === "levels") {
+        activeBtn = gapModeLevelsBtn;
+        hint = "From levels uses the same inputs as percent of potential: actual output Y and potential output Y*. It reports the percent gap and the absolute gap, Y minus Y*, in the units you typed.";
+      } else if (mode === "implied-potential") {
+        activeBtn = gapModePotentialBtn;
+        hint = "Implied potential starts from actual output and a gap percent, then solves for potential. Potential equals actual divided by (1 plus the gap in decimal form). A 2 percent gap has decimal form 0.02.";
+      } else if (mode === "implied-actual") {
+        activeBtn = gapModeActualBtn;
+        hint = "Implied actual starts from potential output and a gap percent, then solves for actual output. Actual equals potential times (1 plus the gap in decimal form). A 2 percent gap has decimal form 0.02.";
+      }
+      var i;
+      for (i = 0; i < gapModeButtons.length; i++) {
+        var on = gapModeButtons[i] === activeBtn;
+        gapModeButtons[i].className = on ? "btn" : "btn btn-secondary";
+        gapModeButtons[i].setAttribute("aria-pressed", on ? "true" : "false");
+      }
+      gapModeHint.textContent = hint;
+      hideGapResult();
+    }
+
+    gapModePercentBtn.addEventListener("click", function () {
+      setGapMode("percent");
+    });
+    gapModeLevelsBtn.addEventListener("click", function () {
+      setGapMode("levels");
+    });
+    gapModePotentialBtn.addEventListener("click", function () {
+      setGapMode("implied-potential");
+    });
+    gapModeActualBtn.addEventListener("click", function () {
+      setGapMode("implied-actual");
+    });
+
+    outputGapCalcBtn.addEventListener("click", function () {
+      clearGapError();
+      var y;
+      var yStar;
+      var gapPct;
+      var absGap;
+      var arithmetic;
+
+      if (gapMode === "percent" || gapMode === "levels") {
+        var actual = readGapLevel(gapActualEl, "actual output", true);
+        if (!actual.ok) {
+          showGapError(actual.message);
+          return;
+        }
+        var potential = readGapLevel(gapPotentialEl, "potential output", false);
+        if (!potential.ok) {
+          showGapError(potential.message);
+          return;
+        }
+        y = actual.value;
+        yStar = potential.value;
+        gapPct = ((y - yStar) / yStar) * 100;
+        absGap = y - yStar;
+        if (!isFinite(gapPct) || Math.abs(gapPct) > 1000) {
+          showGapError("Those levels imply an output gap beyond 1,000 percent of potential. Check that actual and potential use the same units.");
+          return;
+        }
+        arithmetic =
+          "Percent gap equals (" + formatGapLevel(y) + " minus " + formatGapLevel(yStar) +
+          ") divided by " + formatGapLevel(yStar) +
+          ", times 100, which is " + gapSignedWords(gapPct) +
+          ". Absolute gap equals " + formatGapLevel(y) + " minus " + formatGapLevel(yStar) +
+          ", which is " + gapSignedWords(absGap) + ".";
+      } else if (gapMode === "implied-potential") {
+        var knownActual = readGapLevel(gapSolveActualEl, "actual output", false);
+        if (!knownActual.ok) {
+          showGapError(knownActual.message);
+          return;
+        }
+        var typedGap = readGapPercent(gapSolveFromActualEl);
+        if (!typedGap.ok) {
+          showGapError(typedGap.message);
+          return;
+        }
+        y = knownActual.value;
+        gapPct = typedGap.value;
+        yStar = y / (1 + gapPct / 100);
+        if (!isFinite(yStar) || yStar <= 0 || yStar > gapLevelMax) {
+          showGapError("Those inputs do not produce a usable potential level. Check the gap percent and the actual output.");
+          return;
+        }
+        absGap = y - yStar;
+        arithmetic =
+          "Potential equals " + formatGapLevel(y) +
+          " divided by (1 plus " + formatGapDecimal(gapPct / 100) +
+          "), which is " + formatGapLevel(yStar) +
+          ". Absolute gap equals " + formatGapLevel(y) + " minus " + formatGapLevel(yStar) +
+          ", which is " + gapSignedWords(absGap) + ".";
+      } else {
+        var knownPotential = readGapLevel(gapSolvePotentialEl, "potential output", false);
+        if (!knownPotential.ok) {
+          showGapError(knownPotential.message);
+          return;
+        }
+        var typedGapFromPotential = readGapPercent(gapSolveFromPotentialEl);
+        if (!typedGapFromPotential.ok) {
+          showGapError(typedGapFromPotential.message);
+          return;
+        }
+        yStar = knownPotential.value;
+        gapPct = typedGapFromPotential.value;
+        y = yStar * (1 + gapPct / 100);
+        if (!isFinite(y) || y < 0 || y > gapLevelMax) {
+          showGapError("Those inputs do not produce a usable actual output level. Check the gap percent and potential output.");
+          return;
+        }
+        absGap = y - yStar;
+        arithmetic =
+          "Actual output equals " + formatGapLevel(yStar) +
+          " times (1 plus " + formatGapDecimal(gapPct / 100) +
+          "), which is " + formatGapLevel(y) +
+          ". Absolute gap equals " + formatGapLevel(y) + " minus " + formatGapLevel(yStar) +
+          ", which is " + gapSignedWords(absGap) + ".";
+      }
+
+      var readNote;
+      if (gapPct > 0.005) {
+        readNote = "Actual output sits above potential by " + formatGapAbs(gapPct) +
+          " percent of potential. A positive gap means activity is above the sustainable benchmark in these numbers.";
+      } else if (gapPct < -0.005) {
+        readNote = "Actual output sits below potential by " + formatGapAbs(gapPct) +
+          " percent of potential. A negative gap is the classroom reading of spare capacity in output.";
+      } else {
+        readNote = "Actual output matches potential under these numbers, so the gap is about zero.";
+      }
+      if (gapMode === "implied-potential") {
+        readNote += " Potential output is the solved level.";
+      } else if (gapMode === "implied-actual") {
+        readNote += " Actual output is the solved level.";
+      }
+      readNote += " The absolute gap is " + gapSignedWords(absGap) +
+        " in the same units as the levels. These are numbers you typed, not a live official estimate.";
+
+      gapPercentAmount.textContent = formatGapSigned(gapPct) + "%";
+      gapPercentDetail.textContent = "Percent of potential. Positive means actual output is above potential. Negative means it is below potential.";
+      gapAbsoluteAmount.textContent = formatGapSigned(absGap);
+      gapAbsoluteDetail.textContent =
+        "Actual output " + formatGapLevel(y) +
+        " minus potential output " + formatGapLevel(yStar) +
+        ", in the units you typed.";
+      gapReadNote.textContent = readNote;
+      gapArithmetic.textContent = arithmetic + " Shown to two decimal places.";
+      gapSummary.textContent =
+        "Actual output " + formatGapLevel(y) +
+        ". Potential output " + formatGapLevel(yStar) +
+        ". Output gap " + gapSignedWords(gapPct) +
+        " percent. Absolute gap " + gapSignedWords(absGap) +
+        ". Educational estimate only. Not a forecast and not investment advice.";
+      gapResultEl.classList.add("visible");
+    });
+
+    if (gapResetBtn) {
+      gapResetBtn.addEventListener("click", function () {
+        gapActualEl.value = "102";
+        gapPotentialEl.value = "100";
+        gapSolveActualEl.value = "102";
+        gapSolveFromActualEl.value = "2";
+        gapSolvePotentialEl.value = "100";
+        gapSolveFromPotentialEl.value = "2";
+        setGapMode("percent");
+      });
+    }
+  }
 })();
