@@ -1183,4 +1183,320 @@
       });
     }
   }
+
+  /* Fiscal multiplier calculator (classroom spending multiplier) */
+  var fiscalMultCalcBtn = document.getElementById("calc-fiscal-multiplier");
+  if (fiscalMultCalcBtn) {
+    var fmMpcEl = document.getElementById("fm-mpc");
+    var fmMpiEl = document.getElementById("fm-mpi");
+    var fmKEl = document.getElementById("fm-k");
+    var fmImpulseEl = document.getElementById("fm-impulse");
+    var fmMpcFields = document.getElementById("fm-mpc-fields");
+    var fmMpiFields = document.getElementById("fm-mpi-fields");
+    var fmKFields = document.getElementById("fm-k-fields");
+    var fmModeHint = document.getElementById("fm-mode-hint");
+    var fmImpulseLabel = document.getElementById("fm-impulse-label");
+    var fmImpulseHint = document.getElementById("fm-impulse-hint");
+    var fmModeClosedBtn = document.getElementById("fm-mode-closed");
+    var fmModeOpenBtn = document.getElementById("fm-mode-open");
+    var fmModePublishedBtn = document.getElementById("fm-mode-published");
+    var fmResultEl = document.getElementById("calc-fiscal-multiplier-result");
+    var fmMultiplierAmount = document.getElementById("fm-multiplier-amount");
+    var fmMultiplierDetail = document.getElementById("fm-multiplier-detail");
+    var fmGdpBlock = document.getElementById("fm-gdp-block");
+    var fmGdpAmount = document.getElementById("fm-gdp-amount");
+    var fmGdpDetail = document.getElementById("fm-gdp-detail");
+    var fmReadNote = document.getElementById("fm-read-note");
+    var fmArithmetic = document.getElementById("fm-arithmetic");
+    var fmSummary = document.getElementById("fm-summary");
+    var fmErrorEl = document.getElementById("calc-fiscal-multiplier-error");
+    var fmResetBtn = document.getElementById("calc-fiscal-multiplier-reset");
+    var fmMode = "closed";
+    var fmModeButtons = [fmModeClosedBtn, fmModeOpenBtn, fmModePublishedBtn];
+    var fmImpulseMax = 1000000000000;
+    var fmMultiplierMax = 10000;
+
+    function showFmError(msg) {
+      fmErrorEl.textContent = msg;
+      fmErrorEl.classList.add("visible");
+      fmResultEl.classList.remove("visible");
+    }
+    function clearFmError() {
+      fmErrorEl.classList.remove("visible");
+      fmErrorEl.textContent = "";
+    }
+    function formatFmAbs(n) {
+      return Math.abs(n).toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+    function formatFmSigned(n) {
+      var abs = formatFmAbs(n);
+      if (n < -0.0000001) return "\u2212" + abs;
+      if (n > 0.0000001) return "+" + abs;
+      return "0.00";
+    }
+    function formatFmPlain(n) {
+      var rounded = Math.round(n * 10000) / 10000;
+      return rounded.toLocaleString(undefined, {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 4
+      });
+    }
+    function fmWords(n) {
+      var abs = formatFmAbs(n);
+      if (n < -0.0000001) return "minus " + abs;
+      return abs;
+    }
+    function hideFmResult() {
+      fmResultEl.classList.remove("visible");
+      clearFmError();
+    }
+    function readFmPropensity(el, name, closedMpc) {
+      var raw = String(el.value).trim();
+      var rangeMessage = "Enter a " + name + " from 0 up to, but not including, 1.";
+      if (raw === "") {
+        return { ok: false, message: rangeMessage };
+      }
+      var n = parseFloat(raw);
+      if (!isFinite(n) || n < 0) {
+        return { ok: false, message: rangeMessage };
+      }
+      if (n >= 1) {
+        if (closedMpc) {
+          return {
+            ok: false,
+            message: "Enter a marginal propensity to consume below 1. At 1 or above, the denominator, 1 minus MPC, is zero or negative, so the sketch does not apply."
+          };
+        }
+        return { ok: false, message: rangeMessage };
+      }
+      return { ok: true, value: n };
+    }
+    function readFmMultiplier(el) {
+      var raw = String(el.value).trim();
+      if (raw === "" || !isFinite(parseFloat(raw)) || parseFloat(raw) <= 0 || parseFloat(raw) > fmMultiplierMax) {
+        return {
+          ok: false,
+          message: "Enter a multiplier greater than 0 and up to 10,000. This mode uses a figure you type. It does not look up a CBO, OBR, or IMF estimate."
+        };
+      }
+      return { ok: true, value: parseFloat(raw) };
+    }
+    function readFmImpulse(el, noun) {
+      var raw = String(el.value).trim();
+      if (raw === "") return { ok: true, provided: false };
+      var n = parseFloat(raw);
+      if (!isFinite(n) || Math.abs(n) > fmImpulseMax) {
+        return {
+          ok: false,
+          message: "Enter " + noun + " between minus 1,000,000,000,000 and 1,000,000,000,000, or leave the field blank."
+        };
+      }
+      return { ok: true, provided: true, value: n };
+    }
+    function setFmMode(mode) {
+      fmMode = mode;
+      fmMpcFields.hidden = mode === "published";
+      fmMpiFields.hidden = mode !== "open";
+      fmKFields.hidden = mode !== "published";
+      var activeBtn = fmModeClosedBtn;
+      var hint = "Closed economy uses the marginal propensity to consume. The spending multiplier is 1 divided by (1 minus MPC). An optional government spending change then scales into an implied GDP change.";
+      var impulseLabel = "Government spending change, \u0394G (optional)";
+      var impulseHint = "Optional. Extra government spending in classroom units you choose. Defaults use 10. With the default MPC, the implied GDP change is 50. Leave blank if you only want the multiplier. A negative number is a spending cut.";
+      if (mode === "open") {
+        activeBtn = fmModeOpenBtn;
+        hint = "Open economy uses MPC and the marginal propensity to import. The multiplier is 1 divided by (1 minus MPC plus MPI). A positive MPI is an extra leakage, so the multiplier is smaller than the closed economy figure with the same MPC. An optional government spending change scales into an implied GDP change.";
+        impulseHint = "Optional. Same spending change as in the closed economy mode. Defaults use 10. With the default MPC and MPI, the implied GDP change is 25. Leave blank if you only want the multiplier. A negative number is a spending cut.";
+      } else if (mode === "published") {
+        activeBtn = fmModePublishedBtn;
+        hint = "This mode starts from a multiplier you type, then multiplies it by a fiscal impulse. Use it when you have already read a figure in a CBO, OBR, or IMF discussion. This page does not look up that figure and does not treat the product as official scorekeeping.";
+        impulseLabel = "Fiscal impulse (optional)";
+        impulseHint = "Optional. Positive means an expansionary spending style impulse, such as higher government spending. Negative means a contractionary impulse. A tax increase can be entered as a negative number. A tax cut can be entered as a positive number. Tax multipliers often differ from spending multipliers, so type a k you have already chosen. This page does not invent a tax coefficient. Leave blank to keep only the multiplier you typed.";
+      }
+      var i;
+      for (i = 0; i < fmModeButtons.length; i++) {
+        var on = fmModeButtons[i] === activeBtn;
+        fmModeButtons[i].className = on ? "btn" : "btn btn-secondary";
+        fmModeButtons[i].setAttribute("aria-pressed", on ? "true" : "false");
+      }
+      fmModeHint.textContent = hint;
+      fmImpulseLabel.textContent = impulseLabel;
+      fmImpulseHint.textContent = impulseHint;
+      hideFmResult();
+    }
+
+    fmModeClosedBtn.addEventListener("click", function () {
+      setFmMode("closed");
+    });
+    fmModeOpenBtn.addEventListener("click", function () {
+      setFmMode("open");
+    });
+    fmModePublishedBtn.addEventListener("click", function () {
+      setFmMode("published");
+    });
+
+    fiscalMultCalcBtn.addEventListener("click", function () {
+      clearFmError();
+      var k;
+      var denom;
+      var mpc = null;
+      var mpi = null;
+      var arithmetic;
+      var multiplierDetail;
+      var impulseNoun = fmMode === "published" ? "a fiscal impulse" : "a government spending change";
+      var impulse = readFmImpulse(fmImpulseEl, impulseNoun);
+      if (!impulse.ok) {
+        showFmError(impulse.message);
+        return;
+      }
+
+      if (fmMode === "published") {
+        var typedK = readFmMultiplier(fmKEl);
+        if (!typedK.ok) {
+          showFmError(typedK.message);
+          return;
+        }
+        k = typedK.value;
+        multiplierDetail = "The multiplier you typed. This mode does not derive it from an MPC.";
+        arithmetic = "";
+      } else {
+        var typedMpc = readFmPropensity(fmMpcEl, "marginal propensity to consume", fmMode === "closed");
+        if (!typedMpc.ok) {
+          showFmError(typedMpc.message);
+          return;
+        }
+        mpc = typedMpc.value;
+        if (fmMode === "open") {
+          var typedMpi = readFmPropensity(fmMpiEl, "marginal propensity to import", false);
+          if (!typedMpi.ok) {
+            showFmError(typedMpi.message);
+            return;
+          }
+          mpi = typedMpi.value;
+          denom = 1 - mpc + mpi;
+          if (!(denom > 0.000000000001)) {
+            showFmError("The denominator, 1 minus MPC plus MPI, is zero or negative. This formula needs that denominator to stay positive.");
+            return;
+          }
+          k = 1 / denom;
+          multiplierDetail = "Units of GDP per unit of government spending. Equals 1 divided by (1 minus MPC plus MPI).";
+          arithmetic =
+            "1 minus " + formatFmPlain(mpc) + " plus " + formatFmPlain(mpi) +
+            " is " + formatFmPlain(denom) +
+            ". The multiplier equals 1 divided by " + formatFmPlain(denom) +
+            ", which is " + formatFmAbs(k) + ".";
+        } else {
+          denom = 1 - mpc;
+          if (!(denom > 0.000000000001)) {
+            showFmError("The denominator, 1 minus MPC, is zero or negative. This formula needs that denominator to stay positive.");
+            return;
+          }
+          k = 1 / denom;
+          multiplierDetail = "Units of GDP per unit of government spending. Equals 1 divided by (1 minus MPC).";
+          arithmetic =
+            "1 minus " + formatFmPlain(mpc) +
+            " is " + formatFmPlain(denom) +
+            ". The multiplier equals 1 divided by " + formatFmPlain(denom) +
+            ", which is " + formatFmAbs(k) + ".";
+        }
+        if (!isFinite(k) || k > fmMultiplierMax) {
+          showFmError("Those inputs imply a multiplier above 10,000. Move the propensity a bit farther below 1 so this classroom display can show the result.");
+          return;
+        }
+      }
+
+      var dy = null;
+      if (impulse.provided) {
+        dy = k * impulse.value;
+        if (!isFinite(dy) || Math.abs(dy) > fmImpulseMax * fmMultiplierMax) {
+          showFmError("Those inputs imply a GDP change this classroom display cannot show. Use a smaller impulse or a smaller multiplier.");
+          return;
+        }
+        if (fmMode === "published") {
+          arithmetic = "The multiplier is the figure you typed, " + formatFmAbs(k) +
+            ". Implied GDP change equals that multiplier times " + fmWords(impulse.value) +
+            ", which is " + fmWords(dy) + ".";
+        } else {
+          arithmetic += " Implied GDP change equals the multiplier times " + fmWords(impulse.value) +
+            ", which is " + fmWords(dy) + ".";
+        }
+      } else if (fmMode !== "published") {
+        arithmetic += " No spending change was entered, so there is no implied GDP change.";
+      } else {
+        arithmetic = "No fiscal impulse was entered, so the result is the multiplier you typed, " + formatFmAbs(k) + ".";
+      }
+      arithmetic += " Shown to two decimal places.";
+
+      var readNote;
+      if (fmMode === "published") {
+        readNote = "You typed this multiplier. The page does not derive it from an MPC and does not check it against a CBO, OBR, or IMF publication. ";
+      } else if (fmMode === "open") {
+        if (mpi > 0.0000001) {
+          readNote = "Imports add a leakage, so this multiplier is smaller than the closed economy multiplier with the same MPC. ";
+        } else {
+          readNote = "With an MPI of zero, this open economy sketch matches the closed economy multiplier for the same MPC. ";
+        }
+      } else {
+        readNote = "In this closed economy sketch, income that is not consumed leaks into saving, and the multiplier is the sum of the resulting spending rounds. ";
+      }
+      readNote += "A multiplier of " + formatFmAbs(k) + " means one extra unit of impulse lines up with about " + formatFmAbs(k) + " units of GDP under these assumptions. ";
+      if (!impulse.provided) {
+        readNote += "No impulse was entered, so there is no implied GDP change. ";
+      } else if (dy > 0.005) {
+        readNote += "The implied GDP change is positive, so output rises in this sketch. ";
+      } else if (dy < -0.005) {
+        readNote += "The implied GDP change is negative, so output falls in this sketch. ";
+      } else {
+        readNote += "The implied GDP change is about zero. ";
+      }
+      if (fmMode === "published") {
+        readNote += "Tax multipliers often differ from spending multipliers. If this impulse is a tax change, both the sign and the multiplier need to be ones you chose. ";
+      }
+      readNote += "This is classroom arithmetic, not scorekeeping, not a forecast, and not a recommendation of any budget package.";
+
+      fmMultiplierAmount.textContent = formatFmAbs(k);
+      fmMultiplierDetail.textContent = multiplierDetail;
+      if (impulse.provided) {
+        fmGdpBlock.hidden = false;
+        fmGdpAmount.textContent = formatFmSigned(dy);
+        fmGdpDetail.textContent = "Multiplier times the impulse, in the same units you typed. Classroom arithmetic, not an official score.";
+      } else {
+        fmGdpBlock.hidden = true;
+        fmGdpAmount.textContent = "";
+        fmGdpDetail.textContent = "";
+      }
+      fmReadNote.textContent = readNote;
+      fmArithmetic.textContent = arithmetic;
+
+      if (fmMode === "published") {
+        fmSummary.textContent = "Multiplier " + formatFmAbs(k) +
+          (impulse.provided ? ". Fiscal impulse " + fmWords(impulse.value) + ". Implied GDP change " + fmWords(dy) + ". " : ". No fiscal impulse entered. ") +
+          "Educational estimate only. Not a forecast and not investment advice.";
+      } else if (fmMode === "open") {
+        fmSummary.textContent = "MPC " + formatFmPlain(mpc) +
+          ". MPI " + formatFmPlain(mpi) +
+          ". Multiplier " + formatFmAbs(k) +
+          (impulse.provided ? ". Government spending change " + fmWords(impulse.value) + ". Implied GDP change " + fmWords(dy) + ". " : ". No government spending change entered. ") +
+          "Educational estimate only. Not a forecast and not investment advice.";
+      } else {
+        fmSummary.textContent = "MPC " + formatFmPlain(mpc) +
+          ". Multiplier " + formatFmAbs(k) +
+          (impulse.provided ? ". Government spending change " + fmWords(impulse.value) + ". Implied GDP change " + fmWords(dy) + ". " : ". No government spending change entered. ") +
+          "Educational estimate only. Not a forecast and not investment advice.";
+      }
+      fmResultEl.classList.add("visible");
+    });
+
+    if (fmResetBtn) {
+      fmResetBtn.addEventListener("click", function () {
+        fmMpcEl.value = "0.8";
+        fmMpiEl.value = "0.2";
+        fmKEl.value = "1";
+        fmImpulseEl.value = "10";
+        setFmMode("closed");
+      });
+    }
+  }
 })();

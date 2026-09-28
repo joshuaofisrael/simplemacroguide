@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fiscal multiplier calculator | Simple Macro Guide</title>
+<meta name="description" content="Fiscal multiplier calculator: spending multiplier from MPC, with an open economy import leakage, or from a multiplier you type. Educational only.">
+<link rel="canonical" href="https://simplemacroguide.com/calculators/fiscal-multiplier.html">
+<meta name="theme-color" content="#2a6f6f">
+<meta property="og:title" content="Fiscal multiplier calculator | Simple Macro Guide">
+<meta property="og:description" content="Fiscal multiplier calculator: spending multiplier from MPC, with an open economy import leakage, or from a multiplier you type. Educational only.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://simplemacroguide.com/calculators/fiscal-multiplier.html">
+<meta property="og:site_name" content="Simple Macro Guide">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fiscal multiplier calculator | Simple Macro Guide">
+<meta name="twitter:description" content="Fiscal multiplier calculator: spending multiplier from MPC, with an open economy import leakage, or from a multiplier you type. Educational only.">
+<link rel="stylesheet" href="../css/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Fiscal multiplier calculator",
+  "description": "Fiscal multiplier calculator: spending multiplier from MPC, with an open economy import leakage, or from a multiplier you type. Educational only.",
+  "url": "https://simplemacroguide.com/calculators/fiscal-multiplier.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Joshua Israel Ventures LLC"
+  }
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="header-inner">
+<a class="logo" href="../">Simple <span>Macro</span> Guide</a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav class="site-nav" id="site-nav" aria-label="Primary"><ul>
+<li><a href="../">Home</a></li>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data</a></li>
+<li><a href="../calculators/" aria-current="page">Calculators</a></li>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+</ul></nav>
+</div>
+</header>
+<main id="main">
+
+<div class="wrap narrow">
+<header class="hero" style="border:none;margin:0;padding-bottom:0.5rem">
+<h1>Fiscal multiplier calculator</h1>
+<p class="lede">Turn a marginal propensity to consume into a simple closed economy spending multiplier, or add a marginal propensity to import. You can also start from a multiplier you already have and apply it to a fiscal impulse. Every step stays visible. This is classroom arithmetic, not a forecast, not a budget score, and not a recommendation of any spending or tax package. The arithmetic runs entirely in your browser.</p>
+</header>
+
+<div class="calc-panel calc-panel-wide" id="fiscal-multiplier-calculator">
+<p id="fm-mode-label" style="font-weight:600;font-size:0.9rem;margin:0 0 0.35rem">Mode</p>
+<div class="calc-actions" style="margin-top:0" role="group" aria-labelledby="fm-mode-label">
+<button type="button" class="btn" id="fm-mode-closed" aria-pressed="true">Closed economy</button>
+<button type="button" class="btn btn-secondary" id="fm-mode-open" aria-pressed="false">Open economy</button>
+<button type="button" class="btn btn-secondary" id="fm-mode-published" aria-pressed="false">Published multiplier</button>
+</div>
+<p class="hint" id="fm-mode-hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.55rem 0 0.75rem">Closed economy uses the marginal propensity to consume. The spending multiplier is 1 divided by (1 minus MPC). An optional government spending change then scales into an implied GDP change.</p>
+
+<div id="fm-mpc-fields">
+<label for="fm-mpc">Marginal propensity to consume, MPC</label>
+<input id="fm-mpc" type="number" step="any" value="0.8" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Share of an extra unit of income that is spent. A classroom example is 0.8. Enter a number from 0 up to, but not including, 1. Type it yourself. This page does not estimate an MPC from data.</p>
+</div>
+
+<div id="fm-mpi-fields" hidden>
+<label for="fm-mpi">Marginal propensity to import, MPI</label>
+<input id="fm-mpi" type="number" step="any" value="0.2" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Share of an extra unit of income that leaks into imports. A classroom example is 0.2 next to an MPC of 0.8. Enter a number from 0 up to, but not including, 1. The denominator is 1 minus MPC plus MPI, and it must stay positive. The two propensities may sum to 1 or more. Imports are added in the denominator, not subtracted again.</p>
+</div>
+
+<div id="fm-k-fields" hidden>
+<label for="fm-k">Multiplier, k</label>
+<input id="fm-k" type="number" step="any" value="1" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">A positive multiplier you have already chosen. A value of 1 moves GDP one for one with the impulse in this arithmetic. If you read a figure in a CBO, OBR, or IMF discussion, type that number yourself after you have read the note. This page does not look one up.</p>
+</div>
+
+<div id="fm-impulse-fields">
+<label for="fm-impulse" id="fm-impulse-label">Government spending change, ΔG (optional)</label>
+<input id="fm-impulse" type="number" step="any" value="10" inputmode="decimal">
+<p class="hint" id="fm-impulse-hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Optional. Extra government spending in classroom units you choose. Defaults use 10. With the default MPC, the implied GDP change is 50. Leave blank if you only want the multiplier. A negative number is a spending cut.</p>
+</div>
+
+<div class="calc-actions">
+<button type="button" class="btn" id="calc-fiscal-multiplier">Calculate</button>
+<button type="button" class="btn btn-secondary" id="calc-fiscal-multiplier-reset">Reset</button>
+</div>
+
+<p class="calc-error" id="calc-fiscal-multiplier-error" role="alert"></p>
+
+<div class="calc-result" id="calc-fiscal-multiplier-result" role="status" aria-live="polite">
+<div class="result-block">
+<p class="result-label">Multiplier</p>
+<div class="amount" id="fm-multiplier-amount"></div>
+<p class="detail" id="fm-multiplier-detail"></p>
+</div>
+<div class="result-block" id="fm-gdp-block">
+<p class="result-label">Implied GDP change</p>
+<div class="amount" id="fm-gdp-amount"></div>
+<p class="detail" id="fm-gdp-detail"></p>
+</div>
+<div class="result-block">
+<p class="result-label">How to read this</p>
+<p class="detail" id="fm-read-note"></p>
+</div>
+<div class="result-block">
+<p class="result-label">Arithmetic</p>
+<p class="detail" id="fm-arithmetic"></p>
+</div>
+<p class="detail" id="fm-summary"></p>
+</div>
+</div>
+
+<div class="callout" style="margin-top:1.5rem">
+<strong>How to read this.</strong> The multiplier is units of GDP per unit of fiscal impulse in a transparent formula. In the closed economy mode, a higher MPC means a larger multiplier, because less of each extra unit of income leaks into saving. In the open economy mode, a higher MPI means a smaller multiplier, because more income leaks into imports. The implied GDP change equals the multiplier times the impulse you typed. A positive change means output rises in the sketch. A negative change means output falls. None of this is a live CBO, OBR, or IMF estimate. Monetary policy, spare capacity, and the mix of taxes versus spending can all change the outcome outside this page. For those other sketches, see the <a href="output-gap.html">output gap calculator</a>, the <a href="taylor-rule.html">Taylor rule calculator</a>, and the <a href="real-interest-rate.html">real interest rate calculator</a>.
+</div>
+
+<div class="callout warning">
+<span class="example-label">Example defaults</span>
+<p style="margin:0">Closed economy defaults use an MPC of 0.8. The multiplier is 5. A government spending change of 10 lines up with a GDP change of 50. Open economy defaults keep that MPC and set MPI to 0.2. The multiplier is 2.5, and the same spending change of 10 lines up with a GDP change of 25. Published multiplier defaults use a multiplier of 1 and an impulse of 10, so the implied GDP change is 10. Those figures are classroom arithmetic. They are not a claim about any budget in the UK or the United States.</p>
+</div>
+
+<div class="callout warning">
+<span class="example-label">Educational only</span>
+<p style="margin:0">Not investment advice and not a recommendation of any budget package. Nothing here says a government should spend more, spend less, tax more, or tax less. A large multiplier is not a forecast of the next GDP release. The calculator does not fetch live data and does not invent a coefficient from CBO, OBR, or IMF publications.</p>
+</div>
+
+<h2>The classroom formula</h2>
+<p>This page uses three classroom sketches. You pick the mode.</p>
+<blockquote>Spending multiplier (closed economy) ≈ 1 / (1 − MPC)</blockquote>
+<blockquote>Spending multiplier (open economy) ≈ 1 / (1 − MPC + MPI)</blockquote>
+<blockquote>Implied GDP change ≈ multiplier × impulse</blockquote>
+<p>MPC is the marginal propensity to consume. MPI is the marginal propensity to import. In the closed economy sketch, an MPC of 0.8 leaves 0.2 of extra income unspent, so the multiplier is 1 divided by 0.2, which is 5. The same idea is an infinite round of spending: the first unit of government spending raises GDP by 1, then by 0.8, then by 0.64, and so on. Those rounds sum to 5. The calculator reports that sum. In the open economy sketch, imports add another leakage, so the denominator is 1 minus MPC plus MPI. With an MPC of 0.8 and an MPI of 0.2, the denominator is 0.4 and the multiplier is 2.5.</p>
+<p>The third mode does not derive the multiplier. It multiplies a k you type by an impulse you type. That product is classroom arithmetic, not official scorekeeping. Tax multipliers often differ from spending multipliers. This page does not supply a tax coefficient. If you want a tax sketch, type a tax multiplier you have already read. Enter a tax increase as a negative impulse and a tax cut as a positive impulse, in a spending style sign, and only if that sign matches the multiplier you chose.</p>
+<p>For the reasons published estimates move around, read <a href="../explainers/fiscal-multipliers.html">fiscal multipliers explained</a>. A fiscal impulse can meet a monetary response. The <a href="taylor-rule.html">Taylor rule calculator</a> is a separate sketch of a policy rate given inflation and an output gap. The <a href="real-interest-rate.html">real interest rate calculator</a> separates a nominal rate from inflation. The <a href="output-gap.html">output gap calculator</a> compares actual output with potential output. Wider context sits on the <a href="../topics/gdp.html">GDP topic</a> and the <a href="../topics/monetary-fiscal.html">monetary and fiscal policy topic</a>.</p>
+
+<h2>Where to find the inputs</h2>
+<p>Type your own numbers. This page does not download official series. For a US discussion of how fiscal options affect output, read Congressional Budget Office analyses and type any multiplier you decide to use. For a UK discussion, read Office for Budget Responsibility material around budgets and forecasts. The IMF reviews multiplier evidence in research and in fiscal work. Federal Reserve and Bank of England research pages discuss how monetary policy can offset a fiscal impulse. None of those institutions is quoted as a number on this page.</p>
+
+<h2>UK and US framing</h2>
+<p>Do not paste a US multiplier onto UK data and call the result a fact. The UK is more open to trade than the United States, so import leakages are a common reason the two discussions look different. Institutions differ too. The Congressional Budget Office scores US federal options. The Office for Budget Responsibility assesses UK measures. An IMF research range is not a prediction for either country. A multiplier of 5 next to an MPC of 0.8 is classroom arithmetic. A multiplier in a published note is an estimate with a horizon, a state of the economy, and a monetary policy assumption attached. Read those footnotes before you type.</p>
+
+<h2>Sources</h2>
+<ul class="source-list">
+<li><a href="https://www.imf.org/en/Publications/WP/Issues/2016/12/31/Growth-Forecast-Errors-and-Fiscal-Multipliers-40200" rel="noopener noreferrer">IMF, Growth Forecast Errors and Fiscal Multipliers (working paper)</a></li>
+<li><a href="https://www.cbo.gov/" rel="noopener noreferrer">Congressional Budget Office</a></li>
+<li><a href="https://obr.uk/" rel="noopener noreferrer">Office for Budget Responsibility</a></li>
+<li><a href="https://www.federalreserve.gov/econres.htm" rel="noopener noreferrer">Federal Reserve, Economic Research</a></li>
+<li><a href="https://www.bankofengland.co.uk/working-paper" rel="noopener noreferrer">Bank of England, Working papers</a></li>
+</ul>
+
+<p><a href="index.html">All calculators</a> · <a href="../explainers/fiscal-multipliers.html">Fiscal multipliers explained</a> · <a href="taylor-rule.html">Taylor rule calculator</a> · <a href="real-interest-rate.html">Real interest rate calculator</a> · <a href="output-gap.html">Output gap calculator</a> · <a href="../topics/gdp.html">GDP topic</a> · <a href="../topics/monetary-fiscal.html">Monetary and fiscal policy</a> · <a href="../faq/">FAQ</a></p>
+</div>
+</main>
+<footer class="site-footer">
+<div class="footer-inner">
+<div>
+<a class="logo" href="../" style="color:#fff;text-decoration:none">Simple <span style="color:#a8d4d4">Macro</span> Guide</a>
+<p style="margin:0.6rem 0 0;max-width:28rem">Clear, calm explanations of how economies work, with a UK and US focus. Educational only; not investment advice.</p>
+</div>
+<div>
+<h2>Explore</h2>
+<ul>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data guides</a></li>
+<li><a href="../calculators/">Calculators</a></li>
+</ul>
+</div>
+<div>
+<h2>About</h2>
+<ul>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+<li><a href="../disclaimer/">Disclaimer</a></li>
+<li><a href="../sources/">Sources</a></li>
+<li><a href="mailto:joshuaofisrael@gmail.com?subject=%5BContact%3A%20simplemacroguide%5D">Email</a></li>
+</ul>
+</div>
+<p class="footer-note">© Joshua Israel Ventures LLC. Content is for education. Not financial, investment, tax, or legal advice. Verify figures with primary sources such as the World Bank, ONS, and FRED.</p>
+</div>
+</footer>
+<script src="../js/main.js"></script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "dec4f4e1d796410298bde95049563074"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
