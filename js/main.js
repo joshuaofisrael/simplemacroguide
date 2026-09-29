@@ -1499,4 +1499,310 @@
       });
     }
   }
+
+  /* Velocity of money calculator (classroom quantity theory) */
+  var velocityCalcBtn = document.getElementById("calc-velocity");
+  if (velocityCalcBtn) {
+    var vomMEl = document.getElementById("vom-m");
+    var vomPEl = document.getElementById("vom-p");
+    var vomYEl = document.getElementById("vom-y");
+    var vomVEl = document.getElementById("vom-v");
+    var vomNominalEl = document.getElementById("vom-nominal");
+    var vomMFields = document.getElementById("vom-m-fields");
+    var vomPFields = document.getElementById("vom-p-fields");
+    var vomYFields = document.getElementById("vom-y-fields");
+    var vomVFields = document.getElementById("vom-v-fields");
+    var vomNominalFields = document.getElementById("vom-nominal-fields");
+    var vomModeHint = document.getElementById("vom-mode-hint");
+    var vomModeVelocityBtn = document.getElementById("vom-mode-velocity");
+    var vomModeNominalBtn = document.getElementById("vom-mode-nominal");
+    var vomModeMoneyBtn = document.getElementById("vom-mode-money");
+    var vomResultEl = document.getElementById("calc-velocity-result");
+    var vomPrimaryLabel = document.getElementById("vom-primary-label");
+    var vomPrimaryAmount = document.getElementById("vom-primary-amount");
+    var vomPrimaryDetail = document.getElementById("vom-primary-detail");
+    var vomIdentity = document.getElementById("vom-identity");
+    var vomReadNote = document.getElementById("vom-read-note");
+    var vomArithmetic = document.getElementById("vom-arithmetic");
+    var vomSummary = document.getElementById("vom-summary");
+    var vomErrorEl = document.getElementById("calc-velocity-error");
+    var vomResetBtn = document.getElementById("calc-velocity-reset");
+    var vomMode = "velocity";
+    var vomModeButtons = [vomModeVelocityBtn, vomModeNominalBtn, vomModeMoneyBtn];
+    var vomMin = 0.0001;
+    var vomMax = 1000000000000;
+    var vomInputs = [vomMEl, vomPEl, vomYEl, vomVEl, vomNominalEl];
+
+    function showVomError(msg) {
+      vomErrorEl.textContent = msg;
+      vomErrorEl.classList.add("visible");
+      vomResultEl.classList.remove("visible");
+    }
+    function clearVomError() {
+      vomErrorEl.classList.remove("visible");
+      vomErrorEl.textContent = "";
+    }
+    function hideVomResult() {
+      vomResultEl.classList.remove("visible");
+      clearVomError();
+    }
+    function formatVomAbs(n) {
+      return Math.abs(n).toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+    function formatVomPlain(n) {
+      var rounded = Math.round(n * 10000) / 10000;
+      return rounded.toLocaleString(undefined, {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 4
+      });
+    }
+    function vomRangeMessage(noun) {
+      return "Enter " + noun + " of at least 0.0001 and up to 1,000,000,000,000.";
+    }
+    function readVomPositive(el, noun) {
+      var raw = String(el.value).trim();
+      if (raw === "") {
+        return { ok: false, message: vomRangeMessage(noun) };
+      }
+      var n = parseFloat(raw);
+      if (!isFinite(n) || n < vomMin || n > vomMax) {
+        return { ok: false, message: vomRangeMessage(noun) };
+      }
+      return { ok: true, value: n };
+    }
+    function vomTooSmall(n) {
+      return !(n > 0) || Math.round(n * 100) / 100 === 0;
+    }
+    function setVomMode(mode) {
+      vomMode = mode;
+      vomMFields.hidden = mode === "money";
+      vomPFields.hidden = mode !== "velocity";
+      vomYFields.hidden = mode !== "velocity";
+      vomVFields.hidden = mode === "velocity";
+      vomNominalFields.hidden = mode !== "money";
+      var activeBtn = vomModeVelocityBtn;
+      var hint = "Solve for velocity. Nominal GDP equals the price level times real output. Velocity equals that nominal GDP divided by money.";
+      if (mode === "nominal") {
+        activeBtn = vomModeNominalBtn;
+        hint = "Solve for nominal GDP. Nominal GDP equals money times velocity. This mode does not ask for a separate price level or real output.";
+      } else if (mode === "money") {
+        activeBtn = vomModeMoneyBtn;
+        hint = "Solve for money. Money equals nominal GDP divided by velocity.";
+      }
+      var i;
+      for (i = 0; i < vomModeButtons.length; i++) {
+        var on = vomModeButtons[i] === activeBtn;
+        vomModeButtons[i].className = on ? "btn" : "btn btn-secondary";
+        vomModeButtons[i].setAttribute("aria-pressed", on ? "true" : "false");
+      }
+      vomModeHint.textContent = hint;
+      hideVomResult();
+    }
+
+    vomModeVelocityBtn.addEventListener("click", function () {
+      setVomMode("velocity");
+    });
+    vomModeNominalBtn.addEventListener("click", function () {
+      setVomMode("nominal");
+    });
+    vomModeMoneyBtn.addEventListener("click", function () {
+      setVomMode("money");
+    });
+    for (var vomInputIndex = 0; vomInputIndex < vomInputs.length; vomInputIndex++) {
+      vomInputs[vomInputIndex].addEventListener("input", hideVomResult);
+    }
+
+    velocityCalcBtn.addEventListener("click", function () {
+      clearVomError();
+      var m = null;
+      var p = null;
+      var y = null;
+      var v = null;
+      var nominal = null;
+      var primary;
+      var primaryLabel;
+      var primaryDetail;
+      var arithmetic;
+      var identity;
+      var readNote;
+      var summary;
+
+      if (vomMode === "velocity") {
+        var typedM = readVomPositive(vomMEl, "a money stock");
+        if (!typedM.ok) {
+          showVomError(typedM.message);
+          return;
+        }
+        var typedP = readVomPositive(vomPEl, "a price level or GDP deflator index");
+        if (!typedP.ok) {
+          showVomError(typedP.message);
+          return;
+        }
+        var typedY = readVomPositive(vomYEl, "real output");
+        if (!typedY.ok) {
+          showVomError(typedY.message);
+          return;
+        }
+        m = typedM.value;
+        p = typedP.value;
+        y = typedY.value;
+        nominal = p * y;
+        if (!isFinite(nominal) || nominal > vomMax) {
+          showVomError("Those inputs imply a nominal GDP this classroom display cannot show. Use a smaller price level or smaller real output.");
+          return;
+        }
+        if (vomTooSmall(nominal)) {
+          showVomError("Those inputs imply a nominal GDP below 0.01, which this classroom display rounds to zero. Use larger numbers.");
+          return;
+        }
+        v = nominal / m;
+        if (!isFinite(v) || v > vomMax) {
+          showVomError("Those inputs imply a velocity this classroom display cannot show. Use a larger money stock or a smaller nominal GDP.");
+          return;
+        }
+        if (vomTooSmall(v)) {
+          showVomError("Those inputs imply a velocity below 0.01, which this classroom display rounds to zero. Use a smaller money stock or a larger nominal GDP.");
+          return;
+        }
+        primary = v;
+        primaryLabel = "Velocity";
+        primaryDetail = "Equals nominal GDP divided by money. Nominal GDP is the price level times real output.";
+        arithmetic =
+          "Price level times real output is " + formatVomPlain(p) +
+          " times " + formatVomPlain(y) +
+          ", which is " + formatVomAbs(nominal) +
+          ". Velocity equals " + formatVomAbs(nominal) +
+          " divided by " + formatVomPlain(m) +
+          ", which is " + formatVomAbs(v) + ".";
+        identity =
+          formatVomPlain(m) + " times " + formatVomAbs(v) +
+          " equals " + formatVomPlain(p) + " times " + formatVomPlain(y) +
+          ". Both sides equal " + formatVomAbs(nominal) + ".";
+        readNote =
+          "Velocity is " + formatVomAbs(v) +
+          ". Each unit of money lines up with " + formatVomAbs(v) +
+          " units of nominal GDP in this sketch. Nominal GDP is " + formatVomAbs(nominal) + ". ";
+        if (p >= 10 || p < 0.2) {
+          readNote +=
+            "The price figure is " + formatVomAbs(p) +
+            ". If that is a deflator index rather than a price level near 1, this velocity is not comparable with the EXAMPLE that uses a price level of 1. ";
+        }
+        readNote +=
+          "Velocity is not constant. A short run change in money need not show up one for one in prices, because velocity and real output can move. M1 and M2 imply different velocities, and UK and US aggregates differ. These are numbers you typed, not an official series.";
+        summary =
+          "Money " + formatVomPlain(m) +
+          ". Price level " + formatVomPlain(p) +
+          ". Real output " + formatVomPlain(y) +
+          ". Nominal GDP " + formatVomAbs(nominal) +
+          ". Velocity " + formatVomAbs(v) +
+          ". Educational estimate only. Not a forecast and not investment advice.";
+      } else if (vomMode === "nominal") {
+        var typedMoney = readVomPositive(vomMEl, "a money stock");
+        if (!typedMoney.ok) {
+          showVomError(typedMoney.message);
+          return;
+        }
+        var typedV = readVomPositive(vomVEl, "a velocity");
+        if (!typedV.ok) {
+          showVomError(typedV.message);
+          return;
+        }
+        m = typedMoney.value;
+        v = typedV.value;
+        nominal = m * v;
+        if (!isFinite(nominal) || nominal > vomMax) {
+          showVomError("Those inputs imply a nominal GDP this classroom display cannot show. Use a smaller money stock or a smaller velocity.");
+          return;
+        }
+        if (vomTooSmall(nominal)) {
+          showVomError("Those inputs imply a nominal GDP below 0.01, which this classroom display rounds to zero. Use larger numbers.");
+          return;
+        }
+        primary = nominal;
+        primaryLabel = "Nominal GDP";
+        primaryDetail = "Equals money times velocity. This mode does not split the product into a price level and real output.";
+        arithmetic =
+          "Nominal GDP equals " + formatVomPlain(m) +
+          " times " + formatVomPlain(v) +
+          ", which is " + formatVomAbs(nominal) + ".";
+        identity =
+          formatVomPlain(m) + " times " + formatVomPlain(v) +
+          " equals " + formatVomAbs(nominal) +
+          ". That product is nominal GDP.";
+        readNote =
+          "Nominal GDP is " + formatVomAbs(nominal) +
+          ". It equals money times velocity in this sketch. The page does not split that product into prices and real output. Velocity is not constant, so this is not a forecast of spending. The definition of money still matters if you later compare the result with M1 or M2. These are numbers you typed, not an official series.";
+        summary =
+          "Money " + formatVomPlain(m) +
+          ". Velocity " + formatVomPlain(v) +
+          ". Nominal GDP " + formatVomAbs(nominal) +
+          ". Educational estimate only. Not a forecast and not investment advice.";
+      } else {
+        var typedVelocity = readVomPositive(vomVEl, "a velocity");
+        if (!typedVelocity.ok) {
+          showVomError(typedVelocity.message);
+          return;
+        }
+        var typedNominal = readVomPositive(vomNominalEl, "nominal GDP");
+        if (!typedNominal.ok) {
+          showVomError(typedNominal.message);
+          return;
+        }
+        v = typedVelocity.value;
+        nominal = typedNominal.value;
+        m = nominal / v;
+        if (!isFinite(m) || m > vomMax) {
+          showVomError("Those inputs imply a money stock this classroom display cannot show. Use a smaller nominal GDP or a larger velocity.");
+          return;
+        }
+        if (vomTooSmall(m)) {
+          showVomError("Those inputs imply a money stock below 0.01, which this classroom display rounds to zero. Use a larger nominal GDP or a smaller velocity.");
+          return;
+        }
+        primary = m;
+        primaryLabel = "Money";
+        primaryDetail = "Equals nominal GDP divided by velocity.";
+        arithmetic =
+          "Money equals " + formatVomPlain(nominal) +
+          " divided by " + formatVomPlain(v) +
+          ", which is " + formatVomAbs(m) + ".";
+        identity =
+          formatVomAbs(m) + " times " + formatVomPlain(v) +
+          " equals " + formatVomPlain(nominal) +
+          ". Money is nominal GDP divided by velocity.";
+        readNote =
+          "Money is " + formatVomAbs(m) +
+          ". It equals nominal GDP divided by velocity in this sketch. A different velocity, or a different definition of money such as M1 or M2, would change this result. UK and US aggregates differ. These are numbers you typed, not an official money stock.";
+        summary =
+          "Velocity " + formatVomPlain(v) +
+          ". Nominal GDP " + formatVomPlain(nominal) +
+          ". Money " + formatVomAbs(m) +
+          ". Educational estimate only. Not a forecast and not investment advice.";
+      }
+
+      arithmetic += " Shown to two decimal places.";
+      vomPrimaryLabel.textContent = primaryLabel;
+      vomPrimaryAmount.textContent = formatVomAbs(primary);
+      vomPrimaryDetail.textContent = primaryDetail;
+      vomIdentity.textContent = identity;
+      vomReadNote.textContent = readNote;
+      vomArithmetic.textContent = arithmetic;
+      vomSummary.textContent = summary;
+      vomResultEl.classList.add("visible");
+    });
+
+    if (vomResetBtn) {
+      vomResetBtn.addEventListener("click", function () {
+        vomMEl.value = "100";
+        vomPEl.value = "1";
+        vomYEl.value = "500";
+        vomVEl.value = "5";
+        vomNominalEl.value = "500";
+        setVomMode("velocity");
+      });
+    }
+  }
 })();

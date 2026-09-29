@@ -34,6 +34,7 @@ Publisher: Joshua Israel Ventures LLC
 - https://simplemacroguide.com/calculators/output-gap.html
 - https://simplemacroguide.com/calculators/yield-curve-spread.html
 - https://simplemacroguide.com/calculators/fiscal-multiplier.html
+- https://simplemacroguide.com/calculators/velocity-of-money.html
 - https://simplemacroguide.com/sources/
 - https://simplemacroguide.com/disclaimer/
 
@@ -67,3 +68,6 @@ Prefer linking readers to primary statistics (FRED, ONS, BEA, BLS, World Bank, I
 ## Added 2026-09-28
 - /calculators/yield-curve-spread.html
 - /calculators/fiscal-multiplier.html
+
+## Added 2026-09-29
+- /calculators/velocity-of-money.html
