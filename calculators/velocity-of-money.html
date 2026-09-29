@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Velocity of money calculator | Simple Macro Guide</title>
+<meta name="description" content="Velocity of money calculator: solve the quantity theory identity for velocity, for nominal GDP, or for money. Classroom arithmetic. Educational only.">
+<link rel="canonical" href="https://simplemacroguide.com/calculators/velocity-of-money.html">
+<meta name="theme-color" content="#2a6f6f">
+<meta property="og:title" content="Velocity of money calculator | Simple Macro Guide">
+<meta property="og:description" content="Velocity of money calculator: solve the quantity theory identity for velocity, for nominal GDP, or for money. Classroom arithmetic. Educational only.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://simplemacroguide.com/calculators/velocity-of-money.html">
+<meta property="og:site_name" content="Simple Macro Guide">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Velocity of money calculator | Simple Macro Guide">
+<meta name="twitter:description" content="Velocity of money calculator: solve the quantity theory identity for velocity, for nominal GDP, or for money. Classroom arithmetic. Educational only.">
+<link rel="stylesheet" href="../css/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Velocity of money calculator",
+  "description": "Velocity of money calculator: solve the quantity theory identity for velocity, for nominal GDP, or for money. Classroom arithmetic. Educational only.",
+  "url": "https://simplemacroguide.com/calculators/velocity-of-money.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Joshua Israel Ventures LLC"
+  }
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="header-inner">
+<a class="logo" href="../">Simple <span>Macro</span> Guide</a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav class="site-nav" id="site-nav" aria-label="Primary"><ul>
+<li><a href="../">Home</a></li>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data</a></li>
+<li><a href="../calculators/" aria-current="page">Calculators</a></li>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+</ul></nav>
+</div>
+</header>
+<main id="main">
+
+<div class="wrap narrow">
+<header class="hero" style="border:none;margin:0;padding-bottom:0.5rem">
+<h1>Velocity of money calculator</h1>
+<p class="lede">Solve the classroom quantity theory identity for velocity, for nominal GDP, or for money. The identity is MV equals PY. The same statement is MV equals PQ when Q stands for real output. Every step stays visible. This is classroom arithmetic, not a forecast of inflation, and not a recommendation about how fast money should grow. The arithmetic runs entirely in your browser.</p>
+</header>
+
+<div class="calc-panel calc-panel-wide" id="velocity-of-money-calculator">
+<p id="vom-mode-label" style="font-weight:600;font-size:0.9rem;margin:0 0 0.35rem">Mode</p>
+<div class="calc-actions" style="margin-top:0" role="group" aria-labelledby="vom-mode-label">
+<button type="button" class="btn" id="vom-mode-velocity" aria-pressed="true">Solve for velocity</button>
+<button type="button" class="btn btn-secondary" id="vom-mode-nominal" aria-pressed="false">Solve for nominal GDP</button>
+<button type="button" class="btn btn-secondary" id="vom-mode-money" aria-pressed="false">Solve for money</button>
+</div>
+<p class="hint" id="vom-mode-hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.55rem 0 0.75rem">Solve for velocity. Nominal GDP equals the price level times real output. Velocity equals that nominal GDP divided by money.</p>
+
+<div id="vom-m-fields">
+<label for="vom-m">Money stock, M</label>
+<input id="vom-m" type="number" step="any" value="100" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Money stock in classroom units you choose. The EXAMPLE default is 100. This is not a live M1 or M2 figure.</p>
+</div>
+
+<div id="vom-p-fields">
+<label for="vom-p">Price level or GDP deflator index, P</label>
+<input id="vom-p" type="number" step="any" value="1" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">A price level, or a GDP deflator index, in the units you choose. The EXAMPLE default is 1. If you type an index that equals 100 in a base year, keep output and money in units that match that choice. This page does not look up a deflator.</p>
+</div>
+
+<div id="vom-y-fields">
+<label for="vom-y">Real output, Y</label>
+<input id="vom-y" type="number" step="any" value="500" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Real output in classroom units you choose. The EXAMPLE default is 500. With a price level of 1, nominal GDP is 500. With money of 100, velocity is 5.</p>
+</div>
+
+<div id="vom-v-fields" hidden>
+<label for="vom-v">Velocity, V</label>
+<input id="vom-v" type="number" step="any" value="5" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Velocity in classroom units. The EXAMPLE default is 5. With money of 100, nominal GDP is 500. This is not an official velocity for the UK or the United States.</p>
+</div>
+
+<div id="vom-nominal-fields" hidden>
+<label for="vom-nominal">Nominal GDP, P times Y</label>
+<input id="vom-nominal" type="number" step="any" value="500" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Nominal GDP, the price level times real output, in the same classroom units as money. The EXAMPLE default is 500. With velocity of 5, money is 100.</p>
+</div>
+
+<div class="calc-actions">
+<button type="button" class="btn" id="calc-velocity">Calculate</button>
+<button type="button" class="btn btn-secondary" id="calc-velocity-reset">Reset</button>
+</div>
+
+<p class="calc-error" id="calc-velocity-error" role="alert"></p>
+
+<div class="calc-result" id="calc-velocity-result" role="status" aria-live="polite">
+<div class="result-block">
+<p class="result-label" id="vom-primary-label">Velocity</p>
+<div class="amount" id="vom-primary-amount"></div>
+<p class="detail" id="vom-primary-detail"></p>
+</div>
+<div class="result-block">
+<p class="result-label">Identity</p>
+<p class="detail" id="vom-identity"></p>
+</div>
+<div class="result-block">
+<p class="result-label">How to read this</p>
+<p class="detail" id="vom-read-note"></p>
+</div>
+<div class="result-block">
+<p class="result-label">Arithmetic</p>
+<p class="detail" id="vom-arithmetic"></p>
+</div>
+<p class="detail" id="vom-summary"></p>
+</div>
+</div>
+
+<div class="callout" style="margin-top:1.5rem">
+<strong>How to read this.</strong> The result is classroom arithmetic from the numbers you typed. Velocity is nominal spending per unit of money in this identity. A higher velocity means the same money stock lines up with a larger nominal GDP. A lower velocity means the opposite. Velocity is not constant. In the short run, a change in money need not show up one for one in the price level, because velocity and real output can move too. The definition of money changes the velocity you would compute from official data. M1 is narrower than M2. UK broad money is not the same object as US M2. For the aggregates, read <a href="../explainers/money-supply-m1-m2.html">money supply M1 and M2</a>. For prices, read the <a href="../topics/inflation.html">inflation topic</a>. For nominal GDP, read the <a href="../topics/gdp.html">GDP topic</a>.
+</div>
+
+<div class="callout warning">
+<span class="example-label">EXAMPLE</span>
+<p style="margin:0">Solve for velocity uses money of 100, a price level of 1, and real output of 500. Nominal GDP is 500, and velocity is 5. Solve for nominal GDP uses money of 100 and velocity of 5, so nominal GDP is 500. Solve for money uses velocity of 5 and nominal GDP of 500, so money is 100. Those figures are classroom arithmetic. They are not a measured velocity for the UK or the United States, and they are not an official money stock.</p>
+</div>
+
+<div class="callout warning">
+<span class="example-label">Educational only</span>
+<p style="margin:0">Not investment advice and not a prediction of inflation. Nothing here says a central bank should expand the money stock, shrink it, or hold it fixed. A velocity of 5 is not a forecast. The calculator does not fetch live data and does not invent an official velocity series.</p>
+</div>
+
+<h2>The classroom formula</h2>
+<p>This page uses three classroom sketches of one identity. You pick the mode.</p>
+<blockquote>Velocity ≈ (P × Y) / M</blockquote>
+<blockquote>Nominal GDP ≈ M × V</blockquote>
+<blockquote>Money ≈ (P × Y) / V</blockquote>
+<p>P is a price level or a GDP deflator index. Y is real output. Their product is nominal GDP. M is a money stock. The identity defines velocity as nominal GDP divided by money. The quantity theory adds a further claim, often met in textbooks: if velocity is stable and real output is set by real forces, then money growth and inflation move together over long horizons. This page keeps the identity. It does not assume velocity is stable, and it does not estimate that long run claim from data.</p>
+<p>Rearranged in growth rates, money growth plus velocity growth approximately lines up with inflation plus real output growth. That growth reading is only a guide. This calculator solves the levels. For a separate sketch of how a fiscal impulse can move output, see the <a href="fiscal-multiplier.html">fiscal multiplier calculator</a>. For a price path over years, see the <a href="inflation-adjuster.html">inflation adjuster</a>. For a separate sketch of a nominal interest rate and inflation, see the <a href="real-interest-rate.html">real interest rate calculator</a>. Wider context sits on the <a href="../topics/monetary-fiscal.html">monetary and fiscal policy topic</a>.</p>
+
+<h2>Where to find the inputs</h2>
+<p>Type your own numbers. This page does not download official series. For US money, read the Federal Reserve H.6 release and the FRED series M1SL and M2SL, then type a figure you choose. For UK money, read Bank of England money and credit releases. FRED also publishes velocity series such as M1V and M2V. If you use one, read the notes on which money aggregate it uses, then type the number yourself. This page does not look up those series and does not treat them as defaults. The IMF Institute teaches readers to handle macroeconomic statistics with the definitions attached, and IMF Data is a public entry point for many series.</p>
+
+<h2>UK and US framing</h2>
+<p>Do not paste a US M2 velocity onto UK broad money and call the result a fact. The aggregates differ. A definition change can move a narrow aggregate on its own. Around May 2020, the United States reclassified many savings deposits into M1, so M1 jumped for statistical reasons. Velocity computed from M1 and velocity computed from M2 answer different questions. Short run links from money growth to inflation are loose. Credit conditions, supply shocks, and expectations can move as well. Large asset purchases are a separate topic. Read <a href="../explainers/quantitative-easing.html">quantitative easing</a> for that mechanism. This calculator does not model bank reserves or a central bank balance sheet.</p>
+<p>For the aggregates themselves, read <a href="../explainers/money-supply-m1-m2.html">money supply M1 and M2</a>. For prices, read the <a href="../topics/inflation.html">inflation topic</a>. For the P times Y idea, read the <a href="../topics/gdp.html">GDP topic</a>.</p>
+
+<h2>Sources</h2>
+<ul class="source-list">
+<li><a href="https://www.federalreserve.gov/releases/h6/" rel="noopener noreferrer">Federal Reserve: Money Stock Measures (H.6)</a></li>
+<li><a href="https://fred.stlouisfed.org/series/M1SL" rel="noopener noreferrer">FRED: M1 money stock (M1SL)</a></li>
+<li><a href="https://fred.stlouisfed.org/series/M2SL" rel="noopener noreferrer">FRED: M2 money stock (M2SL)</a></li>
+<li><a href="https://fred.stlouisfed.org/series/M1V" rel="noopener noreferrer">FRED: Velocity of M1 money stock (M1V)</a></li>
+<li><a href="https://fred.stlouisfed.org/series/M2V" rel="noopener noreferrer">FRED: Velocity of M2 money stock (M2V)</a></li>
+<li><a href="https://www.bankofengland.co.uk/statistics" rel="noopener noreferrer">Bank of England: Money and credit statistics</a></li>
+<li><a href="https://www.imf.org/en/capacity-development/training/icdtc/topics/ms" rel="noopener noreferrer">IMF Institute: Macroeconomic statistics</a></li>
+<li><a href="https://www.imf.org/en/Data" rel="noopener noreferrer">IMF: Data</a></li>
+</ul>
+
+<p><a href="index.html">All calculators</a> · <a href="../explainers/money-supply-m1-m2.html">Money supply M1 and M2</a> · <a href="../topics/inflation.html">Inflation topic</a> · <a href="../topics/gdp.html">GDP topic</a> · <a href="../topics/monetary-fiscal.html">Monetary and fiscal policy</a> · <a href="inflation-adjuster.html">Inflation adjuster</a> · <a href="real-interest-rate.html">Real interest rate calculator</a> · <a href="fiscal-multiplier.html">Fiscal multiplier calculator</a> · <a href="../faq/">FAQ</a></p>
+</div>
+</main>
+<footer class="site-footer">
+<div class="footer-inner">
+<div>
+<a class="logo" href="../" style="color:#fff;text-decoration:none">Simple <span style="color:#a8d4d4">Macro</span> Guide</a>
+<p style="margin:0.6rem 0 0;max-width:28rem">Clear, calm explanations of how economies work, with a UK and US focus. Educational only; not investment advice.</p>
+</div>
+<div>
+<h2>Explore</h2>
+<ul>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data guides</a></li>
+<li><a href="../calculators/">Calculators</a></li>
+</ul>
+</div>
+<div>
+<h2>About</h2>
+<ul>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+<li><a href="../disclaimer/">Disclaimer</a></li>
+<li><a href="../sources/">Sources</a></li>
+<li><a href="mailto:joshuaofisrael@gmail.com?subject=%5BContact%3A%20simplemacroguide%5D">Email</a></li>
+</ul>
+</div>
+<p class="footer-note">© Joshua Israel Ventures LLC. Content is for education. Not financial, investment, tax, or legal advice. Verify figures with primary sources such as the World Bank, ONS, and FRED.</p>
+</div>
+</footer>
+<script src="../js/main.js"></script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "dec4f4e1d796410298bde95049563074"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
