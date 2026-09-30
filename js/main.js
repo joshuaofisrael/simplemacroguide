@@ -1805,4 +1805,398 @@
       });
     }
   }
+
+  /* GDP deflator calculator (nominal, real, and the implicit price deflator) */
+  var gdpDeflatorCalcBtn = document.getElementById("calc-gdp-deflator");
+  if (gdpDeflatorCalcBtn) {
+    var gdNominalEl = document.getElementById("gd-nominal");
+    var gdRealEl = document.getElementById("gd-real");
+    var gdDeflatorEl = document.getElementById("gd-deflator");
+    var gdD1El = document.getElementById("gd-d1");
+    var gdD2El = document.getElementById("gd-d2");
+    var gdNominalFields = document.getElementById("gd-nominal-fields");
+    var gdRealFields = document.getElementById("gd-real-fields");
+    var gdDeflatorFields = document.getElementById("gd-deflator-fields");
+    var gdD1Fields = document.getElementById("gd-d1-fields");
+    var gdD2Fields = document.getElementById("gd-d2-fields");
+    var gdModeHint = document.getElementById("gd-mode-hint");
+    var gdModeDeflatorBtn = document.getElementById("gd-mode-deflator");
+    var gdModeRealBtn = document.getElementById("gd-mode-real");
+    var gdModeNominalBtn = document.getElementById("gd-mode-nominal");
+    var gdModeInflationBtn = document.getElementById("gd-mode-inflation");
+    var gdResultEl = document.getElementById("calc-gdp-deflator-result");
+    var gdPrimaryLabel = document.getElementById("gd-primary-label");
+    var gdPrimaryAmount = document.getElementById("gd-primary-amount");
+    var gdPrimaryDetail = document.getElementById("gd-primary-detail");
+    var gdIdentity = document.getElementById("gd-identity");
+    var gdReadNote = document.getElementById("gd-read-note");
+    var gdArithmetic = document.getElementById("gd-arithmetic");
+    var gdSummary = document.getElementById("gd-summary");
+    var gdErrorEl = document.getElementById("calc-gdp-deflator-error");
+    var gdResetBtn = document.getElementById("calc-gdp-deflator-reset");
+    var gdMode = "deflator";
+    var gdModeButtons = [gdModeDeflatorBtn, gdModeRealBtn, gdModeNominalBtn, gdModeInflationBtn];
+    var gdLevelMin = 0.0001;
+    var gdLevelMax = 1000000000000000;
+    var gdIndexMax = 1000000;
+    var gdInputs = [gdNominalEl, gdRealEl, gdDeflatorEl, gdD1El, gdD2El];
+
+    function showGdError(msg) {
+      gdErrorEl.textContent = msg;
+      gdErrorEl.classList.add("visible");
+      gdResultEl.classList.remove("visible");
+    }
+    function clearGdError() {
+      gdErrorEl.classList.remove("visible");
+      gdErrorEl.textContent = "";
+    }
+    function hideGdResult() {
+      gdResultEl.classList.remove("visible");
+      clearGdError();
+    }
+    function formatGdAbs(n) {
+      return Math.abs(n).toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+    function formatGdPlain(n) {
+      var rounded = Math.round(n * 10000) / 10000;
+      return rounded.toLocaleString(undefined, {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 4
+      });
+    }
+    function formatGdLevel(n) {
+      return n.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+    function gdTooSmall(n) {
+      return !(n > 0) || Math.round(n * 100) / 100 === 0;
+    }
+    function gdPlainWords(n) {
+      var abs = formatGdPlain(Math.abs(n));
+      if (n < -0.0000001) return "minus " + abs;
+      return abs;
+    }
+    function gdSignedWords(n) {
+      var abs = formatGdAbs(n);
+      if (n < -0.0000001) return "minus " + abs;
+      return abs;
+    }
+    function gdLevelMessage(noun) {
+      return "Enter " + noun + " of at least 0.0001 and up to 1,000,000,000,000,000.";
+    }
+    function gdIndexMessage(noun) {
+      return "Enter " + noun + " of at least 0.0001 and up to 1,000,000. Zero does not work, because the identity divides by the index.";
+    }
+    function readGdLevel(el, noun) {
+      var raw = String(el.value).trim();
+      if (raw === "") {
+        return { ok: false, message: gdLevelMessage(noun) };
+      }
+      var n = parseFloat(raw);
+      if (!isFinite(n) || n < gdLevelMin || n > gdLevelMax) {
+        return { ok: false, message: gdLevelMessage(noun) };
+      }
+      return { ok: true, value: n };
+    }
+    function readGdIndex(el, noun) {
+      var raw = String(el.value).trim();
+      if (raw === "") {
+        return { ok: false, message: gdIndexMessage(noun) };
+      }
+      var n = parseFloat(raw);
+      if (!isFinite(n) || n < gdLevelMin || n > gdIndexMax) {
+        return { ok: false, message: gdIndexMessage(noun) };
+      }
+      return { ok: true, value: n };
+    }
+    function gdBaseNote(deflator) {
+      var gap = deflator - 100;
+      if (Math.abs(gap) < 0.005) {
+        return "The deflator is about 100. In the textbook setup, that means prices match the index base, so nominal GDP and real GDP are about equal. If the series you copied uses another base, read the result as an index level only. ";
+      }
+      if (gap > 0) {
+        return "Relative to an index of 100, this deflator is " + formatGdAbs(gap) +
+          " percent higher. That percent assumes the base is 100. If the series you copied uses another base, read the result as an index level only. ";
+      }
+      return "Relative to an index of 100, this deflator is " + formatGdAbs(gap) +
+        " percent lower. That percent assumes the base is 100. If the series you copied uses another base, read the result as an index level only. ";
+    }
+    function setGdMode(mode) {
+      gdMode = mode;
+      gdNominalFields.hidden = mode === "nominal" || mode === "inflation";
+      gdRealFields.hidden = mode === "real" || mode === "inflation";
+      gdDeflatorFields.hidden = mode === "deflator" || mode === "inflation";
+      gdD1Fields.hidden = mode !== "inflation";
+      gdD2Fields.hidden = mode !== "inflation";
+      var activeBtn = gdModeDeflatorBtn;
+      var hint = "Solve for the GDP deflator. The deflator equals nominal GDP divided by real GDP, times 100.";
+      if (mode === "real") {
+        activeBtn = gdModeRealBtn;
+        hint = "Solve for real GDP. Real GDP equals nominal GDP divided by the deflator over 100.";
+      } else if (mode === "nominal") {
+        activeBtn = gdModeNominalBtn;
+        hint = "Solve for nominal GDP. Nominal GDP equals real GDP times the deflator over 100.";
+      } else if (mode === "inflation") {
+        activeBtn = gdModeInflationBtn;
+        hint = "Inflation between two periods. The percent change equals the later deflator divided by the earlier deflator, minus 1, times 100.";
+      }
+      var i;
+      for (i = 0; i < gdModeButtons.length; i++) {
+        var on = gdModeButtons[i] === activeBtn;
+        gdModeButtons[i].className = on ? "btn" : "btn btn-secondary";
+        gdModeButtons[i].setAttribute("aria-pressed", on ? "true" : "false");
+      }
+      gdModeHint.textContent = hint;
+      hideGdResult();
+    }
+
+    gdModeDeflatorBtn.addEventListener("click", function () {
+      setGdMode("deflator");
+    });
+    gdModeRealBtn.addEventListener("click", function () {
+      setGdMode("real");
+    });
+    gdModeNominalBtn.addEventListener("click", function () {
+      setGdMode("nominal");
+    });
+    gdModeInflationBtn.addEventListener("click", function () {
+      setGdMode("inflation");
+    });
+    for (var gdInputIndex = 0; gdInputIndex < gdInputs.length; gdInputIndex++) {
+      gdInputs[gdInputIndex].addEventListener("input", hideGdResult);
+    }
+
+    gdpDeflatorCalcBtn.addEventListener("click", function () {
+      clearGdError();
+      var nominal = null;
+      var real = null;
+      var deflator = null;
+      var earlier = null;
+      var later = null;
+      var ratio = null;
+      var primary;
+      var primaryLabel;
+      var primaryAmount;
+      var primaryDetail;
+      var arithmetic;
+      var identity;
+      var readNote;
+      var summary;
+
+      if (gdMode === "deflator") {
+        var typedNominal = readGdLevel(gdNominalEl, "nominal GDP");
+        if (!typedNominal.ok) {
+          showGdError(typedNominal.message);
+          return;
+        }
+        var typedReal = readGdLevel(gdRealEl, "real GDP");
+        if (!typedReal.ok) {
+          showGdError(typedReal.message);
+          return;
+        }
+        nominal = typedNominal.value;
+        real = typedReal.value;
+        deflator = (nominal / real) * 100;
+        if (!isFinite(deflator) || deflator > gdIndexMax) {
+          showGdError("Those inputs imply a deflator this classroom display cannot show. Use a larger real GDP or a smaller nominal GDP.");
+          return;
+        }
+        if (gdTooSmall(deflator)) {
+          showGdError("Those inputs imply a deflator below 0.01, which this classroom display rounds to zero. Use a larger nominal GDP or a smaller real GDP.");
+          return;
+        }
+        ratio = deflator / 100;
+        primary = deflator;
+        primaryLabel = "GDP deflator";
+        primaryAmount = formatGdAbs(deflator);
+        primaryDetail = "Index. Equals nominal GDP divided by real GDP, times 100.";
+        arithmetic =
+          "Nominal GDP divided by real GDP is " + formatGdLevel(nominal) +
+          " divided by " + formatGdLevel(real) +
+          ", which is " + formatGdPlain(ratio) +
+          ". Times 100, the deflator is " + formatGdAbs(deflator) + ".";
+        identity =
+          formatGdLevel(nominal) + " divided by " + formatGdLevel(real) +
+          ", times 100, equals " + formatGdAbs(deflator) + ".";
+        readNote =
+          "The deflator is " + formatGdAbs(deflator) + ". " + gdBaseNote(deflator) +
+          "Real GDP is the volume. Nominal GDP is the current price value. These are numbers you typed, not a BEA or ONS release.";
+        summary =
+          "Nominal GDP " + formatGdLevel(nominal) +
+          ". Real GDP " + formatGdLevel(real) +
+          ". GDP deflator " + formatGdAbs(deflator) +
+          ". Educational estimate only. Not a forecast and not investment advice.";
+      } else if (gdMode === "real") {
+        var typedNominalForReal = readGdLevel(gdNominalEl, "nominal GDP");
+        if (!typedNominalForReal.ok) {
+          showGdError(typedNominalForReal.message);
+          return;
+        }
+        var typedDeflator = readGdIndex(gdDeflatorEl, "a GDP deflator index");
+        if (!typedDeflator.ok) {
+          showGdError(typedDeflator.message);
+          return;
+        }
+        nominal = typedNominalForReal.value;
+        deflator = typedDeflator.value;
+        ratio = deflator / 100;
+        real = nominal / ratio;
+        if (!isFinite(real) || real > gdLevelMax) {
+          showGdError("Those inputs imply a real GDP this classroom display cannot show. Use a smaller nominal GDP or a larger deflator.");
+          return;
+        }
+        if (gdTooSmall(real)) {
+          showGdError("Those inputs imply a real GDP below 0.01, which this classroom display rounds to zero. Use a larger nominal GDP or a smaller deflator.");
+          return;
+        }
+        primary = real;
+        primaryLabel = "Real GDP";
+        primaryAmount = formatGdAbs(real);
+        primaryDetail = "Equals nominal GDP divided by the deflator over 100. Same units as the nominal GDP you typed.";
+        arithmetic =
+          "The deflator divided by 100 is " + formatGdAbs(deflator) +
+          " divided by 100, which is " + formatGdPlain(ratio) +
+          ". Real GDP equals " + formatGdLevel(nominal) +
+          " divided by " + formatGdPlain(ratio) +
+          ", which is " + formatGdAbs(real) + ".";
+        identity =
+          formatGdLevel(real) + " times " + formatGdPlain(ratio) +
+          " equals " + formatGdLevel(nominal) +
+          ". Real GDP is nominal GDP divided by the deflator over 100.";
+        readNote =
+          "Real GDP is " + formatGdAbs(real) +
+          ". A higher deflator means a smaller real GDP for the same nominal GDP. " +
+          gdBaseNote(deflator) +
+          "These are numbers you typed, not an official real GDP figure.";
+        summary =
+          "Nominal GDP " + formatGdLevel(nominal) +
+          ". GDP deflator " + formatGdAbs(deflator) +
+          ". Real GDP " + formatGdAbs(real) +
+          ". Educational estimate only. Not a forecast and not investment advice.";
+      } else if (gdMode === "nominal") {
+        var typedRealForNominal = readGdLevel(gdRealEl, "real GDP");
+        if (!typedRealForNominal.ok) {
+          showGdError(typedRealForNominal.message);
+          return;
+        }
+        var typedDeflatorForNominal = readGdIndex(gdDeflatorEl, "a GDP deflator index");
+        if (!typedDeflatorForNominal.ok) {
+          showGdError(typedDeflatorForNominal.message);
+          return;
+        }
+        real = typedRealForNominal.value;
+        deflator = typedDeflatorForNominal.value;
+        ratio = deflator / 100;
+        nominal = real * ratio;
+        if (!isFinite(nominal) || nominal > gdLevelMax) {
+          showGdError("Those inputs imply a nominal GDP this classroom display cannot show. Use a smaller real GDP or a smaller deflator.");
+          return;
+        }
+        if (gdTooSmall(nominal)) {
+          showGdError("Those inputs imply a nominal GDP below 0.01, which this classroom display rounds to zero. Use a larger real GDP or a larger deflator.");
+          return;
+        }
+        primary = nominal;
+        primaryLabel = "Nominal GDP";
+        primaryAmount = formatGdAbs(nominal);
+        primaryDetail = "Equals real GDP times the deflator over 100. Same units as the real GDP you typed.";
+        arithmetic =
+          "The deflator divided by 100 is " + formatGdAbs(deflator) +
+          " divided by 100, which is " + formatGdPlain(ratio) +
+          ". Nominal GDP equals " + formatGdLevel(real) +
+          " times " + formatGdPlain(ratio) +
+          ", which is " + formatGdAbs(nominal) + ".";
+        identity =
+          formatGdLevel(real) + " times (" + formatGdAbs(deflator) +
+          " divided by 100) equals " + formatGdLevel(nominal) + ".";
+        readNote =
+          "Nominal GDP is " + formatGdAbs(nominal) +
+          ". A higher deflator means a larger nominal GDP for the same real GDP. " +
+          gdBaseNote(deflator) +
+          "These are numbers you typed, not an official nominal GDP figure.";
+        summary =
+          "Real GDP " + formatGdLevel(real) +
+          ". GDP deflator " + formatGdAbs(deflator) +
+          ". Nominal GDP " + formatGdAbs(nominal) +
+          ". Educational estimate only. Not a forecast and not investment advice.";
+      } else {
+        var typedEarlier = readGdIndex(gdD1El, "an earlier deflator index");
+        if (!typedEarlier.ok) {
+          showGdError(typedEarlier.message);
+          return;
+        }
+        var typedLater = readGdIndex(gdD2El, "a later deflator index");
+        if (!typedLater.ok) {
+          showGdError(typedLater.message);
+          return;
+        }
+        earlier = typedEarlier.value;
+        later = typedLater.value;
+        ratio = later / earlier;
+        var inflation = (ratio - 1) * 100;
+        if (!isFinite(inflation) || Math.abs(inflation) > gdIndexMax) {
+          showGdError("Those indexes imply a percent change this classroom display cannot show. Use indexes that are closer together.");
+          return;
+        }
+        primary = inflation;
+        primaryLabel = "Deflator inflation";
+        primaryAmount = (inflation < -0.0000001 ? "\u2212" : "") + formatGdAbs(inflation) + "%";
+        primaryDetail = "Percent change from the earlier index to the later index. Not annualised, and not a consumer price index.";
+        arithmetic =
+          "The later deflator divided by the earlier deflator is " + formatGdLevel(later) +
+          " divided by " + formatGdLevel(earlier) +
+          ", which is " + formatGdPlain(ratio) +
+          ". Subtract 1, and that difference is " + gdPlainWords(ratio - 1) +
+          ". Times 100, the percent change is " + gdSignedWords(inflation) + " percent.";
+        identity =
+          "((" + formatGdLevel(later) + " divided by " + formatGdLevel(earlier) +
+          ") minus 1) times 100 equals " + gdSignedWords(inflation) + " percent.";
+        if (inflation > 0.005) {
+          readNote =
+            "The later index is higher. The percent change is " + formatGdAbs(inflation) +
+            " percent. This is the inflation rate of the deflator between the two periods you typed. It is not annualised. It is not CPI, and it is not PCE. ";
+        } else if (inflation < -0.005) {
+          readNote =
+            "The later index is lower. The percent change is minus " + formatGdAbs(inflation) +
+            " percent, a fall in the deflator. This is not a forecast. It is not CPI, and it is not PCE. ";
+        } else {
+          readNote =
+            "The two indexes match, or the gap rounds to zero at two decimal places, so the percent change is about zero. ";
+        }
+        readNote +=
+          "Match the base and the seasonal treatment before you compare two official indexes. These are numbers you typed.";
+        summary =
+          "Earlier deflator " + formatGdLevel(earlier) +
+          ". Later deflator " + formatGdLevel(later) +
+          ". Percent change " + gdSignedWords(inflation) +
+          " percent. Educational estimate only. Not a forecast and not investment advice.";
+      }
+
+      arithmetic += " Shown to two decimal places.";
+      gdPrimaryLabel.textContent = primaryLabel;
+      gdPrimaryAmount.textContent = primaryAmount;
+      gdPrimaryDetail.textContent = primaryDetail;
+      gdIdentity.textContent = identity;
+      gdReadNote.textContent = readNote;
+      gdArithmetic.textContent = arithmetic;
+      gdSummary.textContent = summary;
+      gdResultEl.classList.add("visible");
+    });
+
+    if (gdResetBtn) {
+      gdResetBtn.addEventListener("click", function () {
+        gdNominalEl.value = "1100";
+        gdRealEl.value = "1000";
+        gdDeflatorEl.value = "110";
+        gdD1El.value = "100";
+        gdD2El.value = "110";
+        setGdMode("deflator");
+      });
+    }
+  }
 })();

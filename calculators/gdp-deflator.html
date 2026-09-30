@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GDP deflator calculator | Simple Macro Guide</title>
+<meta name="description" content="GDP deflator calculator: solve for the deflator, for real GDP, or for nominal GDP, or for inflation between two deflator indexes. Classroom arithmetic. Educational only.">
+<link rel="canonical" href="https://simplemacroguide.com/calculators/gdp-deflator.html">
+<meta name="theme-color" content="#2a6f6f">
+<meta property="og:title" content="GDP deflator calculator | Simple Macro Guide">
+<meta property="og:description" content="GDP deflator calculator: solve for the deflator, for real GDP, or for nominal GDP, or for inflation between two deflator indexes. Classroom arithmetic. Educational only.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://simplemacroguide.com/calculators/gdp-deflator.html">
+<meta property="og:site_name" content="Simple Macro Guide">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GDP deflator calculator | Simple Macro Guide">
+<meta name="twitter:description" content="GDP deflator calculator: solve for the deflator, for real GDP, or for nominal GDP, or for inflation between two deflator indexes. Classroom arithmetic. Educational only.">
+<link rel="stylesheet" href="../css/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "GDP deflator calculator",
+  "description": "GDP deflator calculator: solve for the deflator, for real GDP, or for nominal GDP, or for inflation between two deflator indexes. Classroom arithmetic. Educational only.",
+  "url": "https://simplemacroguide.com/calculators/gdp-deflator.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Joshua Israel Ventures LLC"
+  }
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="header-inner">
+<a class="logo" href="../">Simple <span>Macro</span> Guide</a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav class="site-nav" id="site-nav" aria-label="Primary"><ul>
+<li><a href="../">Home</a></li>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data</a></li>
+<li><a href="../calculators/" aria-current="page">Calculators</a></li>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+</ul></nav>
+</div>
+</header>
+<main id="main">
+
+<div class="wrap narrow">
+<header class="hero" style="border:none;margin:0;padding-bottom:0.5rem">
+<h1>GDP deflator calculator</h1>
+<p class="lede">Solve the classroom GDP identity for the deflator, for real GDP, or for nominal GDP. A fourth mode turns two deflator indexes into the percent change between them. The identity says the deflator equals nominal GDP divided by real GDP, times 100. Every step stays visible. This is classroom arithmetic, not a forecast of inflation, and not a recommendation about prices or policy. The arithmetic runs entirely in your browser.</p>
+</header>
+
+<div class="calc-panel calc-panel-wide" id="gdp-deflator-calculator">
+<p id="gd-mode-label" style="font-weight:600;font-size:0.9rem;margin:0 0 0.35rem">Mode</p>
+<div class="calc-actions" style="margin-top:0" role="group" aria-labelledby="gd-mode-label">
+<button type="button" class="btn" id="gd-mode-deflator" aria-pressed="true">Solve for the deflator</button>
+<button type="button" class="btn btn-secondary" id="gd-mode-real" aria-pressed="false">Solve for real GDP</button>
+<button type="button" class="btn btn-secondary" id="gd-mode-nominal" aria-pressed="false">Solve for nominal GDP</button>
+<button type="button" class="btn btn-secondary" id="gd-mode-inflation" aria-pressed="false">Inflation from two indexes</button>
+</div>
+<p class="hint" id="gd-mode-hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.55rem 0 0.75rem">Solve for the GDP deflator. The deflator equals nominal GDP divided by real GDP, times 100.</p>
+
+<div id="gd-nominal-fields">
+<label for="gd-nominal">Nominal GDP</label>
+<input id="gd-nominal" type="number" step="any" value="1100" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Nominal GDP in classroom units you choose. The EXAMPLE default is 1100. This is current price production. It is not a live BEA or ONS figure.</p>
+</div>
+
+<div id="gd-real-fields">
+<label for="gd-real">Real GDP</label>
+<input id="gd-real" type="number" step="any" value="1000" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Real GDP in the same classroom units as nominal GDP. The EXAMPLE default is 1000. With nominal GDP of 1100, the deflator is 110. This is not a live real GDP figure.</p>
+</div>
+
+<div id="gd-deflator-fields" hidden>
+<label for="gd-deflator">GDP deflator index</label>
+<input id="gd-deflator" type="number" step="any" value="110" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">GDP deflator as an index. The EXAMPLE default is 110. In the textbook setup, 100 is the base, so 110 means prices are 10 percent higher. If you copy a series, keep its own base. This page does not look up a deflator.</p>
+</div>
+
+<div id="gd-d1-fields" hidden>
+<label for="gd-d1">Earlier deflator index</label>
+<input id="gd-d1" type="number" step="any" value="100" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Earlier deflator index. The EXAMPLE default is 100. Use the same base and the same seasonal treatment as the later index.</p>
+</div>
+
+<div id="gd-d2-fields" hidden>
+<label for="gd-d2">Later deflator index</label>
+<input id="gd-d2" type="number" step="any" value="110" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Later deflator index. The EXAMPLE default is 110. With an earlier index of 100, the percent change is 10. This is not a published inflation rate.</p>
+</div>
+
+<div class="calc-actions">
+<button type="button" class="btn" id="calc-gdp-deflator">Calculate</button>
+<button type="button" class="btn btn-secondary" id="calc-gdp-deflator-reset">Reset</button>
+</div>
+
+<p class="calc-error" id="calc-gdp-deflator-error" role="alert"></p>
+
+<div class="calc-result" id="calc-gdp-deflator-result" role="status" aria-live="polite">
+<div class="result-block">
+<p class="result-label" id="gd-primary-label">GDP deflator</p>
+<div class="amount" id="gd-primary-amount"></div>
+<p class="detail" id="gd-primary-detail"></p>
+</div>
+<div class="result-block">
+<p class="result-label">Identity</p>
+<p class="detail" id="gd-identity"></p>
+</div>
+<div class="result-block">
+<p class="result-label">How to read this</p>
+<p class="detail" id="gd-read-note"></p>
+</div>
+<div class="result-block">
+<p class="result-label">Arithmetic</p>
+<p class="detail" id="gd-arithmetic"></p>
+</div>
+<p class="detail" id="gd-summary"></p>
+</div>
+</div>
+
+<div class="callout" style="margin-top:1.5rem">
+<strong>How to read this.</strong> The result is classroom arithmetic from the numbers you typed. The GDP deflator is an index of the prices of goods and services produced at home. A deflator of 110 means those prices sit 10 percent above an index base of 100 in the usual textbook setup. Real GDP holds that price story aside so the remaining movement is volume. Nominal GDP keeps current prices. CPI and PCE answer a different question. They track household consumption, including imports, and they leave out much of investment, government, and exports. For that comparison, read <a href="../explainers/cpi-vs-pce.html">CPI versus PCE</a>. For the wider price story, read the <a href="../topics/inflation.html">inflation topic</a>. For nominal and real GDP, read the <a href="../topics/gdp.html">GDP topic</a>.
+</div>
+
+<div class="callout warning">
+<span class="example-label">EXAMPLE</span>
+<p style="margin:0">Solve for the deflator uses nominal GDP of 1100 and real GDP of 1000. The deflator is 110. Solve for real GDP uses nominal GDP of 1100 and a deflator of 110, so real GDP is 1000. Solve for nominal GDP uses real GDP of 1000 and a deflator of 110, so nominal GDP is 1100. Inflation from two indexes uses an earlier index of 100 and a later index of 110, so the percent change is 10. Those figures are classroom arithmetic. They are not a measured deflator for the UK or the United States, and they are not an official GDP print.</p>
+</div>
+
+<div class="callout warning">
+<span class="example-label">Educational only</span>
+<p style="margin:0">Not investment advice and not a prediction of inflation. Nothing here says a central bank should raise rates, cut rates, or hold them fixed. A deflator of 110 is not a forecast. The calculator does not fetch live data and does not invent an official series.</p>
+</div>
+
+<h2>The classroom formula</h2>
+<p>This page uses four classroom sketches of one identity. You pick the mode.</p>
+<blockquote>GDP deflator ≈ (Nominal GDP / Real GDP) × 100</blockquote>
+<blockquote>Real GDP ≈ Nominal GDP / (GDP deflator / 100)</blockquote>
+<blockquote>Nominal GDP ≈ Real GDP × (GDP deflator / 100)</blockquote>
+<blockquote>Inflation (%) ≈ ((Later deflator / Earlier deflator) minus 1) × 100</blockquote>
+<p>Nominal GDP is the current price value of production. Real GDP is the volume, measured so that a reference set of prices is held fixed in the comparison. Their ratio, times 100, is the implicit price deflator. BEA describes an implicit price deflator as the current dollar value of a series divided by the matching chained dollar value, times 100. ONS describes the implied GDP deflator as current price GDP divided by the volume estimate. This page keeps that identity. It does not rebuild an official chained volume measure, and it does not estimate inflation from a consumer price index.</p>
+<p>The basket behind the deflator changes as the mix of production changes. CPI and PCE weight household spending. The GDP deflator weights domestic production. Imports can move CPI and PCE, and they are not part of GDP. Exports are part of GDP, and they are not a household basket in the same way. That is why the deflator and CPI can move apart. This calculator does not fetch either series. For a quantity theory sketch that uses a price level times real output, see the <a href="velocity-of-money.html">velocity of money calculator</a>. For a constant inflation rate applied to a cash amount, see the <a href="inflation-adjuster.html">inflation adjuster</a>. For actual output versus potential output, see the <a href="output-gap.html">output gap calculator</a>. Wider context sits on the <a href="../topics/gdp.html">GDP topic</a> and the <a href="../topics/inflation.html">inflation topic</a>.</p>
+
+<h2>Where to find the inputs</h2>
+<p>Type your own numbers. This page does not download official series. For the United States, open the BEA GDP release and the BEA GDP price deflator page, or the FRED series GDP (nominal GDP), GDPC1 (real GDP), and GDPDEF (implicit price deflator). Read the units before you type. Nominal and real must share a period and a scale, or the ratio is nonsense. FRED reports GDPDEF as an index. For the United Kingdom, open the ONS GDP page and the ONS notes on deflators. ONS publishes an implied GDP deflator at market prices. The index base and the seasonal treatment can differ from the US series. IMF Data is a public entry point for many countries. Copy a figure only after you have read the notes, then type it here.</p>
+
+<h2>UK and US framing</h2>
+<p>Do not paste a US deflator onto UK GDP and call the result a fact. BEA chained dollars and ONS chained volume measures are different constructions, even though both support an implied deflator. A US index with one reference year is not the same object as a UK index with another reference year. Growth rates can be compared only after you match the concept: quarter on quarter, year over year, or the percent change between two index levels you chose. This page computes that percent change in the fourth mode. It does not annualise it, and it does not seasonally adjust it. Short run gaps between the deflator and CPI are normal. For the consumer price comparison, read <a href="../explainers/cpi-vs-pce.html">CPI versus PCE</a>. For how BEA and ONS present GDP, read <a href="../explainers/bea-vs-ons-gdp.html">BEA and ONS GDP</a>.</p>
+
+<h2>Sources</h2>
+<ul class="source-list">
+<li><a href="https://www.bea.gov/data/gdp/gross-domestic-product" rel="noopener noreferrer">BEA: Gross Domestic Product</a></li>
+<li><a href="https://www.bea.gov/data/prices-inflation/gdp-price-deflator" rel="noopener noreferrer">BEA: GDP Price Deflator</a></li>
+<li><a href="https://www.bea.gov/help/faq/513" rel="noopener noreferrer">BEA: What is an implicit price deflator?</a></li>
+<li><a href="https://www.ons.gov.uk/economy/grossdomesticproductgdp" rel="noopener noreferrer">ONS: Gross domestic product (GDP)</a></li>
+<li><a href="https://www.ons.gov.uk/economy/inflationandpriceindices/methodologies/deflatorsandhowweusethemineconomicestimates" rel="noopener noreferrer">ONS: Deflators and how we use them in economic estimates</a></li>
+<li><a href="https://www.ons.gov.uk/economy/nationalaccounts/uksectoraccounts/articles/measuringpricechangesoftheuknationalaccounts/2023-02-08" rel="noopener noreferrer">ONS: Measuring price changes of the UK national accounts</a></li>
+<li><a href="https://www.ons.gov.uk/economy/grossdomesticproductgdp/timeseries/l8gg/pn2" rel="noopener noreferrer">ONS: Implied GDP deflator at market prices, seasonally adjusted index (L8GG)</a></li>
+<li><a href="https://fred.stlouisfed.org/series/GDP" rel="noopener noreferrer">FRED: Gross Domestic Product (GDP)</a></li>
+<li><a href="https://fred.stlouisfed.org/series/GDPC1" rel="noopener noreferrer">FRED: Real Gross Domestic Product (GDPC1)</a></li>
+<li><a href="https://fred.stlouisfed.org/series/GDPDEF" rel="noopener noreferrer">FRED: Gross Domestic Product: Implicit Price Deflator (GDPDEF)</a></li>
+<li><a href="https://www.imf.org/en/Data" rel="noopener noreferrer">IMF: Data</a></li>
+</ul>
+
+<p><a href="index.html">All calculators</a> · <a href="../topics/gdp.html">GDP topic</a> · <a href="../topics/inflation.html">Inflation topic</a> · <a href="../explainers/cpi-vs-pce.html">CPI versus PCE</a> · <a href="../explainers/bea-vs-ons-gdp.html">BEA and ONS GDP</a> · <a href="velocity-of-money.html">Velocity of money calculator</a> · <a href="inflation-adjuster.html">Inflation adjuster</a> · <a href="output-gap.html">Output gap calculator</a> · <a href="../faq/">FAQ</a></p>
+</div>
+</main>
+<footer class="site-footer">
+<div class="footer-inner">
+<div>
+<a class="logo" href="../" style="color:#fff;text-decoration:none">Simple <span style="color:#a8d4d4">Macro</span> Guide</a>
+<p style="margin:0.6rem 0 0;max-width:28rem">Clear, calm explanations of how economies work, with a UK and US focus. Educational only; not investment advice.</p>
+</div>
+<div>
+<h2>Explore</h2>
+<ul>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data guides</a></li>
+<li><a href="../calculators/">Calculators</a></li>
+</ul>
+</div>
+<div>
+<h2>About</h2>
+<ul>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+<li><a href="../disclaimer/">Disclaimer</a></li>
+<li><a href="../sources/">Sources</a></li>
+<li><a href="mailto:joshuaofisrael@gmail.com?subject=%5BContact%3A%20simplemacroguide%5D">Email</a></li>
+</ul>
+</div>
+<p class="footer-note">© Joshua Israel Ventures LLC. Content is for education. Not financial, investment, tax, or legal advice. Verify figures with primary sources such as the World Bank, ONS, and FRED.</p>
+</div>
+</footer>
+<script src="../js/main.js"></script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "dec4f4e1d796410298bde95049563074"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
