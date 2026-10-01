@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Purchasing power parity calculator | Simple Macro Guide</title>
+<meta name="description" content="Purchasing power parity calculator: basket prices to a PPP exchange rate, a market gap, or a real exchange rate. Classroom arithmetic. Educational only. It does not fetch live rates.">
+<link rel="canonical" href="https://simplemacroguide.com/calculators/purchasing-power-parity.html">
+<meta name="theme-color" content="#2a6f6f">
+<meta property="og:title" content="Purchasing power parity calculator | Simple Macro Guide">
+<meta property="og:description" content="Purchasing power parity calculator: basket prices to a PPP exchange rate, a market gap, or a real exchange rate. Classroom arithmetic. Educational only. It does not fetch live rates.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://simplemacroguide.com/calculators/purchasing-power-parity.html">
+<meta property="og:site_name" content="Simple Macro Guide">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Purchasing power parity calculator | Simple Macro Guide">
+<meta name="twitter:description" content="Purchasing power parity calculator: basket prices to a PPP exchange rate, a market gap, or a real exchange rate. Classroom arithmetic. Educational only. It does not fetch live rates.">
+<link rel="stylesheet" href="../css/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Purchasing power parity calculator",
+  "description": "Purchasing power parity calculator: basket prices to a PPP exchange rate, a market gap, or a real exchange rate. Classroom arithmetic. Educational only. It does not fetch live rates.",
+  "url": "https://simplemacroguide.com/calculators/purchasing-power-parity.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Joshua Israel Ventures LLC"
+  }
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="header-inner">
+<a class="logo" href="../">Simple <span>Macro</span> Guide</a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav class="site-nav" id="site-nav" aria-label="Primary"><ul>
+<li><a href="../">Home</a></li>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data</a></li>
+<li><a href="../calculators/" aria-current="page">Calculators</a></li>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+</ul></nav>
+</div>
+</header>
+<main id="main">
+
+<div class="wrap narrow">
+<header class="hero" style="border:none;margin:0;padding-bottom:0.5rem">
+<h1>Purchasing power parity calculator</h1>
+<p class="lede">Solve three classroom sketches of purchasing power parity and the real exchange rate. Absolute PPP divides the price of one basket in currency A by the price of the same basket in currency B. A second mode compares that rate with a market quote in the same direction, units of A per 1 unit of B. A third mode computes a real exchange rate from a nominal rate and two price indexes. The boxes start with EXAMPLE numbers, such as a US basket of 150, a UK basket of 120, and a market rate of 1.50 dollars per pound. Those figures are classroom arithmetic. They are not World Bank or OECD PPP factors. This is not a forecast, not investment advice, and not foreign exchange trading advice. The arithmetic runs entirely in your browser. The page does not fetch live rates.</p>
+</header>
+
+<div class="calc-panel calc-panel-wide" id="ppp-calculator">
+<p id="ppp-mode-label" style="font-weight:600;font-size:0.9rem;margin:0 0 0.35rem">Mode</p>
+<div class="calc-actions" style="margin-top:0" role="group" aria-labelledby="ppp-mode-label">
+<button type="button" class="btn" id="ppp-mode-absolute" aria-pressed="true">Absolute PPP rate</button>
+<button type="button" class="btn btn-secondary" id="ppp-mode-gap" aria-pressed="false">Market versus PPP gap</button>
+<button type="button" class="btn btn-secondary" id="ppp-mode-rer" aria-pressed="false">Real exchange rate</button>
+</div>
+<p class="hint" id="ppp-mode-hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.55rem 0 0.75rem">Absolute PPP. The PPP rate equals the basket price in currency A divided by the basket price in currency B. The result is units of A per 1 unit of B.</p>
+
+<div id="ppp-price-a-fields">
+<label for="ppp-price-a">Basket price in currency A</label>
+<input id="ppp-price-a" type="number" step="any" value="150" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Price of one identical basket in currency A. The EXAMPLE default is 150. You can read the EXAMPLE as a US basket priced in dollars. This is not a live price and not a World Bank PPP factor.</p>
+</div>
+
+<div id="ppp-price-b-fields">
+<label for="ppp-price-b">Basket price in currency B</label>
+<input id="ppp-price-b" type="number" step="any" value="120" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Price of the same basket in currency B. The EXAMPLE default is 120. You can read the EXAMPLE as a UK basket priced in pounds. This is not a live price and not an OECD PPP factor.</p>
+</div>
+
+<div id="ppp-market-fields" hidden>
+<label for="ppp-market">Market rate (units of A per 1 unit of B)</label>
+<input id="ppp-market" type="number" step="any" value="1.5" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Market exchange rate in units of currency A per 1 unit of currency B. The EXAMPLE default is 1.50, which you can read as 1.50 dollars per pound. A higher number means one unit of B costs more units of A. This is not a live quote. The page does not fetch rates.</p>
+</div>
+
+<div id="ppp-e-fields" hidden>
+<label for="ppp-e">Nominal rate E (domestic per 1 foreign)</label>
+<input id="ppp-e" type="number" step="any" value="1.5" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Nominal exchange rate E, in domestic currency per 1 unit of foreign currency. The EXAMPLE default is 1.50. You can read that as 1.50 dollars per 1 pound if the dollar is domestic and the pound is foreign. Keep this quote for the whole mode.</p>
+</div>
+
+<div id="ppp-pd-fields" hidden>
+<label for="ppp-pd">Domestic price index (P)</label>
+<input id="ppp-pd" type="number" step="any" value="150" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Domestic price index P. The EXAMPLE default is 150. Use the same concept as the foreign index, such as two consumer price indexes or two GDP deflators. This is not a published index.</p>
+</div>
+
+<div id="ppp-pf-fields" hidden>
+<label for="ppp-pf">Foreign price index (P*)</label>
+<input id="ppp-pf" type="number" step="any" value="120" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Foreign price index P*. The EXAMPLE default is 120. The real exchange rate equals E times this index divided by the domestic index. The PPP implied E equals the domestic index divided by this index.</p>
+</div>
+
+<div class="calc-actions">
+<button type="button" class="btn" id="calc-ppp">Calculate</button>
+<button type="button" class="btn btn-secondary" id="calc-ppp-reset">Reset</button>
+</div>
+
+<p class="calc-error" id="calc-ppp-error" role="alert"></p>
+
+<div class="calc-result" id="calc-ppp-result" role="status" aria-live="polite">
+<div class="result-block">
+<p class="result-label" id="ppp-primary-label">PPP exchange rate</p>
+<div class="amount" id="ppp-primary-amount"></div>
+<p class="detail" id="ppp-primary-detail"></p>
+</div>
+<div class="result-block">
+<p class="result-label" id="ppp-second-label">Inverse rate</p>
+<div class="amount" id="ppp-second-amount"></div>
+<p class="detail" id="ppp-second-detail"></p>
+</div>
+<div class="result-block">
+<p class="result-label">Plain English</p>
+<p class="detail" id="ppp-label"></p>
+</div>
+<div class="result-block">
+<p class="result-label">Quote convention</p>
+<p class="detail" id="ppp-quote"></p>
+</div>
+<div class="result-block">
+<p class="result-label">How to read this</p>
+<p class="detail" id="ppp-read-note"></p>
+</div>
+<div class="result-block">
+<p class="result-label">Arithmetic</p>
+<p class="detail" id="ppp-arithmetic"></p>
+</div>
+<p class="detail" id="ppp-summary"></p>
+</div>
+</div>
+
+<div class="callout" style="margin-top:1.5rem">
+<strong>How to read this.</strong> The result is classroom arithmetic from the numbers you typed. Absolute PPP here is one basket ratio, not a full GDP comparison. The World Bank PPP conversion factor, series PA.NUS.PPP, is local currency per international dollar. OECD purchasing power parities are built from many prices. Neither series is the EXAMPLE in the boxes. For the ideas, read <a href="../explainers/exchange-rates-ppp.html">exchange rates and purchasing power parity</a>. For trade and the current account, read <a href="../topics/international-trade.html">international trade</a>. For price indexes, read <a href="../topics/inflation.html">inflation</a>.
+</div>
+
+<div class="callout warning">
+<span class="example-label">EXAMPLE</span>
+<p style="margin:0">Absolute PPP uses a basket price of 150 in currency A and 120 in currency B. The PPP rate is 1.25 units of A per 1 unit of B. The inverse is 0.80 units of B per 1 unit of A. Market versus PPP uses the same basket prices and a market rate of 1.50 units of A per 1 unit of B. The percent gap is 20. Currency B looks overvalued versus the basket because the market rate sits above the PPP rate. In this EXAMPLE, currency A stands in for the dollar and currency B stands in for the pound, so 1.50 means 1.50 dollars per pound. The real exchange rate mode uses a nominal rate of 1.50 domestic currency units per 1 foreign unit, a domestic price index of 150, and a foreign price index of 120. The real exchange rate is 1.20. The PPP implied nominal rate is 1.25. These figures are classroom arithmetic. They are not a measured PPP factor for the United Kingdom or the United States, and they are not a live market quote.</p>
+</div>
+
+<div class="callout warning">
+<span class="example-label">Educational only</span>
+<p style="margin:0">Not investment advice, not foreign exchange trading advice, and not a prediction of exchange rates. Nothing here says a currency should rise, fall, or be traded. A gap of 20 percent in the EXAMPLE is not a forecast and not a signal. The calculator does not fetch live data and does not invent an official series.</p>
+</div>
+
+<h2>The classroom formula</h2>
+<p>This page uses three classroom sketches. You pick the mode. The quote stays fixed inside each sketch.</p>
+<blockquote>PPP rate (units of A per 1 unit of B) equals the basket price in currency A divided by the basket price in currency B.</blockquote>
+<blockquote>Percent gap equals ((market rate minus PPP rate) divided by PPP rate) times 100. Market and PPP are both units of A per 1 unit of B.</blockquote>
+<blockquote>Real exchange rate equals E times (foreign price index divided by domestic price index), when E is domestic currency per 1 unit of foreign currency.</blockquote>
+<blockquote>PPP implied E equals the domestic price index divided by the foreign price index. That is the same quote as E, domestic per 1 foreign.</blockquote>
+<p>Absolute PPP says one identical basket should cost the same once you translate currencies. If the basket costs 150 in currency A and 120 in currency B, the PPP rate is 150 divided by 120, or 1.25 units of A per 1 unit of B. The inverse, 120 divided by 150, is 0.80 units of B per 1 unit of A. Flip the quote and you must flip the ratio. Mixing the two directions is the usual way to get the story backwards.</p>
+<p>The market gap uses that same quote. Percent gap equals the market rate minus the PPP rate, divided by the PPP rate, times 100. When the market rate sits above the PPP rate, one unit of currency B costs more units of A in the market than the basket prices imply, so currency B looks overvalued versus the basket. When the market rate sits below the PPP rate, currency B looks undervalued versus the basket. With the EXAMPLE numbers, the market rate is 1.50 and the PPP rate is 1.25, so the gap is 20 percent and currency B looks overvalued versus the basket. That sentence is about the basket you typed. It is not a trading signal.</p>
+<p>The real exchange rate mode keeps one convention and does not switch it. E is domestic currency per 1 unit of foreign currency. The real exchange rate equals E times the foreign price index divided by the domestic price index. The PPP implied nominal rate equals the domestic price index divided by the foreign price index. The real exchange rate equals E divided by that implied rate. Near 1, absolute PPP holds for those indexes. Above 1, the foreign basket converted at E costs more domestic currency than the domestic basket, so the foreign currency looks expensive relative to the indexes. Below 1, the foreign currency looks cheap relative to the indexes. With the EXAMPLE, E is 1.50, the domestic index is 150, and the foreign index is 120, so the real exchange rate is 1.20 and the implied E is 1.25.</p>
+<p>Some textbooks multiply the nominal rate by domestic prices over foreign prices. That version fits when the nominal rate is quoted as foreign currency per 1 unit of domestic currency. This page pairs the other quote with the other price ratio. Both sketches aim at the same idea. Do not mix the two quotes in one calculation. The <a href="../explainers/exchange-rates-ppp.html">exchange rates and purchasing power parity</a> explainer notes that the formula depends on the quote. This calculator writes one convention on the buttons and in the result.</p>
+<p>A real exchange rate near 1 means absolute PPP holds for the indexes you typed. That reading fits when the indexes are price levels for a comparable basket, or when their common base year already matched PPP. Two indexes that both equal 100 in a year you picked do not, by themselves, prove the currencies had equal purchasing power then. This page does not compute relative PPP from two inflation rates. Relative PPP says the change in the exchange rate should line up with the inflation gap over time. For a constant inflation rate applied to one cash amount in one currency, use the <a href="inflation-adjuster.html">inflation adjuster</a>. For a nominal interest rate and an inflation rate inside one currency, use the <a href="real-interest-rate.html">real interest rate calculator</a>. Those tools do not compare two currencies. For the GDP deflator identity, use the <a href="gdp-deflator.html">GDP deflator calculator</a>.</p>
+
+<h2>Where to find the inputs</h2>
+<p>Type your own numbers. This page does not download official series, and it does not treat the EXAMPLE as a published factor. For a research PPP conversion factor, open World Bank series PA.NUS.PPP. That series is local currency units per international dollar for GDP. It comes out of the International Comparison Program and related OECD and Eurostat work. It is not 1.25, and it is not the toy basket in the boxes. Read the metadata, including the units, before you type a figure.</p>
+<p>OECD purchasing power parities are rates of currency conversion that aim to equalise purchasing power by removing price level differences. The OECD indicator is measured as national currency per US dollar. That quote is not automatically dollars per pound. If you copy an OECD figure, match it to currency A and currency B yourself. IMF Data, including International Financial Statistics, is a public entry point for exchange rates and for related PPP series. Read the concept note on the series you copy.</p>
+<p>For a market dollar per pound quote, open FRED series DEXUSUK and read the units line. The series is published as US dollars per 1 British pound. If currency A is the dollar and currency B is the pound, that direction matches this page. Copy a date you understand. This calculator will not fetch the latest observation. BIS effective exchange rates are trade weighted indexes against a basket of partners, not a bilateral PPP rate for one basket. Use them as context, not as the market box, unless you know you want an index in a different exercise.</p>
+<p>For price indexes in the real exchange rate mode, US readers often start with BLS consumer prices or a BEA implicit price deflator. UK readers often start with ONS consumer prices or the implied GDP deflator. Use the same concept on both sides, and read the base year. Then type the levels here. All calculators on this site are listed on the <a href="index.html">calculators hub</a>.</p>
+
+<h2>UK and US framing</h2>
+<p>Sterling and the dollar float in normal times. A PPP gap can last for years. Many goods and services are hard to trade, transport and retail costs sit in the price, and financial flows move the spot rate from day to day. Do not read a classroom gap as a forecast that the pound or the dollar will close it. Neither a 20 percent EXAMPLE gap nor a real exchange rate of 1.20 is a fact about the United Kingdom or the United States today.</p>
+<p>Do not paste a US consumer price index onto a UK consumer price index and call the ratio a dollar per pound PPP factor until you have checked the base years, the coverage, and the quote. The GDP deflator prices domestic production. A consumer price index prices a household basket and includes imports. Those are different objects. The <a href="gdp-deflator.html">GDP deflator calculator</a> runs the domestic production identity. The <a href="../topics/inflation.html">inflation topic</a> covers consumer prices. The <a href="../topics/international-trade.html">international trade</a> topic covers the trade balance and why the spot rate is only one channel. Country snapshots for the <a href="../countries/us.html">United States</a> and the <a href="../countries/uk.html">United Kingdom</a> are separate pages. They are not PPP factors.</p>
+
+<h2>Sources</h2>
+<ul class="source-list">
+<li><a href="https://data.worldbank.org/indicator/PA.NUS.PPP" rel="noopener noreferrer">World Bank: PPP conversion factor, GDP (local currency per international dollar), series PA.NUS.PPP</a></li>
+<li><a href="https://databank.worldbank.org/metadataglossary/world-development-indicators/series/PA.NUS.PPP" rel="noopener noreferrer">World Bank: metadata glossary for series PA.NUS.PPP</a></li>
+<li><a href="https://www.worldbank.org/en/programs/icp" rel="noopener noreferrer">World Bank: International Comparison Program (ICP)</a></li>
+<li><a href="https://www.oecd.org/en/data/indicators/purchasing-power-parities-ppp.html" rel="noopener noreferrer">OECD: Purchasing power parities (PPP)</a></li>
+<li><a href="https://www.oecd.org/en/data/datasets/purchasing-power-parities.html" rel="noopener noreferrer">OECD: Purchasing power parities dataset</a></li>
+<li><a href="https://www.imf.org/en/Data" rel="noopener noreferrer">IMF: Data</a></li>
+<li><a href="https://fred.stlouisfed.org/series/DEXUSUK" rel="noopener noreferrer">FRED: US dollars to one British pound (DEXUSUK)</a></li>
+<li><a href="https://www.bis.org/statistics/eer.htm" rel="noopener noreferrer">BIS: Effective exchange rates</a></li>
+<li><a href="https://www.bls.gov/cpi/" rel="noopener noreferrer">BLS: Consumer Price Index</a></li>
+<li><a href="https://www.ons.gov.uk/economy/inflationandpriceindices" rel="noopener noreferrer">ONS: Inflation and price indices</a></li>
+</ul>
+
+<p><a href="index.html">All calculators</a> · <a href="../explainers/exchange-rates-ppp.html">Exchange rates and purchasing power parity</a> · <a href="../topics/international-trade.html">International trade</a> · <a href="../topics/inflation.html">Inflation topic</a> · <a href="inflation-adjuster.html">Inflation adjuster</a> · <a href="real-interest-rate.html">Real interest rate calculator</a> · <a href="gdp-deflator.html">GDP deflator calculator</a> · <a href="../faq/">FAQ</a></p>
+</div>
+</main>
+<footer class="site-footer">
+<div class="footer-inner">
+<div>
+<a class="logo" href="../" style="color:#fff;text-decoration:none">Simple <span style="color:#a8d4d4">Macro</span> Guide</a>
+<p style="margin:0.6rem 0 0;max-width:28rem">Clear, calm explanations of how economies work, with a UK and US focus. Educational only; not investment advice.</p>
+</div>
+<div>
+<h2>Explore</h2>
+<ul>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data guides</a></li>
+<li><a href="../calculators/">Calculators</a></li>
+</ul>
+</div>
+<div>
+<h2>About</h2>
+<ul>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+<li><a href="../disclaimer/">Disclaimer</a></li>
+<li><a href="../sources/">Sources</a></li>
+<li><a href="mailto:joshuaofisrael@gmail.com?subject=%5BContact%3A%20simplemacroguide%5D">Email</a></li>
+</ul>
+</div>
+<p class="footer-note">© Joshua Israel Ventures LLC. Content is for education. Not financial, investment, tax, or legal advice. Verify figures with primary sources such as the World Bank, ONS, and FRED.</p>
+</div>
+</footer>
+<script src="../js/main.js"></script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "dec4f4e1d796410298bde95049563074"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

@@ -2199,4 +2199,381 @@
       });
     }
   }
+
+  /* Purchasing power parity and real exchange rate calculator */
+  var pppCalcBtn = document.getElementById("calc-ppp");
+  if (pppCalcBtn) {
+    var pppPriceAEl = document.getElementById("ppp-price-a");
+    var pppPriceBEl = document.getElementById("ppp-price-b");
+    var pppMarketEl = document.getElementById("ppp-market");
+    var pppEEl = document.getElementById("ppp-e");
+    var pppPdEl = document.getElementById("ppp-pd");
+    var pppPfEl = document.getElementById("ppp-pf");
+    var pppPriceAFields = document.getElementById("ppp-price-a-fields");
+    var pppPriceBFields = document.getElementById("ppp-price-b-fields");
+    var pppMarketFields = document.getElementById("ppp-market-fields");
+    var pppEFields = document.getElementById("ppp-e-fields");
+    var pppPdFields = document.getElementById("ppp-pd-fields");
+    var pppPfFields = document.getElementById("ppp-pf-fields");
+    var pppModeHint = document.getElementById("ppp-mode-hint");
+    var pppModeAbsoluteBtn = document.getElementById("ppp-mode-absolute");
+    var pppModeGapBtn = document.getElementById("ppp-mode-gap");
+    var pppModeRerBtn = document.getElementById("ppp-mode-rer");
+    var pppResultEl = document.getElementById("calc-ppp-result");
+    var pppPrimaryLabel = document.getElementById("ppp-primary-label");
+    var pppPrimaryAmount = document.getElementById("ppp-primary-amount");
+    var pppPrimaryDetail = document.getElementById("ppp-primary-detail");
+    var pppSecondLabel = document.getElementById("ppp-second-label");
+    var pppSecondAmount = document.getElementById("ppp-second-amount");
+    var pppSecondDetail = document.getElementById("ppp-second-detail");
+    var pppPlainEl = document.getElementById("ppp-label");
+    var pppQuoteEl = document.getElementById("ppp-quote");
+    var pppReadNote = document.getElementById("ppp-read-note");
+    var pppArithmetic = document.getElementById("ppp-arithmetic");
+    var pppSummary = document.getElementById("ppp-summary");
+    var pppErrorEl = document.getElementById("calc-ppp-error");
+    var pppResetBtn = document.getElementById("calc-ppp-reset");
+    var pppMode = "absolute";
+    var pppModeButtons = [pppModeAbsoluteBtn, pppModeGapBtn, pppModeRerBtn];
+    var pppInputs = [pppPriceAEl, pppPriceBEl, pppMarketEl, pppEEl, pppPdEl, pppPfEl];
+    var pppLevelMin = 0.0001;
+    var pppLevelMax = 1000000000000000;
+    var pppRateMax = 1000000000000;
+    var pppGapMax = 1000000;
+
+    function showPppError(msg) {
+      pppErrorEl.textContent = msg;
+      pppErrorEl.classList.add("visible");
+      pppResultEl.classList.remove("visible");
+    }
+    function clearPppError() {
+      pppErrorEl.classList.remove("visible");
+      pppErrorEl.textContent = "";
+    }
+    function hidePppResult() {
+      pppResultEl.classList.remove("visible");
+      clearPppError();
+    }
+    function formatPpp(n) {
+      return Math.abs(n).toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+    function formatPppPlain(n) {
+      var rounded = Math.round(Math.abs(n) * 10000) / 10000;
+      var text = rounded.toLocaleString(undefined, {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 4
+      });
+      if (n < -0.0000001) return "minus " + text;
+      return text;
+    }
+    function roundPpp2(n) {
+      return Math.round(n * 100) / 100;
+    }
+    function pppTooSmall(n) {
+      return !(n > 0) || roundPpp2(n) === 0;
+    }
+    function pppLevelMessage(noun) {
+      return "Enter " + noun + " of at least 0.0001 and up to 1,000,000,000,000,000.";
+    }
+    function readPppLevel(el, noun) {
+      var raw = String(el.value).trim();
+      if (raw === "") {
+        return { ok: false, message: pppLevelMessage(noun) };
+      }
+      var n = parseFloat(raw);
+      if (!isFinite(n) || n < pppLevelMin || n > pppLevelMax) {
+        return { ok: false, message: pppLevelMessage(noun) };
+      }
+      return { ok: true, value: n };
+    }
+    function pppRateOverflow(noun) {
+      return "Those inputs imply " + noun + " this classroom display cannot show. Use numbers that are closer together.";
+    }
+    function setPppMode(mode) {
+      pppMode = mode;
+      pppPriceAFields.hidden = mode === "rer";
+      pppPriceBFields.hidden = mode === "rer";
+      pppMarketFields.hidden = mode !== "gap";
+      pppEFields.hidden = mode !== "rer";
+      pppPdFields.hidden = mode !== "rer";
+      pppPfFields.hidden = mode !== "rer";
+      var activeBtn = pppModeAbsoluteBtn;
+      var hint = "Absolute PPP. The PPP rate equals the basket price in currency A divided by the basket price in currency B. The result is units of A per 1 unit of B.";
+      if (mode === "gap") {
+        activeBtn = pppModeGapBtn;
+        hint = "Market versus PPP. Both rates are units of A per 1 unit of B. The percent gap equals ((market minus PPP) divided by PPP) times 100. Above PPP, currency B looks overvalued versus the basket. Below PPP, currency B looks undervalued versus the basket.";
+      } else if (mode === "rer") {
+        activeBtn = pppModeRerBtn;
+        hint = "Real exchange rate. E is domestic currency per 1 unit of foreign currency. RER equals E times the foreign price index divided by the domestic price index. The PPP implied E equals the domestic index divided by the foreign index. RER near 1 means absolute PPP holds for those indexes.";
+      }
+      var i;
+      for (i = 0; i < pppModeButtons.length; i++) {
+        var on = pppModeButtons[i] === activeBtn;
+        pppModeButtons[i].className = on ? "btn" : "btn btn-secondary";
+        pppModeButtons[i].setAttribute("aria-pressed", on ? "true" : "false");
+      }
+      pppModeHint.textContent = hint;
+      hidePppResult();
+    }
+
+    pppModeAbsoluteBtn.addEventListener("click", function () {
+      setPppMode("absolute");
+    });
+    pppModeGapBtn.addEventListener("click", function () {
+      setPppMode("gap");
+    });
+    pppModeRerBtn.addEventListener("click", function () {
+      setPppMode("rer");
+    });
+    for (var pppInputIndex = 0; pppInputIndex < pppInputs.length; pppInputIndex++) {
+      pppInputs[pppInputIndex].addEventListener("input", hidePppResult);
+    }
+
+    pppCalcBtn.addEventListener("click", function () {
+      clearPppError();
+      var priceA;
+      var priceB;
+      var market;
+      var nominalE;
+      var domesticP;
+      var foreignP;
+      var pppRate;
+      var inverse;
+      var gap;
+      var rer;
+      var impliedE;
+      var primaryLabel;
+      var primaryAmount;
+      var primaryDetail;
+      var secondLabel;
+      var secondAmount;
+      var secondDetail;
+      var plain;
+      var quote;
+      var readNote;
+      var arithmetic;
+      var summary;
+      var advice = " Educational estimate only. Not a forecast, not investment advice, and not foreign exchange trading advice.";
+
+      if (pppMode === "absolute" || pppMode === "gap") {
+        var typedA = readPppLevel(pppPriceAEl, "a basket price in currency A");
+        if (!typedA.ok) {
+          showPppError(typedA.message);
+          return;
+        }
+        var typedB = readPppLevel(pppPriceBEl, "a basket price in currency B");
+        if (!typedB.ok) {
+          showPppError(typedB.message);
+          return;
+        }
+        priceA = typedA.value;
+        priceB = typedB.value;
+        pppRate = priceA / priceB;
+        inverse = priceB / priceA;
+        if (!isFinite(pppRate) || pppRate > pppRateMax || !isFinite(inverse) || inverse > pppRateMax) {
+          showPppError(pppRateOverflow("a PPP rate"));
+          return;
+        }
+        if (pppTooSmall(pppRate) || pppTooSmall(inverse)) {
+          showPppError("Those inputs imply a PPP rate below 0.01, which this classroom display rounds to zero. Use basket prices that are closer together.");
+          return;
+        }
+      }
+
+      if (pppMode === "absolute") {
+        var pppShow = roundPpp2(pppRate);
+        var inverseShow = roundPpp2(inverse);
+        primaryLabel = "PPP exchange rate";
+        primaryAmount = formatPpp(pppShow);
+        primaryDetail = "Units of currency A per 1 unit of currency B. Equals the basket price in A divided by the basket price in B.";
+        secondLabel = "Inverse rate";
+        secondAmount = formatPpp(inverseShow);
+        secondDetail = "Units of currency B per 1 unit of currency A. Equals the basket price in B divided by the basket price in A.";
+        plain =
+          "One unit of currency B lines up with " + formatPpp(pppShow) +
+          " units of currency A for this basket. That is absolute PPP for these two prices. The inverse is " +
+          formatPpp(inverseShow) +
+          " units of currency B per 1 unit of currency A. This is not a market rate and not a forecast.";
+        quote =
+          "This page quotes the PPP rate as units of currency A per 1 unit of currency B. A higher number means one unit of B costs more units of A. The inverse runs the other way. In the EXAMPLE, currency A stands in for the dollar and currency B stands in for the pound. If your currencies differ, keep A and B as you defined them.";
+        readNote =
+          "Absolute PPP here is one identical basket, not a World Bank or OECD PPP factor. A market rate can sit away from this rate for years, because many goods are hard to trade and financial flows move the spot rate. These are numbers you typed, not an official series.";
+        arithmetic =
+          "The basket price in currency A divided by the basket price in currency B is " + formatPpp(priceA) +
+          " divided by " + formatPpp(priceB) +
+          ", which is " + formatPppPlain(pppRate) +
+          ". That is the PPP rate in units of A per 1 unit of B. The inverse is " + formatPpp(priceB) +
+          " divided by " + formatPpp(priceA) +
+          ", which is " + formatPppPlain(inverse) +
+          " units of B per 1 unit of A.";
+        summary =
+          "Basket price in A " + formatPpp(priceA) +
+          ". Basket price in B " + formatPpp(priceB) +
+          ". PPP rate " + formatPpp(pppShow) +
+          " units of A per 1 unit of B. Inverse " + formatPpp(inverseShow) +
+          " units of B per 1 unit of A." + advice;
+      } else if (pppMode === "gap") {
+        var typedMarket = readPppLevel(pppMarketEl, "a market rate in units of A per 1 unit of B");
+        if (!typedMarket.ok) {
+          showPppError(typedMarket.message);
+          return;
+        }
+        market = typedMarket.value;
+        gap = ((market - pppRate) / pppRate) * 100;
+        if (!isFinite(gap) || Math.abs(gap) > pppGapMax) {
+          showPppError("Those inputs imply a percent gap this classroom display cannot show. Use a market rate closer to the PPP rate.");
+          return;
+        }
+        var pppShowGap = roundPpp2(pppRate);
+        var gapShow = roundPpp2(gap);
+        primaryLabel = "PPP exchange rate";
+        primaryAmount = formatPpp(pppShowGap);
+        primaryDetail = "Units of currency A per 1 unit of currency B. Equals the basket price in A divided by the basket price in B.";
+        secondLabel = "Percent gap";
+        secondAmount = (gapShow < 0 ? "\u2212" : "") + formatPpp(gapShow) + "%";
+        secondDetail = "Equals ((market rate minus PPP rate) divided by PPP rate) times 100. Positive means the market rate sits above PPP.";
+        if (gapShow > 0) {
+          plain =
+            "Currency B looks overvalued versus the basket. The market rate is " + formatPpp(market) +
+            " and the PPP rate is " + formatPpp(pppShowGap) +
+            ", so the market sits above PPP. Both rates are units of currency A per 1 unit of currency B, so one unit of B costs more units of A in the market than the basket prices imply.";
+        } else if (gapShow < 0) {
+          plain =
+            "Currency B looks undervalued versus the basket. The market rate is " + formatPpp(market) +
+            " and the PPP rate is " + formatPpp(pppShowGap) +
+            ", so the market sits below PPP. Both rates are units of currency A per 1 unit of currency B, so one unit of B costs fewer units of A in the market than the basket prices imply.";
+        } else {
+          plain =
+            "The market rate matches the PPP rate at two decimal places. On this basket, currency B does not look overvalued or undervalued. Both rates are units of currency A per 1 unit of currency B.";
+        }
+        quote =
+          "The market rate and the PPP rate are both quoted as units of currency A per 1 unit of currency B. Do not enter the inverse quote in the market box. In the EXAMPLE, currency A stands in for the dollar and currency B stands in for the pound, so a market rate of 1.50 means 1.50 dollars per pound. A positive gap then means the pound looks overvalued versus that basket. If your A and B are different currencies, read the label as A and B.";
+        readNote =
+          "The gap is a description of these prices and this quote. It is not a forecast, not a valuation of a currency in the market, and not foreign exchange trading advice. Official PPP factors, including World Bank series PA.NUS.PPP, use a broad basket and a published quote. These are numbers you typed.";
+        arithmetic =
+          "The PPP rate is " + formatPpp(priceA) +
+          " divided by " + formatPpp(priceB) +
+          ", which is " + formatPppPlain(pppRate) +
+          " units of A per 1 unit of B. The market rate minus the PPP rate is " + formatPpp(market) +
+          " minus " + formatPppPlain(pppRate) +
+          ", which is " + formatPppPlain(market - pppRate) +
+          ". Divided by the PPP rate, that is " + formatPppPlain((market - pppRate) / pppRate) +
+          ". Times 100, the percent gap is " + formatPppPlain(gap) + " percent.";
+        summary =
+          "Basket price in A " + formatPpp(priceA) +
+          ". Basket price in B " + formatPpp(priceB) +
+          ". PPP rate " + formatPpp(pppShowGap) +
+          ". Market rate " + formatPpp(market) +
+          ". Percent gap " + formatPppPlain(gapShow) +
+          " percent." + advice;
+      } else {
+        var typedE = readPppLevel(pppEEl, "a nominal exchange rate E in domestic currency per 1 foreign unit");
+        if (!typedE.ok) {
+          showPppError(typedE.message);
+          return;
+        }
+        var typedPd = readPppLevel(pppPdEl, "a domestic price index");
+        if (!typedPd.ok) {
+          showPppError(typedPd.message);
+          return;
+        }
+        var typedPf = readPppLevel(pppPfEl, "a foreign price index");
+        if (!typedPf.ok) {
+          showPppError(typedPf.message);
+          return;
+        }
+        nominalE = typedE.value;
+        domesticP = typedPd.value;
+        foreignP = typedPf.value;
+        rer = nominalE * (foreignP / domesticP);
+        impliedE = domesticP / foreignP;
+        if (!isFinite(rer) || rer > pppRateMax || !isFinite(impliedE) || impliedE > pppRateMax) {
+          showPppError(pppRateOverflow("a real exchange rate"));
+          return;
+        }
+        if (pppTooSmall(rer) || pppTooSmall(impliedE)) {
+          showPppError("Those inputs imply a real exchange rate below 0.01, which this classroom display rounds to zero. Use a larger nominal rate or price indexes that are closer together.");
+          return;
+        }
+        var rerGap = (rer - 1) * 100;
+        if (!isFinite(rerGap) || Math.abs(rerGap) > pppGapMax) {
+          showPppError("Those inputs imply a gap versus PPP this classroom display cannot show. Use a nominal rate closer to the price index ratio.");
+          return;
+        }
+        var rerShow = roundPpp2(rer);
+        var impliedShow = roundPpp2(impliedE);
+        var rerGapShow = roundPpp2(rerGap);
+        primaryLabel = "Real exchange rate";
+        primaryAmount = formatPpp(rerShow);
+        primaryDetail = "Equals E times the foreign price index divided by the domestic price index. E is domestic currency per 1 unit of foreign currency.";
+        secondLabel = "PPP implied exchange rate";
+        secondAmount = formatPpp(impliedShow);
+        secondDetail = "Domestic currency per 1 unit of foreign currency. Equals the domestic price index divided by the foreign price index.";
+        if (rerShow === 1) {
+          plain =
+            "The real exchange rate is about 1. Absolute PPP holds for these indexes. The nominal rate matches the ratio of the domestic price index to the foreign price index, at two decimal places.";
+        } else if (rerShow > 1) {
+          plain =
+            "The real exchange rate is above 1. The foreign basket, converted at E, costs more domestic currency than the domestic basket. Relative to these indexes, the foreign currency looks expensive. That is the same direction as a market rate above the PPP implied rate.";
+        } else {
+          plain =
+            "The real exchange rate is below 1. The foreign basket, converted at E, costs less domestic currency than the domestic basket. Relative to these indexes, the foreign currency looks cheap. That is the same direction as a market rate below the PPP implied rate.";
+        }
+        quote =
+          "E is domestic currency per 1 unit of foreign currency. RER equals E times (foreign price index divided by domestic price index). The PPP implied E equals the domestic price index divided by the foreign price index. RER near 1 means absolute PPP holds for these indexes. In the EXAMPLE, domestic is the dollar and foreign is the pound, so E of 1.50 means 1.50 dollars per pound.";
+        readNote =
+          "Use the near 1 reading when the indexes are price levels for a comparable basket, or when their common base year already matched PPP. Two indexes that both equal 100 in a year you picked do not, by themselves, prove equal purchasing power in that year. The percent gap between E and the PPP implied rate is " +
+          formatPppPlain(rerGapShow) +
+          " percent, because RER equals E divided by the PPP implied rate, and that gap equals (RER minus 1) times 100. These are numbers you typed, not an official series.";
+        arithmetic =
+          "The foreign price index divided by the domestic price index is " + formatPpp(foreignP) +
+          " divided by " + formatPpp(domesticP) +
+          ", which is " + formatPppPlain(foreignP / domesticP) +
+          ". Times the nominal rate " + formatPpp(nominalE) +
+          ", the real exchange rate is " + formatPppPlain(rer) +
+          ". The PPP implied nominal rate is " + formatPpp(domesticP) +
+          " divided by " + formatPpp(foreignP) +
+          ", which is " + formatPppPlain(impliedE) +
+          " domestic currency units per 1 unit of foreign currency. E divided by that implied rate is " +
+          formatPppPlain(nominalE / impliedE) +
+          ", the same real exchange rate.";
+        summary =
+          "Nominal rate E " + formatPpp(nominalE) +
+          ". Domestic price index " + formatPpp(domesticP) +
+          ". Foreign price index " + formatPpp(foreignP) +
+          ". Real exchange rate " + formatPpp(rerShow) +
+          ". PPP implied E " + formatPpp(impliedShow) +
+          "." + advice;
+      }
+
+      arithmetic += " Shown to two decimal places.";
+      pppPrimaryLabel.textContent = primaryLabel;
+      pppPrimaryAmount.textContent = primaryAmount;
+      pppPrimaryDetail.textContent = primaryDetail;
+      pppSecondLabel.textContent = secondLabel;
+      pppSecondAmount.textContent = secondAmount;
+      pppSecondDetail.textContent = secondDetail;
+      pppPlainEl.textContent = plain;
+      pppQuoteEl.textContent = quote;
+      pppReadNote.textContent = readNote;
+      pppArithmetic.textContent = arithmetic;
+      pppSummary.textContent = summary;
+      pppResultEl.classList.add("visible");
+    });
+
+    if (pppResetBtn) {
+      pppResetBtn.addEventListener("click", function () {
+        pppPriceAEl.value = "150";
+        pppPriceBEl.value = "120";
+        pppMarketEl.value = "1.5";
+        pppEEl.value = "1.5";
+        pppPdEl.value = "150";
+        pppPfEl.value = "120";
+        setPppMode("absolute");
+      });
+    }
+  }
 })();

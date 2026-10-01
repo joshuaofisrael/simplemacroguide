@@ -36,6 +36,7 @@ Publisher: Joshua Israel Ventures LLC
 - https://simplemacroguide.com/calculators/fiscal-multiplier.html
 - https://simplemacroguide.com/calculators/velocity-of-money.html
 - https://simplemacroguide.com/calculators/gdp-deflator.html
+- https://simplemacroguide.com/calculators/purchasing-power-parity.html
 - https://simplemacroguide.com/sources/
 - https://simplemacroguide.com/disclaimer/
 
@@ -75,3 +76,6 @@ Prefer linking readers to primary statistics (FRED, ONS, BEA, BLS, World Bank, I
 
 ## Added 2026-09-30
 - /calculators/gdp-deflator.html
+
+## Added 2026-10-01
+- /calculators/purchasing-power-parity.html
