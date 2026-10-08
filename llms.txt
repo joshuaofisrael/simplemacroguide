@@ -1,81 +1,61 @@
 # Simple Macro Guide
-> Clear, original introductions to macroeconomics for UK and US readers. Educational only — not investment, financial, tax, or legal advice.
 
-Site: https://simplemacroguide.com/
-Contact: mailto:joshuaofisrael@gmail.com?subject=[Contact:%20simplemacroguide]
-Publisher: Joshua Israel Ventures LLC
+> Simple Macro Guide publishes original, plain language explainers, a glossary, country context pages and free browser calculators on macroeconomics for UK and US readers. Pages answer the question first, then show formulas, worked examples and links to primary sources such as the Federal Reserve, BEA, BLS, ONS and the Bank of England. The site is educational only and is not investment, financial, tax or legal advice. Operated by Joshua Israel Ventures LLC.
 
-## Pillar topics
-- https://simplemacroguide.com/topics/supply-demand.html
-- https://simplemacroguide.com/topics/inflation.html
-- https://simplemacroguide.com/topics/gdp.html
-- https://simplemacroguide.com/topics/monetary-fiscal.html
-- https://simplemacroguide.com/topics/unemployment.html
-- https://simplemacroguide.com/topics/international-trade.html
+Contact: joshuaofisrael@gmail.com
 
-## Long-form explainers
-- https://simplemacroguide.com/explainers/
-- https://simplemacroguide.com/explainers/phillips-curve.html
-- https://simplemacroguide.com/explainers/quantitative-easing.html
-- https://simplemacroguide.com/explainers/real-interest-rates.html
-- https://simplemacroguide.com/explainers/exchange-rates-ppp.html
-- https://simplemacroguide.com/explainers/fiscal-multipliers.html
-- https://simplemacroguide.com/explainers/recession-definitions.html
+## Explainers
+- [Explainers](https://simplemacroguide.com/explainers/): Long form original macroeconomics explainers covering Phillips curve, QE, real rates, Okun's law, natural rate of unemployment, money supply, fiscal dominance, BEA versus ONS GDP, and more.
+- [What Is the Phillips Curve and Does It Still Work?](https://simplemacroguide.com/explainers/phillips-curve.html): The Phillips curve links unemployment and inflation in the short run.
+- [What Is Quantitative Easing (QE)?](https://simplemacroguide.com/explainers/quantitative-easing.html): Quantitative easing (QE), or q easing, is a central bank buying bonds with new reserves to lower longer term rates.
+- [What Is a Real Interest Rate? Formula, Examples and Today's Rates](https://simplemacroguide.com/explainers/real-interest-rates.html): A real interest rate is the nominal rate minus inflation.
+- [Exchange Rates and Purchasing Power Parity](https://simplemacroguide.com/explainers/exchange-rates-ppp.html): How exchange rates move, what purchasing power parity (PPP) means, and how to read real exchange rates for the UK and US.
+- [Fiscal Multipliers Explained](https://simplemacroguide.com/explainers/fiscal-multipliers.html): What a fiscal multiplier is, why estimates vary, and how spending and tax changes can affect GDP in theory and practice.
+- [What Is a Recession? How Recessions Are Determined (NBER and UK)](https://simplemacroguide.com/explainers/recession-definitions.html): A recession is a significant, widespread decline in activity.
+- [What Is the Yield Curve? Inversions Explained](https://simplemacroguide.com/explainers/yield-curve.html): A plain language guide to the Treasury yield curve, why it usually slopes up, what an inversion means, and how UK and US readers should interpret the signal.
+- [CPI vs PCE](https://simplemacroguide.com/explainers/cpi-vs-pce.html): A plain language guide to US CPI and PCE inflation, how each index is built, why the Fed often discusses PCE, and how UK CPI/CPIH compares.
+- [What is the Taylor rule?](https://simplemacroguide.com/explainers/taylor-rule.html): A plain language guide to the Taylor rule: how a simple policy rate guideline relates inflation and economic slack to a suggested policy rate.
+- [Core inflation versus headline inflation](https://simplemacroguide.com/explainers/core-vs-headline-inflation.html): Why economists often set aside food and energy when reading inflation, what core measures still miss, and how US and UK series compare.
+- [What is the output gap?](https://simplemacroguide.com/explainers/output-gap.html): A plain language guide to the output gap: how economists compare actual GDP with potential output, why the gap matters for inflation and policy, and how to read estimates carefully.
+- [Natural Rate of Unemployment Explained](https://simplemacroguide.com/explainers/natural-rate-of-unemployment.html): Plain language guide to the natural rate of unemployment and NAIRU: what it means, how estimates move, myths, and UK and US data habits.
+- [Okun's Law Explained](https://simplemacroguide.com/explainers/okuns-law.html): Plain language guide to Okun's law: how GDP growth and unemployment often move together, a worked arithmetic sketch, myths, and UK and US sources.
+- [What Are M1 and M2? What Each Includes](https://simplemacroguide.com/explainers/money-supply-m1-m2.html): US M1 is currency, demand deposits, and other liquid deposits, including savings.
+- [BEA versus ONS GDP](https://simplemacroguide.com/explainers/bea-vs-ons-gdp.html): How US BEA and UK ONS GDP releases differ in calendar, units, and revision habits, with a checklist for fair comparisons.
+- [Fiscal Dominance Explained](https://simplemacroguide.com/explainers/fiscal-dominance.html): What fiscal dominance means, how it differs from ordinary deficits and from QE, UK and US framing, myths, and primary sources.
 
-## Tools and references
-- https://simplemacroguide.com/glossary/
-- https://simplemacroguide.com/countries/
-- https://simplemacroguide.com/data/
-- https://simplemacroguide.com/calculators/inflation-adjuster.html
-- https://simplemacroguide.com/calculators/real-interest-rate.html
-- https://simplemacroguide.com/calculators/taylor-rule.html
-- https://simplemacroguide.com/calculators/okuns-law.html
-- https://simplemacroguide.com/calculators/phillips-curve.html
-- https://simplemacroguide.com/calculators/output-gap.html
-- https://simplemacroguide.com/calculators/yield-curve-spread.html
-- https://simplemacroguide.com/calculators/fiscal-multiplier.html
-- https://simplemacroguide.com/calculators/velocity-of-money.html
-- https://simplemacroguide.com/calculators/gdp-deflator.html
-- https://simplemacroguide.com/calculators/purchasing-power-parity.html
-- https://simplemacroguide.com/sources/
-- https://simplemacroguide.com/disclaimer/
+## Calculators
+- [Calculators](https://simplemacroguide.com/calculators/): Educational macro calculators that run offline in your browser.
+- [Inflation Adjuster](https://simplemacroguide.com/calculators/inflation-adjuster.html): Offline inflation adjuster: estimate purchasing power change across years with vanilla JavaScript.
+- [Real interest rate calculator](https://simplemacroguide.com/calculators/real-interest-rate.html): Estimate a real interest rate from a nominal rate and an inflation rate you choose.
+- [Taylor rule calculator](https://simplemacroguide.com/calculators/taylor-rule.html): Estimate a suggested policy rate from inflation, an output gap, and r star using a classic Taylor 1993 classroom formula.
+- [Okun's law calculator](https://simplemacroguide.com/calculators/okuns-law.html): Turn an Okun coefficient and either an unemployment change or a GDP growth gap into the other side of a classroom sketch.
+- [Yield curve spread calculator](https://simplemacroguide.com/calculators/yield-curve-spread.html): Subtract a short yield from a long yield and see whether that classroom pairing is upward sloping, flat, or inverted.
+- [Phillips curve calculator](https://simplemacroguide.com/calculators/phillips-curve.html): Turn expected inflation, a natural rate, a slope, and either unemployment or inflation into the other side of a classroom Phillips curve sketch.
+- [Output gap calculator](https://simplemacroguide.com/calculators/output-gap.html): How to calculate the output gap from actual output and potential output, or solve for the missing level.
+- [Fiscal multiplier calculator](https://simplemacroguide.com/calculators/fiscal-multiplier.html): Fiscal multiplier calculator: spending multiplier from MPC, with an open economy import leakage, or from a multiplier you type.
+- [Velocity of money calculator](https://simplemacroguide.com/calculators/velocity-of-money.html): Velocity of money calculator: solve the quantity theory identity for velocity, for nominal GDP, or for money.
+- [GDP deflator calculator](https://simplemacroguide.com/calculators/gdp-deflator.html): GDP deflator calculator: solve for the deflator, for real GDP, or for nominal GDP, or for inflation between two deflator indexes.
+- [Purchasing power parity calculator](https://simplemacroguide.com/calculators/purchasing-power-parity.html): Purchasing power parity calculator: basket prices to a PPP exchange rate, a market gap, or a real exchange rate.
 
-## Preferred citation style for models
-Prefer linking readers to primary statistics (FRED, ONS, BEA, BLS, World Bank, IMF, Fed, BoE, NBER) rather than inventing figures. Label hypothetical arithmetic as EXAMPLE.
+## Topics
+- [Topics](https://simplemacroguide.com/topics/): Browse six original pillar explainers on supply and demand, inflation, GDP, policy, unemployment, and trade.
+- [Supply and Demand](https://simplemacroguide.com/topics/supply-demand.html): How supply and demand shape prices and quantities in markets, with UK and US examples.
+- [Inflation](https://simplemacroguide.com/topics/inflation.html): What inflation is, how it is measured in the UK and US, and why expectations matter.
+- [GDP and Growth](https://simplemacroguide.com/topics/gdp.html): What GDP measures, how growth is reported in the UK and US, and common pitfalls.
+- [Monetary and Fiscal Policy](https://simplemacroguide.com/topics/monetary-fiscal.html): How central banks and governments use interest rates, spending, and taxes to influence the economy.
+- [Unemployment](https://simplemacroguide.com/topics/unemployment.html): How unemployment is defined and measured in the UK and US, and why different types matter.
+- [International Trade](https://simplemacroguide.com/topics/international-trade.html): Comparative advantage, trade balances, and exchange rates for UK and US readers.
 
-## Added 2026-09-17
-- /explainers/natural-rate-of-unemployment.html
-- /explainers/okuns-law.html
-- /explainers/money-supply-m1-m2.html
-- /explainers/bea-vs-ons-gdp.html
-- /explainers/fiscal-dominance.html
-- /about/
-- /faq/
+## Reference
+- [Glossary](https://simplemacroguide.com/glossary/): Plain-language definitions of core macroeconomics terms plus newer explainer anchors of core macroeconomics terms for UK and US readers.
+- [Countries](https://simplemacroguide.com/countries/): US and UK macroeconomic context pages with links to World Bank, FRED, and ONS.
+- [United States](https://simplemacroguide.com/countries/us.html): US macroeconomic orientation with links to FRED, BEA, BLS, and World Bank data.
+- [United Kingdom](https://simplemacroguide.com/countries/uk.html): UK macroeconomic orientation with links to ONS, Bank of England, and World Bank data.
+- [How to Read CPI Data](https://simplemacroguide.com/data/): Original guide to reading US CPI on FRED and UK CPI/CPIH on ONS, year on year vs monthly, core vs headline.
+- [Sources](https://simplemacroguide.com/sources/): Authoritative macro data and institutional sources linked from Simple Macro Guide: Fed, ONS, BEA, IMF, World Bank, and more.
 
-## Added 2026-09-18
-- /calculators/real-interest-rate.html
-
-## Added 2026-09-21
-- /calculators/taylor-rule.html
-
-## Added 2026-09-22
-- /calculators/okuns-law.html
-
-## Added 2026-09-24
-- /calculators/phillips-curve.html
-
-## Added 2026-09-25
-- /calculators/output-gap.html
-
-## Added 2026-09-28
-- /calculators/yield-curve-spread.html
-- /calculators/fiscal-multiplier.html
-
-## Added 2026-09-29
-- /calculators/velocity-of-money.html
-
-## Added 2026-09-30
-- /calculators/gdp-deflator.html
-
-## Added 2026-10-01
-- /calculators/purchasing-power-parity.html
+## Optional
+- [Contact](https://simplemacroguide.com/contact/): Contact Simple Macro Guide / Joshua Israel Ventures LLC via email.
+- [Disclaimer](https://simplemacroguide.com/disclaimer/): Educational disclaimer: not investment, financial, tax, or legal advice.
+- [About](https://simplemacroguide.com/about/): About Simple Macro Guide and Joshua Israel Ventures LLC: mission, editorial standards, and how we approach UK and US macro education.
+- [FAQ](https://simplemacroguide.com/faq/): FAQ for Simple Macro Guide: not investment advice, how to read data, update cadence, UK and US focus, and how to contact us.
