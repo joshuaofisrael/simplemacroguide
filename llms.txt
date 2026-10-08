@@ -57,7 +57,7 @@ Contact: joshuaofisrael@gmail.com
 ## Optional
 - [Contact](https://simplemacroguide.com/contact/): Contact Simple Macro Guide / Joshua Israel Ventures LLC via email.
 - [Disclaimer](https://simplemacroguide.com/disclaimer/): Educational disclaimer covering accuracy, no professional relationship, and the absence of ads or affiliate links.
-- [Terms of Use](https://simplemacroguide.com/terms/): Terms of Use with Joshua Israel Ventures LLC, which owns and operates the Simple Macro Guide brand. Michigan law.
+- [Terms of Use](https://simplemacroguide.com/terms/): Terms of Use with Joshua Israel Ventures LLC, which owns and operates the Simple Macro Guide brand. Florida law.
 - [Privacy Policy](https://simplemacroguide.com/privacy/): What the site collects (emails you send, cookieless Cloudflare Web Analytics) and your privacy rights.
 - [About](https://simplemacroguide.com/about/): About Simple Macro Guide and Joshua Israel Ventures LLC: mission, editorial standards, and how we approach UK and US macro education.
 - [FAQ](https://simplemacroguide.com/faq/): FAQ for Simple Macro Guide: not investment advice, how to read data, update cadence, UK and US focus, and how to contact us.
