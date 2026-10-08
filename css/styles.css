@@ -430,7 +430,12 @@ h3 {
 }
 .site-footer ul { list-style: none; margin: 0; padding: 0; }
 .site-footer li { margin-bottom: 0.35rem; }
-.footer-note { grid-column: 1 / -1; border-top: 1px solid #2e3a4a; padding-top: 1rem; color: #8a93a0; font-size: 0.85rem; }
+.footer-note { grid-column: 1 / -1; border-top: 1px solid #2e3a4a; padding-top: 1rem; color: #c8cfd8; font-size: 0.9rem; line-height: 1.6; }
+.footer-note p { margin: 0 0 0.6rem; }
+.footer-note .footer-legal { color: #e6eaef; font-weight: 600; }
+.footer-legal-links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.25rem; margin-top: 0.4rem !important; }
+.footer-legal-links li { margin: 0; }
+.footer-legal-links a { color: #a8d4d4; text-decoration: underline; }
 
 @media (max-width: 720px) {
   .nav-toggle { display: block; }
