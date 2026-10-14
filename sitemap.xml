@@ -22,6 +22,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/topics/monetary-fiscal.html</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
@@ -43,6 +44,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/quantitative-easing.html</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
@@ -106,6 +108,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/calculators/</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
@@ -142,6 +145,11 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/calculators/velocity-of-money.html</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/calculators/money-multiplier.html</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
@@ -194,7 +202,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/money-supply-m1-m2.html</loc>
-    <lastmod>2026-10-05</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
@@ -205,5 +213,5 @@
     <loc>https://simplemacroguide.com/explainers/fiscal-dominance.html</loc>
     <changefreq>weekly</changefreq>
   </url>
-  <url><loc>https://simplemacroguide.com/llms.txt</loc><lastmod>2026-10-08</lastmod></url>
+  <url><loc>https://simplemacroguide.com/llms.txt</loc><lastmod>2026-10-14</lastmod></url>
 </urlset>

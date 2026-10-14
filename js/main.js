@@ -2576,4 +2576,423 @@
       });
     }
   }
+
+  /* Money multiplier calculator (classroom deposit expansion) */
+  var moneyMultCalcBtn = document.getElementById("calc-money-multiplier");
+  if (moneyMultCalcBtn) {
+    var mmRrEl = document.getElementById("mm-rr");
+    var mmAmountEl = document.getElementById("mm-amount");
+    var mmExcessEl = document.getElementById("mm-excess");
+    var mmCurrencyEl = document.getElementById("mm-currency");
+    var mmModeHint = document.getElementById("mm-mode-hint");
+    var mmModeCashBtn = document.getElementById("mm-mode-cash");
+    var mmModeOmpBtn = document.getElementById("mm-mode-omp");
+    var mmResultEl = document.getElementById("calc-money-multiplier-result");
+    var mmSimpleAmount = document.getElementById("mm-simple-amount");
+    var mmSimpleDetail = document.getElementById("mm-simple-detail");
+    var mmRealisticAmount = document.getElementById("mm-realistic-amount");
+    var mmRealisticDetail = document.getElementById("mm-realistic-detail");
+    var mmLoansAmount = document.getElementById("mm-loans-amount");
+    var mmLoansDetail = document.getElementById("mm-loans-detail");
+    var mmDepositsAmount = document.getElementById("mm-deposits-amount");
+    var mmDepositsDetail = document.getElementById("mm-deposits-detail");
+    var mmMsAmount = document.getElementById("mm-ms-amount");
+    var mmMsDetail = document.getElementById("mm-ms-detail");
+    var mmArithmetic = document.getElementById("mm-arithmetic");
+    var mmReadNote = document.getElementById("mm-read-note");
+    var mmSummary = document.getElementById("mm-summary");
+    var mmTableNote = document.getElementById("mm-table-note");
+    var mmTableWrap = document.getElementById("mm-table-wrap");
+    var mmErrorEl = document.getElementById("calc-money-multiplier-error");
+    var mmResetBtn = document.getElementById("calc-money-multiplier-reset");
+    var mmMode = "cash";
+    var mmModeButtons = [mmModeCashBtn, mmModeOmpBtn];
+    var mmAmountMax = 1000000000000;
+    var mmDisplayMax = 1000000000000000;
+    var mmInputs = [mmRrEl, mmAmountEl, mmExcessEl, mmCurrencyEl];
+
+    function showMmError(msg) {
+      mmErrorEl.textContent = msg;
+      mmErrorEl.classList.add("visible");
+      mmResultEl.classList.remove("visible");
+    }
+    function clearMmError() {
+      mmErrorEl.classList.remove("visible");
+      mmErrorEl.textContent = "";
+    }
+    function formatMmMoney(n) {
+      return n.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+    function formatMmMult(n) {
+      return n.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 4
+      });
+    }
+    function formatMmRatio(n) {
+      return n.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 4
+      });
+    }
+    function formatMmPercent(n) {
+      var rounded = Math.round(n * 10000) / 10000;
+      return rounded.toLocaleString(undefined, {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 4
+      });
+    }
+    function mmCents(n) {
+      return Math.round(n * 100);
+    }
+    function formatMmCents(cents) {
+      return (cents / 100).toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+    function readMmRequired(el) {
+      var raw = String(el.value).trim();
+      if (raw === "" || !isFinite(parseFloat(raw)) || parseFloat(raw) <= 0 || parseFloat(raw) > 100) {
+        return {
+          ok: false,
+          message: "Enter a required reserve ratio above 0 and up to 100 percent. At 0, 1 divided by the ratio is not defined. The Federal Reserve set reserve requirement ratios to zero percent effective 26 March 2020, so this textbook sketch is not a description of the current US system."
+        };
+      }
+      return { ok: true, value: parseFloat(raw) };
+    }
+    function readMmAmount(el) {
+      var raw = String(el.value).trim();
+      var n = parseFloat(raw);
+      if (raw === "" || !isFinite(n) || n <= 0 || n > mmAmountMax) {
+        return {
+          ok: false,
+          message: "Enter an amount greater than 0 and up to 1,000,000,000,000."
+        };
+      }
+      return { ok: true, value: n };
+    }
+    function readMmExcess(el) {
+      var raw = String(el.value).trim();
+      if (raw === "") return { ok: true, value: 0 };
+      var n = parseFloat(raw);
+      if (!isFinite(n) || n < 0 || n > 100) {
+        return {
+          ok: false,
+          message: "Enter excess reserves from 0 to 100 percent of deposits, or leave the field blank."
+        };
+      }
+      return { ok: true, value: n };
+    }
+    function readMmCurrency(el) {
+      var raw = String(el.value).trim();
+      if (raw === "") return { ok: true, value: 0 };
+      var n = parseFloat(raw);
+      if (!isFinite(n) || n < 0 || n > 1000) {
+        return {
+          ok: false,
+          message: "Enter a currency drain from 0 to 1,000 percent of deposits, or leave the field blank."
+        };
+      }
+      return { ok: true, value: n };
+    }
+    function mmCell(row, tag, text, header) {
+      var cell = document.createElement(tag);
+      cell.textContent = text;
+      if (header) cell.setAttribute("scope", header);
+      row.appendChild(cell);
+    }
+    function renderMmTable(columns, bodyRows, totalCents) {
+      mmTableWrap.textContent = "";
+      var table = document.createElement("table");
+      table.className = "stat-table";
+      var caption = document.createElement("caption");
+      caption.style.captionSide = "bottom";
+      caption.style.fontSize = "0.85rem";
+      caption.style.color = "var(--ink-muted)";
+      caption.style.padding = "0.65rem 0.85rem";
+      caption.style.textAlign = "left";
+      caption.textContent = "Live deposit expansion from the numbers you typed. Classroom arithmetic, not a forecast.";
+      table.appendChild(caption);
+      var thead = document.createElement("thead");
+      var headRow = document.createElement("tr");
+      var h;
+      for (h = 0; h < columns.length; h++) {
+        mmCell(headRow, "th", columns[h].label, "col");
+      }
+      thead.appendChild(headRow);
+      table.appendChild(thead);
+      var tbody = document.createElement("tbody");
+      var r;
+      for (r = 0; r < bodyRows.length; r++) {
+        var tr = document.createElement("tr");
+        mmCell(tr, "th", bodyRows[r].label, "row");
+        for (h = 1; h < columns.length; h++) {
+          mmCell(tr, "td", formatMmCents(bodyRows[r][columns[h].key]), null);
+        }
+        tbody.appendChild(tr);
+      }
+      var totalTr = document.createElement("tr");
+      mmCell(totalTr, "th", "Total", "row");
+      for (h = 1; h < columns.length; h++) {
+        mmCell(totalTr, "td", formatMmCents(totalCents[columns[h].key]), null);
+      }
+      tbody.appendChild(totalTr);
+      table.appendChild(tbody);
+      mmTableWrap.appendChild(table);
+    }
+    function runMoneyMultiplier() {
+      clearMmError();
+      var typedRr = readMmRequired(mmRrEl);
+      if (!typedRr.ok) {
+        showMmError(typedRr.message);
+        return;
+      }
+      var typedAmount = readMmAmount(mmAmountEl);
+      if (!typedAmount.ok) {
+        showMmError(typedAmount.message);
+        return;
+      }
+      var typedExcess = readMmExcess(mmExcessEl);
+      if (!typedExcess.ok) {
+        showMmError(typedExcess.message);
+        return;
+      }
+      var typedCurrency = readMmCurrency(mmCurrencyEl);
+      if (!typedCurrency.ok) {
+        showMmError(typedCurrency.message);
+        return;
+      }
+      if (typedRr.value + typedExcess.value > 100.0000001) {
+        showMmError("Required reserves plus excess reserves are above 100 percent of deposits, so loans would be negative. Lower one of those percents.");
+        return;
+      }
+
+      var rr = typedRr.value / 100;
+      var e = typedExcess.value / 100;
+      var c = typedCurrency.value / 100;
+      var amount = typedAmount.value;
+      var den = rr + e + c;
+      var lend = 1 - rr - e;
+      if (lend < 0 && lend > -0.000000001) lend = 0;
+      if (!(den > 0) || lend < 0) {
+        showMmError("Those inputs do not fit this classroom formula. The required reserve ratio must stay above 0, and required reserves plus excess reserves cannot exceed 100 percent.");
+        return;
+      }
+
+      var simple = 1 / rr;
+      var realistic = (1 + c) / den;
+      var totalDep = amount * (1 + c) / den;
+      var totalLoans = amount * lend * (1 + c) / den;
+      var totalReq = rr * totalDep;
+      var totalExcess = e * totalDep;
+      var totalCurr = totalLoans * c / (1 + c);
+      var eqMs = realistic * amount;
+      var eqDep = amount / den;
+      var eqLoans = lend * eqDep;
+      var ms = mmMode === "cash" ? totalLoans : totalDep + totalCurr;
+      var figures = [simple, realistic, totalDep, totalLoans, totalReq, totalExcess, totalCurr, eqMs, eqDep, eqLoans, ms];
+      var f;
+      for (f = 0; f < figures.length; f++) {
+        if (!isFinite(figures[f]) || Math.abs(figures[f]) > mmDisplayMax) {
+          showMmError("Those inputs imply a change this classroom display cannot show. Use a larger required reserve ratio or a smaller amount.");
+          return;
+        }
+      }
+
+      var showExcess = typedExcess.value > 0;
+      var showCurrency = typedCurrency.value > 0;
+      var columns = [
+        { key: "label", label: "Bank" },
+        { key: "dep", label: "New deposit" },
+        { key: "req", label: "Required reserves" }
+      ];
+      if (showExcess) columns.push({ key: "excess", label: "Excess reserves" });
+      columns.push({ key: "loans", label: "New loans" });
+      if (showCurrency) columns.push({ key: "curr", label: "Currency kept" });
+
+      var shown = [];
+      var depCursor = amount;
+      var rowLimit = 6;
+      var rowIndex;
+      for (rowIndex = 0; rowIndex < rowLimit; rowIndex++) {
+        if (depCursor < 0.005) break;
+        var rowLoans = depCursor * lend;
+        if (rowLoans < 0) rowLoans = 0;
+        var row = {
+          dep: depCursor,
+          req: rr * depCursor,
+          excess: e * depCursor,
+          loans: rowLoans,
+          curr: rowLoans * c / (1 + c)
+        };
+        shown.push(row);
+        if (rowLoans < 0.005) break;
+        depCursor = rowLoans / (1 + c);
+      }
+
+      var keys = ["dep", "req", "excess", "loans", "curr"];
+      var shownCents = [];
+      var sumCents = { dep: 0, req: 0, excess: 0, loans: 0, curr: 0 };
+      for (rowIndex = 0; rowIndex < shown.length; rowIndex++) {
+        var centsRow = { label: "Bank " + (rowIndex + 1) };
+        var keyIndex;
+        for (keyIndex = 0; keyIndex < keys.length; keyIndex++) {
+          var keyName = keys[keyIndex];
+          centsRow[keyName] = mmCents(shown[rowIndex][keyName]);
+          sumCents[keyName] += centsRow[keyName];
+        }
+        shownCents.push(centsRow);
+      }
+      var totalCents = {
+        dep: mmCents(totalDep),
+        req: mmCents(totalReq),
+        excess: mmCents(totalExcess),
+        loans: mmCents(totalLoans),
+        curr: mmCents(totalCurr)
+      };
+      var laterCents = {
+        dep: totalCents.dep - sumCents.dep,
+        req: totalCents.req - sumCents.req,
+        excess: totalCents.excess - sumCents.excess,
+        loans: totalCents.loans - sumCents.loans,
+        curr: totalCents.curr - sumCents.curr
+      };
+      var laterNegative = false;
+      for (keyIndex = 0; keyIndex < keys.length; keyIndex++) {
+        if (laterCents[keys[keyIndex]] < 0) laterNegative = true;
+      }
+      if (laterNegative && shownCents.length) {
+        var lastShown = shownCents[shownCents.length - 1];
+        for (keyIndex = 0; keyIndex < keys.length; keyIndex++) {
+          lastShown[keys[keyIndex]] += laterCents[keys[keyIndex]];
+        }
+        laterCents = { dep: 0, req: 0, excess: 0, loans: 0, curr: 0 };
+      }
+      var laterMatters = laterCents.dep !== 0 || laterCents.loans !== 0 || laterCents.req !== 0 || laterCents.excess !== 0 || laterCents.curr !== 0;
+      if (laterMatters) {
+        laterCents.label = "Later banks";
+        shownCents.push(laterCents);
+      }
+
+      var ratioRr = formatMmRatio(rr);
+      var ratioE = formatMmRatio(e);
+      var ratioC = formatMmRatio(c);
+      var simpleText = formatMmMult(simple);
+      var realisticText = formatMmMult(realistic);
+      var amountText = formatMmMoney(amount);
+      var loansText = formatMmMoney(totalLoans);
+      var depositsText = formatMmMoney(totalDep);
+      var msText = formatMmMoney(ms);
+      var eqMsText = formatMmMoney(eqMs);
+      var eqDepText = formatMmMoney(eqDep);
+      var eqLoansText = formatMmMoney(eqLoans);
+
+      mmSimpleAmount.textContent = simpleText;
+      mmSimpleDetail.textContent = "Equals 1 divided by " + ratioRr + ".";
+      var realisticDetail =
+        "Equals (1 + " + ratioC + ") divided by (" + ratioRr + " + " + ratioE + " + " + ratioC + "). " +
+        "If this amount is new monetary base, the equilibrium change in the money supply is " + eqMsText + ". " +
+        "Equilibrium deposits are " + eqDepText + ". Equilibrium loans are " + eqLoansText + ".";
+      if (typedCurrency.value === 0) {
+        realisticDetail += " With a currency drain of zero, equilibrium deposits and loans match the table.";
+      } else {
+        realisticDetail += " With a currency drain above zero, the table keeps the first deposit whole and drains currency only from later loans, so its totals differ from this equilibrium reading.";
+      }
+      mmRealisticAmount.textContent = realisticText;
+      mmRealisticDetail.textContent = realisticDetail;
+      mmLoansAmount.textContent = loansText;
+      mmLoansDetail.textContent = "Sum of new loans in the deposit chain.";
+      mmDepositsAmount.textContent = depositsText;
+      mmDepositsDetail.textContent = "Sum of deposits in the deposit chain, including the first deposit.";
+      if (mmMode === "cash") {
+        mmMsDetail.textContent = "Equals the loan total. The original amount was already in M1, so the first deposit does not raise the money supply.";
+      } else if (typedCurrency.value === 0) {
+        mmMsDetail.textContent = "Equals the deposit total. The open market purchase creates new money, so the first deposit counts.";
+      } else {
+        mmMsDetail.textContent = "Equals the deposit total plus currency the public kept from the loans. The open market purchase creates new money, and currency kept from later loans counts too.";
+      }
+      mmMsAmount.textContent = msText;
+
+      mmArithmetic.textContent =
+        "Simple multiplier: 1 divided by " + ratioRr + " equals " + simpleText + ". " +
+        "Realistic multiplier: (1 + " + ratioC + ") divided by (" + ratioRr + " + " + ratioE + " + " + ratioC + ") equals " + realisticText + ". " +
+        "Deposit chain deposits: " + amountText + " times (1 + " + ratioC + ") divided by (" + ratioRr + " + " + ratioE + " + " + ratioC + ") equals " + depositsText + ". " +
+        "Deposit chain loans: " + amountText + " times (1 minus " + ratioRr + " minus " + ratioE + ") times (1 + " + ratioC + ") divided by (" + ratioRr + " + " + ratioE + " + " + ratioC + ") equals " + loansText + ". " +
+        "Equilibrium money supply if the amount is new monetary base: " + realisticText + " times " + amountText + " equals " + eqMsText + ". " +
+        "Shown to two decimal places.";
+
+      var readNote;
+      if (mmMode === "cash") {
+        readNote = "This mode treats the amount as cash that was already in M1. Bank 1's deposit replaces currency, so that first swap does not raise the money supply. The maximum change in the money supply equals the new loans. ";
+      } else {
+        readNote = "This mode treats the amount as an open market purchase that the seller deposits. The first deposit is new money. With no currency drain, the maximum change in the money supply equals the deposit total. ";
+      }
+      readNote +=
+        "A simple multiplier of " + simpleText + " is 1 divided by the required reserve ratio alone. " +
+        "The realistic multiplier of " + realisticText + " is the monetary base formula. " +
+        "Neither figure is a forecast of M1 or M2, and neither is a recommendation about reserve requirements or bond purchases.";
+      mmReadNote.textContent = readNote;
+
+      mmSummary.textContent =
+        "Required reserve ratio " + formatMmPercent(typedRr.value) + " percent. " +
+        "Excess reserves " + formatMmPercent(typedExcess.value) + " percent. " +
+        "Currency drain " + formatMmPercent(typedCurrency.value) + " percent. " +
+        "Amount " + amountText + ". " +
+        "Simple multiplier " + simpleText + ". " +
+        "Realistic multiplier " + realisticText + ". " +
+        "Maximum change in loans " + loansText + ". " +
+        "Maximum change in deposits " + depositsText + ". " +
+        "Maximum change in the money supply " + msText + ". " +
+        (mmMode === "cash" ? "Cash already in M1. " : "Open market purchase. ") +
+        "Educational estimate only. Not a forecast and not investment advice.";
+
+      mmTableNote.textContent =
+        "Each numbered row is one bank. The later banks row, when it appears, collects every round after the rows shown, so the total matches the infinite sum. Required reserves equal the required reserve ratio times the deposit. New loans equal the deposit minus required reserves minus excess reserves. The next deposit equals new loans divided by (1 + c).";
+
+      renderMmTable(columns, shownCents, totalCents);
+      mmResultEl.classList.add("visible");
+    }
+    function setMmMode(mode) {
+      mmMode = mode;
+      var activeBtn = mode === "omp" ? mmModeOmpBtn : mmModeCashBtn;
+      var hint = "Cash already in M1. Bank 1 starts with the amount as a new deposit. The maximum change in the money supply equals the new loans, because that cash was already counted in the money supply.";
+      if (mode === "omp") {
+        hint = "Open market purchase. The seller deposits the payment, so Bank 1 still starts with that amount. The first deposit is new money. With no currency drain, the maximum change in the money supply equals the deposit total.";
+      }
+      var i;
+      for (i = 0; i < mmModeButtons.length; i++) {
+        var on = mmModeButtons[i] === activeBtn;
+        mmModeButtons[i].className = on ? "btn" : "btn btn-secondary";
+        mmModeButtons[i].setAttribute("aria-pressed", on ? "true" : "false");
+      }
+      mmModeHint.textContent = hint;
+      runMoneyMultiplier();
+    }
+
+    mmModeCashBtn.addEventListener("click", function () {
+      setMmMode("cash");
+    });
+    mmModeOmpBtn.addEventListener("click", function () {
+      setMmMode("omp");
+    });
+    moneyMultCalcBtn.addEventListener("click", runMoneyMultiplier);
+    var mmInputIndex;
+    for (mmInputIndex = 0; mmInputIndex < mmInputs.length; mmInputIndex++) {
+      mmInputs[mmInputIndex].addEventListener("input", runMoneyMultiplier);
+    }
+    if (mmResetBtn) {
+      mmResetBtn.addEventListener("click", function () {
+        mmRrEl.value = "10";
+        mmAmountEl.value = "1000";
+        mmExcessEl.value = "0";
+        mmCurrencyEl.value = "0";
+        setMmMode("cash");
+      });
+    }
+    setMmMode("cash");
+  }
 })();

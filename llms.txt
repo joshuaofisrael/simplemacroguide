@@ -34,6 +34,7 @@ Contact: joshuaofisrael@gmail.com
 - [Output gap calculator](https://simplemacroguide.com/calculators/output-gap.html): How to calculate the output gap from actual output and potential output, or solve for the missing level.
 - [Fiscal multiplier calculator](https://simplemacroguide.com/calculators/fiscal-multiplier.html): Fiscal multiplier calculator: spending multiplier from MPC, with an open economy import leakage, or from a multiplier you type.
 - [Velocity of money calculator](https://simplemacroguide.com/calculators/velocity-of-money.html): Velocity of money calculator: solve the quantity theory identity for velocity, for nominal GDP, or for money.
+- [Money multiplier calculator](https://simplemacroguide.com/calculators/money-multiplier.html): Money multiplier calculator for a required reserve ratio, deposit expansion, excess reserves, and a currency drain.
 - [GDP deflator calculator](https://simplemacroguide.com/calculators/gdp-deflator.html): GDP deflator calculator: solve for the deflator, for real GDP, or for nominal GDP, or for inflation between two deflator indexes.
 - [Purchasing power parity calculator](https://simplemacroguide.com/calculators/purchasing-power-parity.html): Purchasing power parity calculator: basket prices to a PPP exchange rate, a market gap, or a real exchange rate.
 
