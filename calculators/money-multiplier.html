@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Money multiplier calculator | Simple Macro Guide</title>
+<meta name="description" content="Money multiplier calculator: required reserve ratio, deposit expansion rounds, and a realistic multiplier with excess reserves and a currency drain. Classroom arithmetic. Educational only.">
+<link rel="canonical" href="https://simplemacroguide.com/calculators/money-multiplier.html">
+<meta name="theme-color" content="#2a6f6f">
+<meta property="og:title" content="Money multiplier calculator | Simple Macro Guide">
+<meta property="og:description" content="Money multiplier calculator: required reserve ratio, deposit expansion rounds, and a realistic multiplier with excess reserves and a currency drain. Classroom arithmetic. Educational only.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://simplemacroguide.com/calculators/money-multiplier.html">
+<meta property="og:site_name" content="Simple Macro Guide">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Money multiplier calculator | Simple Macro Guide">
+<meta name="twitter:description" content="Money multiplier calculator: required reserve ratio, deposit expansion rounds, and a realistic multiplier with excess reserves and a currency drain. Classroom arithmetic. Educational only.">
+<link rel="stylesheet" href="../css/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Money multiplier calculator",
+  "description": "Money multiplier calculator: required reserve ratio, deposit expansion rounds, and a realistic multiplier with excess reserves and a currency drain. Classroom arithmetic. Educational only.",
+  "url": "https://simplemacroguide.com/calculators/money-multiplier.html",
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://simplemacroguide.com/#organization",
+    "name": "Joshua Israel Ventures LLC",
+    "url": "https://simplemacroguide.com/",
+    "brand": {
+      "@type": "Brand",
+      "name": "Simple Macro Guide"
+    }
+  }
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="header-inner">
+<a class="logo" href="../">Simple <span>Macro</span> Guide</a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav class="site-nav" id="site-nav" aria-label="Primary"><ul>
+<li><a href="../">Home</a></li>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data</a></li>
+<li><a href="../calculators/" aria-current="page">Calculators</a></li>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+</ul></nav>
+</div>
+</header>
+<main id="main">
+
+<div class="wrap narrow">
+<header class="hero" style="border:none;margin:0;padding-bottom:0.5rem">
+<h1>Money multiplier calculator</h1>
+<p class="lede">The money multiplier is the classroom multiple that links a required reserve ratio to the largest change in deposits a banking system can create. The simple form is 1 divided by the required reserve ratio. With a 10 percent required reserve ratio, the multiplier is 10, so a new $1,000 deposit lines up with $10,000 of deposits if every bank lends the rest. This page runs that arithmetic, then a more realistic multiple that includes excess reserves and a currency drain. It is classroom arithmetic, not a forecast of M1 or M2, and not a recommendation about policy. The arithmetic runs entirely in your browser.</p>
+</header>
+
+<div class="calc-panel calc-panel-wide" id="money-multiplier-calculator" style="max-width:100%">
+<p id="mm-mode-label" style="font-weight:600;font-size:0.9rem;margin:0 0 0.35rem">How to read the money supply</p>
+<div class="calc-actions" style="margin-top:0" role="group" aria-labelledby="mm-mode-label">
+<button type="button" class="btn" id="mm-mode-cash" aria-pressed="true">Cash already in M1</button>
+<button type="button" class="btn btn-secondary" id="mm-mode-omp" aria-pressed="false">Open market purchase</button>
+</div>
+<p class="hint" id="mm-mode-hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.55rem 0 0.75rem">Cash already in M1. Bank 1 starts with the amount as a new deposit. The maximum change in the money supply equals the new loans, because that cash was already counted in the money supply.</p>
+
+<label for="mm-rr">Required reserve ratio (percent)</label>
+<input id="mm-rr" type="number" step="any" value="10" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Enter 10 for a 10 percent requirement, not 0.10. The simple multiplier is 1 divided by this ratio. The EXAMPLE default is 10.</p>
+
+<label for="mm-amount">Initial new deposit or open market purchase</label>
+<input id="mm-amount" type="number" step="any" value="1000" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Classroom units you choose. The EXAMPLE default is 1000, which the worked example below reads as $1,000. This page does not look up a live deposit or a Federal Reserve purchase.</p>
+
+<label for="mm-excess">Excess reserves held (percent, optional)</label>
+<input id="mm-excess" type="number" step="any" value="0" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Optional. Extra reserves banks hold, as a percent of deposits, above the requirement. Leave blank or enter 0 if banks lend every unit above required reserves. A value of 5 means e is 0.05 in the formula.</p>
+
+<label for="mm-currency">Currency drain (percent of deposits, optional)</label>
+<input id="mm-currency" type="number" step="any" value="0" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Optional. Currency the public holds for every 100 units of deposits. Leave blank or enter 0 for the textbook case with no cash leakage. A value of 20 means c is 0.20, so 20 of currency for every 100 of deposits.</p>
+
+<div class="calc-actions">
+<button type="button" class="btn" id="calc-money-multiplier">Calculate</button>
+<button type="button" class="btn btn-secondary" id="calc-money-multiplier-reset">Reset</button>
+</div>
+
+<p class="calc-error" id="calc-money-multiplier-error" role="alert"></p>
+
+<div class="calc-result" id="calc-money-multiplier-result" role="status" aria-live="polite">
+<div class="result-block">
+<p class="result-label">Simple multiplier</p>
+<div class="amount" id="mm-simple-amount"></div>
+<p class="detail" id="mm-simple-detail"></p>
+</div>
+<div class="result-block">
+<p class="result-label">Realistic multiplier</p>
+<div class="amount" id="mm-realistic-amount"></div>
+<p class="detail" id="mm-realistic-detail"></p>
+</div>
+<div class="result-block">
+<p class="result-label">Maximum change in loans</p>
+<div class="amount" id="mm-loans-amount"></div>
+<p class="detail" id="mm-loans-detail"></p>
+</div>
+<div class="result-block">
+<p class="result-label">Maximum change in deposits</p>
+<div class="amount" id="mm-deposits-amount"></div>
+<p class="detail" id="mm-deposits-detail"></p>
+</div>
+<div class="result-block">
+<p class="result-label">Maximum change in the money supply</p>
+<div class="amount" id="mm-ms-amount"></div>
+<p class="detail" id="mm-ms-detail"></p>
+</div>
+<div class="result-block">
+<p class="result-label">Formula with your numbers</p>
+<p class="detail" id="mm-arithmetic"></p>
+</div>
+<div class="result-block">
+<p class="result-label">How to read this</p>
+<p class="detail" id="mm-read-note"></p>
+</div>
+<p class="detail" id="mm-summary"></p>
+<p class="detail" id="mm-table-note"></p>
+<div id="mm-table-wrap" style="overflow-x:auto"></div>
+</div>
+</div>
+
+<div class="callout" style="margin-top:1.5rem">
+<strong>How to read this.</strong> The simple multiplier ignores excess reserves and currency. The realistic multiplier, (1 + c) divided by (rr + e + c), is the standard link from a change in the monetary base to a change in the money supply. The table is the deposit chain. Bank 1 receives the amount. Each bank keeps required reserves and any excess reserves you set. The next bank receives what is left of the loan after any currency drain. If the cash was already in M1, the money supply rises by the new loans. If the amount is an open market purchase that the seller deposits, the first deposit is new money. For the aggregates those deposits sit inside, read <a href="../explainers/money-supply-m1-m2.html">money supply M1 and M2</a>. For the quantity theory identity, use the <a href="velocity-of-money.html">velocity of money calculator</a>. For the policy setting, read <a href="../topics/monetary-fiscal.html">monetary and fiscal policy</a> and <a href="../explainers/quantitative-easing.html">quantitative easing</a>.
+</div>
+
+<div class="callout warning">
+<span class="example-label">EXAMPLE</span>
+<p style="margin:0">The EXAMPLE uses a required reserve ratio of 10 percent, an amount of 1000, excess reserves of 0, and a currency drain of 0. The simple multiplier is 10. Bank 1 keeps 100 and lends 900. The full chain sums to 10,000 of deposits and 9,000 of loans. In the cash already in M1 mode, the maximum change in the money supply is 9,000. In the open market purchase mode, it is 10,000. Those figures are classroom arithmetic. They are not a measured multiplier for the United Kingdom or the United States.</p>
+</div>
+
+<div class="callout warning">
+<span class="example-label">Educational only</span>
+<p style="margin:0">Not investment advice and not a prediction of M1, M2, or bank lending. Nothing here says a central bank should buy bonds, sell bonds, or change reserve requirements. A multiplier of 10 is not a forecast. The calculator does not fetch live data.</p>
+</div>
+
+<h2>What the money multiplier is</h2>
+<p>The money multiplier is a classroom summary of deposit expansion. Banks hold a fraction of each deposit as required reserves. They lend the rest. The borrower spends the loan, and that spending lands as a deposit at the next bank. The next bank keeps its own required reserves and lends again. The new loans shrink each round, and the infinite sum has a closed form.</p>
+<p>In the simple sketch, that closed form is 1 divided by the required reserve ratio. Call the ratio rr, as a decimal. A required reserve ratio of 10 percent means rr is 0.10, and the multiplier is 10. A ratio of 20 percent means rr is 0.20, and the multiplier is 5. A higher requirement means a smaller multiplier, because each bank holds more and lends less.</p>
+<p>Two leakages shrink the multiple further. Excess reserves are balances banks choose to hold above the requirement. Call that ratio e. A currency drain is currency the public holds relative to deposits. Call that ratio c. The realistic multiplier is (1 + c) divided by (rr + e + c). When e and c are both zero, it collapses to 1 divided by rr.</p>
+
+<h2>The classroom formula</h2>
+<blockquote>Simple money multiplier = 1 / rr</blockquote>
+<blockquote>Realistic money multiplier = (1 + c) / (rr + e + c)</blockquote>
+<blockquote>Deposit chain, total deposits = amount × (1 + c) / (rr + e + c)</blockquote>
+<blockquote>Deposit chain, total loans = amount × (1 minus rr minus e) × (1 + c) / (rr + e + c)</blockquote>
+<p>rr is the required reserve ratio. e is excess reserves as a share of deposits. c is currency as a share of deposits. All three are decimals in the formula. You type them as percents. 10 percent is 0.10. The deposit chain is the round by round table. It keeps the first deposit whole. If c is above zero, each later loan is split. The share 1 / (1 + c) is deposited at the next bank. The share c / (1 + c) stays in currency. The realistic multiplier is the equilibrium link from new monetary base (currency plus reserves) to the money supply. When c is zero, an open market purchase reading of the table matches that equilibrium money supply change.</p>
+<p>Worked example. Required reserve ratio 10 percent, so rr is 0.10. Excess reserves 0. Currency drain 0. Initial deposit $1,000. The simple multiplier is 1 divided by 0.10, which is 10. Bank 1 receives $1,000, holds $100 as required reserves, and lends $900. Bank 2 receives $900, holds $90, and lends $810. Bank 3 receives $810, holds $81, and lends $729. Keep going and the deposits sum to $10,000. The loans sum to $9,000. Required reserves across all banks sum to $1,000, which matches the cash that entered the system.</p>
+<table class="stat-table">
+<caption style="caption-side:bottom;font-size:0.85rem;color:var(--ink-muted);padding:0.65rem 0.85rem;text-align:left">EXAMPLE rounds for a $1,000 deposit and a 10 percent required reserve ratio. Classroom arithmetic, not a forecast.</caption>
+<thead>
+<tr><th scope="col">Bank</th><th scope="col">New deposit</th><th scope="col">Required reserves</th><th scope="col">New loans</th></tr>
+</thead>
+<tbody>
+<tr><th scope="row">Bank 1</th><td>1,000</td><td>100</td><td>900</td></tr>
+<tr><th scope="row">Bank 2</th><td>900</td><td>90</td><td>810</td></tr>
+<tr><th scope="row">Bank 3</th><td>810</td><td>81</td><td>729</td></tr>
+<tr><th scope="row">All banks together</th><td>10,000</td><td>1,000</td><td>9,000</td></tr>
+</tbody>
+</table>
+
+<h2>Cash already in M1, versus an open market purchase</h2>
+<p>This is the distinction AP Macroeconomics exams like to test. The deposit table can look the same in both stories. The money supply answer does not.</p>
+<p><strong>Cash already in M1.</strong> Suppose a household deposits $1,000 of currency that was already in circulation. Currency in M1 falls by $1,000. Checkable deposits rise by $1,000. That first swap does not change the money supply. The banking system then lends the excess reserves, and those new loans create new deposits. With a 10 percent requirement and no other leakages, the maximum change in the money supply is $9,000, the same figure as the maximum change in loans. The deposit total of $10,000 counts the original $1,000 that merely changed form.</p>
+<p><strong>Open market purchase.</strong> Suppose the central bank buys $1,000 of government bonds and the seller deposits the payment. The central bank created new reserves. The seller's $1,000 deposit was not currency already in M1. It is new money. The same table appears, with Bank 1 holding $100 and lending $900, but the maximum change in the money supply is the full deposit total, $10,000. The loans are still $9,000. The gap is the original deposit, which counts in the money supply only in this case.</p>
+<p>A purchase from a bank, rather than from the public, has the same maximum for the money supply, $10,000 in this example. The first step is a loan of the full $1,000 of new reserves, instead of a deposit that arrives first. This calculator uses the public seller story, because that is the table with a deposit, required reserves, and a smaller loan at Bank 1.</p>
+<p>If you set excess reserves or a currency drain, both readings shrink. The realistic multiplier puts those leakages in one fraction. With rr at 0.10, e at 0.05, and c at 0, the multiplier is 1 divided by 0.15, about 6.67. The same $1,000, read as new monetary base, lines up with about $6,666.67 of money, not $10,000. With rr at 0.10, e at 0, and c at 0.20, the realistic multiplier is (1 + 0.20) divided by (0.10 + 0 + 0.20), which is 4. New monetary base of $1,000 then lines up with $4,000 of money supply in that equilibrium, and with $3,333.33 of deposits.</p>
+
+<h2>Why the real world multiple is smaller</h2>
+<p>The textbook multiple is an upper bound under strict assumptions. Banks lend every unit above required reserves. The public redeposits every loan. The required reserve ratio stays fixed and above zero. None of those assumptions describes the United States after March 2020, and they were already a poor description for years before that.</p>
+<p><strong>Reserve requirements are zero.</strong> On 15 March 2020 the Board of Governors announced that reserve requirement ratios would fall to zero percent, effective 26 March 2020. The <a href="https://www.federalreserve.gov/monetarypolicy/reservereq.htm" rel="noopener noreferrer">Federal Reserve reserve requirements page</a> states that this action eliminated reserve requirements for all depository institutions. With rr at zero, 1 divided by rr is not a number you can use. Banks are not forced to stop lending because a required reserve ratio has been used up. There is no required reserve ratio left to bind. The simple multiplier is a classroom device, not a description of the current US rule.</p>
+<p><strong>Reserves are ample, and banks hold large excess balances.</strong> In an ample reserves regime the Federal Reserve supplies enough reserves that the federal funds rate stays near the interest rate the Fed pays on reserve balances, without day to day open market operations to hit a scarce reserve target. Jane Ihrig, Zeynep Senyuz, and Gretchen C. Weinbach describe that regime in a <a href="https://www.federalreserve.gov/econres/notes/feds-notes/implementing-monetary-policy-in-an-ample-reserves-regime-the-basics-note-1-of-3-20200701.html" rel="noopener noreferrer">1 July 2020 FEDS note</a>. When banks earn interest on reserves, holding excess reserves is a choice, not a leftover that must be lent. A large and changing excess reserve ratio makes (1 + c) divided by (rr + e + c) smaller than 1 divided by rr, and it moves when banks change how many reserves they want. The multiple is smaller, and it is less stable, than the textbook 1 divided by rr.</p>
+<p><strong>The link from reserves to lending was already loose.</strong> A Federal Reserve discussion paper by Seth B. Carpenter and Selva Demiralp, <a href="https://www.federalreserve.gov/econres/feds/money-reserves-and-the-transmission-of-monetary-policy-does-the-money-multiplier-exist.htm" rel="noopener noreferrer">Money, Reserves, and the Transmission of Monetary Policy</a>, argues that the textbook money multiplier is not a useful account of how reserves pass through to money and bank loans in the United States. Only a slice of M2 was ever tied to reserve requirements. Banks fund loans with liabilities other than reservable deposits. And for decades the Fed has aimed at an interest rate, not at a quantity of reserves. A jump in reserve balances, including balances created when the central bank buys bonds, does not mechanically multiply into M1 or M2.</p>
+<p>The United Kingdom is a different system with the same caution. The Bank of England implements policy through Bank Rate in a framework with a large stock of reserves, not through a binding cash ratio that multiplies deposits by a fixed factor. Read <a href="../explainers/quantitative-easing.html">quantitative easing</a> for that balance sheet, and <a href="../explainers/money-supply-m1-m2.html">money supply M1 and M2</a> for why UK notes and coin and M4ex are not US M1 and M2. This calculator does not estimate either country's multiplier from data.</p>
+
+<h2>Where to find the inputs</h2>
+<p>Type your own numbers. This page does not download official series. For the US required reserve ratio that applied before 26 March 2020, read the Federal Reserve reserve requirements page, then type the percent you want the sketch to use. For current money stocks, read the H.6 release and then type a deposit figure you choose. The <a href="velocity-of-money.html">velocity of money calculator</a> is the companion sketch for MV equals PY. The <a href="fiscal-multiplier.html">fiscal multiplier calculator</a> is a different multiple, about spending and the marginal propensity to consume, not about bank reserves. Wider context sits on the <a href="../topics/monetary-fiscal.html">monetary and fiscal policy</a> topic.</p>
+
+<h2>Sources</h2>
+<ul class="source-list">
+<li><a href="https://www.federalreserve.gov/monetarypolicy/reservereq.htm" rel="noopener noreferrer">Federal Reserve: Reserve Requirements (ratios set to zero percent effective 26 March 2020)</a></li>
+<li><a href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20200315b.htm" rel="noopener noreferrer">Federal Reserve: Reserve requirement ratios to zero percent, announcement of 15 March 2020</a></li>
+<li><a href="https://www.federalreserve.gov/econres/notes/feds-notes/implementing-monetary-policy-in-an-ample-reserves-regime-the-basics-note-1-of-3-20200701.html" rel="noopener noreferrer">Federal Reserve: Implementing Monetary Policy in an Ample Reserves Regime (FEDS note, 1 July 2020)</a></li>
+<li><a href="https://www.federalreserve.gov/econres/feds/money-reserves-and-the-transmission-of-monetary-policy-does-the-money-multiplier-exist.htm" rel="noopener noreferrer">Federal Reserve: Money, Reserves, and the Transmission of Monetary Policy (Carpenter and Demiralp)</a></li>
+</ul>
+
+<p><a href="index.html">All calculators</a> · <a href="../explainers/money-supply-m1-m2.html">Money supply M1 and M2</a> · <a href="velocity-of-money.html">Velocity of money calculator</a> · <a href="../topics/monetary-fiscal.html">Monetary and fiscal policy</a> · <a href="../explainers/quantitative-easing.html">Quantitative easing</a> · <a href="fiscal-multiplier.html">Fiscal multiplier calculator</a> · <a href="../faq/">FAQ</a></p>
+</div>
+</main>
+<footer class="site-footer">
+<div class="footer-inner">
+<div>
+<a class="logo" href="../" style="color:#fff;text-decoration:none">Simple <span style="color:#a8d4d4">Macro</span> Guide</a>
+<p style="margin:0.6rem 0 0;max-width:28rem">Clear, calm explanations of how economies work, with a UK and US focus. Educational only; not investment advice.</p>
+</div>
+<div>
+<h2>Explore</h2>
+<ul>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data guides</a></li>
+<li><a href="../calculators/">Calculators</a></li>
+</ul>
+</div>
+<div>
+<h2>About</h2>
+<ul>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+<li><a href="../disclaimer/">Disclaimer</a></li>
+<li><a href="../sources/">Sources</a></li>
+<li><a href="mailto:joshuaofisrael@gmail.com?subject=%5BContact%3A%20simplemacroguide%5D">Email</a></li>
+</ul>
+</div>
+<div class="footer-note">
+<p class="footer-legal">© 2026 Joshua Israel Ventures LLC. All rights reserved. Simple Macro Guide is owned and operated by Joshua Israel Ventures LLC.</p>
+<p>Simple Macro Guide is a brand name, not a separate company. Operated by Joshua Israel Ventures LLC. Content is for education. Not financial, investment, tax, or legal advice. Verify figures with primary sources such as the World Bank, ONS, and FRED.</p>
+<ul class="footer-legal-links" aria-label="Legal">
+<li><a href="../terms/">Terms of Use</a></li>
+<li><a href="../privacy/">Privacy Policy</a></li>
+<li><a href="../disclaimer/">Disclaimer</a></li>
+<li><a href="../contact/">Contact</a></li>
+</ul>
+</div>
+</div>
+</footer>
+<script src="../js/main.js"></script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "dec4f4e1d796410298bde95049563074"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
