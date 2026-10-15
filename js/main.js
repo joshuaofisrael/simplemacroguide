@@ -2995,4 +2995,437 @@
     }
     setMmMode("cash");
   }
+
+  /* Opportunity cost and comparative advantage */
+  var opportunityCostBtn = document.getElementById("calc-opportunity-cost");
+  if (opportunityCostBtn) {
+    var ocGoodANameEl = document.getElementById("oc-good-a-name");
+    var ocGoodBNameEl = document.getElementById("oc-good-b-name");
+    var ocProducerEl = document.getElementById("oc-producer");
+    var ocAEl = document.getElementById("oc-a");
+    var ocBEl = document.getElementById("oc-b");
+    var ocP1NameEl = document.getElementById("oc-p1-name");
+    var ocP1AEl = document.getElementById("oc-p1-a");
+    var ocP1BEl = document.getElementById("oc-p1-b");
+    var ocP2NameEl = document.getElementById("oc-p2-name");
+    var ocP2AEl = document.getElementById("oc-p2-a");
+    var ocP2BEl = document.getElementById("oc-p2-b");
+    var ocSingleFields = document.getElementById("oc-single-fields");
+    var ocCompareFields = document.getElementById("oc-compare-fields");
+    var ocModeHint = document.getElementById("oc-mode-hint");
+    var ocModeSingleBtn = document.getElementById("oc-mode-single");
+    var ocModeCompareBtn = document.getElementById("oc-mode-compare");
+    var ocResultEl = document.getElementById("calc-opportunity-cost-result");
+    var ocABlock = document.getElementById("oc-a-block");
+    var ocBBlock = document.getElementById("oc-b-block");
+    var ocALabel = document.getElementById("oc-a-label");
+    var ocBLabel = document.getElementById("oc-b-label");
+    var ocAAmount = document.getElementById("oc-a-amount");
+    var ocBAmount = document.getElementById("oc-b-amount");
+    var ocADetail = document.getElementById("oc-a-detail");
+    var ocBDetail = document.getElementById("oc-b-detail");
+    var ocAbsoluteBlock = document.getElementById("oc-absolute-block");
+    var ocComparativeBlock = document.getElementById("oc-comparative-block");
+    var ocTradeBlock = document.getElementById("oc-trade-block");
+    var ocAbsoluteDetail = document.getElementById("oc-absolute-detail");
+    var ocComparativeDetail = document.getElementById("oc-comparative-detail");
+    var ocTradeLabel = document.getElementById("oc-trade-label");
+    var ocTradeAmount = document.getElementById("oc-trade-amount");
+    var ocTradeDetail = document.getElementById("oc-trade-detail");
+    var ocArithmetic = document.getElementById("oc-arithmetic");
+    var ocReadNote = document.getElementById("oc-read-note");
+    var ocSummary = document.getElementById("oc-summary");
+    var ocTableNote = document.getElementById("oc-table-note");
+    var ocTableWrap = document.getElementById("oc-table-wrap");
+    var ocErrorEl = document.getElementById("calc-opportunity-cost-error");
+    var ocResetBtn = document.getElementById("calc-opportunity-cost-reset");
+    var ocMode = "single";
+    var ocModeButtons = [ocModeSingleBtn, ocModeCompareBtn];
+    var ocOutputMax = 1000000000000;
+    var ocInputs = [
+      ocGoodANameEl, ocGoodBNameEl, ocProducerEl, ocAEl, ocBEl,
+      ocP1NameEl, ocP1AEl, ocP1BEl, ocP2NameEl, ocP2AEl, ocP2BEl
+    ];
+
+    function showOcError(msg) {
+      ocErrorEl.textContent = msg;
+      ocErrorEl.classList.add("visible");
+      ocResultEl.classList.remove("visible");
+    }
+    function clearOcError() {
+      ocErrorEl.classList.remove("visible");
+      ocErrorEl.textContent = "";
+    }
+    function formatOc(n) {
+      var abs = Math.abs(n);
+      if (abs !== 0 && abs < 0.0001) {
+        return n.toLocaleString(undefined, { maximumSignificantDigits: 4 });
+      }
+      return n.toLocaleString(undefined, {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: abs >= 1000 ? 2 : 4
+      });
+    }
+    function isWhole(n) {
+      return isFinite(n) && Math.abs(n - Math.round(n)) < 1e-9 && Math.abs(n) <= ocOutputMax;
+    }
+    function gcdOc(a, b) {
+      a = Math.abs(Math.round(a));
+      b = Math.abs(Math.round(b));
+      while (b) {
+        var t = b;
+        b = a % b;
+        a = t;
+      }
+      return a || 1;
+    }
+    function fractionText(numer, denom) {
+      if (!isWhole(numer) || !isWhole(denom) || denom === 0) return "";
+      var n = Math.round(numer);
+      var d = Math.round(denom);
+      var g = gcdOc(n, d);
+      n = n / g;
+      d = d / g;
+      if (d < 0) {
+        n = -n;
+        d = -d;
+      }
+      if (d === 1) return String(n);
+      if (d > 100) return "";
+      return n + "/" + d;
+    }
+    function ratioInfo(numer, denom) {
+      var ratio = numer / denom;
+      var frac = fractionText(numer, denom);
+      var decimal = formatOc(ratio);
+      return {
+        ratio: ratio,
+        decimal: decimal,
+        fraction: frac,
+        primary: frac || decimal
+      };
+    }
+    function nearlyEqual(a, b) {
+      var scale = Math.max(1, Math.abs(a), Math.abs(b));
+      return Math.abs(a - b) <= scale * 1e-9;
+    }
+    function readOcName(el, fallback) {
+      var raw = String(el.value).replace(/\s+/g, " ").trim();
+      if (raw === "") return { ok: true, value: fallback };
+      if (raw.length > 40) {
+        return { ok: false, message: "Use a name of 40 characters or fewer, or leave the name blank." };
+      }
+      return { ok: true, value: raw };
+    }
+    function readOcOutput(el, label) {
+      var raw = String(el.value).trim();
+      if (raw === "" || !/^[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?$/.test(raw)) {
+        return {
+          ok: false,
+          message: "Enter a numeric value for " + label + ". Blank and non numeric text are not valid."
+        };
+      }
+      var n = Number(raw);
+      if (!isFinite(n)) {
+        return { ok: false, message: "Enter a finite number for " + label + "." };
+      }
+      if (n <= 0) {
+        return {
+          ok: false,
+          message: "Enter " + label + " greater than 0. Zero and negative outputs are not defined in this opportunity cost ratio."
+        };
+      }
+      if (n > ocOutputMax) {
+        return { ok: false, message: "Enter " + label + " up to 1,000,000,000,000." };
+      }
+      return { ok: true, value: n };
+    }
+    function ocCell(row, tag, text, header) {
+      var cell = document.createElement(tag);
+      cell.textContent = text;
+      if (header) cell.setAttribute("scope", header);
+      row.appendChild(cell);
+    }
+    function renderOcTable(goodA, goodB, rows) {
+      ocTableWrap.textContent = "";
+      var table = document.createElement("table");
+      table.className = "stat-table";
+      var caption = document.createElement("caption");
+      caption.style.captionSide = "bottom";
+      caption.style.fontSize = "0.85rem";
+      caption.style.color = "var(--ink-muted)";
+      caption.style.padding = "0.65rem 0.85rem";
+      caption.style.textAlign = "left";
+      caption.textContent = "Live comparison from the numbers you typed. Classroom arithmetic, not country data.";
+      table.appendChild(caption);
+      var thead = document.createElement("thead");
+      var headRow = document.createElement("tr");
+      var headers = [
+        "Producer",
+        "Max " + goodA,
+        "Max " + goodB,
+        "Opportunity cost of 1 " + goodA,
+        "Opportunity cost of 1 " + goodB
+      ];
+      var h;
+      for (h = 0; h < headers.length; h++) ocCell(headRow, "th", headers[h], "col");
+      thead.appendChild(headRow);
+      table.appendChild(thead);
+      var tbody = document.createElement("tbody");
+      var r;
+      for (r = 0; r < rows.length; r++) {
+        var tr = document.createElement("tr");
+        ocCell(tr, "th", rows[r].name, "row");
+        ocCell(tr, "td", rows[r].maxA, null);
+        ocCell(tr, "td", rows[r].maxB, null);
+        ocCell(tr, "td", rows[r].ocA, null);
+        ocCell(tr, "td", rows[r].ocB, null);
+        tbody.appendChild(tr);
+      }
+      table.appendChild(tbody);
+      ocTableWrap.appendChild(table);
+    }
+    function clearOcTable() {
+      ocTableWrap.textContent = "";
+    }
+    function absoluteSentence(goodName, name1, max1, name2, max2) {
+      if (nearlyEqual(max1, max2)) {
+        return "Tie in " + goodName + ". " + name1 + " and " + name2 + " can each produce " + formatOc(max1) + ".";
+      }
+      if (max1 > max2) {
+        return name1 + " has the absolute advantage in " + goodName + " (" + formatOc(max1) + " compared with " + formatOc(max2) + ").";
+      }
+      return name2 + " has the absolute advantage in " + goodName + " (" + formatOc(max2) + " compared with " + formatOc(max1) + ").";
+    }
+    function comparativeSentence(goodName, otherName, name1, oc1, name2, oc2) {
+      if (nearlyEqual(oc1, oc2)) {
+        return "Neither has a comparative advantage in " + goodName + ". Both give up " + formatOc(oc1) + " " + otherName + " to make 1 " + goodName + ".";
+      }
+      if (oc1 < oc2) {
+        return name1 + " has the comparative advantage in " + goodName + ", with an opportunity cost of " + formatOc(oc1) + " " + otherName + " compared with " + formatOc(oc2) + " for " + name2 + ".";
+      }
+      return name2 + " has the comparative advantage in " + goodName + ", with an opportunity cost of " + formatOc(oc2) + " " + otherName + " compared with " + formatOc(oc1) + " for " + name1 + ".";
+    }
+    function ratioSentence(numer, denom, unit) {
+      var info = ratioInfo(numer, denom);
+      var text = formatOc(numer) + " divided by " + formatOc(denom) + ", which is " + info.decimal + " " + unit;
+      if (info.fraction && info.fraction !== info.decimal) text += " (" + info.fraction + ")";
+      return text;
+    }
+    function runOpportunityCost() {
+      clearOcError();
+      var goodA = readOcName(ocGoodANameEl, "good A");
+      if (!goodA.ok) {
+        showOcError(goodA.message);
+        return;
+      }
+      var goodB = readOcName(ocGoodBNameEl, "good B");
+      if (!goodB.ok) {
+        showOcError(goodB.message);
+        return;
+      }
+      if (goodA.value.toLowerCase() === goodB.value.toLowerCase()) {
+        goodA.value = goodA.value + " (good A)";
+        goodB.value = goodB.value + " (good B)";
+      }
+
+      if (ocMode === "single") {
+        var producer = readOcName(ocProducerEl, "This producer");
+        if (!producer.ok) {
+          showOcError(producer.message);
+          return;
+        }
+        var outA = readOcOutput(ocAEl, goodA.value + " output");
+        if (!outA.ok) {
+          showOcError(outA.message);
+          return;
+        }
+        var outB = readOcOutput(ocBEl, goodB.value + " output");
+        if (!outB.ok) {
+          showOcError(outB.message);
+          return;
+        }
+        var costA = ratioInfo(outB.value, outA.value);
+        var costB = ratioInfo(outA.value, outB.value);
+        ocABlock.hidden = false;
+        ocBBlock.hidden = false;
+        ocAbsoluteBlock.hidden = true;
+        ocComparativeBlock.hidden = true;
+        ocTradeBlock.hidden = true;
+        clearOcTable();
+        ocTableNote.textContent = "";
+        ocALabel.textContent = "Opportunity cost of 1 " + goodA.value;
+        ocBLabel.textContent = "Opportunity cost of 1 " + goodB.value;
+        ocAAmount.textContent = costA.primary + " " + goodB.value;
+        ocBAmount.textContent = costB.primary + " " + goodA.value;
+        ocADetail.textContent = producer.value + " gives up " + costA.decimal + " " + goodB.value + " to produce 1 more " + goodA.value + ". That is " + goodB.value + " output divided by " + goodA.value + " output.";
+        ocBDetail.textContent = producer.value + " gives up " + costB.decimal + " " + goodA.value + " to produce 1 more " + goodB.value + ". That is " + goodA.value + " output divided by " + goodB.value + " output.";
+        ocArithmetic.textContent =
+          "Opportunity cost of 1 " + goodA.value + " equals " + ratioSentence(outB.value, outA.value, goodB.value) + ". " +
+          "Opportunity cost of 1 " + goodB.value + " equals " + ratioSentence(outA.value, outB.value, goodA.value) + ".";
+        ocReadNote.textContent =
+          "These two ratios are reciprocals. They describe one producer and one unit of resource, or one unit of time. They do not say who should trade, and they are not a forecast of exports.";
+        ocSummary.textContent =
+          producer.value + ". " +
+          formatOc(outA.value) + " " + goodA.value + " or " + formatOc(outB.value) + " " + goodB.value + " per unit of resource. " +
+          "Opportunity cost of 1 " + goodA.value + " is " + costA.primary + " " + goodB.value + ". " +
+          "Opportunity cost of 1 " + goodB.value + " is " + costB.primary + " " + goodA.value + ". " +
+          "Educational estimate only. Not a forecast and not investment advice.";
+        ocResultEl.classList.add("visible");
+        return;
+      }
+
+      var name1 = readOcName(ocP1NameEl, "Producer 1");
+      if (!name1.ok) {
+        showOcError(name1.message);
+        return;
+      }
+      var name2 = readOcName(ocP2NameEl, "Producer 2");
+      if (!name2.ok) {
+        showOcError(name2.message);
+        return;
+      }
+      if (name1.value.toLowerCase() === name2.value.toLowerCase()) {
+        name1.value = name1.value + " (producer 1)";
+        name2.value = name2.value + " (producer 2)";
+      }
+      var p1a = readOcOutput(ocP1AEl, name1.value + " maximum " + goodA.value);
+      if (!p1a.ok) {
+        showOcError(p1a.message);
+        return;
+      }
+      var p1b = readOcOutput(ocP1BEl, name1.value + " maximum " + goodB.value);
+      if (!p1b.ok) {
+        showOcError(p1b.message);
+        return;
+      }
+      var p2a = readOcOutput(ocP2AEl, name2.value + " maximum " + goodA.value);
+      if (!p2a.ok) {
+        showOcError(p2a.message);
+        return;
+      }
+      var p2b = readOcOutput(ocP2BEl, name2.value + " maximum " + goodB.value);
+      if (!p2b.ok) {
+        showOcError(p2b.message);
+        return;
+      }
+
+      var oc1a = ratioInfo(p1b.value, p1a.value);
+      var oc1b = ratioInfo(p1a.value, p1b.value);
+      var oc2a = ratioInfo(p2b.value, p2a.value);
+      var oc2b = ratioInfo(p2a.value, p2b.value);
+      var sameA = nearlyEqual(oc1a.ratio, oc2a.ratio);
+      var lowA = Math.min(oc1a.ratio, oc2a.ratio);
+      var highA = Math.max(oc1a.ratio, oc2a.ratio);
+      var clothMaker = oc1a.ratio < oc2a.ratio ? name1.value : name2.value;
+      var wineMaker = oc1b.ratio < oc2b.ratio ? name1.value : name2.value;
+
+      ocABlock.hidden = true;
+      ocBBlock.hidden = true;
+      ocAbsoluteBlock.hidden = false;
+      ocComparativeBlock.hidden = false;
+      ocTradeBlock.hidden = false;
+      ocAbsoluteDetail.textContent =
+        absoluteSentence(goodA.value, name1.value, p1a.value, name2.value, p2a.value) + " " +
+        absoluteSentence(goodB.value, name1.value, p1b.value, name2.value, p2b.value);
+      ocComparativeDetail.textContent =
+        comparativeSentence(goodA.value, goodB.value, name1.value, oc1a.ratio, name2.value, oc2a.ratio) + " " +
+        comparativeSentence(goodB.value, goodA.value, name1.value, oc1b.ratio, name2.value, oc2b.ratio);
+      ocTradeLabel.textContent = "Terms of trade for 1 " + goodA.value;
+      if (sameA) {
+        ocTradeAmount.textContent = "No range";
+        ocTradeDetail.textContent =
+          "Opportunity costs are equal, so neither producer has a comparative advantage in either good. There is no terms of trade range that makes both gain from specialization, because a price that matches one producer's opportunity cost matches the other's too.";
+      } else {
+        ocTradeAmount.textContent = formatOc(lowA) + " to " + formatOc(highA) + " " + goodB.value;
+        ocTradeDetail.textContent =
+          "Both gain if they specialize and 1 " + goodA.value + " trades for strictly more than " + formatOc(lowA) + " " + goodB.value +
+          " and strictly less than " + formatOc(highA) + " " + goodB.value + ". " +
+          "Equivalently, 1 " + goodB.value + " trades for strictly more than " + formatOc(1 / highA) + " " + goodA.value +
+          " and strictly less than " + formatOc(1 / lowA) + " " + goodA.value + ". " +
+          clothMaker + " specializes in " + goodA.value + ". " + wineMaker + " specializes in " + goodB.value + ". " +
+          "A price equal to either opportunity cost leaves one producer with no gain.";
+      }
+      ocArithmetic.textContent =
+        name1.value + ": opportunity cost of 1 " + goodA.value + " equals " + ratioSentence(p1b.value, p1a.value, goodB.value) + ". " +
+        "Opportunity cost of 1 " + goodB.value + " equals " + ratioSentence(p1a.value, p1b.value, goodA.value) + ". " +
+        name2.value + ": opportunity cost of 1 " + goodA.value + " equals " + ratioSentence(p2b.value, p2a.value, goodB.value) + ". " +
+        "Opportunity cost of 1 " + goodB.value + " equals " + ratioSentence(p2a.value, p2b.value, goodA.value) + ".";
+      ocReadNote.textContent =
+        "Absolute advantage compares the maximum outputs. Comparative advantage compares the opportunity costs. A producer can lead on both maximums and still have the higher opportunity cost in one good. This is a straight frontier with constant opportunity cost. It is classroom arithmetic, not trade policy advice, and not a forecast of exports.";
+      ocSummary.textContent =
+        name1.value + " " + formatOc(p1a.value) + " " + goodA.value + " or " + formatOc(p1b.value) + " " + goodB.value + ". " +
+        name2.value + " " + formatOc(p2a.value) + " " + goodA.value + " or " + formatOc(p2b.value) + " " + goodB.value + ". " +
+        (sameA
+          ? "Opportunity costs match, so neither has a comparative advantage. "
+          : clothMaker + " has the comparative advantage in " + goodA.value + ". " + wineMaker + " has the comparative advantage in " + goodB.value + ". ") +
+        "Educational estimate only. Not a forecast and not investment advice.";
+      ocTableNote.textContent =
+        "Each row is one producer. Maximum output is what that producer can make if all resources go to that good. Opportunity cost of 1 " + goodA.value + " is maximum " + goodB.value + " divided by maximum " + goodA.value + ".";
+      renderOcTable(goodA.value, goodB.value, [
+        {
+          name: name1.value,
+          maxA: formatOc(p1a.value),
+          maxB: formatOc(p1b.value),
+          ocA: oc1a.primary + " " + goodB.value,
+          ocB: oc1b.primary + " " + goodA.value
+        },
+        {
+          name: name2.value,
+          maxA: formatOc(p2a.value),
+          maxB: formatOc(p2b.value),
+          ocA: oc2a.primary + " " + goodB.value,
+          ocB: oc2b.primary + " " + goodA.value
+        }
+      ]);
+      ocResultEl.classList.add("visible");
+    }
+    function setOcMode(mode) {
+      ocMode = mode;
+      ocSingleFields.hidden = mode !== "single";
+      ocCompareFields.hidden = mode !== "compare";
+      var activeBtn = mode === "compare" ? ocModeCompareBtn : ocModeSingleBtn;
+      var hint = "One producer. Enter how much of each good the same unit of resource, or the same amount of time, can produce. The opportunity cost of 1 unit of good A is good B output divided by good A output.";
+      if (mode === "compare") {
+        hint = "Two producers, constant opportunity cost. Enter each producer's maximum output of each good if all resources go to that good. That is a straight production possibilities frontier. The page then compares opportunity costs, absolute advantage, comparative advantage, and a terms of trade range.";
+      }
+      var i;
+      for (i = 0; i < ocModeButtons.length; i++) {
+        var on = ocModeButtons[i] === activeBtn;
+        ocModeButtons[i].className = on ? "btn" : "btn btn-secondary";
+        ocModeButtons[i].setAttribute("aria-pressed", on ? "true" : "false");
+      }
+      ocModeHint.textContent = hint;
+      runOpportunityCost();
+    }
+
+    ocModeSingleBtn.addEventListener("click", function () {
+      setOcMode("single");
+    });
+    ocModeCompareBtn.addEventListener("click", function () {
+      setOcMode("compare");
+    });
+    opportunityCostBtn.addEventListener("click", runOpportunityCost);
+    var ocInputIndex;
+    for (ocInputIndex = 0; ocInputIndex < ocInputs.length; ocInputIndex++) {
+      ocInputs[ocInputIndex].addEventListener("input", runOpportunityCost);
+    }
+    if (ocResetBtn) {
+      ocResetBtn.addEventListener("click", function () {
+        ocGoodANameEl.value = "cloth";
+        ocGoodBNameEl.value = "wine";
+        ocProducerEl.value = "Atelier";
+        ocAEl.value = "8";
+        ocBEl.value = "4";
+        ocP1NameEl.value = "Atelier";
+        ocP1AEl.value = "8";
+        ocP1BEl.value = "4";
+        ocP2NameEl.value = "Cellar";
+        ocP2AEl.value = "6";
+        ocP2BEl.value = "12";
+        setOcMode("single");
+      });
+    }
+    setOcMode("single");
+  }
 })();
