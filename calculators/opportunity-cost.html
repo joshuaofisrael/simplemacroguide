@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Opportunity cost and comparative advantage calculator | Simple Macro Guide</title>
+<meta name="description" content="Opportunity cost calculator for one producer, and a two producer comparative advantage table with absolute advantage and a terms of trade range. Classroom arithmetic. Educational only.">
+<link rel="canonical" href="https://simplemacroguide.com/calculators/opportunity-cost.html">
+<meta name="theme-color" content="#2a6f6f">
+<meta property="og:title" content="Opportunity cost and comparative advantage calculator | Simple Macro Guide">
+<meta property="og:description" content="Opportunity cost calculator for one producer, and a two producer comparative advantage table with absolute advantage and a terms of trade range. Classroom arithmetic. Educational only.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://simplemacroguide.com/calculators/opportunity-cost.html">
+<meta property="og:site_name" content="Simple Macro Guide">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Opportunity cost and comparative advantage calculator | Simple Macro Guide">
+<meta name="twitter:description" content="Opportunity cost calculator for one producer, and a two producer comparative advantage table with absolute advantage and a terms of trade range. Classroom arithmetic. Educational only.">
+<link rel="stylesheet" href="../css/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Opportunity cost and comparative advantage calculator",
+  "description": "Opportunity cost calculator for one producer, and a two producer comparative advantage table with absolute advantage and a terms of trade range. Classroom arithmetic. Educational only.",
+  "url": "https://simplemacroguide.com/calculators/opportunity-cost.html",
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://simplemacroguide.com/#organization",
+    "name": "Joshua Israel Ventures LLC",
+    "url": "https://simplemacroguide.com/",
+    "brand": {
+      "@type": "Brand",
+      "name": "Simple Macro Guide"
+    }
+  }
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="header-inner">
+<a class="logo" href="../">Simple <span>Macro</span> Guide</a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav class="site-nav" id="site-nav" aria-label="Primary"><ul>
+<li><a href="../">Home</a></li>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data</a></li>
+<li><a href="../calculators/" aria-current="page">Calculators</a></li>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+</ul></nav>
+</div>
+</header>
+<main id="main">
+
+<div class="wrap narrow">
+<header class="hero" style="border:none;margin:0;padding-bottom:0.5rem">
+<h1>Opportunity cost and comparative advantage calculator</h1>
+<p class="lede">The opportunity cost of one unit of a good is how much of the other good you give up to produce it. If the same resources can make 8 units of cloth or 4 units of wine, the opportunity cost of 1 cloth is 4 divided by 8, which is 0.5 wine, and the opportunity cost of 1 wine is 8 divided by 4, which is 2 cloth. With two producers, comparative advantage belongs to whoever has the lower opportunity cost of a good. Absolute advantage is different. It is simply who can produce more of that good. This page runs both calculations in your browser. It is classroom arithmetic, not a reading of UK or US trade data, and not advice about tariffs or trade deals.</p>
+</header>
+
+<div class="calc-panel calc-panel-wide" id="opportunity-cost-calculator" style="max-width:100%">
+<p id="oc-mode-label" style="font-weight:600;font-size:0.9rem;margin:0 0 0.35rem">Which calculation</p>
+<div class="calc-actions" style="margin-top:0" role="group" aria-labelledby="oc-mode-label">
+<button type="button" class="btn" id="oc-mode-single" aria-pressed="true">One producer</button>
+<button type="button" class="btn btn-secondary" id="oc-mode-compare" aria-pressed="false">Two producers</button>
+</div>
+<p class="hint" id="oc-mode-hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.55rem 0 0.75rem">One producer. Enter how much of each good the same unit of resource, or the same amount of time, can produce. The opportunity cost of 1 unit of good A is good B output divided by good A output.</p>
+
+<label for="oc-good-a-name">Good A name (optional)</label>
+<input id="oc-good-a-name" type="text" value="cloth" maxlength="40" autocomplete="off">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Optional. The EXAMPLE name is cloth. Leave blank and the result says good A.</p>
+
+<label for="oc-good-b-name">Good B name (optional)</label>
+<input id="oc-good-b-name" type="text" value="wine" maxlength="40" autocomplete="off">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Optional. The EXAMPLE name is wine. Leave blank and the result says good B. Use the same two goods for both producers.</p>
+
+<div id="oc-single-fields">
+<label for="oc-producer">Producer name (optional)</label>
+<input id="oc-producer" type="text" value="Atelier" maxlength="40" autocomplete="off">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Optional. The EXAMPLE name is Atelier, a fictional workshop. Leave blank and the result says This producer.</p>
+
+<label for="oc-a">Good A output per unit of resource</label>
+<input id="oc-a" type="number" step="any" value="8" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">How much of good A the producer can make with one unit of resource, or one unit of time. The EXAMPLE default is 8. Enter a number greater than 0.</p>
+
+<label for="oc-b">Good B output per same unit</label>
+<input id="oc-b" type="number" step="any" value="4" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">How much of good B the same unit of resource can make instead. The EXAMPLE default is 4. Enter a number greater than 0. Zero and negative outputs are not defined in this ratio.</p>
+</div>
+
+<div id="oc-compare-fields" hidden>
+<label for="oc-p1-name">Producer 1 name (optional)</label>
+<input id="oc-p1-name" type="text" value="Atelier" maxlength="40" autocomplete="off">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Optional. The EXAMPLE name is Atelier. Leave blank and the result says Producer 1. This is a classroom label, not a country.</p>
+
+<label for="oc-p1-a">Producer 1 maximum output of good A</label>
+<input id="oc-p1-a" type="number" step="any" value="8" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Maximum good A if producer 1 puts all resources into good A. The EXAMPLE default is 8. Constant opportunity cost means the frontier between this maximum and the good B maximum is a straight line.</p>
+
+<label for="oc-p1-b">Producer 1 maximum output of good B</label>
+<input id="oc-p1-b" type="number" step="any" value="4" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Maximum good B if producer 1 puts all resources into good B. The EXAMPLE default is 4. Enter a number greater than 0.</p>
+
+<label for="oc-p2-name">Producer 2 name (optional)</label>
+<input id="oc-p2-name" type="text" value="Cellar" maxlength="40" autocomplete="off">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Optional. The EXAMPLE name is Cellar, a second fictional workshop. Leave blank and the result says Producer 2.</p>
+
+<label for="oc-p2-a">Producer 2 maximum output of good A</label>
+<input id="oc-p2-a" type="number" step="any" value="6" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Maximum good A if producer 2 puts all resources into good A. The EXAMPLE default is 6. Enter a number greater than 0.</p>
+
+<label for="oc-p2-b">Producer 2 maximum output of good B</label>
+<input id="oc-p2-b" type="number" step="any" value="12" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Maximum good B if producer 2 puts all resources into good B. The EXAMPLE default is 12. Enter a number greater than 0.</p>
+</div>
+
+<div class="calc-actions">
+<button type="button" class="btn" id="calc-opportunity-cost">Calculate</button>
+<button type="button" class="btn btn-secondary" id="calc-opportunity-cost-reset">Reset</button>
+</div>
+
+<p class="calc-error" id="calc-opportunity-cost-error" role="alert"></p>
+
+<div class="calc-result" id="calc-opportunity-cost-result" role="status" aria-live="polite">
+<div class="result-block" id="oc-a-block">
+<p class="result-label" id="oc-a-label">Opportunity cost of 1 unit of good A</p>
+<div class="amount" id="oc-a-amount"></div>
+<p class="detail" id="oc-a-detail"></p>
+</div>
+<div class="result-block" id="oc-b-block">
+<p class="result-label" id="oc-b-label">Opportunity cost of 1 unit of good B</p>
+<div class="amount" id="oc-b-amount"></div>
+<p class="detail" id="oc-b-detail"></p>
+</div>
+<div class="result-block" id="oc-absolute-block" hidden>
+<p class="result-label">Absolute advantage</p>
+<p class="detail" id="oc-absolute-detail"></p>
+</div>
+<div class="result-block" id="oc-comparative-block" hidden>
+<p class="result-label">Comparative advantage</p>
+<p class="detail" id="oc-comparative-detail"></p>
+</div>
+<div class="result-block" id="oc-trade-block" hidden>
+<p class="result-label" id="oc-trade-label">Terms of trade</p>
+<div class="amount" id="oc-trade-amount"></div>
+<p class="detail" id="oc-trade-detail"></p>
+</div>
+<div class="result-block">
+<p class="result-label">Formula with your numbers</p>
+<p class="detail" id="oc-arithmetic"></p>
+</div>
+<div class="result-block">
+<p class="result-label">How to read this</p>
+<p class="detail" id="oc-read-note"></p>
+</div>
+<p class="detail" id="oc-summary"></p>
+<p class="detail" id="oc-table-note"></p>
+<div id="oc-table-wrap" style="overflow-x:auto"></div>
+</div>
+</div>
+
+<div class="callout" style="margin-top:1.5rem">
+<strong>How to read this.</strong> One producer mode divides the two outputs that the same resources can make. Two producer mode uses those same ratios on a straight production possibilities frontier, then asks who can produce more (absolute advantage) and who gives up less (comparative advantage). A price that sits strictly between the two opportunity costs lets both sides gain if they specialize. For the definitions in one line, see <a href="../glossary/#opportunity-cost">opportunity cost</a> and <a href="../glossary/#comparative-advantage">comparative advantage</a>. For the wider setting, read <a href="../topics/international-trade.html">international trade</a> and <a href="../topics/supply-demand.html">supply and demand</a>.
+</div>
+
+<div class="callout warning">
+<span class="example-label">EXAMPLE</span>
+<p style="margin:0">The EXAMPLE uses two fictional workshops, Atelier and Cellar, and two goods, cloth and wine. These are invented classroom numbers, not statistics for any country. Atelier can produce 8 cloth or 4 wine with the same resources. Cellar can produce 6 cloth or 12 wine. Atelier's opportunity cost of 1 cloth is 0.5 wine. Cellar's opportunity cost of 1 cloth is 2 wine. Atelier has the absolute advantage in cloth. Cellar has the absolute advantage in wine. Atelier has the comparative advantage in cloth. Cellar has the comparative advantage in wine. Both gain if 1 cloth trades for strictly more than 0.5 wine and strictly less than 2 wine. One producer mode opens on Atelier's 8 and 4.</p>
+</div>
+
+<div class="callout warning">
+<span class="example-label">Educational only</span>
+<p style="margin:0">Not investment advice and not trade policy advice. Nothing here says a government should impose a tariff, sign a trade deal, or specialize in a particular industry. A lower opportunity cost in this sketch is not a forecast of exports. The calculator does not fetch live data.</p>
+</div>
+
+<h2>The classroom formula</h2>
+<blockquote>Opportunity cost of 1 unit of good A = good B output / good A output</blockquote>
+<blockquote>Opportunity cost of 1 unit of good B = good A output / good B output</blockquote>
+<p>For one producer, use the same unit of resource, or the same amount of time, for both goods. Call good A output Qa and good B output Qb. The opportunity cost of 1 unit of A is Qb divided by Qa, measured in units of B. The opportunity cost of 1 unit of B is Qa divided by Qb, measured in units of A. The two ratios are reciprocals. If 1 cloth costs 0.5 wine, then 1 wine costs 2 cloth.</p>
+<p>For two producers with constant opportunity cost, enter the maximum of each good when all resources go to that good. Those two points are the ends of a straight production possibilities frontier. The slope between them is the opportunity cost, and it does not change along that line. A bowed frontier, where the opportunity cost rises as you produce more of a good, is a different sketch. This calculator does not fit that case.</p>
+<p>Absolute advantage belongs to the producer who can make more of a good with the resources in the table. If the maximums are equal, call it a tie. Comparative advantage belongs to the producer with the lower opportunity cost of that good. If the opportunity costs are equal, neither producer has a comparative advantage in that good. With two goods and positive outputs, comparative advantage splits unless the opportunity costs match. One producer can have the absolute advantage in both goods and still lack the comparative advantage in one of them.</p>
+<p>Mutually beneficial terms of trade sit strictly between the two opportunity costs of the good being traded. The producer who specializes in cloth will sell cloth only at a price above what cloth costs them in wine. The other producer will buy cloth only at a price below what cloth would cost them to make. At either endpoint, one side does not gain. When the opportunity costs are equal, there is no range that makes both gain from specialization.</p>
+<p>Worked example. Atelier's maximum is 8 cloth or 4 wine. Opportunity cost of 1 cloth equals 4 divided by 8, which is 0.5 wine, or 1/2. Opportunity cost of 1 wine equals 8 divided by 4, which is 2 cloth. Cellar's maximum is 6 cloth or 12 wine. Opportunity cost of 1 cloth equals 12 divided by 6, which is 2 wine. Opportunity cost of 1 wine equals 6 divided by 12, which is 0.5 cloth, or 1/2. Atelier gives up less wine per cloth, so Atelier has the comparative advantage in cloth. Cellar gives up less cloth per wine, so Cellar has the comparative advantage in wine. Both gain if 1 cloth trades for strictly more than 0.5 wine and strictly less than 2 wine. The same range, read the other way, is 1 wine for strictly more than 0.5 cloth and strictly less than 2 cloth.</p>
+<table class="stat-table">
+<caption style="caption-side:bottom;font-size:0.85rem;color:var(--ink-muted);padding:0.65rem 0.85rem;text-align:left">EXAMPLE outputs for two fictional workshops. Invented classroom numbers, not country data.</caption>
+<thead>
+<tr><th scope="col">Producer</th><th scope="col">Max cloth</th><th scope="col">Max wine</th><th scope="col">Opportunity cost of 1 cloth</th><th scope="col">Opportunity cost of 1 wine</th></tr>
+</thead>
+<tbody>
+<tr><th scope="row">Atelier</th><td>8</td><td>4</td><td>0.5 wine</td><td>2 cloth</td></tr>
+<tr><th scope="row">Cellar</th><td>6</td><td>12</td><td>2 wine</td><td>0.5 cloth</td></tr>
+</tbody>
+</table>
+<p>A further EXAMPLE shows that absolute advantage and comparative advantage need not point the same way. Suppose Atelier could produce 20 cloth or 20 wine, and Cellar still produced 6 cloth or 12 wine. Atelier would have the absolute advantage in both goods, because 20 is larger than 6 and 20 is larger than 12. Atelier's opportunity cost of 1 wine would be 1 cloth. Cellar's opportunity cost of 1 wine would still be 0.5 cloth. Cellar would keep the comparative advantage in wine. Those figures are still invented classroom arithmetic.</p>
+
+<h2>UK and US framing</h2>
+<p>UK and US courses teach this arithmetic in the first weeks. In the United States, AP Macroeconomics Unit 1 includes opportunity cost and the production possibilities curve, then comparative advantage and gains from trade. Those topic names are course context only. This page is not an official exam question and is not affiliated with the College Board. In the United Kingdom, introductory and A level economics use the same ratios. The labels on this page are classroom names, Atelier and Cellar, cloth and wine. They are not the United Kingdom, the United States, or any other country.</p>
+<p>A trade deficit, a tariff, or an exchange rate does not fall out of these ratios. This is classroom arithmetic, not trade policy advice, and not a recommendation about what either country should export. Real trade also reflects scale, supply chains, and policy. For balances and exchange rates, read <a href="../topics/international-trade.html">international trade</a> and the <a href="purchasing-power-parity.html">purchasing power parity calculator</a>. For how a price coordinates buyers and sellers inside one market, read <a href="../topics/supply-demand.html">supply and demand</a>. The glossary entries for <a href="../glossary/#opportunity-cost">opportunity cost</a> and <a href="../glossary/#comparative-advantage">comparative advantage</a> state the definitions in one line each. Questions about what this site is, and is not, are on the <a href="../faq/">FAQ</a>.</p>
+
+<h2>Sources</h2>
+<ul class="source-list">
+<li><a href="https://apcentral.collegeboard.org/courses/ap-macroeconomics" rel="noopener noreferrer">College Board: AP Macroeconomics course (Unit 1, Basic Economic Concepts, as course context only)</a></li>
+<li><a href="https://apcentral.collegeboard.org/media/pdf/ap-macroeconomics-course-and-exam-description.pdf" rel="noopener noreferrer">College Board: AP Macroeconomics Course and Exam Description (topic 1.2 Opportunity Cost and the Production Possibilities Curve, topic 1.3 Comparative Advantage and Gains from Trade)</a></li>
+<li><a href="https://openstax.org/books/principles-economics-3e/pages/33-1-absolute-and-comparative-advantage" rel="noopener noreferrer">OpenStax: Principles of Economics 3e, 33.1 Absolute and Comparative Advantage</a></li>
+<li><a href="https://openstax.org/books/principles-economics-3e/pages/2-2-the-production-possibilities-frontier-and-social-choices" rel="noopener noreferrer">OpenStax: Principles of Economics 3e, 2.2 The Production Possibilities Frontier and Social Choices</a></li>
+</ul>
+
+<p><a href="index.html">All calculators</a> · <a href="../topics/international-trade.html">International trade</a> · <a href="../topics/supply-demand.html">Supply and demand</a> · <a href="../glossary/#opportunity-cost">Opportunity cost</a> · <a href="../glossary/#comparative-advantage">Comparative advantage</a> · <a href="purchasing-power-parity.html">Purchasing power parity calculator</a> · <a href="../faq/">FAQ</a></p>
+</div>
+</main>
+<footer class="site-footer">
+<div class="footer-inner">
+<div>
+<a class="logo" href="../" style="color:#fff;text-decoration:none">Simple <span style="color:#a8d4d4">Macro</span> Guide</a>
+<p style="margin:0.6rem 0 0;max-width:28rem">Clear, calm explanations of how economies work, with a UK and US focus. Educational only; not investment advice.</p>
+</div>
+<div>
+<h2>Explore</h2>
+<ul>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data guides</a></li>
+<li><a href="../calculators/">Calculators</a></li>
+</ul>
+</div>
+<div>
+<h2>About</h2>
+<ul>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+<li><a href="../disclaimer/">Disclaimer</a></li>
+<li><a href="../sources/">Sources</a></li>
+<li><a href="mailto:joshuaofisrael@gmail.com?subject=%5BContact%3A%20simplemacroguide%5D">Email</a></li>
+</ul>
+</div>
+<div class="footer-note">
+<p class="footer-legal">© 2026 Joshua Israel Ventures LLC. All rights reserved. Simple Macro Guide is owned and operated by Joshua Israel Ventures LLC.</p>
+<p>Simple Macro Guide is a brand name, not a separate company. Operated by Joshua Israel Ventures LLC. Content is for education. Not financial, investment, tax, or legal advice. Verify figures with primary sources such as the World Bank, ONS, and FRED.</p>
+<ul class="footer-legal-links" aria-label="Legal">
+<li><a href="../terms/">Terms of Use</a></li>
+<li><a href="../privacy/">Privacy Policy</a></li>
+<li><a href="../disclaimer/">Disclaimer</a></li>
+<li><a href="../contact/">Contact</a></li>
+</ul>
+</div>
+</div>
+</footer>
+<script src="../js/main.js"></script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "dec4f4e1d796410298bde95049563074"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

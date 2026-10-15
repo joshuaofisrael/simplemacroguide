@@ -37,6 +37,7 @@ Contact: joshuaofisrael@gmail.com
 - [Money multiplier calculator](https://simplemacroguide.com/calculators/money-multiplier.html): Money multiplier calculator for a required reserve ratio, deposit expansion, excess reserves, and a currency drain.
 - [GDP deflator calculator](https://simplemacroguide.com/calculators/gdp-deflator.html): GDP deflator calculator: solve for the deflator, for real GDP, or for nominal GDP, or for inflation between two deflator indexes.
 - [Purchasing power parity calculator](https://simplemacroguide.com/calculators/purchasing-power-parity.html): Purchasing power parity calculator: basket prices to a PPP exchange rate, a market gap, or a real exchange rate.
+- [Opportunity cost and comparative advantage calculator](https://simplemacroguide.com/calculators/opportunity-cost.html): Opportunity cost of one good in terms of another, plus a two producer comparative advantage table with absolute advantage and a terms of trade range.
 
 ## Topics
 - [Topics](https://simplemacroguide.com/topics/): Browse six original pillar explainers on supply and demand, inflation, GDP, policy, unemployment, and trade.
