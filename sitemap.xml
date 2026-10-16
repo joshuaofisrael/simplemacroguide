@@ -10,6 +10,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/topics/supply-demand.html</loc>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
@@ -88,6 +89,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/glossary/</loc>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
@@ -108,7 +110,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/calculators/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
@@ -166,6 +168,11 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://simplemacroguide.com/calculators/supply-demand.html</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://simplemacroguide.com/sources/</loc>
     <changefreq>monthly</changefreq>
   </url>
@@ -218,5 +225,5 @@
     <loc>https://simplemacroguide.com/explainers/fiscal-dominance.html</loc>
     <changefreq>weekly</changefreq>
   </url>
-  <url><loc>https://simplemacroguide.com/llms.txt</loc><lastmod>2026-10-14</lastmod></url>
+  <url><loc>https://simplemacroguide.com/llms.txt</loc><lastmod>2026-10-16</lastmod></url>
 </urlset>
