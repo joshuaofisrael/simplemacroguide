@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Supply and demand equilibrium calculator | Simple Macro Guide</title>
+<meta name="description" content="Solve quantity demanded equals a minus b times P and quantity supplied equals c plus d times P for the equilibrium price and quantity, or for a shortage or surplus at a price you type. Includes consumer surplus and producer surplus at equilibrium. Classroom arithmetic. Educational only.">
+<link rel="canonical" href="https://simplemacroguide.com/calculators/supply-demand.html">
+<meta name="theme-color" content="#2a6f6f">
+<meta property="og:title" content="Supply and demand equilibrium calculator | Simple Macro Guide">
+<meta property="og:description" content="Solve quantity demanded equals a minus b times P and quantity supplied equals c plus d times P for the equilibrium price and quantity, or for a shortage or surplus at a price you type. Includes consumer surplus and producer surplus at equilibrium. Classroom arithmetic. Educational only.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://simplemacroguide.com/calculators/supply-demand.html">
+<meta property="og:site_name" content="Simple Macro Guide">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Supply and demand equilibrium calculator | Simple Macro Guide">
+<meta name="twitter:description" content="Solve quantity demanded equals a minus b times P and quantity supplied equals c plus d times P for the equilibrium price and quantity, or for a shortage or surplus at a price you type. Includes consumer surplus and producer surplus at equilibrium. Classroom arithmetic. Educational only.">
+<link rel="stylesheet" href="../css/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Supply and demand equilibrium calculator",
+  "description": "Solve quantity demanded equals a minus b times P and quantity supplied equals c plus d times P for the equilibrium price and quantity, or for a shortage or surplus at a price you type. Includes consumer surplus and producer surplus at equilibrium. Classroom arithmetic. Educational only.",
+  "url": "https://simplemacroguide.com/calculators/supply-demand.html",
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://simplemacroguide.com/#organization",
+    "name": "Joshua Israel Ventures LLC",
+    "url": "https://simplemacroguide.com/",
+    "brand": {
+      "@type": "Brand",
+      "name": "Simple Macro Guide"
+    }
+  }
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="header-inner">
+<a class="logo" href="../">Simple <span>Macro</span> Guide</a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav class="site-nav" id="site-nav" aria-label="Primary"><ul>
+<li><a href="../">Home</a></li>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data</a></li>
+<li><a href="../calculators/" aria-current="page">Calculators</a></li>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+</ul></nav>
+</div>
+</header>
+<main id="main">
+
+<div class="wrap narrow">
+<header class="hero" style="border:none;margin:0;padding-bottom:0.5rem">
+<h1>Supply and demand equilibrium calculator</h1>
+<p class="lede">A straight demand line Qd = a − bP slopes down when b is greater than 0. A straight supply line Qs = c + dP slopes up when d is greater than 0. They meet at one price, P* = (a − c) / (b + d), and one quantity, Q* = a − bP*. At any other price the two quantities differ. If buyers want more than sellers offer, the gap is a shortage. If sellers offer more than buyers want, the gap is a surplus. This page runs that arithmetic in your browser. It is a classroom sketch for AP Macroeconomics and introductory economics, not a reading of a UK or US market, and not advice about prices.</p>
+</header>
+
+<div class="calc-panel calc-panel-wide" id="supply-demand-calculator" style="max-width:100%">
+<p id="sd-mode-label" style="font-weight:600;font-size:0.9rem;margin:0 0 0.35rem">Which calculation</p>
+<div class="calc-actions" style="margin-top:0" role="group" aria-labelledby="sd-mode-label">
+<button type="button" class="btn" id="sd-mode-equilibrium" aria-pressed="true">Equilibrium</button>
+<button type="button" class="btn btn-secondary" id="sd-mode-gap" aria-pressed="false">Shortage or surplus</button>
+</div>
+<p class="hint" id="sd-mode-hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.55rem 0 0.75rem">Equilibrium. Enter Qd = a − bP and Qs = c + dP. The page solves for the price and quantity where the lines meet, then the consumer surplus and producer surplus areas when price and quantity are both positive.</p>
+
+<label for="sd-a">Demand intercept a</label>
+<input id="sd-a" type="number" step="any" value="100" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Quantity demanded when the price is 0, in Qd = a − bP. The EXAMPLE default is 100. a may be any finite number. A negative a means quantity demanded is already below 0 at a price of 0.</p>
+
+<label for="sd-b">Demand slope b</label>
+<input id="sd-b" type="number" step="any" value="2" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">How much quantity demanded falls when the price rises by 1. The EXAMPLE default is 2, so the EXAMPLE demand line is Qd = 100 − 2P. Enter a number greater than 0. Zero and negative values flip the usual downward slope.</p>
+
+<label for="sd-c">Supply intercept c</label>
+<input id="sd-c" type="number" step="any" value="10" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">Quantity supplied when the price is 0, in Qs = c + dP. The EXAMPLE default is 10. c may be positive, zero, or negative. A negative c means the supply line meets the vertical axis at a positive price.</p>
+
+<label for="sd-d">Supply slope d</label>
+<input id="sd-d" type="number" step="any" value="1" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">How much quantity supplied rises when the price rises by 1. The EXAMPLE default is 1, so the EXAMPLE supply line is Qs = 10 + P. Enter a number greater than 0. Zero and negative values flip the usual upward slope.</p>
+
+<div id="sd-price-fields" hidden>
+<label for="sd-p0">Price P0</label>
+<input id="sd-p0" type="number" step="any" value="20" inputmode="decimal">
+<p class="hint" style="font-size:0.85rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">The price to test. The EXAMPLE default is 20. With the EXAMPLE lines, 20 is below the equilibrium price of 30, quantity demanded is 60, quantity supplied is 30, and the shortage is 30.</p>
+</div>
+
+<div class="calc-actions">
+<button type="button" class="btn" id="calc-supply-demand">Calculate</button>
+<button type="button" class="btn btn-secondary" id="calc-supply-demand-reset">Reset</button>
+</div>
+
+<p class="calc-error" id="calc-supply-demand-error" role="alert"></p>
+
+<div class="calc-result" id="calc-supply-demand-result" role="status" aria-live="polite">
+<div class="result-block" id="sd-primary-block">
+<p class="result-label" id="sd-primary-label">Equilibrium price</p>
+<div class="amount" id="sd-primary-amount"></div>
+<p class="detail" id="sd-primary-detail"></p>
+</div>
+<div class="result-block" id="sd-quantity-block">
+<p class="result-label" id="sd-quantity-label">Equilibrium quantity</p>
+<div class="amount" id="sd-quantity-amount"></div>
+<p class="detail" id="sd-quantity-detail"></p>
+</div>
+<div class="result-block" id="sd-qd-block" hidden>
+<p class="result-label">Quantity demanded at this price</p>
+<div class="amount" id="sd-qd-amount"></div>
+<p class="detail" id="sd-qd-detail"></p>
+</div>
+<div class="result-block" id="sd-qs-block" hidden>
+<p class="result-label">Quantity supplied at this price</p>
+<div class="amount" id="sd-qs-amount"></div>
+<p class="detail" id="sd-qs-detail"></p>
+</div>
+<div class="result-block" id="sd-cs-block">
+<p class="result-label">Consumer surplus</p>
+<div class="amount" id="sd-cs-amount"></div>
+<p class="detail" id="sd-cs-detail"></p>
+</div>
+<div class="result-block" id="sd-ps-block">
+<p class="result-label">Producer surplus</p>
+<div class="amount" id="sd-ps-amount"></div>
+<p class="detail" id="sd-ps-detail"></p>
+</div>
+<div class="result-block" id="sd-ts-block">
+<p class="result-label">Total surplus</p>
+<div class="amount" id="sd-ts-amount"></div>
+<p class="detail" id="sd-ts-detail"></p>
+</div>
+<div class="result-block">
+<p class="result-label">Formula with your numbers</p>
+<p class="detail" id="sd-arithmetic"></p>
+</div>
+<div class="result-block">
+<p class="result-label">How to read this</p>
+<p class="detail" id="sd-read-note"></p>
+</div>
+<p class="detail" id="sd-summary"></p>
+</div>
+</div>
+
+<div class="callout" style="margin-top:1.5rem">
+<strong>How to read this.</strong> Equilibrium mode sets the two quantities equal and solves for price and quantity. Shortage or surplus mode keeps the same lines and plugs in a price you type. Consumer surplus and producer surplus are areas at that equilibrium only. A shortage is a gap in units, which is a different use of the word surplus. For the definitions in one line, see <a href="../glossary/#equilibrium">equilibrium</a> and <a href="../glossary/#elasticity">elasticity</a>. For the wider setting, read <a href="../topics/supply-demand.html">supply and demand</a>.
+</div>
+
+<div class="callout warning">
+<span class="example-label">EXAMPLE</span>
+<p style="margin:0">The EXAMPLE uses invented numbers, Qd = 100 − 2P and Qs = 10 + P. These are not statistics for any country or any good. Equilibrium price is (100 − 10) / (2 + 1) = 90 / 3 = 30. Equilibrium quantity is 100 − 2 × 30 = 40, and the supply line agrees: 10 + 30 = 40. The demand choke price, where quantity demanded is 0, is 100 / 2 = 50. Consumer surplus is 0.5 × (50 − 30) × 40 = 400. Supply meets the horizontal axis at quantity 10, so producer surplus is a trapezoid: 10 × 30 + 0.5 × 1 × 30 × 30 = 750. Total surplus is 1,150. At price 20, quantity demanded is 60 and quantity supplied is 30, so the shortage is 30. At price 40, quantity demanded is 20 and quantity supplied is 50, so the surplus is 30. Equilibrium mode opens on these lines. Shortage or surplus mode opens at price 20.</p>
+</div>
+
+<div class="callout warning">
+<span class="example-label">Educational only</span>
+<p style="margin:0">Not investment advice and not advice about price controls. Nothing here says a government should set a ceiling, set a floor, or change a tax. A price from this sketch is not a forecast. The calculator does not fetch live data.</p>
+</div>
+
+<h2>The classroom formula</h2>
+<blockquote>Qd = a − bP</blockquote>
+<blockquote>Qs = c + dP</blockquote>
+<blockquote>P* = (a − c) / (b + d)</blockquote>
+<blockquote>Q* = a − bP*</blockquote>
+<p>The letter a is quantity demanded at a price of 0. The letter b is the drop in quantity demanded when the price rises by 1. For the usual downward demand line, b is greater than 0. The letter c is quantity supplied at a price of 0. c may be positive, zero, or negative. The letter d is the rise in quantity supplied when the price rises by 1. For the usual upward supply line, d is greater than 0. Units are whatever you have in mind. The page does not name a currency.</p>
+<p>Set the quantities equal: a − bP = c + dP. Collect the price terms on one side: a − c = (b + d)P. Divide by (b + d). That is P*. Then substitute back into demand: Q* = a − bP*. Substitute into supply as a check: Q* = c + dP*. The two expressions for Q* are the same algebra when b + d is not 0. If b + d equals 0, the division is not defined, and the lines are parallel in a way that does not give a single price. A b or a d of 0 or below flips a slope. This calculator rejects those inputs.</p>
+<p>At a chosen price P0, quantity demanded is Qd0 = a − bP0 and quantity supplied is Qs0 = c + dP0. When Qd0 is greater than Qs0, the shortage is Qd0 − Qs0. When Qs0 is greater than Qd0, the surplus is Qs0 − Qd0. When the two quantities are equal, that price is an equilibrium price. A negative quantity means the straight line has crossed an axis. A market graph usually stops at 0. The calculator still reports the straight line value, so you can see the arithmetic before you trim the graph.</p>
+<p>Consumer surplus, for a straight demand line with positive price and positive quantity, is the triangle under demand and above the price, from quantity 0 out to Q*. Demand meets the vertical axis at the choke price a / b. Consumer surplus = 0.5 × (a / b − P*) × Q*. The area is positive when the choke price is above P*, which is the same condition as Q* greater than 0.</p>
+<p>Producer surplus is the area above supply and below the price, from quantity 0 out to Q*, counting only the region where price and quantity are both at least 0. When c is 0 or negative, supply meets the vertical axis at the price −c / d, which is 0 or positive. Producer surplus is then the triangle 0.5 × (P* − (−c / d)) × Q*. When c is positive, sellers offer c units at a price of 0, so supply meets the horizontal axis at quantity c. The area is a trapezoid: c × P* plus the triangle 0.5 × d × P* × P*. The triangle formula that uses a negative intercept −c / d includes a wedge below the horizontal axis. This page leaves that wedge out.</p>
+<p>Those areas are equilibrium areas. They are not the shortage or the surplus of units at some other price. Total surplus here is consumer surplus plus producer surplus. A price ceiling or a price floor changes which units trade, and the lost area on that diagram is a further topic. This page stops at the equilibrium areas and at the unit gap.</p>
+<p>Worked example. Demand is 100 − 2P. Supply is 10 + P. Then a = 100, b = 2, c = 10, and d = 1. P* = (100 − 10) / (2 + 1) = 30. Q* = 100 − 2 × 30 = 40. Choke price = 50. Consumer surplus = 0.5 × (50 − 30) × 40 = 400. Because c is positive, producer surplus = 10 × 30 + 0.5 × 1 × 900 = 750. Total surplus = 1,150. At P0 = 20, Qd0 = 60 and Qs0 = 30, so the shortage is 30. At P0 = 40, Qd0 = 20 and Qs0 = 50, so the surplus is 30. At P0 = 30, the quantities match.</p>
+<table class="stat-table">
+<caption style="caption-side:bottom;font-size:0.85rem;color:var(--ink-muted);padding:0.65rem 0.85rem;text-align:left">EXAMPLE lines Qd = 100 − 2P and Qs = 10 + P. Invented classroom numbers, not a real market.</caption>
+<thead>
+<tr><th scope="col">Price</th><th scope="col">Quantity demanded</th><th scope="col">Quantity supplied</th><th scope="col">Gap</th></tr>
+</thead>
+<tbody>
+<tr><th scope="row">20</th><td>60</td><td>30</td><td>Shortage of 30</td></tr>
+<tr><th scope="row">30</th><td>40</td><td>40</td><td>Equilibrium</td></tr>
+<tr><th scope="row">40</th><td>20</td><td>50</td><td>Surplus of 30</td></tr>
+</tbody>
+</table>
+<p>A second EXAMPLE uses a negative supply intercept so producer surplus is a triangle. Keep Qd = 100 − 2P and set Qs = −10 + P, so c = −10 and d = 1. P* = (100 − (−10)) / (2 + 1) = 110 / 3. Q* = 80 / 3. Supply meets the vertical axis at price 10. Producer surplus = 0.5 × (110 / 3 − 10) × (80 / 3) = 3,200 / 9. Consumer surplus = 0.5 × (50 − 110 / 3) × (80 / 3) = 1,600 / 9. Type a = 100, b = 2, c = −10, and d = 1 to see the rounded display of those same fractions. The figures are still invented classroom arithmetic.</p>
+<p>Changing a, with b held fixed, is one way to sketch a demand shift. Changing c, with d held fixed, is one way to sketch a supply shift. Type the new intercept and calculate again. Elasticity is a separate idea. The slope is one input, and price elasticity also depends on the price and the quantity at a point. This calculator reports the slope arithmetic for price, quantity, the unit gap, and the equilibrium areas.</p>
+
+<h2>UK and US framing</h2>
+<p>UK and US courses teach this arithmetic early. In the United States, AP Macroeconomics Unit 1 includes demand, supply, and market equilibrium. The course description lists topic 1.4 Demand, topic 1.5 Supply, and topic 1.6 Market Equilibrium, Disequilibrium, and Changes in Equilibrium. Those names are course context only. This page is not an official exam question and is not affiliated with the College Board. In the United Kingdom, introductory and A level economics use the same straight lines. The numbers on this page are a classroom sketch. They are not a UK market and they are not a US market.</p>
+<p>A calculated price is not a forecast of groceries, housing, or energy, and it is not a recommendation to buy, sell, or pass a price rule. For how a real price index is built, read <a href="../topics/inflation.html">inflation</a>. For the one line definitions, see <a href="../glossary/#equilibrium">equilibrium</a> and <a href="../glossary/#elasticity">elasticity</a>. For the wider setting, read <a href="../topics/supply-demand.html">supply and demand</a>. Questions about what this site is, and is not, are on the <a href="../faq/">FAQ</a>.</p>
+
+<h2>Sources</h2>
+<ul class="source-list">
+<li><a href="https://apcentral.collegeboard.org/courses/ap-macroeconomics" rel="noopener noreferrer">College Board: AP Macroeconomics course (Unit 1, Basic Economic Concepts, as course context only)</a></li>
+<li><a href="https://apcentral.collegeboard.org/media/pdf/ap-macroeconomics-course-and-exam-description.pdf" rel="noopener noreferrer">College Board: AP Macroeconomics Course and Exam Description (topic 1.4 Demand, topic 1.5 Supply, topic 1.6 Market Equilibrium, Disequilibrium, and Changes in Equilibrium)</a></li>
+<li><a href="https://openstax.org/books/principles-economics-3e/pages/3-1-demand-supply-and-equilibrium-in-markets-for-goods-and-services" rel="noopener noreferrer">OpenStax: Principles of Economics 3e, 3.1 Demand, Supply, and Equilibrium in Markets for Goods and Services</a></li>
+<li><a href="https://openstax.org/books/principles-economics-3e/pages/3-4-price-ceilings-and-price-floors" rel="noopener noreferrer">OpenStax: Principles of Economics 3e, 3.4 Price Ceilings and Price Floors</a></li>
+<li><a href="https://openstax.org/books/principles-economics-3e/pages/3-5-demand-supply-and-efficiency" rel="noopener noreferrer">OpenStax: Principles of Economics 3e, 3.5 Demand, Supply, and Efficiency</a></li>
+</ul>
+
+<p><a href="index.html">All calculators</a> · <a href="../topics/supply-demand.html">Supply and demand</a> · <a href="../glossary/#equilibrium">Equilibrium</a> · <a href="../glossary/#elasticity">Elasticity</a> · <a href="opportunity-cost.html">Opportunity cost calculator</a> · <a href="../faq/">FAQ</a></p>
+</div>
+</main>
+<footer class="site-footer">
+<div class="footer-inner">
+<div>
+<a class="logo" href="../" style="color:#fff;text-decoration:none">Simple <span style="color:#a8d4d4">Macro</span> Guide</a>
+<p style="margin:0.6rem 0 0;max-width:28rem">Clear, calm explanations of how economies work, with a UK and US focus. Educational only; not investment advice.</p>
+</div>
+<div>
+<h2>Explore</h2>
+<ul>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data guides</a></li>
+<li><a href="../calculators/">Calculators</a></li>
+</ul>
+</div>
+<div>
+<h2>About</h2>
+<ul>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+<li><a href="../disclaimer/">Disclaimer</a></li>
+<li><a href="../sources/">Sources</a></li>
+<li><a href="mailto:joshuaofisrael@gmail.com?subject=%5BContact%3A%20simplemacroguide%5D">Email</a></li>
+</ul>
+</div>
+<div class="footer-note">
+<p class="footer-legal">© 2026 Joshua Israel Ventures LLC. All rights reserved. Simple Macro Guide is owned and operated by Joshua Israel Ventures LLC.</p>
+<p>Simple Macro Guide is a brand name, not a separate company. Operated by Joshua Israel Ventures LLC. Content is for education. Not financial, investment, tax, or legal advice. Verify figures with primary sources such as the World Bank, ONS, and FRED.</p>
+<ul class="footer-legal-links" aria-label="Legal">
+<li><a href="../terms/">Terms of Use</a></li>
+<li><a href="../privacy/">Privacy Policy</a></li>
+<li><a href="../disclaimer/">Disclaimer</a></li>
+<li><a href="../contact/">Contact</a></li>
+</ul>
+</div>
+</div>
+</footer>
+<script src="../js/main.js"></script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "dec4f4e1d796410298bde95049563074"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

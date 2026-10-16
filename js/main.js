@@ -3428,4 +3428,342 @@
     }
     setOcMode("single");
   }
+
+  /* Supply and demand equilibrium */
+  var supplyDemandBtn = document.getElementById("calc-supply-demand");
+  if (supplyDemandBtn) {
+    var sdAEl = document.getElementById("sd-a");
+    var sdBEl = document.getElementById("sd-b");
+    var sdCEl = document.getElementById("sd-c");
+    var sdDEl = document.getElementById("sd-d");
+    var sdP0El = document.getElementById("sd-p0");
+    var sdPriceFields = document.getElementById("sd-price-fields");
+    var sdModeHint = document.getElementById("sd-mode-hint");
+    var sdModeEquilibriumBtn = document.getElementById("sd-mode-equilibrium");
+    var sdModeGapBtn = document.getElementById("sd-mode-gap");
+    var sdResultEl = document.getElementById("calc-supply-demand-result");
+    var sdPrimaryBlock = document.getElementById("sd-primary-block");
+    var sdPrimaryLabel = document.getElementById("sd-primary-label");
+    var sdPrimaryAmount = document.getElementById("sd-primary-amount");
+    var sdPrimaryDetail = document.getElementById("sd-primary-detail");
+    var sdQuantityBlock = document.getElementById("sd-quantity-block");
+    var sdQuantityLabel = document.getElementById("sd-quantity-label");
+    var sdQuantityAmount = document.getElementById("sd-quantity-amount");
+    var sdQuantityDetail = document.getElementById("sd-quantity-detail");
+    var sdQdBlock = document.getElementById("sd-qd-block");
+    var sdQsBlock = document.getElementById("sd-qs-block");
+    var sdQdAmount = document.getElementById("sd-qd-amount");
+    var sdQsAmount = document.getElementById("sd-qs-amount");
+    var sdQdDetail = document.getElementById("sd-qd-detail");
+    var sdQsDetail = document.getElementById("sd-qs-detail");
+    var sdCsBlock = document.getElementById("sd-cs-block");
+    var sdPsBlock = document.getElementById("sd-ps-block");
+    var sdTsBlock = document.getElementById("sd-ts-block");
+    var sdCsAmount = document.getElementById("sd-cs-amount");
+    var sdPsAmount = document.getElementById("sd-ps-amount");
+    var sdTsAmount = document.getElementById("sd-ts-amount");
+    var sdCsDetail = document.getElementById("sd-cs-detail");
+    var sdPsDetail = document.getElementById("sd-ps-detail");
+    var sdTsDetail = document.getElementById("sd-ts-detail");
+    var sdArithmetic = document.getElementById("sd-arithmetic");
+    var sdReadNote = document.getElementById("sd-read-note");
+    var sdSummary = document.getElementById("sd-summary");
+    var sdErrorEl = document.getElementById("calc-supply-demand-error");
+    var sdResetBtn = document.getElementById("calc-supply-demand-reset");
+    var sdMode = "equilibrium";
+    var sdModeButtons = [sdModeEquilibriumBtn, sdModeGapBtn];
+    var sdMax = 1000000000000;
+    var sdInputs = [sdAEl, sdBEl, sdCEl, sdDEl, sdP0El];
+    var sdMinus = "\u2212";
+    var sdTimes = "\u00d7";
+
+    function showSdError(msg) {
+      sdErrorEl.textContent = msg;
+      sdErrorEl.classList.add("visible");
+      sdResultEl.classList.remove("visible");
+    }
+    function clearSdError() {
+      sdErrorEl.classList.remove("visible");
+      sdErrorEl.textContent = "";
+    }
+    function formatSd(n) {
+      var abs = Math.abs(n);
+      var text;
+      if (abs !== 0 && abs < 0.0001) {
+        text = abs.toLocaleString(undefined, { maximumSignificantDigits: 4 });
+      } else {
+        text = abs.toLocaleString(undefined, {
+          minimumFractionDigits: 0,
+          maximumFractionDigits: abs >= 1000 ? 2 : 4
+        });
+      }
+      return n < 0 ? sdMinus + text : text;
+    }
+    function sdNearlyEqual(a, b) {
+      var scale = Math.max(1, Math.abs(a), Math.abs(b));
+      return Math.abs(a - b) <= scale * 1e-9;
+    }
+    function readSdNumber(el, label) {
+      var raw = String(el.value).trim();
+      if (raw === "" || !/^[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?$/.test(raw)) {
+        return {
+          ok: false,
+          message: "Enter a numeric value for " + label + ". Blank and non numeric text are not valid."
+        };
+      }
+      var n = Number(raw);
+      if (!isFinite(n)) {
+        return { ok: false, message: "Enter a finite number for " + label + "." };
+      }
+      if (Math.abs(n) > sdMax) {
+        return {
+          ok: false,
+          message: "Enter " + label + " with an absolute value up to 1,000,000,000,000."
+        };
+      }
+      return { ok: true, value: n };
+    }
+    function fmtDiff(left, right) {
+      if (right < 0) return "(" + formatSd(left) + " " + sdMinus + " (" + formatSd(right) + "))";
+      return "(" + formatSd(left) + " " + sdMinus + " " + formatSd(right) + ")";
+    }
+    function hideSurplusBlocks() {
+      sdCsBlock.hidden = true;
+      sdPsBlock.hidden = true;
+      sdTsBlock.hidden = true;
+    }
+    function runSupplyDemand() {
+      clearSdError();
+      var a = readSdNumber(sdAEl, "the demand intercept a");
+      if (!a.ok) {
+        showSdError(a.message);
+        return;
+      }
+      var b = readSdNumber(sdBEl, "the demand slope b");
+      if (!b.ok) {
+        showSdError(b.message);
+        return;
+      }
+      var c = readSdNumber(sdCEl, "the supply intercept c");
+      if (!c.ok) {
+        showSdError(c.message);
+        return;
+      }
+      var d = readSdNumber(sdDEl, "the supply slope d");
+      if (!d.ok) {
+        showSdError(d.message);
+        return;
+      }
+      if (!(b.value > 0)) {
+        showSdError("Enter a demand slope b greater than 0. In Qd = a " + sdMinus + " bP, b is how much quantity demanded falls when the price rises by 1. A b of 0 makes quantity ignore the price. A negative b makes the demand line slope upward.");
+        return;
+      }
+      if (!(d.value > 0)) {
+        showSdError("Enter a supply slope d greater than 0. In Qs = c + dP, d is how much quantity supplied rises when the price rises by 1. A d of 0 makes quantity ignore the price. A negative d makes the supply line slope downward.");
+        return;
+      }
+      if (b.value + d.value === 0) {
+        showSdError("b + d equals 0, so the equilibrium price (a " + sdMinus + " c) / (b + d) is not defined.");
+        return;
+      }
+      var pStar = (a.value - c.value) / (b.value + d.value);
+      var qStar = a.value - b.value * pStar;
+      var qFromSupply = c.value + d.value * pStar;
+      if (!isFinite(pStar) || !isFinite(qStar) || Math.abs(pStar) > sdMax || Math.abs(qStar) > sdMax) {
+        showSdError("These numbers do not produce a finite equilibrium price and quantity within 1,000,000,000,000 in absolute value. Use intercepts and slopes closer together.");
+        return;
+      }
+
+      var choke = a.value / b.value;
+      var cs = null;
+      var ps = null;
+      var psShape = "";
+      var supplyIntercept = -c.value / d.value;
+      if (pStar > 0 && qStar > 0 && choke > pStar) {
+        cs = 0.5 * (choke - pStar) * qStar;
+      }
+      if (pStar > 0 && qStar > 0) {
+        if (c.value > 0) {
+          ps = c.value * pStar + 0.5 * d.value * pStar * pStar;
+          psShape = "trapezoid";
+        } else if (pStar > supplyIntercept) {
+          ps = 0.5 * (pStar - supplyIntercept) * qStar;
+          psShape = "triangle";
+        }
+      }
+      var total = (cs !== null && ps !== null) ? cs + ps : null;
+      var eqFormula =
+        "P* = (a " + sdMinus + " c) / (b + d) = " + fmtDiff(a.value, c.value) + " / (" + formatSd(b.value) + " + " + formatSd(d.value) + ") = " +
+        formatSd(a.value - c.value) + " / " + formatSd(b.value + d.value) + " = " + formatSd(pStar) + ". " +
+        "Q* = a " + sdMinus + " bP* = " + formatSd(a.value) + " " + sdMinus + " " + formatSd(b.value) + " " + sdTimes + " " + formatSd(pStar) + " = " + formatSd(qStar) + ". " +
+        "The supply line gives Q* = c + dP* = " + formatSd(c.value) + " + " + formatSd(d.value) + " " + sdTimes + " " + formatSd(pStar) + " = " + formatSd(qFromSupply) + ".";
+
+      if (sdMode === "equilibrium") {
+        sdPrimaryBlock.hidden = false;
+        sdQuantityBlock.hidden = false;
+        sdQdBlock.hidden = true;
+        sdQsBlock.hidden = true;
+        sdPrimaryLabel.textContent = "Equilibrium price P*";
+        sdPrimaryAmount.textContent = formatSd(pStar);
+        sdPrimaryDetail.textContent = "This is the price where quantity demanded equals quantity supplied. P* = (a " + sdMinus + " c) / (b + d).";
+        sdQuantityLabel.textContent = "Equilibrium quantity Q*";
+        sdQuantityAmount.textContent = formatSd(qStar);
+        sdQuantityDetail.textContent = "Q* = a " + sdMinus + " bP*. The supply line c + dP* gives " + formatSd(qFromSupply) + ", the same quantity when the division is exact.";
+        var surplusShown = false;
+        if (cs !== null && ps !== null && total !== null && isFinite(cs) && isFinite(ps) && isFinite(total) && Math.abs(cs) <= sdMax && Math.abs(ps) <= sdMax && Math.abs(total) <= sdMax) {
+          surplusShown = true;
+          sdCsBlock.hidden = false;
+          sdPsBlock.hidden = false;
+          sdTsBlock.hidden = false;
+          sdCsAmount.textContent = formatSd(cs);
+          sdCsDetail.textContent =
+            "0.5 " + sdTimes + " (a / b " + sdMinus + " P*) " + sdTimes + " Q* = 0.5 " + sdTimes + " (" + formatSd(choke) + " " + sdMinus + " " + formatSd(pStar) + ") " + sdTimes + " " + formatSd(qStar) + " = " + formatSd(cs) + ". " +
+            "The choke price a / b is " + formatSd(choke) + ", where quantity demanded is 0. This is the triangle under the demand line and above P*, out to Q*.";
+          sdPsAmount.textContent = formatSd(ps);
+          if (psShape === "trapezoid") {
+            sdPsDetail.textContent =
+              "c is positive, so supply meets the horizontal axis at quantity " + formatSd(c.value) + ". " +
+              "Producer surplus is the trapezoid c " + sdTimes + " P* + 0.5 " + sdTimes + " d " + sdTimes + " P* " + sdTimes + " P* = " +
+              formatSd(c.value) + " " + sdTimes + " " + formatSd(pStar) + " + 0.5 " + sdTimes + " " + formatSd(d.value) + " " + sdTimes + " " + formatSd(pStar) + " " + sdTimes + " " + formatSd(pStar) + " = " + formatSd(ps) + ". " +
+              "The triangle that uses the negative intercept " + formatSd(supplyIntercept) + " would count area below the horizontal axis. This page leaves that area out.";
+          } else {
+            sdPsDetail.textContent =
+              "c is " + (c.value === 0 ? "0" : "negative") + ", so supply meets the vertical axis at price " + formatSd(supplyIntercept) + ". " +
+              "Producer surplus is the triangle 0.5 " + sdTimes + " (P* " + sdMinus + " " + formatSd(supplyIntercept) + ") " + sdTimes + " Q* = " + formatSd(ps) + ".";
+          }
+          sdTsAmount.textContent = formatSd(total);
+          sdTsDetail.textContent = "Consumer surplus plus producer surplus: " + formatSd(cs) + " + " + formatSd(ps) + " = " + formatSd(total) + ".";
+        } else {
+          hideSurplusBlocks();
+        }
+        sdArithmetic.textContent = eqFormula;
+        if (pStar > 0 && qStar > 0 && surplusShown) {
+          sdReadNote.textContent =
+            "Consumer surplus is an area under demand. Producer surplus is an area above supply. A shortage or a surplus of units is a different idea. Switch to Shortage or surplus and type a price to measure that gap. This is classroom arithmetic, not a forecast and not investment advice.";
+        } else if (pStar > 0 && qStar > 0) {
+          sdReadNote.textContent =
+            "Price and quantity are both positive, but a surplus area is larger than 1,000,000,000,000 in absolute value, so this page skips those figures. Switch to Shortage or surplus to measure a unit gap at a price you type. This is classroom arithmetic, not a forecast and not investment advice.";
+        } else {
+          sdReadNote.textContent =
+            "The lines meet where price or quantity is not positive, so this page skips the usual surplus areas. On a graph, price and quantity usually start at 0. Check the intercepts if you expected a crossing in that region. This is classroom arithmetic, not a forecast and not investment advice.";
+        }
+        sdSummary.textContent =
+          "Qd = " + formatSd(a.value) + " " + sdMinus + " " + formatSd(b.value) + "P. Qs = " + formatSd(c.value) + " + " + formatSd(d.value) + "P. " +
+          "P* = " + formatSd(pStar) + ". Q* = " + formatSd(qStar) + ". Educational estimate only. Not a forecast and not investment advice.";
+        sdResultEl.classList.add("visible");
+        return;
+      }
+
+      var p0 = readSdNumber(sdP0El, "the price P0");
+      if (!p0.ok) {
+        showSdError(p0.message);
+        return;
+      }
+      var qd0 = a.value - b.value * p0.value;
+      var qs0 = c.value + d.value * p0.value;
+      if (!isFinite(qd0) || !isFinite(qs0) || Math.abs(qd0) > sdMax || Math.abs(qs0) > sdMax) {
+        showSdError("Quantity demanded or quantity supplied at this price is outside 1,000,000,000,000 in absolute value. Use a price closer to the intercepts.");
+        return;
+      }
+      var gap = qd0 - qs0;
+      var gapWord;
+      var gapAmount;
+      var gapDetail;
+      if (sdNearlyEqual(qd0, qs0)) {
+        gapWord = "Equilibrium";
+        gapAmount = "0";
+        gapDetail = "Quantity demanded equals quantity supplied at this price, so there is no shortage and no surplus. This price clears the market.";
+      } else if (qd0 > qs0) {
+        gapWord = "Shortage";
+        gapAmount = formatSd(qd0 - qs0);
+        gapDetail = "Quantity demanded exceeds quantity supplied by " + formatSd(qd0 - qs0) + ". That gap is a shortage of " + formatSd(qd0 - qs0) + ".";
+      } else {
+        gapWord = "Surplus";
+        gapAmount = formatSd(qs0 - qd0);
+        gapDetail = "Quantity supplied exceeds quantity demanded by " + formatSd(qs0 - qd0) + ". That gap is a surplus of " + formatSd(qs0 - qd0) + ".";
+      }
+      sdPrimaryBlock.hidden = false;
+      sdQuantityBlock.hidden = true;
+      sdQdBlock.hidden = false;
+      sdQsBlock.hidden = false;
+      hideSurplusBlocks();
+      sdPrimaryLabel.textContent = gapWord;
+      sdPrimaryAmount.textContent = gapAmount;
+      sdPrimaryDetail.textContent = gapDetail;
+      sdQdAmount.textContent = formatSd(qd0);
+      sdQdDetail.textContent = "Qd0 = a " + sdMinus + " bP0 = " + formatSd(a.value) + " " + sdMinus + " " + formatSd(b.value) + " " + sdTimes + " " + formatSd(p0.value) + " = " + formatSd(qd0) + ".";
+      sdQsAmount.textContent = formatSd(qs0);
+      sdQsDetail.textContent = "Qs0 = c + dP0 = " + formatSd(c.value) + " + " + formatSd(d.value) + " " + sdTimes + " " + formatSd(p0.value) + " = " + formatSd(qs0) + ".";
+      var gapFormula;
+      if (sdNearlyEqual(qd0, qs0)) {
+        gapFormula = "Qd0 " + sdMinus + " Qs0 = " + formatSd(qd0) + " " + sdMinus + " " + formatSd(qs0) + " = 0, so the market is at equilibrium at this price.";
+      } else if (qd0 > qs0) {
+        gapFormula = "Shortage = Qd0 " + sdMinus + " Qs0 = " + formatSd(qd0) + " " + sdMinus + " " + formatSd(qs0) + " = " + formatSd(gap) + ".";
+      } else {
+        gapFormula = "Surplus = Qs0 " + sdMinus + " Qd0 = " + formatSd(qs0) + " " + sdMinus + " " + formatSd(qd0) + " = " + formatSd(-gap) + ".";
+      }
+      sdArithmetic.textContent =
+        "Qd0 = a " + sdMinus + " bP0 = " + formatSd(a.value) + " " + sdMinus + " " + formatSd(b.value) + " " + sdTimes + " " + formatSd(p0.value) + " = " + formatSd(qd0) + ". " +
+        "Qs0 = c + dP0 = " + formatSd(c.value) + " + " + formatSd(d.value) + " " + sdTimes + " " + formatSd(p0.value) + " = " + formatSd(qs0) + ". " +
+        gapFormula + " For the same lines, " + eqFormula;
+      if (pStar > 0 && qStar > 0) {
+        if (sdNearlyEqual(p0.value, pStar)) {
+          sdReadNote.textContent = "This price matches the equilibrium price for these lines, " + formatSd(pStar) + ", and the equilibrium quantity is " + formatSd(qStar) + ". Consumer surplus and producer surplus are the equilibrium areas in the other mode. This is classroom arithmetic, not a forecast and not investment advice.";
+        } else if (p0.value < pStar) {
+          sdReadNote.textContent = "This price is below the equilibrium price of " + formatSd(pStar) + " (quantity " + formatSd(qStar) + "). With the usual slopes and a crossing where price and quantity are both positive, a lower price leaves a shortage. This is classroom arithmetic, not a forecast and not investment advice.";
+        } else {
+          sdReadNote.textContent = "This price is above the equilibrium price of " + formatSd(pStar) + " (quantity " + formatSd(qStar) + "). With the usual slopes and a crossing where price and quantity are both positive, a higher price leaves a surplus. This is classroom arithmetic, not a forecast and not investment advice.";
+        }
+      } else {
+        sdReadNote.textContent = "These lines meet at price " + formatSd(pStar) + " and quantity " + formatSd(qStar) + ", outside the region where both are positive. Read the gap from the two quantities above. This is classroom arithmetic, not a forecast and not investment advice.";
+      }
+      if (qd0 < 0 || qs0 < 0) {
+        sdReadNote.textContent += " A negative quantity means the straight line has crossed an axis. A market graph usually stops at 0.";
+      }
+      sdSummary.textContent =
+        "At price " + formatSd(p0.value) + ", Qd = " + formatSd(qd0) + " and Qs = " + formatSd(qs0) + ". " +
+        gapDetail + " Educational estimate only. Not a forecast and not investment advice.";
+      sdResultEl.classList.add("visible");
+    }
+    function setSdMode(mode) {
+      sdMode = mode;
+      sdPriceFields.hidden = mode !== "gap";
+      var activeBtn = mode === "gap" ? sdModeGapBtn : sdModeEquilibriumBtn;
+      var hint = "Equilibrium. Enter Qd = a \u2212 bP and Qs = c + dP. The page solves for the price and quantity where the lines meet, then the consumer surplus and producer surplus areas when price and quantity are both positive.";
+      if (mode === "gap") {
+        hint = "Shortage or surplus. Uses the same two lines. Type a price P0. The page computes quantity demanded and quantity supplied at that price. If buyers want more than sellers offer, the gap is a shortage. If sellers offer more than buyers want, the gap is a surplus. If the quantities match, that price is an equilibrium.";
+      }
+      var i;
+      for (i = 0; i < sdModeButtons.length; i++) {
+        var on = sdModeButtons[i] === activeBtn;
+        sdModeButtons[i].className = on ? "btn" : "btn btn-secondary";
+        sdModeButtons[i].setAttribute("aria-pressed", on ? "true" : "false");
+      }
+      sdModeHint.textContent = hint;
+      runSupplyDemand();
+    }
+
+    sdModeEquilibriumBtn.addEventListener("click", function () {
+      setSdMode("equilibrium");
+    });
+    sdModeGapBtn.addEventListener("click", function () {
+      setSdMode("gap");
+    });
+    supplyDemandBtn.addEventListener("click", runSupplyDemand);
+    var sdInputIndex;
+    for (sdInputIndex = 0; sdInputIndex < sdInputs.length; sdInputIndex++) {
+      sdInputs[sdInputIndex].addEventListener("input", runSupplyDemand);
+    }
+    if (sdResetBtn) {
+      sdResetBtn.addEventListener("click", function () {
+        sdAEl.value = "100";
+        sdBEl.value = "2";
+        sdCEl.value = "10";
+        sdDEl.value = "1";
+        sdP0El.value = "20";
+        setSdMode("equilibrium");
+      });
+    }
+    setSdMode("equilibrium");
+  }
 })();

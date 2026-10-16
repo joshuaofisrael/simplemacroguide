@@ -38,6 +38,7 @@ Contact: joshuaofisrael@gmail.com
 - [GDP deflator calculator](https://simplemacroguide.com/calculators/gdp-deflator.html): GDP deflator calculator: solve for the deflator, for real GDP, or for nominal GDP, or for inflation between two deflator indexes.
 - [Purchasing power parity calculator](https://simplemacroguide.com/calculators/purchasing-power-parity.html): Purchasing power parity calculator: basket prices to a PPP exchange rate, a market gap, or a real exchange rate.
 - [Opportunity cost and comparative advantage calculator](https://simplemacroguide.com/calculators/opportunity-cost.html): Opportunity cost of one good in terms of another, plus a two producer comparative advantage table with absolute advantage and a terms of trade range.
+- [Supply and demand equilibrium calculator](https://simplemacroguide.com/calculators/supply-demand.html): Equilibrium price and quantity from a straight demand line and a straight supply line, plus a shortage or surplus at a price you type, and consumer surplus and producer surplus at equilibrium.
 
 ## Topics
 - [Topics](https://simplemacroguide.com/topics/): Browse six original pillar explainers on supply and demand, inflation, GDP, policy, unemployment, and trade.
