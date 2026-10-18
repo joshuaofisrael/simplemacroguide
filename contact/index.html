@@ -4,24 +4,24 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contact | Simple Macro Guide</title>
-<meta name="description" content="Contact Simple Macro Guide / Joshua Israel Ventures LLC via email.">
+<meta name="description" content="Send a message to Simple Macro Guide, operated by Joshua Israel Ventures LLC, using the contact form.">
 <link rel="canonical" href="https://simplemacroguide.com/contact/">
 <meta name="theme-color" content="#2a6f6f">
 <meta property="og:title" content="Contact | Simple Macro Guide">
-<meta property="og:description" content="Contact Simple Macro Guide / Joshua Israel Ventures LLC via email.">
+<meta property="og:description" content="Send a message to Simple Macro Guide, operated by Joshua Israel Ventures LLC, using the contact form.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://simplemacroguide.com/contact/">
 <meta property="og:site_name" content="Simple Macro Guide">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Contact | Simple Macro Guide">
-<meta name="twitter:description" content="Contact Simple Macro Guide / Joshua Israel Ventures LLC via email.">
+<meta name="twitter:description" content="Send a message to Simple Macro Guide, operated by Joshua Israel Ventures LLC, using the contact form.">
 <link rel="stylesheet" href="../css/styles.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Contact",
-  "description": "Contact Simple Macro Guide / Joshua Israel Ventures LLC via email.",
+  "description": "Send a message to Simple Macro Guide, operated by Joshua Israel Ventures LLC, using the contact form.",
   "url": "https://simplemacroguide.com/contact/",
   "publisher": {
     "@type": "Organization",
@@ -61,26 +61,35 @@
 <div class="wrap narrow">
 <header class="hero" style="border:none;margin:0;padding-bottom:0.5rem">
 <h1>Contact</h1>
-<p class="lede">Questions about the site or content? Send a message. This opens your email app with a pre-filled subject line.</p>
+<p class="lede">Questions about the site or content? Fill in the form below and your message goes straight to our inbox. We aim to reply within a few working days.</p>
 </header>
 
-<form class="contact-form" id="contact-form" action="mailto:joshuaofisrael@gmail.com" method="get">
+<form class="contact-form" id="contact-form" action="https://formsubmit.co/joshuaofisrael@gmail.com" method="POST">
+<input type="hidden" name="_subject" value="[Contact: Simple Macro Guide]">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_next" value="https://simplemacroguide.com/contact/thanks.html">
+<div style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+<label for="hp-field">Leave this field empty</label>
+<input id="hp-field" type="text" name="_honey" tabindex="-1" autocomplete="off">
+</div>
+
 <label for="name">Name</label>
-<input id="name" name="name" type="text" autocomplete="name" required>
+<input id="name" name="name" type="text" autocomplete="name" maxlength="120" required>
 
 <label for="email">Your email</label>
-<input id="email" name="email" type="email" autocomplete="email" required>
+<input id="email" name="email" type="email" autocomplete="email" maxlength="200" required>
 
 <label for="message">Message</label>
-<textarea id="message" name="message" required placeholder="How can we help?"></textarea>
+<textarea id="message" name="message" maxlength="5000" required placeholder="How can we help?"></textarea>
 
 <div class="calc-actions">
-<button type="submit" class="btn">Open email</button>
+<button type="submit" class="btn">Send message</button>
 </div>
 <p style="font-size:0.88rem;color:var(--ink-muted);margin:1rem 0 0">
-Subject will be set to <strong>[Contact: simplemacroguide]</strong>.
-Or email directly:
-<a href="mailto:joshuaofisrael@gmail.com?subject=%5BContact%3A%20simplemacroguide%5D">joshuaofisrael@gmail.com</a>
+Your message is delivered by FormSubmit, an email form service. We only use your details to reply. See the <a href="../privacy/">privacy policy</a>.
+Prefer email? Write to
+<a href="mailto:joshuaofisrael@gmail.com?subject=%5BContact%3A%20Simple%20Macro%20Guide%5D">joshuaofisrael@gmail.com</a>
 </p>
 </form>
 

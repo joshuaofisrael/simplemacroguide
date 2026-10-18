@@ -178,7 +178,13 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/contact/</loc>
+    <lastmod>2026-10-18</lastmod>
     <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/contact/thanks.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>yearly</changefreq>
   </url>
   <url>
     <loc>https://simplemacroguide.com/disclaimer/</loc>

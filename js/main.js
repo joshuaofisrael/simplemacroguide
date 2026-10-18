@@ -11,26 +11,6 @@
     });
   }
 
-  /* Contact form → mailto with required subject */
-  var form = document.getElementById("contact-form");
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var name = (document.getElementById("name") || {}).value || "";
-      var email = (document.getElementById("email") || {}).value || "";
-      var message = (document.getElementById("message") || {}).value || "";
-      var body =
-        "Name: " + name.trim() +
-        "\nEmail: " + email.trim() +
-        "\n\n" + message.trim();
-      var mailto =
-        "mailto:joshuaofisrael@gmail.com" +
-        "?subject=" + encodeURIComponent("[Contact: simplemacroguide]") +
-        "&body=" + encodeURIComponent(body);
-      window.location.href = mailto;
-    });
-  }
-
   /* Inflation adjuster calculator (offline, vanilla JS) */
   var calcBtn = document.getElementById("calc-inflate");
   if (calcBtn) {
