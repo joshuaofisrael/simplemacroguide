@@ -6,6 +6,7 @@ Contact: joshuaofisrael@gmail.com
 
 ## Explainers
 - [Explainers](https://simplemacroguide.com/explainers/): Long form original macroeconomics explainers covering Phillips curve, QE, real rates, Okun's law, natural rate of unemployment, money supply, fiscal dominance, BEA versus ONS GDP, and more.
+- [What is the aggregate demand and aggregate supply model?](https://simplemacroguide.com/explainers/aggregate-demand-aggregate-supply.html): How the AD AS model sets the price level and real GDP, why the curves slope, what shifts them, and how gaps close.
 - [What Is the Phillips Curve and Does It Still Work?](https://simplemacroguide.com/explainers/phillips-curve.html): The Phillips curve links unemployment and inflation in the short run.
 - [What Is Quantitative Easing (QE)?](https://simplemacroguide.com/explainers/quantitative-easing.html): Quantitative easing (QE), or q easing, is a central bank buying bonds with new reserves to lower longer term rates.
 - [What Is a Real Interest Rate? Formula, Examples and Today's Rates](https://simplemacroguide.com/explainers/real-interest-rates.html): A real interest rate is the nominal rate minus inflation.
