@@ -3746,4 +3746,220 @@
     }
     setSdMode("equilibrium");
   }
+
+  /* Aggregate demand and aggregate supply graph */
+  var adasPanel = document.getElementById("adas-panel");
+  if (adasPanel) {
+    var Y_MIN = 40;
+    var Y_MAX = 160;
+    var P_MIN = 40;
+    var P_MAX = 160;
+    var PL = 92;
+    var PR = 620;
+    var PT = 36;
+    var PB = 368;
+    var adInput = document.getElementById("adas-ad");
+    var srasInput = document.getElementById("adas-sras");
+    var adHint = document.getElementById("adas-ad-value");
+    var srasHint = document.getElementById("adas-sras-value");
+    var storyEl = document.getElementById("adas-story");
+    var priceEl = document.getElementById("adas-price");
+    var gdpEl = document.getElementById("adas-gdp");
+    var adLine = document.getElementById("adas-ad-line");
+    var srasLine = document.getElementById("adas-sras-line");
+    var adGhost = document.getElementById("adas-ad-ghost");
+    var srasGhost = document.getElementById("adas-sras-ghost");
+    var gapBand = document.getElementById("adas-gap");
+    var eqDot = document.getElementById("adas-eq");
+    var eqLabel = document.getElementById("adas-eq-label");
+    var adLabel = document.getElementById("adas-ad-name");
+    var srasLabel = document.getElementById("adas-sras-name");
+    var srDot = document.getElementById("adas-sr-dot");
+    var srLabel = document.getElementById("adas-sr-label");
+    var presetButtons = adasPanel.querySelectorAll("[data-preset]");
+    var stories = {
+      "0,0": "This is the starting equilibrium. Real GDP is at potential, so there is no output gap. The price level matches the starting equilibrium, so there is no inflation pressure and no deflation pressure.",
+      "20,0": "A positive demand shock shifted aggregate demand to the right. Real GDP is above potential, so the output gap is inflationary. The price level is above the starting equilibrium, which is inflation pressure. Spending is higher at the original price level. That pattern is demand pull pressure on prices.",
+      "-20,0": "A negative demand shock shifted aggregate demand to the left. Real GDP is below potential, so the output gap is recessionary. The price level is below the starting equilibrium, which is deflation pressure. This is not stagflation. A demand shock that weakens spending pulls the price level down.",
+      "0,-20": "A negative supply shock shifted short run aggregate supply to the left. Real GDP is below potential, so the output gap is recessionary. The price level is above the starting equilibrium, which is inflation pressure. Weaker output and a higher price level together are stagflation. The inflation in this sketch is cost push.",
+      "0,20": "A positive supply shock shifted short run aggregate supply to the right. Real GDP is above potential, so the output gap is inflationary. The price level is below the starting equilibrium, which is deflation pressure. Output can sit above potential while the price level falls. That combination is a supply shock, not a demand boom.",
+      "-20,20": "This is self correction after a negative demand shock. Aggregate demand is still to the left. Short run aggregate supply has shifted right as nominal wages ease. Real GDP is at potential, so there is no output gap. The price level is below the starting equilibrium, which is deflation pressure. The hollow dot is the short run point before wages adjusted: real GDP 90 and price level 90, a recessionary gap. The solid dot is the long run point after self correction."
+    };
+
+    function xOf(y) {
+      return PL + (y - Y_MIN) / (Y_MAX - Y_MIN) * (PR - PL);
+    }
+    function yOf(p) {
+      return PT + (P_MAX - p) / (P_MAX - P_MIN) * (PB - PT);
+    }
+    function clampShift(n) {
+      if (n > 40) return 40;
+      if (n < -40) return -40;
+      return n;
+    }
+    function readShift(input) {
+      var n = parseInt(input.value, 10);
+      if (!isFinite(n)) return 0;
+      return clampShift(n);
+    }
+    function equilibrium(ad, sras) {
+      return {
+        y: (200 + ad + sras) / 2,
+        p: (200 + ad - sras) / 2
+      };
+    }
+    function clipSpan(lo, hi) {
+      if (lo < Y_MIN) lo = Y_MIN;
+      if (hi > Y_MAX) hi = Y_MAX;
+      return { lo: lo, hi: hi };
+    }
+    function adSpan(ad) {
+      var b = 200 + ad;
+      return clipSpan(b - P_MAX, b - P_MIN);
+    }
+    function srasSpan(sras) {
+      return clipSpan(P_MIN + sras, P_MAX + sras);
+    }
+    function adPrice(ad, y) {
+      return 200 + ad - y;
+    }
+    function srasPrice(sras, y) {
+      return y - sras;
+    }
+    function setSegment(el, y1, p1, y2, p2) {
+      if (!(y2 > y1)) {
+        el.setAttribute("visibility", "hidden");
+        return;
+      }
+      el.setAttribute("visibility", "visible");
+      el.setAttribute("x1", xOf(y1).toFixed(2));
+      el.setAttribute("y1", yOf(p1).toFixed(2));
+      el.setAttribute("x2", xOf(y2).toFixed(2));
+      el.setAttribute("y2", yOf(p2).toFixed(2));
+    }
+    function placeName(el, y, p, dx, dy) {
+      el.setAttribute("x", (xOf(y) + dx).toFixed(2));
+      el.setAttribute("y", (yOf(p) + dy).toFixed(2));
+    }
+    function shiftHint(n, noun) {
+      if (n > 0) return noun + " is right of the start by " + n + " index points.";
+      if (n < 0) return noun + " is left of the start by " + Math.abs(n) + " index points.";
+      return noun + " is on the starting curve.";
+    }
+    function gapSentence(y) {
+      if (y > 100) return "Real GDP is above potential, so the output gap is inflationary.";
+      if (y < 100) return "Real GDP is below potential, so the output gap is recessionary.";
+      return "Real GDP is at potential, so there is no output gap.";
+    }
+    function priceSentence(p) {
+      if (p > 100) return "The price level is above the starting equilibrium, which is inflation pressure.";
+      if (p < 100) return "The price level is below the starting equilibrium, which is deflation pressure.";
+      return "The price level matches the starting equilibrium, so there is no inflation pressure and no deflation pressure.";
+    }
+    function render() {
+      var ad = readShift(adInput);
+      var sras = readShift(srasInput);
+      var point = equilibrium(ad, sras);
+      var adSeg = adSpan(ad);
+      var srasSeg = srasSpan(sras);
+      var baseAd = adSpan(0);
+      var baseSras = srasSpan(0);
+      var moved = ad !== 0 || sras !== 0;
+      setSegment(adLine, adSeg.lo, adPrice(ad, adSeg.lo), adSeg.hi, adPrice(ad, adSeg.hi));
+      setSegment(srasLine, srasSeg.lo, srasPrice(sras, srasSeg.lo), srasSeg.hi, srasPrice(sras, srasSeg.hi));
+      setSegment(adGhost, baseAd.lo, adPrice(0, baseAd.lo), baseAd.hi, adPrice(0, baseAd.hi));
+      setSegment(srasGhost, baseSras.lo, srasPrice(0, baseSras.lo), baseSras.hi, srasPrice(0, baseSras.hi));
+      adGhost.setAttribute("visibility", moved ? "visible" : "hidden");
+      srasGhost.setAttribute("visibility", moved ? "visible" : "hidden");
+      placeName(adLabel, adSeg.lo + (adSeg.hi - adSeg.lo) * 0.22, adPrice(ad, adSeg.lo + (adSeg.hi - adSeg.lo) * 0.22), 8, -10);
+      var srasAt = srasSeg.lo + (srasSeg.hi - srasSeg.lo) * 0.84;
+      var srasDx = 10;
+      var srasDy = -14;
+      if (xOf(srasAt) > PR - 70) {
+        srasDx = -52;
+        srasDy = 16;
+      }
+      placeName(srasLabel, srasAt, srasPrice(sras, srasAt), srasDx, srasDy);
+      eqDot.setAttribute("cx", xOf(point.y).toFixed(2));
+      eqDot.setAttribute("cy", yOf(point.p).toFixed(2));
+      var labelX = xOf(point.y) + 12;
+      var labelY = yOf(point.p) - 12;
+      if (labelY < PT + 18) labelY = yOf(point.p) + 20;
+      if (labelX > PR - 70) labelX = xOf(point.y) - 64;
+      eqLabel.setAttribute("x", labelX.toFixed(2));
+      eqLabel.setAttribute("y", labelY.toFixed(2));
+      if (Math.abs(point.y - 100) < 0.5) {
+        gapBand.setAttribute("visibility", "hidden");
+      } else {
+        var x1 = xOf(Math.min(point.y, 100));
+        var x2 = xOf(Math.max(point.y, 100));
+        gapBand.setAttribute("visibility", "visible");
+        gapBand.setAttribute("x", x1.toFixed(2));
+        gapBand.setAttribute("width", (x2 - x1).toFixed(2));
+        gapBand.setAttribute("y", PT);
+        gapBand.setAttribute("height", PB - PT);
+      }
+      var showPath = ad === -20 && sras === 20;
+      srDot.setAttribute("visibility", showPath ? "visible" : "hidden");
+      srLabel.setAttribute("visibility", showPath ? "visible" : "hidden");
+      eqLabel.textContent = showPath ? "long run" : "E";
+      if (showPath) {
+        var mid = equilibrium(-20, 0);
+        srDot.setAttribute("cx", xOf(mid.y).toFixed(2));
+        srDot.setAttribute("cy", yOf(mid.p).toFixed(2));
+        srLabel.setAttribute("x", (xOf(mid.y) - 72).toFixed(2));
+        srLabel.setAttribute("y", (yOf(mid.p) - 10).toFixed(2));
+      }
+      var key = String(ad) + "," + String(sras);
+      var body = stories[key];
+      if (!body) {
+        body = "Aggregate demand " + (ad === 0 ? "is on its starting curve" : (ad > 0 ? "is right of the start by " + ad + " index points" : "is left of the start by " + Math.abs(ad) + " index points")) + ". Short run aggregate supply " + (sras === 0 ? "is on its starting curve" : (sras > 0 ? "is right of the start by " + sras + " index points" : "is left of the start by " + Math.abs(sras) + " index points")) + ". " + gapSentence(point.y) + " " + priceSentence(point.p);
+      }
+      var story = "Price level " + point.p + ". Real GDP " + point.y + ". Potential real GDP is 100. " + body;
+      priceEl.textContent = String(point.p);
+      gdpEl.textContent = String(point.y);
+      storyEl.textContent = story;
+      adHint.textContent = shiftHint(ad, "Aggregate demand");
+      srasHint.textContent = shiftHint(sras, "Short run aggregate supply");
+      adInput.setAttribute("aria-valuetext", adHint.textContent);
+      srasInput.setAttribute("aria-valuetext", srasHint.textContent);
+      var i;
+      for (i = 0; i < presetButtons.length; i++) {
+        var button = presetButtons[i];
+        var on = parseInt(button.getAttribute("data-ad"), 10) === ad && parseInt(button.getAttribute("data-sras"), 10) === sras;
+        button.setAttribute("aria-pressed", on ? "true" : "false");
+        button.className = on ? "btn" : "btn btn-secondary";
+      }
+    }
+    function setShifts(ad, sras) {
+      adInput.value = String(clampShift(ad));
+      srasInput.value = String(clampShift(sras));
+      render();
+    }
+    adInput.addEventListener("input", render);
+    srasInput.addEventListener("input", render);
+    document.getElementById("adas-ad-left").addEventListener("click", function () {
+      setShifts(readShift(adInput) - 10, readShift(srasInput));
+    });
+    document.getElementById("adas-ad-right").addEventListener("click", function () {
+      setShifts(readShift(adInput) + 10, readShift(srasInput));
+    });
+    document.getElementById("adas-sras-left").addEventListener("click", function () {
+      setShifts(readShift(adInput), readShift(srasInput) - 10);
+    });
+    document.getElementById("adas-sras-right").addEventListener("click", function () {
+      setShifts(readShift(adInput), readShift(srasInput) + 10);
+    });
+    document.getElementById("adas-reset").addEventListener("click", function () {
+      setShifts(0, 0);
+    });
+    var p;
+    for (p = 0; p < presetButtons.length; p++) {
+      presetButtons[p].addEventListener("click", function (event) {
+        var button = event.currentTarget;
+        setShifts(parseInt(button.getAttribute("data-ad"), 10), parseInt(button.getAttribute("data-sras"), 10));
+      });
+    }
+    render();
+  }
 })();

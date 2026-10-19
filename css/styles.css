@@ -437,6 +437,49 @@ h3 {
 .footer-legal-links li { margin: 0; }
 .footer-legal-links a { color: #a8d4d4; text-decoration: underline; }
 
+.adas-panel.calc-panel { max-width: none; }
+.adas-frame {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  margin: 0 0 0.75rem;
+  overflow: hidden;
+}
+.adas-frame svg { width: 100%; height: auto; display: block; }
+.adas-panel fieldset {
+  border: 0;
+  margin: 0.85rem 0 0;
+  padding: 0;
+  min-inline-size: 0;
+}
+.adas-panel legend {
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0;
+  margin: 0 0 0.35rem;
+}
+.adas-hint {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  margin: 0.35rem 0 0;
+}
+.adas-panel input[type="range"] {
+  width: 100%;
+  margin: 0.15rem 0 0;
+  padding: 0.65rem 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  accent-color: var(--accent);
+}
+.adas-panel .btn:focus-visible,
+.adas-panel input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+#adas-story { min-height: 9.5rem; }
+.table-scroll { overflow-x: auto; max-width: 100%; }
+
 @media (max-width: 720px) {
   .nav-toggle { display: block; }
   .site-nav {

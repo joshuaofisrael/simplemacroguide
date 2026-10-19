@@ -10,20 +10,22 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/topics/supply-demand.html</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://simplemacroguide.com/topics/inflation.html</loc>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://simplemacroguide.com/topics/gdp.html</loc>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://simplemacroguide.com/topics/monetary-fiscal.html</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
@@ -36,11 +38,12 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/</loc>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/phillips-curve.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
@@ -59,6 +62,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/fiscal-multipliers.html</loc>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
@@ -85,11 +89,17 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/output-gap.html</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/aggregate-demand-aggregate-supply.html</loc>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://simplemacroguide.com/glossary/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
@@ -139,10 +149,12 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/calculators/output-gap.html</loc>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://simplemacroguide.com/calculators/fiscal-multiplier.html</loc>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
@@ -231,5 +243,5 @@
     <loc>https://simplemacroguide.com/explainers/fiscal-dominance.html</loc>
     <changefreq>weekly</changefreq>
   </url>
-  <url><loc>https://simplemacroguide.com/llms.txt</loc><lastmod>2026-10-16</lastmod></url>
+  <url><loc>https://simplemacroguide.com/llms.txt</loc><lastmod>2026-10-19</lastmod></url>
 </urlset>
