@@ -478,6 +478,8 @@ h3 {
   outline-offset: 2px;
 }
 #adas-story { min-height: 9.5rem; }
+#mm-story,
+#lf-story { min-height: 9.5rem; }
 .table-scroll { overflow-x: auto; max-width: 100%; }
 
 @media (max-width: 720px) {

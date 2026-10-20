@@ -3962,4 +3962,300 @@
     }
     render();
   }
+
+  /* Money market and loanable funds graphs */
+  var mmlfPanel = document.getElementById("mmlf-panel");
+  if (mmlfPanel) {
+    var Q_MIN = 40;
+    var Q_MAX = 160;
+    var R_MIN = 0;
+    var R_MAX = 12;
+    var PL = 92;
+    var PR = 620;
+    var PT = 36;
+    var PB = 368;
+    var msInput = document.getElementById("mm-ms");
+    var mdInput = document.getElementById("mm-md");
+    var defInput = document.getElementById("lf-def");
+    var savInput = document.getElementById("lf-sav");
+    var msHint = document.getElementById("mm-ms-value");
+    var mdHint = document.getElementById("mm-md-value");
+    var defHint = document.getElementById("lf-def-value");
+    var savHint = document.getElementById("lf-sav-value");
+    var mmStory = document.getElementById("mm-story");
+    var lfStory = document.getElementById("lf-story");
+    var mmRate = document.getElementById("mm-rate");
+    var mmQty = document.getElementById("mm-qty");
+    var lfRate = document.getElementById("lf-rate");
+    var lfQty = document.getElementById("lf-qty");
+    var lfPrivate = document.getElementById("lf-private");
+    var msLine = document.getElementById("mm-ms-line");
+    var mdLine = document.getElementById("mm-md-line");
+    var msGhost = document.getElementById("mm-ms-ghost");
+    var mdGhost = document.getElementById("mm-md-ghost");
+    var mmDot = document.getElementById("mm-eq");
+    var mmEqLabel = document.getElementById("mm-eq-label");
+    var msName = document.getElementById("mm-ms-name");
+    var mdName = document.getElementById("mm-md-name");
+    var dlfLine = document.getElementById("lf-d-line");
+    var slfLine = document.getElementById("lf-s-line");
+    var dlfGhost = document.getElementById("lf-d-ghost");
+    var slfGhost = document.getElementById("lf-s-ghost");
+    var lfDot = document.getElementById("lf-eq");
+    var lfEqLabel = document.getElementById("lf-eq-label");
+    var dlfName = document.getElementById("lf-d-name");
+    var slfName = document.getElementById("lf-s-name");
+    var mmPresets = mmlfPanel.querySelectorAll("[data-mm-preset]");
+    var lfPresets = mmlfPanel.querySelectorAll("[data-lf-preset]");
+    var mmStories = {
+      "0,0": "This is the starting money market. Money supply is vertical at a quantity of 100. Money demand slopes down. The loanable funds curves are a separate graph and do not move with this control.",
+      "20,0": "An open market purchase shifted money supply to the right by 20. The central bank buys bonds and pays with new reserves, so the stock of money is larger. The nominal interest rate falls. Money demand did not shift. The loanable funds curves do not move.",
+      "-20,0": "An open market sale shifted money supply to the left by 20. The central bank sells bonds and takes in reserves, so the stock of money is smaller. The nominal interest rate rises. Money demand did not shift. The loanable funds curves do not move.",
+      "0,20": "Higher income shifted money demand to the right by 20. Households and firms need more money for transactions. The nominal interest rate rises. Money supply did not shift, so the quantity of money stays at the vertical line. The loanable funds curves do not move."
+    };
+    var lfStories = {
+      "0,0": "This is the starting loanable funds market. Supply slopes up and demand slopes down. Private borrowing matches the equilibrium quantity because the deficit shift is zero. The money market curves do not move with this control.",
+      "40,0": "A larger government deficit shifted demand for loanable funds to the right by 40. The government is borrowing more, so the real interest rate rises. Total funds lent rise, and private borrowing falls. That fall in interest sensitive private spending is crowding out. The same deficit can be drawn as a left shift of supply, because a deficit reduces public saving. This button uses the demand shift. The money market curves do not move.",
+      "0,40": "Higher private saving shifted the supply of loanable funds to the right by 40. The real interest rate falls and the quantity of funds lent rises. Demand did not shift. The money market curves do not move."
+    };
+
+    function xOf(q) {
+      return PL + (q - Q_MIN) / (Q_MAX - Q_MIN) * (PR - PL);
+    }
+    function yOf(r) {
+      return PT + (R_MAX - r) / (R_MAX - R_MIN) * (PB - PT);
+    }
+    function clamp(n, lo, hi) {
+      if (n > hi) return hi;
+      if (n < lo) return lo;
+      return n;
+    }
+    function readNum(input, lo, hi) {
+      var n = parseInt(input.value, 10);
+      if (!isFinite(n)) return 0;
+      return clamp(n, lo, hi);
+    }
+    function formatNum(n) {
+      var rounded = Math.round(n * 10) / 10;
+      if (Math.abs(rounded - Math.round(rounded)) < 0.001) return String(Math.round(rounded));
+      return rounded.toFixed(1);
+    }
+    function setSegment(el, q1, r1, q2, r2) {
+      if (!(q2 > q1)) {
+        el.setAttribute("visibility", "hidden");
+        return;
+      }
+      el.setAttribute("visibility", "visible");
+      el.setAttribute("x1", xOf(q1).toFixed(2));
+      el.setAttribute("y1", yOf(r1).toFixed(2));
+      el.setAttribute("x2", xOf(q2).toFixed(2));
+      el.setAttribute("y2", yOf(r2).toFixed(2));
+    }
+    function placeName(el, q, r, dx, dy) {
+      el.setAttribute("x", (xOf(q) + dx).toFixed(2));
+      el.setAttribute("y", (yOf(r) + dy).toFixed(2));
+    }
+    function shiftHint(n, noun) {
+      if (n > 0) return noun + " is right of the start by " + n + ".";
+      if (n < 0) return noun + " is left of the start by " + Math.abs(n) + ".";
+      return noun + " is on the starting curve.";
+    }
+    function clipPair(qLo, qHi) {
+      var lo = qLo;
+      var hi = qHi;
+      if (lo < Q_MIN) lo = Q_MIN;
+      if (hi > Q_MAX) hi = Q_MAX;
+      return { lo: lo, hi: hi };
+    }
+    function mdSpan(md) {
+      return clipPair(40 + md, 160 + md);
+    }
+    function mdRate(md, q) {
+      return (160 + md - q) / 10;
+    }
+    function dlfSpan(def) {
+      return clipPair(20 + def, 140 + def);
+    }
+    function dlfRate(def, q) {
+      return (140 + def - q) / 10;
+    }
+    function slfSpan(sav) {
+      return clipPair(60 + sav, 180 + sav);
+    }
+    function slfRate(sav, q) {
+      return (q - 60 - sav) / 10;
+    }
+    function placeEq(dot, label, q, r) {
+      dot.setAttribute("cx", xOf(q).toFixed(2));
+      dot.setAttribute("cy", yOf(r).toFixed(2));
+      var labelX = xOf(q) + 12;
+      var labelY = yOf(r) - 12;
+      if (labelY < PT + 18) labelY = yOf(r) + 22;
+      if (labelX > PR - 24) labelX = xOf(q) - 20;
+      label.setAttribute("x", labelX.toFixed(2));
+      label.setAttribute("y", labelY.toFixed(2));
+    }
+    function markPresets(buttons, on) {
+      var i;
+      for (i = 0; i < buttons.length; i++) {
+        var button = buttons[i];
+        var active = on(button);
+        button.setAttribute("aria-pressed", active ? "true" : "false");
+        button.className = active ? "btn" : "btn btn-secondary";
+      }
+    }
+    function renderMoney() {
+      var ms = readNum(msInput, -30, 30);
+      var md = readNum(mdInput, -30, 30);
+      var qty = 100 + ms;
+      var rate = (60 + md - ms) / 10;
+      var mdSeg = mdSpan(md);
+      var baseMd = mdSpan(0);
+      setSegment(mdLine, mdSeg.lo, mdRate(md, mdSeg.lo), mdSeg.hi, mdRate(md, mdSeg.hi));
+      setSegment(mdGhost, baseMd.lo, mdRate(0, baseMd.lo), baseMd.hi, mdRate(0, baseMd.hi));
+      mdGhost.setAttribute("visibility", md !== 0 ? "visible" : "hidden");
+      msLine.setAttribute("x1", xOf(qty).toFixed(2));
+      msLine.setAttribute("x2", xOf(qty).toFixed(2));
+      msLine.setAttribute("y1", yOf(R_MAX).toFixed(2));
+      msLine.setAttribute("y2", yOf(R_MIN).toFixed(2));
+      msGhost.setAttribute("visibility", ms !== 0 ? "visible" : "hidden");
+      var mdAt = mdSeg.lo + (mdSeg.hi - mdSeg.lo) * 0.28;
+      placeName(mdName, mdAt, mdRate(md, mdAt), 10, -8);
+      placeName(msName, qty, 10.4, 10, 0);
+      placeEq(mmDot, mmEqLabel, qty, rate);
+      var key = String(ms) + "," + String(md);
+      var body = mmStories[key];
+      if (!body) {
+        var compared = rate > 6 ? "The nominal interest rate is above the starting 6 percent." : (rate < 6 ? "The nominal interest rate is below the starting 6 percent." : "The nominal interest rate is at the starting 6 percent.");
+        body = shiftHint(ms, "Money supply") + " " + shiftHint(md, "Money demand") + " " + compared + " Equilibrium is the crossing of the vertical money supply and downward money demand. These sliders do not move the loanable funds curves.";
+      }
+      mmRate.textContent = formatNum(rate);
+      mmQty.textContent = formatNum(qty);
+      mmStory.textContent = "Nominal interest rate " + formatNum(rate) + " percent. Quantity of money " + formatNum(qty) + ". " + body;
+      msHint.textContent = shiftHint(ms, "Money supply");
+      mdHint.textContent = shiftHint(md, "Money demand");
+      msInput.setAttribute("aria-valuetext", msHint.textContent);
+      mdInput.setAttribute("aria-valuetext", mdHint.textContent);
+      markPresets(mmPresets, function (button) {
+        return parseInt(button.getAttribute("data-ms"), 10) === ms && parseInt(button.getAttribute("data-md"), 10) === md;
+      });
+    }
+    function renderFunds() {
+      var def = readNum(defInput, -40, 40);
+      var sav = readNum(savInput, -40, 40);
+      var qty = (200 + def + sav) / 2;
+      var rate = (140 + def - qty) / 10;
+      var privateQ = qty - def;
+      var dSeg = dlfSpan(def);
+      var sSeg = slfSpan(sav);
+      var baseD = dlfSpan(0);
+      var baseS = slfSpan(0);
+      setSegment(dlfLine, dSeg.lo, dlfRate(def, dSeg.lo), dSeg.hi, dlfRate(def, dSeg.hi));
+      setSegment(slfLine, sSeg.lo, slfRate(sav, sSeg.lo), sSeg.hi, slfRate(sav, sSeg.hi));
+      setSegment(dlfGhost, baseD.lo, dlfRate(0, baseD.lo), baseD.hi, dlfRate(0, baseD.hi));
+      setSegment(slfGhost, baseS.lo, slfRate(0, baseS.lo), baseS.hi, slfRate(0, baseS.hi));
+      dlfGhost.setAttribute("visibility", def !== 0 ? "visible" : "hidden");
+      slfGhost.setAttribute("visibility", sav !== 0 ? "visible" : "hidden");
+      var dAt = dSeg.lo + (dSeg.hi - dSeg.lo) * 0.22;
+      placeName(dlfName, dAt, dlfRate(def, dAt), 8, -10);
+      var sAt = sSeg.lo + (sSeg.hi - sSeg.lo) * 0.78;
+      var sDx = 8;
+      var sDy = -12;
+      if (xOf(sAt) > PR - 56) {
+        sDx = -40;
+        sDy = 16;
+      }
+      placeName(slfName, sAt, slfRate(sav, sAt), sDx, sDy);
+      placeEq(lfDot, lfEqLabel, qty, rate);
+      var key = String(def) + "," + String(sav);
+      var body = lfStories[key];
+      if (!body) {
+        var compared = rate > 4 ? "The real interest rate is above the starting 4 percent." : (rate < 4 ? "The real interest rate is below the starting 4 percent." : "The real interest rate is at the starting 4 percent.");
+        var crowd = "";
+        if (def > 0 && privateQ < 100) {
+          crowd = " Private borrowing is " + formatNum(privateQ) + ", below the starting 100, which is crowding out from the higher real rate. The deficit shift on this page is a right move of demand. The same deficit can be drawn as a left move of supply.";
+        } else if (def < 0) {
+          crowd = " A negative deficit shift is less government borrowing in this sketch.";
+        }
+        body = shiftHint(def, "Demand for loanable funds") + " " + shiftHint(sav, "Supply of loanable funds") + " " + compared + " Private borrowing is " + formatNum(privateQ) + "." + crowd + " These sliders do not move the money market curves.";
+      }
+      lfRate.textContent = formatNum(rate);
+      lfQty.textContent = formatNum(qty);
+      lfPrivate.textContent = formatNum(privateQ);
+      lfStory.textContent = "Real interest rate " + formatNum(rate) + " percent. Quantity of loanable funds " + formatNum(qty) + ". Private borrowing " + formatNum(privateQ) + ". " + body;
+      defHint.textContent = shiftHint(def, "Demand for loanable funds");
+      savHint.textContent = shiftHint(sav, "Supply of loanable funds");
+      defInput.setAttribute("aria-valuetext", defHint.textContent);
+      savInput.setAttribute("aria-valuetext", savHint.textContent);
+      markPresets(lfPresets, function (button) {
+        return parseInt(button.getAttribute("data-def"), 10) === def && parseInt(button.getAttribute("data-sav"), 10) === sav;
+      });
+    }
+    function renderMarkets() {
+      renderMoney();
+      renderFunds();
+    }
+    function setMoney(ms, md) {
+      msInput.value = String(clamp(ms, -30, 30));
+      mdInput.value = String(clamp(md, -30, 30));
+      renderMoney();
+    }
+    function setFunds(def, sav) {
+      defInput.value = String(clamp(def, -40, 40));
+      savInput.value = String(clamp(sav, -40, 40));
+      renderFunds();
+    }
+    msInput.addEventListener("input", renderMoney);
+    mdInput.addEventListener("input", renderMoney);
+    defInput.addEventListener("input", renderFunds);
+    savInput.addEventListener("input", renderFunds);
+    document.getElementById("mm-ms-right").addEventListener("click", function () {
+      setMoney(readNum(msInput, -30, 30) + 10, readNum(mdInput, -30, 30));
+    });
+    document.getElementById("mm-ms-left").addEventListener("click", function () {
+      setMoney(readNum(msInput, -30, 30) - 10, readNum(mdInput, -30, 30));
+    });
+    document.getElementById("mm-md-right").addEventListener("click", function () {
+      setMoney(readNum(msInput, -30, 30), readNum(mdInput, -30, 30) + 10);
+    });
+    document.getElementById("mm-md-left").addEventListener("click", function () {
+      setMoney(readNum(msInput, -30, 30), readNum(mdInput, -30, 30) - 10);
+    });
+    document.getElementById("mm-reset").addEventListener("click", function () {
+      setMoney(0, 0);
+    });
+    document.getElementById("lf-d-right").addEventListener("click", function () {
+      setFunds(readNum(defInput, -40, 40) + 10, readNum(savInput, -40, 40));
+    });
+    document.getElementById("lf-d-left").addEventListener("click", function () {
+      setFunds(readNum(defInput, -40, 40) - 10, readNum(savInput, -40, 40));
+    });
+    document.getElementById("lf-s-right").addEventListener("click", function () {
+      setFunds(readNum(defInput, -40, 40), readNum(savInput, -40, 40) + 10);
+    });
+    document.getElementById("lf-s-left").addEventListener("click", function () {
+      setFunds(readNum(defInput, -40, 40), readNum(savInput, -40, 40) - 10);
+    });
+    document.getElementById("lf-reset").addEventListener("click", function () {
+      setFunds(0, 0);
+    });
+    document.getElementById("mmlf-reset").addEventListener("click", function () {
+      setMoney(0, 0);
+      setFunds(0, 0);
+    });
+    var p;
+    for (p = 0; p < mmPresets.length; p++) {
+      mmPresets[p].addEventListener("click", function (event) {
+        var button = event.currentTarget;
+        setMoney(parseInt(button.getAttribute("data-ms"), 10), parseInt(button.getAttribute("data-md"), 10));
+      });
+    }
+    for (p = 0; p < lfPresets.length; p++) {
+      lfPresets[p].addEventListener("click", function (event) {
+        var button = event.currentTarget;
+        setFunds(parseInt(button.getAttribute("data-def"), 10), parseInt(button.getAttribute("data-sav"), 10));
+      });
+    }
+    renderMarkets();
+  }
 })();
