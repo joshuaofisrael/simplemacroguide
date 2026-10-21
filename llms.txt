@@ -4,6 +4,9 @@
 
 Contact: joshuaofisrael@gmail.com
 
+## AP Macroeconomics
+- [AP Macroeconomics graphs and unit review](https://simplemacroguide.com/ap-macroeconomics/): Study hub for the six College Board AP Macroeconomics units, the graphs students must draw, and links to interactive explainers on this site. Includes an AP Macro unit 4 review. Educational only, not investment advice.
+
 ## Explainers
 - [Explainers](https://simplemacroguide.com/explainers/): Long form original macroeconomics explainers covering Phillips curve, QE, real rates, Okun's law, natural rate of unemployment, money supply, fiscal dominance, BEA versus ONS GDP, and more.
 - [What is the aggregate demand and aggregate supply model?](https://simplemacroguide.com/explainers/aggregate-demand-aggregate-supply.html): How the AD AS model sets the price level and real GDP, why the curves slope, what shifts them, and how gaps close.
