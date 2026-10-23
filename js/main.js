@@ -4258,4 +4258,258 @@
     }
     renderMarkets();
   }
+
+  /* Production possibilities curve */
+  var ppcPanel = document.getElementById("ppc-panel");
+  if (ppcPanel) {
+    var PPC_PL = 70;
+    var PPC_PR = 610;
+    var PPC_PT = 48;
+    var PPC_PB = 348;
+    var PPC_C_MAX = 150;
+    var PPC_K_MAX = 120;
+    var PPC_A0 = 100;
+    var PPC_B0 = 80;
+    var ppcMix = document.getElementById("ppc-mix");
+    var ppcUse = document.getElementById("ppc-use");
+    var ppcShift = document.getElementById("ppc-shift");
+    var ppcMixHint = document.getElementById("ppc-mix-value");
+    var ppcUseHint = document.getElementById("ppc-use-value");
+    var ppcShiftHint = document.getElementById("ppc-shift-value");
+    var ppcConsumer = document.getElementById("ppc-consumer");
+    var ppcCapital = document.getElementById("ppc-capital");
+    var ppcCost = document.getElementById("ppc-cost");
+    var ppcStatus = document.getElementById("ppc-status");
+    var ppcStory = document.getElementById("ppc-story");
+    var ppcDesc = document.getElementById("ppc-svg-desc");
+    var ppcFill = document.getElementById("ppc-fill");
+    var ppcCurve = document.getElementById("ppc-curve");
+    var ppcGhost = document.getElementById("ppc-ghost");
+    var ppcRay = document.getElementById("ppc-ray");
+    var ppcPoint = document.getElementById("ppc-point");
+    var ppcName = document.getElementById("ppc-name");
+    var ppcLabel = document.getElementById("ppc-label");
+    var ppcBowedBtn = document.getElementById("ppc-shape-bowed");
+    var ppcStraightBtn = document.getElementById("ppc-shape-straight");
+    var ppcPresets = ppcPanel.querySelectorAll("[data-ppc-preset]");
+    var ppcBowed = true;
+
+    function ppcClamp(n, lo, hi) {
+      if (n < lo) return lo;
+      if (n > hi) return hi;
+      return n;
+    }
+    function ppcRead(input, lo, hi) {
+      var n = parseInt(input.value, 10);
+      if (!isFinite(n)) return lo;
+      return ppcClamp(n, lo, hi);
+    }
+    function ppcFormat(n) {
+      var rounded = Math.round(n * 1000) / 1000;
+      return rounded.toFixed(3).replace(/\.?0+$/, "");
+    }
+    function ppcX(c) {
+      return PPC_PL + (c / PPC_C_MAX) * (PPC_PR - PPC_PL);
+    }
+    function ppcY(k) {
+      return PPC_PB - (k / PPC_K_MAX) * (PPC_PB - PPC_PT);
+    }
+    function ppcFrontierK(m, s, bowed) {
+      if (bowed) return PPC_B0 * s * (1 - m * m);
+      return PPC_B0 * s * (1 - m);
+    }
+    function ppcSamples(s, bowed) {
+      var pts = [];
+      var i;
+      for (i = 0; i <= 40; i++) {
+        var m = i / 40;
+        pts.push({ c: PPC_A0 * s * m, k: ppcFrontierK(m, s, bowed) });
+      }
+      return pts;
+    }
+    function ppcPoly(s, bowed) {
+      var pts = ppcSamples(s, bowed);
+      var parts = [];
+      var i;
+      for (i = 0; i < pts.length; i++) {
+        parts.push(ppcX(pts[i].c).toFixed(1) + "," + ppcY(pts[i].k).toFixed(1));
+      }
+      return parts.join(" ");
+    }
+    function ppcFillPath(s, bowed) {
+      var pts = ppcSamples(s, bowed);
+      var d = "M " + ppcX(0).toFixed(1) + " " + ppcY(0).toFixed(1);
+      var i;
+      for (i = 0; i < pts.length; i++) {
+        d += " L " + ppcX(pts[i].c).toFixed(1) + " " + ppcY(pts[i].k).toFixed(1);
+      }
+      d += " Z";
+      return d;
+    }
+    function ppcState() {
+      var mix = ppcRead(ppcMix, 0, 100);
+      var use = ppcRead(ppcUse, 70, 130);
+      var shift = ppcRead(ppcShift, 70, 130);
+      var m = mix / 100;
+      var u = use / 100;
+      var s = shift / 100;
+      var c = u * PPC_A0 * m;
+      var k = u * ppcFrontierK(m, 1, ppcBowed);
+      var oc = ppcBowed ? 1.6 * m : PPC_B0 / PPC_A0;
+      var status = "on";
+      if (use < shift) status = "inside";
+      else if (use > shift) status = "outside";
+      return { mix: mix, use: use, shift: shift, m: m, c: c, k: k, oc: oc, s: s, status: status };
+    }
+    function ppcPlaceLabel(el, c, k, text) {
+      var px = ppcX(c);
+      var py = ppcY(k);
+      var lx = px + 12;
+      var ly = py - 10;
+      if (lx > PPC_PR - 78) lx = px - 78;
+      if (ly < PPC_PT + 16) ly = py + 20;
+      el.setAttribute("x", lx.toFixed(1));
+      el.setAttribute("y", ly.toFixed(1));
+      el.textContent = text;
+    }
+    function ppcRender() {
+      var state = ppcState();
+      var moved = state.shift !== 100;
+      ppcFill.setAttribute("d", ppcFillPath(state.s, ppcBowed));
+      ppcCurve.setAttribute("points", ppcPoly(state.s, ppcBowed));
+      ppcGhost.setAttribute("points", ppcPoly(1, ppcBowed));
+      ppcGhost.setAttribute("visibility", moved ? "visible" : "hidden");
+      ppcRay.setAttribute("x2", ppcX(state.c).toFixed(1));
+      ppcRay.setAttribute("y2", ppcY(state.k).toFixed(1));
+      ppcPoint.setAttribute("cx", ppcX(state.c).toFixed(1));
+      ppcPoint.setAttribute("cy", ppcY(state.k).toFixed(1));
+      var nameM = 0.28;
+      var nameC = PPC_A0 * state.s * nameM;
+      var nameK = ppcFrontierK(nameM, state.s, ppcBowed);
+      ppcName.setAttribute("x", (ppcX(nameC) - 36).toFixed(1));
+      ppcName.setAttribute("y", (ppcY(nameK) - 10).toFixed(1));
+      var label = "On curve";
+      var word = "Efficient";
+      var fill = "#2a6f6f";
+      if (state.status === "inside") {
+        label = "Inside";
+        word = "Inefficient";
+        fill = "#8b5a2b";
+      } else if (state.status === "outside") {
+        label = "Outside";
+        word = "Unattainable";
+        fill = "#7a3030";
+      }
+      ppcPoint.setAttribute("fill", fill);
+      ppcLabel.setAttribute("fill", fill);
+      ppcPlaceLabel(ppcLabel, state.c, state.k, label);
+      var ocText = ppcFormat(state.oc);
+      var costSentence;
+      if (state.status === "on") {
+        if (ppcBowed && state.mix === 0) {
+          costSentence = "At this corner of the bowed curve, the opportunity cost of the first consumer goods is 0 capital goods. The resources least suited to capital goods move first. Slide toward more consumer goods and the cost rises.";
+        } else if (ppcBowed) {
+          costSentence = "The opportunity cost of 1 more consumer good is " + ocText + " capital goods. The opportunity cost of 1 more capital good is " + ppcFormat(1 / state.oc) + " consumer goods. The curve is bowed out, so that cost rises as you move toward more consumer goods.";
+        } else {
+          costSentence = "The opportunity cost of 1 more consumer good is 0.8 capital goods everywhere on this straight line. The opportunity cost of 1 more capital good is 1.25 consumer goods. Constant opportunity cost means the slope does not change as you move along the line.";
+        }
+      } else if (state.oc === 0) {
+        costSentence = "The slope on the curve at this all capital goods mix is 0 capital goods per consumer good. That slope is the opportunity cost of consumer goods only for a point on the curve.";
+      } else {
+        costSentence = "The slope on the curve at this same mix is " + ocText + " capital goods per consumer good. That number is the opportunity cost of consumer goods only for a point on the curve.";
+      }
+      var statusSentence;
+      if (state.status === "on") {
+        statusSentence = "This point is on the curve, so it is efficient. Making more of one good means giving up some of the other.";
+      } else if (state.status === "inside") {
+        statusSentence = "This point is inside the curve, so it is inefficient. Idle resources mean you can produce more of both goods until you reach the curve. The opportunity cost of using those idle resources can be zero.";
+      } else {
+        statusSentence = "This point is outside the curve, so it is unattainable. The economy does not have the resources and technology to produce it.";
+      }
+      var sizeSentence = "The curve is at its starting size.";
+      if (state.shift > 100) {
+        sizeSentence = "The curve is outward at " + state.shift + " percent of the starting capacity. Both intercepts grew by the same percent, so the opportunity cost at this mix did not change.";
+      } else if (state.shift < 100) {
+        sizeSentence = "The curve is inward at " + state.shift + " percent of the starting capacity. Both intercepts shrank by the same percent.";
+      }
+      var story = "Consumer goods " + ppcFormat(state.c) + ". Capital goods " + ppcFormat(state.k) + ". " + statusSentence + " " + costSentence + " " + sizeSentence;
+      ppcConsumer.textContent = ppcFormat(state.c);
+      ppcCapital.textContent = ppcFormat(state.k);
+      ppcCost.textContent = ocText;
+      ppcStatus.textContent = word;
+      ppcStory.textContent = story;
+      ppcDesc.textContent = "Production possibilities curve. Capital goods are on the vertical axis and consumer goods are on the horizontal axis. " + story;
+      ppcMixHint.textContent = "Mix is " + state.mix + " on a scale from 0 (all capital goods) to 100 (all consumer goods).";
+      ppcUseHint.textContent = "Resource use is " + state.use + " percent of the starting frontier along this mix.";
+      ppcShiftHint.textContent = "Curve size is " + state.shift + " percent of the starting frontier.";
+      ppcMix.setAttribute("aria-valuetext", ppcMixHint.textContent);
+      ppcUse.setAttribute("aria-valuetext", ppcUseHint.textContent);
+      ppcShift.setAttribute("aria-valuetext", ppcShiftHint.textContent);
+      var shapeName = ppcBowed ? "bowed" : "straight";
+      ppcBowedBtn.setAttribute("aria-pressed", ppcBowed ? "true" : "false");
+      ppcStraightBtn.setAttribute("aria-pressed", ppcBowed ? "false" : "true");
+      ppcBowedBtn.className = ppcBowed ? "btn" : "btn btn-secondary";
+      ppcStraightBtn.className = ppcBowed ? "btn btn-secondary" : "btn";
+      var i;
+      for (i = 0; i < ppcPresets.length; i++) {
+        var button = ppcPresets[i];
+        var on = parseInt(button.getAttribute("data-mix"), 10) === state.mix &&
+          parseInt(button.getAttribute("data-use"), 10) === state.use &&
+          parseInt(button.getAttribute("data-shift"), 10) === state.shift &&
+          button.getAttribute("data-shape") === shapeName;
+        button.setAttribute("aria-pressed", on ? "true" : "false");
+        button.className = on ? "btn" : "btn btn-secondary";
+      }
+    }
+    function ppcApply(mix, use, shift, bowed) {
+      ppcMix.value = String(ppcClamp(mix, 0, 100));
+      ppcUse.value = String(ppcClamp(use, 70, 130));
+      ppcShift.value = String(ppcClamp(shift, 70, 130));
+      ppcBowed = bowed;
+      ppcRender();
+    }
+    ppcMix.addEventListener("input", ppcRender);
+    ppcUse.addEventListener("input", ppcRender);
+    ppcShift.addEventListener("input", ppcRender);
+    document.getElementById("ppc-more-capital").addEventListener("click", function () {
+      ppcApply(ppcRead(ppcMix, 0, 100) - 5, ppcRead(ppcUse, 70, 130), ppcRead(ppcShift, 70, 130), ppcBowed);
+    });
+    document.getElementById("ppc-more-consumer").addEventListener("click", function () {
+      ppcApply(ppcRead(ppcMix, 0, 100) + 5, ppcRead(ppcUse, 70, 130), ppcRead(ppcShift, 70, 130), ppcBowed);
+    });
+    document.getElementById("ppc-use-in").addEventListener("click", function () {
+      ppcApply(ppcRead(ppcMix, 0, 100), ppcRead(ppcUse, 70, 130) - 5, ppcRead(ppcShift, 70, 130), ppcBowed);
+    });
+    document.getElementById("ppc-use-out").addEventListener("click", function () {
+      ppcApply(ppcRead(ppcMix, 0, 100), ppcRead(ppcUse, 70, 130) + 5, ppcRead(ppcShift, 70, 130), ppcBowed);
+    });
+    document.getElementById("ppc-shift-in").addEventListener("click", function () {
+      ppcApply(ppcRead(ppcMix, 0, 100), ppcRead(ppcUse, 70, 130), ppcRead(ppcShift, 70, 130) - 5, ppcBowed);
+    });
+    document.getElementById("ppc-shift-out").addEventListener("click", function () {
+      ppcApply(ppcRead(ppcMix, 0, 100), ppcRead(ppcUse, 70, 130), ppcRead(ppcShift, 70, 130) + 5, ppcBowed);
+    });
+    document.getElementById("ppc-reset").addEventListener("click", function () {
+      ppcApply(50, 100, 100, true);
+    });
+    ppcBowedBtn.addEventListener("click", function () {
+      ppcApply(ppcRead(ppcMix, 0, 100), ppcRead(ppcUse, 70, 130), ppcRead(ppcShift, 70, 130), true);
+    });
+    ppcStraightBtn.addEventListener("click", function () {
+      ppcApply(ppcRead(ppcMix, 0, 100), ppcRead(ppcUse, 70, 130), ppcRead(ppcShift, 70, 130), false);
+    });
+    var ppcP;
+    for (ppcP = 0; ppcP < ppcPresets.length; ppcP++) {
+      ppcPresets[ppcP].addEventListener("click", function (event) {
+        var button = event.currentTarget;
+        ppcApply(
+          parseInt(button.getAttribute("data-mix"), 10),
+          parseInt(button.getAttribute("data-use"), 10),
+          parseInt(button.getAttribute("data-shift"), 10),
+          button.getAttribute("data-shape") !== "straight"
+        );
+      });
+    }
+    ppcRender();
+  }
 })();

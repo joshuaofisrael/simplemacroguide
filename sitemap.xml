@@ -96,6 +96,14 @@
     </image:image>
   </url>
   <url>
+    <loc>https://simplemacroguide.com/explainers/production-possibilities-curve.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://simplemacroguide.com/explainers/phillips-curve.html</loc>
     <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -201,7 +209,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/glossary/</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
@@ -431,5 +439,5 @@
       <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
     </image:image>
   </url>
-  <url><loc>https://simplemacroguide.com/llms.txt</loc><lastmod>2026-10-21</lastmod></url>
+  <url><loc>https://simplemacroguide.com/llms.txt</loc><lastmod>2026-10-23</lastmod></url>
 </urlset>
