@@ -1,115 +1,203 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://simplemacroguide.com/</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/hero-financial-district.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/topics-grocery-aisle.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/countries-container-port.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/calculators-desk.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/ap-macro-lecture-hall.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/ap-macroeconomics/</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/ap-macro-lecture-hall.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/topics/</loc>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/topics-grocery-aisle.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/topics/supply-demand.html</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/topics/inflation.html</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/topics-grocery-aisle.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/topics/gdp.html</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/topics/monetary-fiscal.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/topics/unemployment.html</loc>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/topics/international-trade.html</loc>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/countries-container-port.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/phillips-curve.html</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/quantitative-easing.html</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/real-interest-rates.html</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/exchange-rates-ppp.html</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/countries-container-port.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/fiscal-multipliers.html</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/recession-definitions.html</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/yield-curve.html</loc>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/cpi-vs-pce.html</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/topics-grocery-aisle.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/taylor-rule.html</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/core-vs-headline-inflation.html</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/topics-grocery-aisle.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/output-gap.html</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/aggregate-demand-aggregate-supply.html</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/money-market-loanable-funds.html</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/glossary/</loc>
@@ -118,15 +206,27 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/countries/</loc>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/countries-container-port.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/countries/us.html</loc>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/countries-container-port.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/countries/uk.html</loc>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/countries-container-port.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/data/</loc>
@@ -134,69 +234,123 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/calculators/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/calculators-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/calculators/inflation-adjuster.html</loc>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/calculators-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/calculators/real-interest-rate.html</loc>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/calculators-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/calculators/taylor-rule.html</loc>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/calculators-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/calculators/okuns-law.html</loc>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/calculators-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/calculators/yield-curve-spread.html</loc>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/calculators-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/calculators/phillips-curve.html</loc>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/calculators-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/calculators/output-gap.html</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/calculators-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/calculators/fiscal-multiplier.html</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/calculators-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/calculators/velocity-of-money.html</loc>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/calculators-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/calculators/money-multiplier.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/calculators-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/calculators/gdp-deflator.html</loc>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/calculators-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/calculators/purchasing-power-parity.html</loc>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/calculators-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/calculators/opportunity-cost.html</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/calculators-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/calculators/supply-demand.html</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/calculators-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/sources/</loc>
@@ -204,7 +358,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/contact/</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
@@ -224,7 +378,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/privacy/</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>yearly</changefreq>
   </url>
   <url>
@@ -234,32 +388,48 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/faq/</loc>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/natural-rate-of-unemployment.html</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/okuns-law.html</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/money-supply-m1-m2.html</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/bea-vs-ons-gdp.html</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/fiscal-dominance.html</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
+    </image:image>
   </url>
   <url><loc>https://simplemacroguide.com/llms.txt</loc><lastmod>2026-10-21</lastmod></url>
 </urlset>
