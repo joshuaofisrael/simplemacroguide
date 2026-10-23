@@ -1,7 +1,7 @@
 # Simple Macro Guide
 
 Static educational site for **simplemacroguide.com**  
-Brand: Simple Macro Guide · Entity: Joshua Israel Ventures LLC
+Brand: Simple Macro Guide
 
 ## Local preview
 
