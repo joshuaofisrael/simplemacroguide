@@ -479,7 +479,8 @@ h3 {
 }
 #adas-story { min-height: 9.5rem; }
 #mm-story,
-#lf-story { min-height: 9.5rem; }
+#lf-story,
+#ppc-story { min-height: 9.5rem; }
 .table-scroll { overflow-x: auto; max-width: 100%; }
 
 @media (max-width: 720px) {
