@@ -65,7 +65,7 @@ Contact: joshuaofisrael@gmail.com
 
 ## Optional
 - [Contact](https://simplemacroguide.com/contact/): Contact Simple Macro Guide by email.
-- [Disclaimer](https://simplemacroguide.com/disclaimer/): Educational disclaimer covering accuracy, no professional relationship, and the absence of ads or affiliate links.
+- [Disclaimer](https://simplemacroguide.com/disclaimer/): Educational disclaimer covering accuracy, no professional relationship, and advertising disclosure (Google AdSense ads, no affiliate links).
 - [Terms of Use](https://simplemacroguide.com/terms/): Terms of Use for Simple Macro Guide. Educational information only.
 - [Privacy Policy](https://simplemacroguide.com/privacy/): What the site collects (emails you send, cookieless Cloudflare Web Analytics) and your privacy rights.
 - [About](https://simplemacroguide.com/about/): About Simple Macro Guide: mission, editorial standards, and how the site approaches UK and US macro education.
