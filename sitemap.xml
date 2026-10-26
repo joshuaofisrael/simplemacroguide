@@ -25,7 +25,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/ap-macroeconomics/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/ap-macro-lecture-hall.webp</image:loc>
@@ -89,7 +89,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
@@ -129,7 +129,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/exchange-rates-ppp.html</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/countries-container-port.webp</image:loc>
@@ -201,7 +201,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/money-market-loanable-funds.html</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
@@ -209,7 +209,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/glossary/</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
@@ -440,4 +440,19 @@
     </image:image>
   </url>
   <url><loc>https://simplemacroguide.com/llms.txt</loc><lastmod>2026-10-23</lastmod></url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/reserve-market-ample-reserves.html</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/foreign-exchange-market.html</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/balance-of-payments.html</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
 </urlset>
