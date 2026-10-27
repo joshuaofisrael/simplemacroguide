@@ -25,7 +25,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/ap-macroeconomics/</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/ap-macro-lecture-hall.webp</image:loc>
@@ -89,7 +89,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
@@ -322,7 +322,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/calculators/money-multiplier.html</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/calculators-desk.webp</image:loc>
@@ -453,6 +453,11 @@
   <url>
     <loc>https://simplemacroguide.com/explainers/balance-of-payments.html</loc>
     <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/bank-balance-sheet-t-account.html</loc>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>weekly</changefreq>
   </url>
 </urlset>
