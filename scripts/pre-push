@@ -1,0 +1,18 @@
+#!/bin/sh
+# Simple Macro Guide legal hold gate (RULE.md). GitHub Pages publishes straight from main, so this push IS the publish step.
+# Checks the exact commit being pushed; any HOLD_REVIEW page refuses the push. Install: cp scripts/pre-push .git/hooks/pre-push
+z=0000000000000000000000000000000000000000
+rc=0
+while read local_ref local_sha remote_ref remote_sha; do
+  [ "$local_sha" = "$z" ] && continue
+  tmp=$(mktemp -d)
+  git archive "$local_sha" | tar -x -C "$tmp"
+  python3 "$(git rev-parse --show-toplevel)/scripts/legal_gate.py" check --tree "$tmp" || rc=$?
+  rm -rf "$tmp"
+  if [ "$rc" -ne 0 ]; then
+    echo "pre-push: legal gate HOLD_REVIEW (exit $rc) for $local_ref $local_sha. Push refused; nothing published." >&2
+    echo "pre-push: held pages are saved in /workspace/content-review/drafts/simplemacroguide and queue.jsonl. Only Joshua can approve HIGH items." >&2
+    exit 3
+  fi
+done
+exit 0

@@ -1,0 +1,8 @@
+name: legal-gate
+on: [push, pull_request]
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: CONTENT_REVIEW_DIR=/tmp/cr python3 scripts/legal_gate.py check --no-queue
