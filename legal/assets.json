@@ -58,5 +58,25 @@
   "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
   "permitted_use": "Site pages, og/twitter images, any format",
   "recorded": "2026-10-28 legal gate setup"
+ },
+ {
+  "path": "images/explainers-crowding-out-whiteboard.webp",
+  "sha256": "2091843fdf7bd6c3b8d7e239a245331b0aa7b5e70a79c381efb1ed444ccd0033",
+  "subject": "Empty classroom whiteboard with smudged, unreadable chalk style marker scribbles",
+  "source": "AI generated original image made for Simple Macro Guide; added by the repo owner, 2 Nov 2026 (owner's photoreal AI image rule, overriding the earlier six image limit)",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "None: generic scene, no identifiable real person, brand logo, or legible text",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-02 legal gate setup"
+ },
+ {
+  "path": "images/explainers-crowding-out-capitol-columns.webp",
+  "sha256": "d4a75f09aef97d80baa209e3f5fa62e98b1030f374fbaed1b046ffdb5d1c161e",
+  "subject": "Generic classical government building stone columns and steps at golden hour",
+  "source": "AI generated original image made for Simple Macro Guide; added by the repo owner, 2 Nov 2026 (owner's photoreal AI image rule, overriding the earlier six image limit)",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "None: generic scene, no identifiable real person, flag, brand logo, or legible text",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-02 legal gate setup"
  }
 ]
