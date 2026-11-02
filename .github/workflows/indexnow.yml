@@ -1,0 +1,12 @@
+name: indexnow-ping
+on:
+  push:
+    branches: [main]
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: python3 scripts/indexnow_ping.py --before "${{ github.event.before }}" --after "${{ github.sha }}"
