@@ -78,5 +78,25 @@
   "people_or_marks": "None: generic scene, no identifiable real person, flag, brand logo, or legible text",
   "permitted_use": "Site pages, og/twitter images, any format",
   "recorded": "2026-11-02 legal gate setup"
+ },
+ {
+  "path": "images/explainers-stagflation.webp",
+  "sha256": "b4fb902ff7aa8baaafe9a6f4069af0064c3ed60fed40b1f251f3bac5537a895c",
+  "subject": "Classroom desk with printed charts showing rising prices and flat output",
+  "source": "AI generated original image made for Simple Macro Guide; added 2026-11-05 evergreen batch",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-05"
+ },
+ {
+  "path": "images/explainers-automatic-stabilizers.webp",
+  "sha256": "b9bb0a04e4785b4240db037d852d71e03c202d833054a94253f5b555a2b208fb",
+  "subject": "Calculator and blank forms on a desk with a columned government building blurred behind",
+  "source": "AI generated original image made for Simple Macro Guide; added 2026-11-05 evergreen batch",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-05"
  }
 ]
