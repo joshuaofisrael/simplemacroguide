@@ -471,4 +471,20 @@
       <image:loc>https://simplemacroguide.com/images/explainers-crowding-out-capitol-columns.webp</image:loc>
     </image:image>
   </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/stagflation.html</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-stagflation.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/automatic-stabilizers.html</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-automatic-stabilizers.webp</image:loc>
+    </image:image>
+  </url>
 </urlset>

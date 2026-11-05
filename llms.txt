@@ -76,3 +76,5 @@ Contact: joshuaofisrael@gmail.com
 - [Privacy Policy](https://simplemacroguide.com/privacy/): What the site collects (emails you send, cookieless Cloudflare Web Analytics) and your privacy rights.
 - [About](https://simplemacroguide.com/about/): About Simple Macro Guide: mission, editorial standards, and how the site approaches UK and US macro education.
 - [FAQ](https://simplemacroguide.com/faq/): FAQ for Simple Macro Guide: not investment advice, how to read data, update cadence, UK and US focus, and how to contact us.
+- [Stagflation](https://simplemacroguide.com/explainers/stagflation.html): Inflation with weak growth; AD-AS supply-shock view; policy trade-off.
+- [Automatic stabilizers](https://simplemacroguide.com/explainers/automatic-stabilizers.html): Built-in tax/transfer cushions vs discretionary fiscal packages.
