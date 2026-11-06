@@ -25,7 +25,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/ap-macroeconomics/</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/ap-macro-lecture-hall.webp</image:loc>
@@ -65,7 +65,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/topics/monetary-fiscal.html</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
@@ -89,7 +89,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
@@ -485,6 +485,14 @@
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/explainers-automatic-stabilizers.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/neutral-rate-of-interest-r-star.html</loc>
+    <lastmod>2026-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
     </image:image>
   </url>
 </urlset>
