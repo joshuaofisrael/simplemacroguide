@@ -98,5 +98,15 @@
   "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
   "permitted_use": "Site pages, og/twitter images, any format",
   "recorded": "2026-11-05"
+ },
+ {
+  "path": "images/explainers-business-cycle-desk.webp",
+  "sha256": "2786bd08a83652679d763a763477146036e6cd119d2bfe171d2df839628c19cb",
+  "subject": "Calculator, pen and a stack of printed pages on a wooden table by a window",
+  "source": "AI generated original image from the JI Ventures image bank (/workspace/image-bank/fiscalhour/calculator-tax-forms.png), converted to WebP; added 2026-11-07 for the business cycle explainer",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-07"
  }
 ]
