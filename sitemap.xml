@@ -25,7 +25,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/ap-macroeconomics/</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/ap-macro-lecture-hall.webp</image:loc>
@@ -57,7 +57,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/topics/gdp.html</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
@@ -89,7 +89,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
@@ -434,7 +434,7 @@
       <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
     </image:image>
   </url>
-  <url><loc>https://simplemacroguide.com/llms.txt</loc><lastmod>2026-11-07</lastmod></url>
+  <url><loc>https://simplemacroguide.com/llms.txt</loc><lastmod>2026-11-08</lastmod></url>
   <url>
     <loc>https://simplemacroguide.com/explainers/reserve-market-ample-reserves.html</loc>
     <lastmod>2026-10-30</lastmod>
@@ -501,6 +501,14 @@
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/explainers-business-cycle-desk.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/supply-shocks-vs-demand-shocks.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-supply-shocks-desk.webp</image:loc>
     </image:image>
   </url>
 </urlset>
