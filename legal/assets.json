@@ -108,5 +108,15 @@
   "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
   "permitted_use": "Site pages, og/twitter images, any format",
   "recorded": "2026-11-07"
+ },
+ {
+  "path": "images/explainers-supply-shocks-desk.webp",
+  "sha256": "7421ae9f7c554c1ee0fc51b80d0e185fea3626e641f0320a59c46d3649fdfd33",
+  "subject": "Smartphone on a desk showing an unmarked rising line graph beside a pen and notebook",
+  "source": "AI generated original image from the JI Ventures image bank (/workspace/image-bank/fiscalhour/phone-rising-graph.png), converted to WebP; added 2026-11-08 for the supply shocks versus demand shocks explainer",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-08"
  }
 ]
