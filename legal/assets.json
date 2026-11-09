@@ -118,5 +118,15 @@
   "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
   "permitted_use": "Site pages, og/twitter images, any format",
   "recorded": "2026-11-08"
+ },
+ {
+  "path": "images/explainers-indicators-desk.webp",
+  "sha256": "c63e7fb3d4bbdf231a92bdeca0b763725c9b324c0dec2d51b0b8487c56063459",
+  "subject": "Stack of white binders and a laptop showing an unreadable data table on a desk by a window",
+  "source": "AI generated original image from the JI Ventures image bank (/workspace/image-bank/ev-news/policy-desk-capitol.png), resized to 1280x720 and converted to WebP; added 2026-11-09 for the leading, coincident and lagging indicators explainer",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-09"
  }
 ]
