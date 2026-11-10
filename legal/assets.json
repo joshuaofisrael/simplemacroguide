@@ -128,5 +128,15 @@
   "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
   "permitted_use": "Site pages, og/twitter images, any format",
   "recorded": "2026-11-09"
+ },
+ {
+  "path": "images/explainers-potential-gdp-warehouse.webp",
+  "sha256": "0d4d9235c3bbc7d2fe1e8ee0d5ff44fd8238d69e06d54233020ce64db1e49e1c",
+  "subject": "Large distribution warehouse with cardboard boxes on conveyor belts under bright ceiling lights",
+  "source": "AI generated original image from the JI Ventures image bank (/workspace/image-bank/fiscalhour/distribution-warehouse-conveyor.png), resized to 1280x720 and converted to WebP; added 2026-11-10 for the potential GDP explainer",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-10"
  }
 ]
