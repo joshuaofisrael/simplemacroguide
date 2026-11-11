@@ -138,5 +138,15 @@
   "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
   "permitted_use": "Site pages, og/twitter images, any format",
   "recorded": "2026-11-10"
+ },
+ {
+  "path": "images/explainers-keynesian-cross-cart.webp",
+  "sha256": "cd11e7f06654bd52a1c47e6b95d0b7a5762b74f17c3925445a70afa760d81247",
+  "subject": "Empty shopping cart in a bright supermarket aisle lined with stocked shelves",
+  "source": "AI generated original image from the JI Ventures image bank (/workspace/image-bank/fiscalhour/empty-cart-aisle.png), converted to WebP at 1280x720; added 2026-11-11 for the Keynesian cross explainer",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-11"
  }
 ]
