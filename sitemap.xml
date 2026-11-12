@@ -565,4 +565,28 @@
       <image:loc>https://simplemacroguide.com/images/explainers-deflation-vs-disinflation-market.webp</image:loc>
     </image:image>
   </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/velocity-of-money.html</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-velocity-of-money-table.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/debt-to-gdp-ratio.html</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-debt-to-gdp-scale.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/labor-force-participation-rate.html</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-labor-force-participation-platform.webp</image:loc>
+    </image:image>
+  </url>
 </urlset>

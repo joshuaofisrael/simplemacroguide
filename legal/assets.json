@@ -178,5 +178,35 @@
   "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
   "permitted_use": "Site pages, og/twitter images, any format",
   "recorded": "2026-11-12"
+ },
+ {
+  "path": "images/explainers-velocity-of-money-table.webp",
+  "sha256": "d4933c5ff64b41fcebc37626351ce8147b93c9fd112d13544cae3e25759fd319",
+  "subject": "A few US dollar bills and coins on a wooden cafe table beside a cup of coffee",
+  "source": "AI generated original image from the JI Ventures image bank (/workspace/image-bank/simplemacroguide/velocity-money-cafe-table.png), converted to WebP at 1280x720; added 2026-11-12 for the Velocity of money: what it is and how to calculate it explainer",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-12"
+ },
+ {
+  "path": "images/explainers-debt-to-gdp-scale.webp",
+  "sha256": "8ba04297fd2d6aa2bc74efa582cfe7f1b90375176290627eb79007826c6d7f1e",
+  "subject": "A small analog kitchen scale on a wooden counter beside a stack of notebooks and a pencil",
+  "source": "AI generated original image from the JI Ventures image bank (/workspace/image-bank/simplemacroguide/debt-gdp-kitchen-scale.png), converted to WebP at 1280x720; added 2026-11-12 for the Debt to GDP ratio: what it means and how it is calculated explainer",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-12"
+ },
+ {
+  "path": "images/explainers-labor-force-participation-platform.webp",
+  "sha256": "7800a50b494b5d305ca7087818d2e3bb718d320aaf151e43b28a75babfbe9809",
+  "subject": "A few commuters walking along a train platform at dawn under a long canopy",
+  "source": "AI generated original image from the JI Ventures image bank (/workspace/image-bank/simplemacroguide/lfpr-train-platform-dawn.png), converted to WebP at 1280x720; added 2026-11-12 for the Labor force participation rate: definition and formula explainer",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-12"
  }
 ]
