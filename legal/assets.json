@@ -148,5 +148,35 @@
   "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
   "permitted_use": "Site pages, og/twitter images, any format",
   "recorded": "2026-11-11"
+ },
+ {
+  "path": "images/explainers-deficit-vs-debt-piggy.webp",
+  "sha256": "8d79ad6c51c720c5b0f1b651b1370caa2da3eeaf8b163dd8b73bba53bd047388",
+  "subject": "A pink piggy bank and a small stack of coins on a windowsill beside a rain streaked window",
+  "source": "AI generated original image from the JI Ventures image bank (/workspace/image-bank/fiscalhour/piggy-bank-rain.png), converted to WebP at 1280x720; added 2026-11-12 for the Deficit vs debt: what is the difference? explainer",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-12"
+ },
+ {
+  "path": "images/explainers-nominal-vs-real-gdp-factory.webp",
+  "sha256": "88f6779836f5c1357af2aad4c0b3cb16a5a85d20ba565e6043cb9fa2b4df448e",
+  "subject": "Two factory workers in high visibility vests, seen from behind, on a long production floor",
+  "source": "AI generated original image from the JI Ventures image bank (/workspace/image-bank/fiscalhour/factory-workers-hivis.png), converted to WebP at 1280x720; added 2026-11-12 for the Nominal vs real GDP: what is the difference? explainer",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-12"
+ },
+ {
+  "path": "images/explainers-deflation-vs-disinflation-market.webp",
+  "sha256": "1782fea2453dc507cee246f5b5faf794285fbdb2299e5fa14e02821356a2a371",
+  "subject": "Wooden crates of apples and vegetables at an autumn farmers market, with a hand reaching for an apple",
+  "source": "AI generated original image from the JI Ventures image bank (/workspace/image-bank/fiscalhour/farmers-market-autumn.png), converted to WebP at 1280x720; added 2026-11-12 for the Deflation vs disinflation: what is the difference? explainer",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-12"
  }
 ]
