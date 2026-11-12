@@ -589,4 +589,28 @@
       <image:loc>https://simplemacroguide.com/images/explainers-labor-force-participation-platform.webp</image:loc>
     </image:image>
   </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/types-of-unemployment.html</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-types-of-unemployment-desk.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/federal-funds-rate.html</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-federal-funds-rate-hall.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/u3-vs-u6-unemployment.html</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-u3-vs-u6-sidewalk.webp</image:loc>
+    </image:image>
+  </url>
 </urlset>

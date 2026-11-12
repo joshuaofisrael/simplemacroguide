@@ -208,5 +208,35 @@
   "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
   "permitted_use": "Site pages, og/twitter images, any format",
   "recorded": "2026-11-12"
+ },
+ {
+  "path": "images/explainers-types-of-unemployment-desk.webp",
+  "sha256": "c28807ef0bbbf22b9b65d5db6909d887119d9ae333d5eae9b6273c65167b97e3",
+  "subject": "An empty wooden desk and chair in a sunlit office with a closed laptop and a potted plant by the window",
+  "source": "AI generated original image from the JI Ventures image bank (/workspace/image-bank/simplemacroguide/empty-office-desk-plant.png), converted to WebP at 1280x720; added 2026-11-12 for the Types of unemployment: frictional, structural and cyclical explainer",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-12"
+ },
+ {
+  "path": "images/explainers-federal-funds-rate-hall.webp",
+  "sha256": "b885daa05d9c0d39a521470e00cae43eb2282295b27ee2bee7255b95d6727ba9",
+  "subject": "A long empty wooden counter with brass lamps in a quiet marble hall with tall windows",
+  "source": "AI generated original image from the JI Ventures image bank (/workspace/image-bank/simplemacroguide/marble-hall-brass-lamps.png), converted to WebP at 1280x720; added 2026-11-12 for the Federal funds rate: what it is and how to read it explainer",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-12"
+ },
+ {
+  "path": "images/explainers-u3-vs-u6-sidewalk.webp",
+  "sha256": "75ac93ac359173d1c952ec425dae22773b8d696d9800d2d5a3c45df41156a376",
+  "subject": "A wide empty city sidewalk at dawn beside dark shopfront windows under a pale blue sky",
+  "source": "AI generated original image from the JI Ventures image bank (/workspace/image-bank/simplemacroguide/dawn-city-sidewalk-shopfronts.png), converted to WebP at 1280x720; added 2026-11-12 for the U-3 vs U-6 unemployment: the official rate and the broader measure explainer",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-12"
  }
 ]
