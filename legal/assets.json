@@ -238,5 +238,15 @@
   "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
   "permitted_use": "Site pages, og/twitter images, any format",
   "recorded": "2026-11-12"
+ },
+ {
+  "path": "images/explainers-paradox-of-thrift-paperwork.webp",
+  "sha256": "6ec1af8d9821e1ffc2610b2890bd005cb45ca8048d4146e64b03e6b36d2c22e7",
+  "subject": "Hands reviewing household paperwork with a pen beside a mug of coffee on a wooden table",
+  "source": "AI generated original image from the JI Ventures image bank (/workspace/image-bank/fiscalhour/household-finances-paperwork.png), converted to WebP at 1280x720; added 2026-11-13 for The paradox of thrift explained explainer",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-13"
  }
 ]
