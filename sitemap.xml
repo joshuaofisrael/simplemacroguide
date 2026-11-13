@@ -613,4 +613,12 @@
       <image:loc>https://simplemacroguide.com/images/explainers-u3-vs-u6-sidewalk.webp</image:loc>
     </image:image>
   </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/paradox-of-thrift.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-paradox-of-thrift-paperwork.webp</image:loc>
+    </image:image>
+  </url>
 </urlset>
