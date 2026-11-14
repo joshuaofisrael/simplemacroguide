@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The money multiplier explained | Simple Macro Guide</title>
+<meta name="description" content="The money multiplier: the 1/rr formula, a worked example, what US M2 and base data show, and why zero reserve requirements broke the textbook story.">
+<link rel="canonical" href="https://simplemacroguide.com/explainers/money-multiplier.html">
+<meta name="theme-color" content="#2a6f6f">
+<meta property="og:title" content="The money multiplier explained | Simple Macro Guide">
+<meta property="og:description" content="The money multiplier: the 1/rr formula, a worked example, what US M2 and base data show, and why zero reserve requirements broke the textbook story.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://simplemacroguide.com/explainers/money-multiplier.html">
+<meta property="og:site_name" content="Simple Macro Guide">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The money multiplier explained | Simple Macro Guide">
+<meta name="twitter:description" content="The money multiplier: the 1/rr formula, a worked example, what US M2 and base data show, and why zero reserve requirements broke the textbook story.">
+<meta property="og:image" content="https://simplemacroguide.com/images/explainers-money-multiplier-vault.webp">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta property="og:image:alt" content="A heavy round vault door standing half open in a dim basement corridor">
+<meta name="twitter:image" content="https://simplemacroguide.com/images/explainers-money-multiplier-vault.webp">
+<meta name="twitter:image:alt" content="A heavy round vault door standing half open in a dim basement corridor">
+<link rel="stylesheet" href="../css/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The money multiplier explained",
+  "description": "The money multiplier: the 1/rr formula, a worked example, what US M2 and base data show, and why zero reserve requirements broke the textbook story.",
+  "url": "https://simplemacroguide.com/explainers/money-multiplier.html",
+  "author": {
+    "@type": "Organization",
+    "@id": "https://simplemacroguide.com/#organization",
+    "name": "Simple Macro Guide",
+    "url": "https://simplemacroguide.com/",
+    "brand": {
+      "@type": "Brand",
+      "name": "Simple Macro Guide"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://simplemacroguide.com/#organization",
+    "name": "Simple Macro Guide",
+    "url": "https://simplemacroguide.com/",
+    "brand": {
+      "@type": "Brand",
+      "name": "Simple Macro Guide"
+    }
+  },
+  "image": "https://simplemacroguide.com/images/explainers-money-multiplier-vault.webp",
+  "isAccessibleForFree": true,
+  "inLanguage": "en",
+  "datePublished": "2026-11-14",
+  "dateModified": "2026-11-14"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "url": "https://simplemacroguide.com/explainers/money-multiplier.html",
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://simplemacroguide.com/#organization",
+    "name": "Simple Macro Guide",
+    "url": "https://simplemacroguide.com/",
+    "brand": {
+      "@type": "Brand",
+      "name": "Simple Macro Guide"
+    }
+  },
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the money multiplier formula?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The simple money multiplier is 1 divided by the required reserve ratio. With a 10 percent requirement it is 10. A fuller version that allows for excess reserves (e) and currency held by the public (c) is (1 + c) / (rr + e + c), which is smaller."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the money multiplier still exist?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "As a classroom formula, yes. As a description of how money is created, central bank research says it is misleading: banks create deposits when they lend, and the amount of money depends mainly on interest rate policy and demand for loans. The ratio of M2 to the monetary base fell from about 9.2 in 2008 to about 2.8 in 2014."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the reserve requirement in the United States?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Zero. The Federal Reserve Board cut reserve requirement ratios to zero percent effective 26 March 2020, eliminating reserve requirements for all depository institutions. Before that, the top ratio on net transaction accounts was 10 percent."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is the money multiplier different from the spending multiplier?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The money multiplier links reserves to deposits and equals 1 / rr in the simple model. The spending multiplier links a change in spending to a change in real GDP and equals 1 / (1 minus MPC). They are separate ideas that both use a chain of rounds."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://simplemacroguide.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Explainers",
+      "item": "https://simplemacroguide.com/explainers/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "The money multiplier explained",
+      "item": "https://simplemacroguide.com/explainers/money-multiplier.html"
+    }
+  ]
+}
+</script>
+<script>window.__mtmGaId="G-LEF2FRZZ2N";window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};gtag("consent","default",{analytics_storage:"denied",ad_storage:"denied",ad_user_data:"denied",ad_personalization:"denied",functionality_storage:"denied",personalization_storage:"denied",security_storage:"granted"});</script>
+<script src="../js/consent.js" defer></script>
+<meta name="google-adsense-account" content="ca-pub-5681559774142917">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5681559774142917" crossorigin="anonymous"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="header-inner">
+<a class="logo" href="../">Simple <span>Macro</span> Guide</a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav class="site-nav" id="site-nav" aria-label="Primary">
+<ul>
+<li><a href="../">Home</a></li>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/" aria-current="page">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data</a></li>
+<li><a href="../calculators/">Calculators</a></li>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="main">
+<div class="wrap">
+<article class="narrow">
+<header class="hero" style="border:none;margin:0;padding-bottom:0">
+<h1>The money multiplier explained</h1>
+<p class="article-meta">Explainer · Monetary and fiscal · Educational only · Updated 14 Nov 2026</p>
+</header>
+<figure class="article-photo">
+<img src="../images/explainers-money-multiplier-vault.webp" alt="A heavy round vault door standing half open in a dim basement corridor" width="1280" height="720" loading="eager" fetchpriority="high" decoding="async">
+<figcaption>Illustrative AI generated photo <a class="src" href="../image-policy/">Source</a></figcaption>
+</figure>
+<div class="article-body">
+<p>The <strong>money multiplier</strong> is the textbook link between the monetary base (currency plus bank reserves held at the central bank) and broader measures of money such as M2. In its simplest form it equals 1 divided by the required reserve ratio: with a 10 percent requirement, every dollar of new reserves is said to support up to 10 dollars of deposits. It is a standard part of introductory courses, but central bank research and practice show it is a poor guide to how money is actually created today, and US reserve requirements have been zero since March 2020.</p>
+<p>This page is for AP Macroeconomics and intro economics study. It is educational only and is not investment, financial, tax, or legal advice. To run the arithmetic yourself, use the <a href="../calculators/money-multiplier.html">money multiplier calculator</a>.</p>
+<h2>The textbook story</h2>
+<p>The classroom model starts with a new deposit at a bank. The bank must hold a fraction of it, the <strong>required reserve ratio</strong> (rr), as reserves and lends out the rest. The borrower spends the loan, the money lands as a deposit at another bank, and that bank keeps its own reserves and lends again. Each round is smaller, and the total adds up to a fixed multiple of the first deposit.</p>
+<ul>
+<li><strong>Simple money multiplier</strong> = 1 / rr.</li>
+<li><strong>With leakages</strong> = (1 + c) / (rr + e + c), where e is excess reserves as a share of deposits and c is currency the public holds as a share of deposits.</li>
+</ul>
+<p>The leakages matter. Reserves that banks choose to hold, and cash that people keep out of banks, both stop the chain early, so the realistic multiplier is smaller than 1 / rr.</p>
+<h2>A hypothetical worked example</h2>
+<p>The numbers below are made up for teaching.</p>
+<ul>
+<li><strong>Simple case:</strong> rr = 0.10, no excess reserves, no currency drain. The multiplier is 1 / 0.10 = 10. A new $1,000 of reserves can support at most $10,000 of deposits.</li>
+<li><strong>With leakages:</strong> rr = 0.10, e = 0.05 and c = 0.20. The multiplier is (1 + 0.20) / (0.10 + 0.05 + 0.20) = 1.20 / 0.35, which is about 3.4. The same $1,000 of new base money now supports only about $3,430 of money.</li>
+</ul>
+<p>Doubling the required reserve ratio to 0.20 in the simple case halves the multiplier to 5. That inverse link is the main thing exam questions test.</p>
+<h2>What the US data show</h2>
+<p>A rough measured multiplier is the ratio of M2 to the monetary base. Using FRED series M2SL (M2, seasonally adjusted, billions of dollars) and BOGMBASE (monetary base, not seasonally adjusted, billions of dollars), retrieved on 14 November 2026:</p>
+<ul>
+<li><strong>August 2008:</strong> M2 of about $7,809 billion over a base of about $848 billion, a ratio of about 9.2.</li>
+<li><strong>August 2014:</strong> M2 of about $11,478 billion over a base of about $4,075 billion, a ratio of about 2.8.</li>
+<li><strong>September 2026:</strong> M2 of about $23,414 billion over a base of about $5,450 billion, a ratio of about 4.3.</li>
+</ul>
+<p>The base almost quintupled between 2008 and 2014 as the Federal Reserve bought assets in <a href="quantitative-easing.html">quantitative easing</a>, but M2 grew by less than half, so the ratio collapsed. If the multiplier were a fixed number, M2 should have risen roughly in step with the base. It did not. The ratio here mixes a seasonally adjusted series with one that is not, so treat it as a rough reading, not an official statistic.</p>
+<h2>Why the simple multiplier breaks down</h2>
+<p><strong>Reserves stopped being scarce.</strong> A 2010 Federal Reserve working paper by Seth Carpenter and Selva Demiralp, "Money, Reserves, and the Transmission of Monetary Policy: Does the Money Multiplier Exist?", notes that reserve balances were roughly $20 billion before the financial crisis and rose well past $1 trillion. Using aggregate and bank level data, the authors found that the link between reserves, money and lending did not work through the standard multiplier model, and that if reserves affect the economy, a standard multiplier story is unlikely to explain the effect. The same abstract notes that many textbooks continue to use the concept.</p>
+<p><strong>Banks lend first and find reserves later.</strong> The Bank of England's 2014 Quarterly Bulletin article "Money creation in the modern economy" (McLeay, Radia and Thomas) explains that most money is created by commercial banks making loans, and that banks do not "multiply up" central bank money to create new loans and deposits. The amount of money created depends ultimately on the central bank's monetary policy, normally through setting interest rates, and it can also change directly through asset purchases.</p>
+<p><strong>The required reserve ratio is now zero in the US.</strong> The Federal Reserve Board reduced reserve requirement ratios to zero percent effective 26 March 2020, which eliminated reserve requirements for all depository institutions. Before that, the top ratio on net transaction accounts was 10 percent. With rr at zero, the simple formula 1 / rr has no finite value, which shows that it was never what limited deposit growth in practice. The Fed now steers short term rates in a system of <a href="reserve-market-ample-reserves.html">ample reserves</a> by setting the interest it pays on reserve balances, as covered in the <a href="federal-funds-rate.html">federal funds rate</a> explainer.</p>
+<h2>Why it is still worth learning</h2>
+<p>The model is a clear way to see three things that remain true. Bank lending creates deposits, and deposits are most of the <a href="money-supply-m1-m2.html">money supply</a>. Leakages such as cash holding and banks' desire to keep reserves limit how far lending goes. And a central bank balance sheet can grow a lot without broad money growing in proportion. For exams, know the formula and the deposit chain, and be ready to explain why the measured ratio moves around so much.</p>
+<h2>Common exam mistakes</h2>
+<ul>
+<li><strong>Using the reserve ratio as a percent.</strong> With a 10 percent requirement, rr = 0.10 and the multiplier is 10, not 0.1.</li>
+<li><strong>Confusing the money multiplier with the spending multiplier.</strong> The money multiplier is 1 / rr. The <a href="fiscal-multipliers.html">spending multiplier</a> is 1 / (1 minus MPC), from the <a href="keynesian-cross.html">Keynesian cross</a>. They describe different chains.</li>
+<li><strong>Counting the first deposit twice.</strong> If cash that was already in M1 is deposited, the money supply only rises by the new loans. If the deposit comes from a central bank bond purchase, the first deposit is new money too.</li>
+<li><strong>Treating the multiplier as a fixed constant.</strong> The measured ratio of M2 to the base fell from about 9.2 in 2008 to about 2.8 in 2014. It depends on bank and public behavior.</li>
+</ul>
+<h2>Related reading</h2>
+<ul>
+<li><a href="bank-balance-sheet-t-account.html">Bank balance sheets and T accounts</a> and <a href="money-supply-m1-m2.html">the money supply, M1 and M2</a></li>
+<li><a href="reserve-market-ample-reserves.html">The reserve market and ample reserves</a>, <a href="federal-funds-rate.html">the federal funds rate</a> and <a href="quantitative-easing.html">quantitative easing</a></li>
+<li><a href="money-market-loanable-funds.html">The money market and loanable funds</a> and <a href="velocity-of-money.html">the velocity of money</a></li>
+<li>The <a href="../calculators/money-multiplier.html">money multiplier calculator</a>, the <a href="../ap-macroeconomics/">AP Macroeconomics study hub</a> and the <a href="./">explainers index</a></li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://www.federalreserve.gov/monetarypolicy/reservereq.htm" rel="noopener noreferrer">Board of Governors of the Federal Reserve System, Reserve Requirements (retrieved 14 Nov 2026)</a></li>
+<li><a href="https://www.federalreserve.gov/pubs/feds/2010/201041/201041abs.html" rel="noopener noreferrer">Seth B. Carpenter and Selva Demiralp, "Money, Reserves, and the Transmission of Monetary Policy: Does the Money Multiplier Exist?", Finance and Economics Discussion Series 2010-41, Federal Reserve Board (retrieved 14 Nov 2026)</a></li>
+<li><a href="https://www.bankofengland.co.uk/quarterly-bulletin/2014/q1/money-creation-in-the-modern-economy" rel="noopener noreferrer">Michael McLeay, Amar Radia and Ryland Thomas, "Money creation in the modern economy", Bank of England Quarterly Bulletin 2014 Q1, 14 March 2014 (retrieved 14 Nov 2026)</a></li>
+<li><a href="https://fred.stlouisfed.org/series/M2SL" rel="noopener noreferrer">FRED, M2 (M2SL), Board of Governors of the Federal Reserve System via FRED (retrieved 14 Nov 2026)</a></li>
+<li><a href="https://fred.stlouisfed.org/series/BOGMBASE" rel="noopener noreferrer">FRED, Monetary Base: Total (BOGMBASE), Board of Governors of the Federal Reserve System via FRED (retrieved 14 Nov 2026)</a></li>
+</ul>
+<h2 id="faq">Frequently asked questions</h2>
+<h3>What is the money multiplier formula?</h3>
+<p>The simple money multiplier is 1 divided by the required reserve ratio. With a 10 percent requirement it is 10. A fuller version that allows for excess reserves (e) and currency held by the public (c) is (1 + c) / (rr + e + c), which is smaller.</p>
+<h3>Does the money multiplier still exist?</h3>
+<p>As a classroom formula, yes. As a description of how money is created, central bank research says it is misleading: banks create deposits when they lend, and the amount of money depends mainly on interest rate policy and demand for loans. The ratio of M2 to the monetary base fell from about 9.2 in 2008 to about 2.8 in 2014.</p>
+<h3>What is the reserve requirement in the United States?</h3>
+<p>Zero. The Federal Reserve Board cut reserve requirement ratios to zero percent effective 26 March 2020, eliminating reserve requirements for all depository institutions. Before that, the top ratio on net transaction accounts was 10 percent.</p>
+<h3>How is the money multiplier different from the spending multiplier?</h3>
+<p>The money multiplier links reserves to deposits and equals 1 / rr in the simple model. The spending multiplier links a change in spending to a change in real GDP and equals 1 / (1 minus MPC). They are separate ideas that both use a chain of rounds.</p>
+</div>
+</article>
+
+</div>
+</main>
+<footer class="site-footer">
+<div class="footer-inner">
+<div>
+<a class="logo" href="../" style="color:#fff;text-decoration:none">Simple <span style="color:#a8d4d4">Macro</span> Guide</a>
+<p style="margin:0.6rem 0 0;max-width:28rem">Clear, calm explanations of how economies work, with a UK and US focus. Educational only; not investment advice.</p>
+</div>
+<div>
+<h2>Explore</h2>
+<ul>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data guides</a></li>
+<li><a href="../calculators/">Calculators</a></li>
+</ul>
+</div>
+<div>
+<h2>About</h2>
+<ul>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+<li><a href="../disclaimer/">Disclaimer</a></li>
+<li><a href="../sources/">Sources</a></li>
+<li><a href="mailto:joshuaofisrael@gmail.com?subject=%5BContact%3A%20simplemacroguide%5D">Email</a></li>
+</ul>
+</div>
+<div class="footer-note">
+<p>Content is for education. Not financial, investment, tax, or legal advice. Verify figures with primary sources such as the World Bank, ONS, and FRED.</p>
+<p>AP and Advanced Placement are registered trademarks of the College Board, which is not affiliated with and does not endorse this site.</p>
+<ul class="footer-legal-links" aria-label="Legal">
+<li><a href="../terms/">Terms of Use</a></li>
+<li><a href="../privacy/">Privacy Policy</a></li>
+<li><a href="../image-policy/">Image policy</a></li>
+<li><a href="../disclaimer/">Disclaimer</a></li>
+<li><a href="../contact/">Contact</a></li>
+<li><button type="button" class="consent-link" data-consent-open>Cookie choices</button></li>
+</ul>
+</div>
+</div>
+</footer>
+<script src="../js/main.js"></script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "dec4f4e1d796410298bde95049563074"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

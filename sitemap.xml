@@ -25,7 +25,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/ap-macroeconomics/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <changefreq>monthly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/ap-macro-lecture-hall.webp</image:loc>
@@ -65,7 +65,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/topics/monetary-fiscal.html</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <changefreq>monthly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
@@ -89,7 +89,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
@@ -440,7 +440,7 @@
       <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
     </image:image>
   </url>
-  <url><loc>https://simplemacroguide.com/llms.txt</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://simplemacroguide.com/llms.txt</loc><lastmod>2026-11-14</lastmod></url>
   <url>
     <loc>https://simplemacroguide.com/explainers/reserve-market-ample-reserves.html</loc>
     <lastmod>2026-10-30</lastmod>
@@ -619,6 +619,14 @@
     <changefreq>monthly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/explainers-paradox-of-thrift-paperwork.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/money-multiplier.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-money-multiplier-vault.webp</image:loc>
     </image:image>
   </url>
 </urlset>

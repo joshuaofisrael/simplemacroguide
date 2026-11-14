@@ -248,5 +248,15 @@
   "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
   "permitted_use": "Site pages, og/twitter images, any format",
   "recorded": "2026-11-13"
+ },
+ {
+  "path": "images/explainers-money-multiplier-vault.webp",
+  "sha256": "585fbc6403c4b94b1b6dcbb339699f6f9007e34d58657bf99d2393784ef8a767",
+  "subject": "A heavy round vault door standing half open in a dim basement corridor",
+  "source": "AI generated original image from the JI Ventures image bank (/workspace/image-bank/fiscalhour/vault-door-basement.png), converted to WebP at 1280x720; added 2026-11-14 for The money multiplier explained explainer",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-14"
  }
 ]
