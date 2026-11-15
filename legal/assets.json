@@ -258,5 +258,15 @@
   "people_or_marks": "None: generic scene, no identifiable real person, brand logo or real event depicted",
   "permitted_use": "Site pages, og/twitter images, any format",
   "recorded": "2026-11-14"
+ },
+ {
+  "path": "images/explainers-liquidity-trap-banknotes.webp",
+  "sha256": "4100d1b73142268d87fc879c6b72f37398dc0013abed4b91a7de5d67a2b8c852",
+  "subject": "Two hands counting a small stack of plain paper banknotes on a dark wooden desk",
+  "source": "AI generated original image from the JI Ventures image bank (/workspace/image-bank/fiscalhour/hands-counting-notes.png), converted to WebP at 1280x720; added 2026-11-15 for The liquidity trap and the zero lower bound explained explainer",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "None: generic scene, hands only, no identifiable real person, brand logo, real currency design or real event depicted",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-15"
  }
 ]
