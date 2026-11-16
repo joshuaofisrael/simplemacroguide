@@ -268,5 +268,15 @@
   "people_or_marks": "None: generic scene, hands only, no identifiable real person, brand logo, real currency design or real event depicted",
   "permitted_use": "Site pages, og/twitter images, any format",
   "recorded": "2026-11-15"
+ },
+ {
+  "path": "images/explainers-inflation-targeting-grocery.webp",
+  "sha256": "0e0a56581dd5f925b62235115d54966b63af42ac9386c9a01bafcf3af03f56b0",
+  "subject": "An empty shopping cart in a supermarket aisle under a row of rising orange arrows drawn above the shelves, suggesting climbing prices",
+  "source": "AI generated original image from the JI Ventures image bank (/workspace/image-bank/fiscalhour/inflation-grocery-aisle.png), converted to WebP at 1280x720; added 2026-11-16 for the Inflation targeting and the 2 percent goal explained explainer",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "None: generic scene, no identifiable real person, brand logo or legible text",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-16"
  }
 ]

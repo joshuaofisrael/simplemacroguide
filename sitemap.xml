@@ -49,7 +49,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/topics/inflation.html</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/topics-grocery-aisle.webp</image:loc>
@@ -65,7 +65,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/topics/monetary-fiscal.html</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
@@ -89,7 +89,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
@@ -169,7 +169,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/taylor-rule.html</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
@@ -177,7 +177,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/core-vs-headline-inflation.html</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/topics-grocery-aisle.webp</image:loc>
@@ -635,6 +635,14 @@
     <changefreq>monthly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/explainers-liquidity-trap-banknotes.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/inflation-targeting.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-inflation-targeting-grocery.webp</image:loc>
     </image:image>
   </url>
 </urlset>
