@@ -278,5 +278,15 @@
   "people_or_marks": "None: generic scene, no identifiable real person, brand logo or legible text",
   "permitted_use": "Site pages, og/twitter images, any format",
   "recorded": "2026-11-16"
+ },
+ {
+  "path": "images/explainers-forward-guidance-trading-floor.webp",
+  "sha256": "a45f3a3af2b501d52ce5bdae2b62f739c5974b3e6ce15f59ea2d2f6dd4913bea",
+  "subject": "Aerial view of a busy trading floor with many traders at multi monitor desks under tall glass windows",
+  "source": "AI generated original image from the JI Ventures image bank (/workspace/image-bank/fiscalhour/trading-floor-balcony.png), converted to WebP at 1280x720; added 2026-11-17 for the forward guidance explainer",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "Many small, distant human figures are visible but none are individually identifiable; no real company logos, tickers or legible text; the on screen charts are abstract colour blocks, not real market data",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-17"
  }
 ]
