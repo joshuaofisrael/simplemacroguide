@@ -25,7 +25,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/ap-macroeconomics/</loc>
-    <lastmod>2026-11-17</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>monthly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/ap-macro-lecture-hall.webp</image:loc>
@@ -49,7 +49,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/topics/inflation.html</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>monthly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/topics-grocery-aisle.webp</image:loc>
@@ -89,7 +89,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/</loc>
-    <lastmod>2026-11-17</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
@@ -209,7 +209,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/glossary/</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
@@ -434,7 +434,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/fiscal-dominance.html</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
@@ -567,7 +567,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/velocity-of-money.html</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>monthly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/explainers-velocity-of-money-table.webp</image:loc>
@@ -651,6 +651,14 @@
     <changefreq>monthly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/explainers-forward-guidance-trading-floor.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://simplemacroguide.com/explainers/hyperinflation.html</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-hyperinflation-cash-machine.webp</image:loc>
     </image:image>
   </url>
 </urlset>

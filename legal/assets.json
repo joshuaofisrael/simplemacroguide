@@ -288,5 +288,15 @@
   "people_or_marks": "Many small, distant human figures are visible but none are individually identifiable; no real company logos, tickers or legible text; the on screen charts are abstract colour blocks, not real market data",
   "permitted_use": "Site pages, og/twitter images, any format",
   "recorded": "2026-11-17"
+ },
+ {
+  "path": "images/explainers-hyperinflation-cash-machine.webp",
+  "sha256": "8ea28e495176fc04f319be4cebe10bea53fc27edd71390e3e99b74797b668268",
+  "subject": "A person seen from behind at an unbranded cash machine on a rainy city street at night",
+  "source": "AI generated original image from the JI Ventures image bank (/workspace/image-bank/fiscalhour/cash-machine-night.png), converted to WebP at 1280x720; added 2026-11-18 for the hyperinflation explainer",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "One person is visible only from behind and is not identifiable; no real brand logos or legible text appear in the scene",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-18"
  }
 ]
