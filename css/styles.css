@@ -226,6 +226,196 @@ h3 {
 }
 .callout strong { color: var(--accent-dark); }
 
+.breadcrumbs {
+  margin: 0 0 1rem;
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  line-height: 1.4;
+}
+.breadcrumbs ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.35rem;
+  align-items: center;
+}
+.breadcrumbs li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.breadcrumbs li:not(:last-child)::after {
+  content: "/";
+  color: var(--line);
+  margin-left: 0.15rem;
+}
+.breadcrumbs a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.breadcrumbs a:hover { text-decoration: underline; }
+.breadcrumbs [aria-current="page"] { color: var(--ink-muted); }
+
+.related-reads {
+  margin: 1.75rem 0;
+}
+.related-reads > h2,
+.related-reads > p {
+  margin: 0 0 0.75rem;
+}
+.related-reads-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11.5rem, 1fr));
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.related-reads-grid a {
+  display: block;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--paper-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color 0.15s ease;
+}
+.related-reads-grid a:hover { border-color: var(--accent); color: var(--ink); }
+.related-reads-grid img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+.related-reads-grid span {
+  display: block;
+  padding: 0.65rem 0.75rem 0.8rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.compare-box {
+  margin: 1.5rem 0;
+  padding: 1rem 1.15rem;
+  background: var(--paper-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.compare-box h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  font-family: var(--font-sans);
+}
+.compare-box p { margin: 0 0 0.65rem; }
+.compare-box ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+.compare-box li { margin-bottom: 0.3rem; }
+
+.breadcrumbs {
+  margin: 0 0 1rem;
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  line-height: 1.4;
+}
+.breadcrumbs ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.35rem;
+  align-items: center;
+}
+.breadcrumbs li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.breadcrumbs li:not(:last-child)::after {
+  content: "/";
+  color: var(--line);
+  margin-left: 0.15rem;
+}
+.breadcrumbs a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.breadcrumbs a:hover { text-decoration: underline; }
+.breadcrumbs [aria-current="page"] { color: var(--ink-muted); }
+
+.related-reads {
+  margin: 1.75rem 0;
+}
+.related-reads > h2,
+.related-reads > p {
+  margin: 0 0 0.75rem;
+}
+.related-reads-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11.5rem, 1fr));
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.related-reads-grid a {
+  display: block;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--paper-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color 0.15s ease;
+}
+.related-reads-grid a:hover { border-color: var(--accent); color: var(--ink); }
+.related-reads-grid img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+.related-reads-grid span {
+  display: block;
+  padding: 0.65rem 0.75rem 0.8rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.compare-box {
+  margin: 1.5rem 0;
+  padding: 1rem 1.15rem;
+  background: var(--paper-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.compare-box h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  font-family: var(--font-sans);
+}
+.compare-box p { margin: 0 0 0.65rem; }
+.compare-box ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+.compare-box li { margin-bottom: 0.3rem; }
+
 .example-label {
   display: inline-block;
   font-size: 0.75rem;

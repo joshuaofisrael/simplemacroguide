@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Beveridge curve: job vacancies vs unemployment, with JOLTS data | Simple Macro Guide</title>
+<meta name="description" content="The Beveridge curve plots job openings against unemployment. Why it slopes down, why it shifts, and dated US JOLTS figures. Educational only.">
+<link rel="canonical" href="https://simplemacroguide.com/explainers/beveridge-curve.html">
+<meta name="theme-color" content="#2a6f6f">
+<meta property="og:title" content="The Beveridge curve: job vacancies vs unemployment, with JOLTS data | Simple Macro Guide">
+<meta property="og:description" content="The Beveridge curve plots job openings against unemployment. Why it slopes down, why it shifts, and dated US JOLTS figures. Educational only.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://simplemacroguide.com/explainers/beveridge-curve.html">
+<meta property="og:site_name" content="Simple Macro Guide">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Beveridge curve: job vacancies vs unemployment, with JOLTS data | Simple Macro Guide">
+<meta name="twitter:description" content="The Beveridge curve plots job openings against unemployment. Why it slopes down, why it shifts, and dated US JOLTS figures. Educational only.">
+<meta property="og:image" content="https://simplemacroguide.com/images/explainers-beveridge-curve-main-street.webp">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta property="og:image:alt" content="A quiet main street at dusk with storefronts and soft street lights">
+<meta name="twitter:image" content="https://simplemacroguide.com/images/explainers-beveridge-curve-main-street.webp">
+<meta name="twitter:image:alt" content="A quiet main street at dusk with storefronts and soft street lights">
+<link rel="stylesheet" href="../css/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Beveridge curve: job vacancies vs unemployment, with JOLTS data",
+  "description": "The Beveridge curve plots job openings against unemployment. Why it slopes down, why it shifts, and dated US JOLTS figures. Educational only.",
+  "url": "https://simplemacroguide.com/explainers/beveridge-curve.html",
+  "image": "https://simplemacroguide.com/images/explainers-beveridge-curve-main-street.webp",
+  "author": {
+    "@type": "Organization",
+    "@id": "https://simplemacroguide.com/#organization",
+    "name": "Simple Macro Guide",
+    "url": "https://simplemacroguide.com/",
+    "brand": {
+      "@type": "Brand",
+      "name": "Simple Macro Guide"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://simplemacroguide.com/#organization",
+    "name": "Simple Macro Guide",
+    "url": "https://simplemacroguide.com/",
+    "brand": {
+      "@type": "Brand",
+      "name": "Simple Macro Guide"
+    }
+  },
+  "isAccessibleForFree": true,
+  "inLanguage": "en",
+  "datePublished": "2026-11-19",
+  "dateModified": "2026-11-19"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "url": "https://simplemacroguide.com/explainers/beveridge-curve.html",
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://simplemacroguide.com/#organization",
+    "name": "Simple Macro Guide",
+    "url": "https://simplemacroguide.com/",
+    "brand": {
+      "@type": "Brand",
+      "name": "Simple Macro Guide"
+    }
+  },
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the Beveridge curve?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Beveridge curve is the downward sloping relationship between the job vacancy rate and the unemployment rate. When vacancies are high, unemployment tends to be low, and when vacancies are low, unemployment tends to be high. US readers usually plot the BLS JOLTS job openings rate against the BLS unemployment rate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the Beveridge curve slope down?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In a standard search and matching model, more vacancies relative to unemployed workers raise the job finding rate, so steady state unemployment falls. A July 2022 Federal Reserve FEDS Note by Andrew Figura and Chris Waller derives that link from flows into and out of unemployment and a matching function that ties hires to vacancies and unemployment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What makes the Beveridge curve shift?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A shift means a different vacancy rate at the same unemployment rate, or the reverse. The same FEDS Note lists lower matching efficiency and more reallocation as forces that push the curve out, raising unemployment for a given vacancy rate. Higher matching efficiency or faster matching pulls it in."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the latest US job openings and unemployment figures for the curve?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For September 2026, FRED series JTSJOR shows a total nonfarm job openings rate of 4.5 percent and JTSJOL shows 7,523 thousand openings, both seasonally adjusted from the BLS JOLTS release updated 3 November 2026. For the same month, FRED series UNRATE shows unemployment at 4.2 percent and UNEMPLOY shows 7,109 thousand unemployed people. The October 2026 unemployment rate on UNRATE was 4.1 percent. All figures were retrieved 19 November 2026."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is the Beveridge curve different from the Phillips curve?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Beveridge curve pairs vacancies with unemployment. The Phillips curve pairs unemployment with inflation. Both use labour market slack, but they answer different questions. This site has a separate Phillips curve explainer and calculator."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://simplemacroguide.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Explainers",
+      "item": "https://simplemacroguide.com/explainers/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Unemployment",
+      "item": "https://simplemacroguide.com/topics/unemployment.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "The Beveridge curve: job vacancies vs unemployment, with JOLTS data",
+      "item": "https://simplemacroguide.com/explainers/beveridge-curve.html"
+    }
+  ]
+}
+</script>
+<script>window.__mtmGaId="G-LEF2FRZZ2N";window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};gtag("consent","default",{analytics_storage:"denied",ad_storage:"denied",ad_user_data:"denied",ad_personalization:"denied",functionality_storage:"denied",personalization_storage:"denied",security_storage:"granted"});</script>
+<script src="../js/consent.js" defer></script>
+<meta name="google-adsense-account" content="ca-pub-5681559774142917">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5681559774142917" crossorigin="anonymous"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="header-inner">
+<a class="logo" href="../">Simple <span>Macro</span> Guide</a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav class="site-nav" id="site-nav" aria-label="Primary">
+<ul>
+<li><a href="../">Home</a></li>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/" aria-current="page">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data</a></li>
+<li><a href="../calculators/">Calculators</a></li>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="main">
+<div class="wrap">
+<article class="narrow">
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+<ol>
+<li><a href="../">Home</a></li>
+<li><a href="./">Explainers</a></li>
+<li><a href="../topics/unemployment.html">Unemployment</a></li>
+<li aria-current="page">Beveridge curve</li>
+</ol>
+</nav>
+<header class="hero" style="border:none;margin:0;padding-bottom:0">
+<h1>The Beveridge curve: job vacancies vs unemployment, with JOLTS data</h1>
+<p class="article-meta">Explainer · Unemployment · By the Simple Macro Guide editorial team · Educational only · Updated 19 Nov 2026</p>
+</header>
+<figure class="article-photo">
+<img src="../images/explainers-beveridge-curve-main-street.webp" alt="A quiet main street at dusk with storefronts and soft street lights" width="1280" height="720" loading="eager" fetchpriority="high" decoding="async">
+<figcaption>Illustrative AI generated photo <a class="src" href="../image-policy/">Source</a></figcaption>
+</figure>
+<div class="article-body">
+
+<p>The <strong>Beveridge curve</strong> is the downward sloping link between job vacancies and unemployment. When firms post many openings, the unemployment rate tends to be low. When openings dry up, unemployment tends to be high. US readers usually plot the Bureau of Labor Statistics Job Openings and Labor Turnover Survey (JOLTS) openings rate against the BLS unemployment rate. This page explains the classroom shape, why a point can move along the curve or jump off it, how to read the latest FRED mirrors of those series, and a labelled hypothetical example. It sits on the <a href="../topics/unemployment.html">unemployment</a> pillar next to the <a href="phillips-curve.html">Phillips curve</a> and <a href="okuns-law.html">Okun's law</a>. It is educational only and is not investment, financial, tax or legal advice.</p>
+
+<h2>What the axes mean</h2>
+<p>Most textbook charts put the unemployment rate on the horizontal axis and the vacancy rate on the vertical axis. The unemployment rate is unemployed people as a share of the labour force (FRED series <a href="https://fred.stlouisfed.org/series/UNRATE" rel="noopener noreferrer">UNRATE</a>). The vacancy rate is unfilled jobs as a share of employment plus openings (FRED series <a href="https://fred.stlouisfed.org/series/JTSJOR" rel="noopener noreferrer">JTSJOR</a>, total nonfarm). Levels matter too: JOLTS openings in thousands are FRED <a href="https://fred.stlouisfed.org/series/JTSJOL" rel="noopener noreferrer">JTSJOL</a>, and the unemployed count in thousands is <a href="https://fred.stlouisfed.org/series/UNEMPLOY" rel="noopener noreferrer">UNEMPLOY</a>. The ratio of openings to unemployed people is a common tightness summary. For how the headline rate is built, and for the broader U-6 measure, see <a href="u3-vs-u6-unemployment.html">U-3 vs U-6</a> and <a href="types-of-unemployment.html">types of unemployment</a>.</p>
+
+<figure class="diagram" aria-label="Classroom Beveridge curve sketch">
+<svg viewBox="0 0 640 360" role="img" aria-labelledby="bev-title bev-desc" xmlns="http://www.w3.org/2000/svg">
+<title id="bev-title">Classroom Beveridge curve</title>
+<desc id="bev-desc">A downward sloping curve from high vacancies and low unemployment to low vacancies and high unemployment, with an outward shifted dashed curve.</desc>
+<rect width="640" height="360" fill="#f7f4ef"/>
+<line x1="70" y1="300" x2="580" y2="300" stroke="#1a2332" stroke-width="2"/>
+<line x1="70" y1="300" x2="70" y2="40" stroke="#1a2332" stroke-width="2"/>
+<text x="320" y="340" text-anchor="middle" fill="#4a5568" font-size="14" font-family="Georgia, serif">Unemployment rate</text>
+<text x="28" y="180" text-anchor="middle" fill="#4a5568" font-size="14" font-family="Georgia, serif" transform="rotate(-90 28 180)">Vacancy rate</text>
+<path d="M 110 70 C 180 90, 260 140, 360 210 C 430 255, 500 280, 545 288" fill="none" stroke="#2a6f6f" stroke-width="3"/>
+<path d="M 150 55 C 230 85, 320 150, 420 230 C 480 270, 530 285, 560 292" fill="none" stroke="#8b5a2b" stroke-width="2.5" stroke-dasharray="8 6"/>
+<circle cx="200" cy="115" r="6" fill="#2a6f6f"/>
+<text x="215" y="110" fill="#1a2332" font-size="13" font-family="Georgia, serif">Tight market</text>
+<circle cx="470" cy="270" r="6" fill="#2a6f6f"/>
+<text x="360" y="255" fill="#1a2332" font-size="13" font-family="Georgia, serif">Slack market</text>
+<text x="400" y="80" fill="#8b5a2b" font-size="13" font-family="Georgia, serif">Outward shift</text>
+<text x="400" y="98" fill="#8b5a2b" font-size="12" font-family="Georgia, serif">(weaker matching)</text>
+</svg>
+<figcaption>Classroom sketch only. A move along the solid curve is a demand cycle. An outward dashed shift raises vacancies at a given unemployment rate when matching worsens.</figcaption>
+</figure>
+
+<h2>Why the curve slopes down</h2>
+<p>A July 29, 2022 Federal Reserve FEDS Note by Andrew Figura and Chris Waller, "What does the Beveridge curve tell us about the likelihood of a soft landing?", starts from labour market flows. In steady state, separations into unemployment balance job finding out of unemployment, so the unemployment rate equals the separation rate divided by the sum of the separation rate and the job finding rate. The note then ties the job finding rate to labour market tightness through a matching function: more vacancies relative to unemployed searchers raise the job finding rate, which lowers steady state unemployment. That is the downward slope. The note also stresses that the curve is convex: when the vacancy to unemployment ratio is already high, extra vacancies buy smaller further drops in unemployment. The FEDS Note is staff research, not an FOMC decision or forecast.</p>
+
+<aside class="related-reads" aria-labelledby="mid-reads-h">
+<h2 id="mid-reads-h">Keep reading on this topic</h2>
+<p>These four pages sit next to the Beveridge curve on the unemployment and labour market cluster.</p>
+<ul class="related-reads-grid">
+<li><a href="phillips-curve.html"><img src="../images/explainers-supply-demand-desk.webp" alt="" width="400" height="225" loading="lazy" decoding="async"><span>Phillips curve: unemployment and inflation</span></a></li>
+<li><a href="okuns-law.html"><img src="../images/explainers-supply-demand-desk.webp" alt="" width="400" height="225" loading="lazy" decoding="async"><span>Okun's law: growth and unemployment</span></a></li>
+<li><a href="natural-rate-of-unemployment.html"><img src="../images/explainers-types-of-unemployment-desk.webp" alt="" width="400" height="225" loading="lazy" decoding="async"><span>Natural rate of unemployment</span></a></li>
+<li><a href="u3-vs-u6-unemployment.html"><img src="../images/explainers-u3-vs-u6-sidewalk.webp" alt="" width="400" height="225" loading="lazy" decoding="async"><span>U-3 vs U-6 unemployment</span></a></li>
+</ul>
+</aside>
+
+<h2>Movement along the curve versus a shift</h2>
+<p>A boom that lifts hiring demand raises vacancies and lowers unemployment: the economy slides up and left along a stable Beveridge curve. A downturn does the reverse. A <em>shift</em> is different. If matching between workers and jobs worsens, or if reallocation rises, the same vacancy rate can sit next to a higher unemployment rate, which is an outward shift. The Figura and Waller FEDS Note lists lower matching efficiency and higher reallocation as forces that push the curve out. Better matching pulls it in. Separations also matter: the note's flow identity shows that a jump in layoffs can raise unemployment even before vacancies fully adjust. Related classroom ideas on this site are the <a href="natural-rate-of-unemployment.html">natural rate of unemployment</a>, which can move when structural matching changes, and <a href="labor-force-participation-rate.html">labour force participation</a>, because people entering or leaving the labour force change who counts as unemployed.</p>
+
+<div class="compare-box">
+<h2>Compare with related labour market pages</h2>
+<p>Check another view of the same labour market before treating one chart as the whole story.</p>
+<ul>
+<li><a href="phillips-curve.html">Phillips curve</a> and the <a href="../calculators/phillips-curve.html">Phillips curve calculator</a>: slack and inflation, not vacancies</li>
+<li><a href="okuns-law.html">Okun's law</a> and the <a href="../calculators/okuns-law.html">Okun's law calculator</a>: output growth and unemployment changes</li>
+<li><a href="types-of-unemployment.html">Types of unemployment</a>: frictional, structural and cyclical labels behind a single rate</li>
+<li><a href="../countries/us.html">United States</a> and <a href="../countries/uk.html">United Kingdom</a> country hubs for agency starting points</li>
+</ul>
+</div>
+
+<h2>Dated US JOLTS and unemployment prints</h2>
+<p>As of the FRED mirrors retrieved on 19 November 2026:</p>
+<ul>
+<li><strong>Job openings rate (JTSJOR):</strong> 4.5 percent in September 2026, seasonally adjusted, from the BLS JOLTS release. FRED shows the series updated on 3 November 2026, with a next release date of 1 December 2026.</li>
+<li><strong>Job openings level (JTSJOL):</strong> 7,523 thousand in September 2026, seasonally adjusted, same JOLTS release and FRED update date.</li>
+<li><strong>Unemployment rate (UNRATE):</strong> 4.2 percent in September 2026 and 4.1 percent in October 2026, seasonally adjusted, from the BLS Current Population Survey. FRED shows UNRATE updated on 6 November 2026.</li>
+<li><strong>Unemployment level (UNEMPLOY):</strong> 7,109 thousand in September 2026 and 7,068 thousand in October 2026, seasonally adjusted.</li>
+</ul>
+<p>Pairing the September openings and unemployment levels gives about 7,523 ÷ 7,109 ≈ 1.06 openings per unemployed person that month. That ratio is a tightness snapshot, not a forecast. Always recheck FRED or the BLS release before quoting a later month, because JOLTS and the Employment Situation revise and they are not published on the same day.</p>
+
+<h2>A hypothetical worked example</h2>
+<div class="callout warning">
+<span class="example-label">Example (illustrative)</span>
+<p style="margin:0">These numbers are invented for teaching. They are not FRED or BLS data. Suppose a labour force of 100 million people includes 5 million unemployed, so the unemployment rate is 5 percent. Firms post 4 million vacancies. The vacancy to unemployed ratio is 4 ÷ 5 = 0.8. Now demand strengthens and openings rise to 6 million while unemployment falls to 4 million. The unemployment rate is 4 percent and the ratio is 6 ÷ 4 = 1.5. That pair of moves (higher vacancies, lower unemployment) is a slide along a stable Beveridge curve. Separately, imagine openings stay at 4 million but matching worsens so unemployment rises to 6 million. The unemployment rate is 6 percent at the same vacancy level: an outward shift. Try the <a href="../calculators/okuns-law.html">Okun's law calculator</a> if you want the arithmetic that links a GDP growth gap to a change in unemployment, and the <a href="../calculators/phillips-curve.html">Phillips curve calculator</a> for the inflation side of slack. Neither calculator fetches live JOLTS data.</p>
+</div>
+
+<h2>Common exam mistakes</h2>
+<ul>
+<li><strong>Calling every rise in vacancies a shift.</strong> If unemployment falls at the same time, the usual reading is a move along the curve, not an outward shift.</li>
+<li><strong>Treating the Beveridge curve as a Phillips curve.</strong> Vacancies and unemployment are one relationship. Inflation and unemployment are another. Do not swap the vertical axes.</li>
+<li><strong>Mixing a vacancy level with a vacancy rate.</strong> JTSJOL is thousands of openings. JTSJOR is a rate. UNRATE is a rate. UNEMPLOY is a level. Keep units consistent when you form a ratio.</li>
+<li><strong>Reading staff research as a policy promise.</strong> The Figura and Waller FEDS Note is useful for the framework. It is not an FOMC statement about the path of rates or unemployment.</li>
+</ul>
+
+<h2>Related reading</h2>
+<aside class="related-reads" aria-labelledby="end-reads-h">
+<h2 id="end-reads-h">Next reads with thumbnails</h2>
+<ul class="related-reads-grid">
+<li><a href="phillips-curve.html"><img src="../images/explainers-supply-demand-desk.webp" alt="" width="400" height="225" loading="lazy" decoding="async"><span>What is the Phillips curve?</span></a></li>
+<li><a href="okuns-law.html"><img src="../images/explainers-supply-demand-desk.webp" alt="" width="400" height="225" loading="lazy" decoding="async"><span>Okun's law explained</span></a></li>
+<li><a href="natural-rate-of-unemployment.html"><img src="../images/explainers-types-of-unemployment-desk.webp" alt="" width="400" height="225" loading="lazy" decoding="async"><span>Natural rate of unemployment</span></a></li>
+<li><a href="labor-force-participation-rate.html"><img src="../images/explainers-labor-force-participation-platform.webp" alt="" width="400" height="225" loading="lazy" decoding="async"><span>Labor force participation rate</span></a></li>
+</ul>
+</aside>
+<ul>
+<li><a href="../topics/unemployment.html">Unemployment topic hub</a>, <a href="types-of-unemployment.html">types of unemployment</a>, <a href="u3-vs-u6-unemployment.html">U-3 vs U-6</a></li>
+<li><a href="../calculators/okuns-law.html">Okun's law calculator</a> and <a href="../calculators/phillips-curve.html">Phillips curve calculator</a></li>
+<li><a href="business-cycle.html">Business cycle</a>, <a href="leading-coincident-lagging-indicators.html">leading, coincident and lagging indicators</a></li>
+<li><a href="../glossary/#beveridge-curve">Glossary: Beveridge curve</a>, the <a href="../ap-macroeconomics/">AP Macroeconomics study hub</a>, the <a href="./">explainers index</a></li>
+</ul>
+
+<h2>Sources</h2>
+<ul class="source-list">
+<li><a href="https://www.federalreserve.gov/econres/notes/feds-notes/what-does-the-beveridge-curve-tell-us-about-the-likelihood-of-a-soft-landing-20220729.html" rel="noopener noreferrer">Andrew Figura and Chris Waller, What does the Beveridge curve tell us about the likelihood of a soft landing?, FEDS Notes, Board of Governors of the Federal Reserve System (29 July 2022; retrieved 19 Nov 2026)</a></li>
+<li><a href="https://fred.stlouisfed.org/series/JTSJOL" rel="noopener noreferrer">FRED, Job Openings: Total Nonfarm (JTSJOL), US Bureau of Labor Statistics via FRED (Sep 2026 observation 7,523; updated 3 Nov 2026; retrieved 19 Nov 2026)</a></li>
+<li><a href="https://fred.stlouisfed.org/series/JTSJOR" rel="noopener noreferrer">FRED, Job Openings Rate: Total Nonfarm (JTSJOR), US Bureau of Labor Statistics via FRED (Sep 2026 observation 4.5; updated 3 Nov 2026; retrieved 19 Nov 2026)</a></li>
+<li><a href="https://fred.stlouisfed.org/series/UNRATE" rel="noopener noreferrer">FRED, Unemployment Rate (UNRATE), US Bureau of Labor Statistics via FRED (Sep 2026: 4.2; Oct 2026: 4.1; updated 6 Nov 2026; retrieved 19 Nov 2026)</a></li>
+<li><a href="https://fred.stlouisfed.org/series/UNEMPLOY" rel="noopener noreferrer">FRED, Unemployment Level (UNEMPLOY), US Bureau of Labor Statistics via FRED (Sep 2026: 7,109; Oct 2026: 7,068; updated 6 Nov 2026; retrieved 19 Nov 2026)</a></li>
+<li><a href="https://www.bls.gov/jlt/" rel="noopener noreferrer">US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey (JOLTS) overview (retrieved 19 Nov 2026)</a></li>
+</ul>
+
+<h2 id="faq">Frequently asked questions</h2>
+<h3>What is the Beveridge curve?</h3>
+<p>The Beveridge curve is the downward sloping relationship between the job vacancy rate and the unemployment rate. When vacancies are high, unemployment tends to be low, and when vacancies are low, unemployment tends to be high. US readers usually plot the BLS JOLTS job openings rate against the BLS unemployment rate.</p>
+<h3>Why does the Beveridge curve slope down?</h3>
+<p>In a standard search and matching model, more vacancies relative to unemployed workers raise the job finding rate, so steady state unemployment falls. A July 2022 Federal Reserve FEDS Note by Andrew Figura and Chris Waller derives that link from flows into and out of unemployment and a matching function that ties hires to vacancies and unemployment.</p>
+<h3>What makes the Beveridge curve shift?</h3>
+<p>A shift means a different vacancy rate at the same unemployment rate, or the reverse. The same FEDS Note lists lower matching efficiency and more reallocation as forces that push the curve out, raising unemployment for a given vacancy rate. Higher matching efficiency or faster matching pulls it in.</p>
+<h3>What are the latest US job openings and unemployment figures for the curve?</h3>
+<p>For September 2026, FRED series JTSJOR shows a total nonfarm job openings rate of 4.5 percent and JTSJOL shows 7,523 thousand openings, both seasonally adjusted from the BLS JOLTS release updated 3 November 2026. For the same month, FRED series UNRATE shows unemployment at 4.2 percent and UNEMPLOY shows 7,109 thousand unemployed people. The October 2026 unemployment rate on UNRATE was 4.1 percent. All figures were retrieved 19 November 2026.</p>
+<h3>How is the Beveridge curve different from the Phillips curve?</h3>
+<p>The Beveridge curve pairs vacancies with unemployment. The Phillips curve pairs unemployment with inflation. Both use labour market slack, but they answer different questions. This site has a separate <a href="phillips-curve.html">Phillips curve explainer</a> and <a href="../calculators/phillips-curve.html">calculator</a>.</p>
+</div>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+<div class="footer-inner">
+<div>
+<a class="logo" href="../" style="color:#fff;text-decoration:none">Simple <span style="color:#a8d4d4">Macro</span> Guide</a>
+<p style="margin:0.6rem 0 0;max-width:28rem">Clear, calm explanations of how economies work, with a UK and US focus. Educational only; not investment advice.</p>
+</div>
+<div>
+<h2>Explore</h2>
+<ul>
+<li><a href="../topics/">Topics</a></li>
+<li><a href="../explainers/">Explainers</a></li>
+<li><a href="../glossary/">Glossary</a></li>
+<li><a href="../countries/">Countries</a></li>
+<li><a href="../data/">Data guides</a></li>
+<li><a href="../calculators/">Calculators</a></li>
+</ul>
+</div>
+<div>
+<h2>About</h2>
+<ul>
+<li><a href="../about/">About</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../contact/">Contact</a></li>
+<li><a href="../disclaimer/">Disclaimer</a></li>
+<li><a href="../sources/">Sources</a></li>
+<li><a href="mailto:joshuaofisrael@gmail.com?subject=%5BContact%3A%20simplemacroguide%5D">Email</a></li>
+</ul>
+</div>
+<div class="footer-note">
+<p>Content is for education. Not financial, investment, tax, or legal advice. Verify figures with primary sources such as the World Bank, ONS, and FRED.</p>
+<p>AP and Advanced Placement are registered trademarks of the College Board, which is not affiliated with and does not endorse this site.</p>
+<ul class="footer-legal-links" aria-label="Legal">
+<li><a href="../terms/">Terms of Use</a></li>
+<li><a href="../privacy/">Privacy Policy</a></li>
+<li><a href="../image-policy/">Image policy</a></li>
+<li><a href="../disclaimer/">Disclaimer</a></li>
+<li><a href="../contact/">Contact</a></li>
+<li><button type="button" class="consent-link" data-consent-open>Cookie choices</button></li>
+</ul>
+</div>
+</div>
+</footer>
+<script src="../js/main.js"></script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "dec4f4e1d796410298bde95049563074"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
