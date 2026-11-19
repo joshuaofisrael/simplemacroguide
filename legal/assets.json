@@ -298,5 +298,15 @@
   "people_or_marks": "One person is visible only from behind and is not identifiable; no real brand logos or legible text appear in the scene",
   "permitted_use": "Site pages, og/twitter images, any format",
   "recorded": "2026-11-18"
+ },
+ {
+  "path": "images/explainers-beveridge-curve-main-street.webp",
+  "sha256": "cee9ab46644cf07ebcf2be0c355e6c8c30937b523bbf8aa3edc46f2bd8b65dbf",
+  "subject": "A quiet main street at dusk with storefronts and soft street lights",
+  "source": "AI generated original image from the JI Ventures image bank (/workspace/image-bank/fiscalhour/main-street-dusk.png), converted to WebP at 1280x720; added 2026-11-19 for the Beveridge curve explainer",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "No identifiable real people, brand logos or legible text appear in the scene",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-19"
  }
 ]
