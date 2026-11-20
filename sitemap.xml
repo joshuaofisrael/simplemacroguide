@@ -65,7 +65,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/topics/monetary-fiscal.html</loc>
-    <lastmod>2026-11-17</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
@@ -89,7 +89,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/</loc>
-    <lastmod>2026-11-19</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
@@ -113,7 +113,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/explainers/quantitative-easing.html</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/explainers-supply-demand-desk.webp</image:loc>
@@ -209,7 +209,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/glossary/</loc>
-    <lastmod>2026-11-19</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
@@ -222,7 +222,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/countries/us.html</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/countries-container-port.webp</image:loc>
@@ -230,7 +230,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/countries/uk.html</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/countries-container-port.webp</image:loc>
@@ -306,7 +306,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/calculators/fiscal-multiplier.html</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/calculators-desk.webp</image:loc>
@@ -314,7 +314,7 @@
   </url>
   <url>
     <loc>https://simplemacroguide.com/calculators/velocity-of-money.html</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/calculators-desk.webp</image:loc>
@@ -566,8 +566,16 @@
     </image:image>
   </url>
   <url>
+    <loc>https://simplemacroguide.com/explainers/seigniorage.html</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://simplemacroguide.com/images/explainers-velocity-of-money-table.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://simplemacroguide.com/explainers/velocity-of-money.html</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <image:image>
       <image:loc>https://simplemacroguide.com/images/explainers-velocity-of-money-table.webp</image:loc>
