@@ -308,5 +308,15 @@
   "people_or_marks": "No identifiable real people, brand logos or legible text appear in the scene",
   "permitted_use": "Site pages, og/twitter images, any format",
   "recorded": "2026-11-19"
+ },
+ {
+  "path": "images/explainers-net-exports-port.webp",
+  "sha256": "571e61019916b33c7162ff5192008ede1b808e5a79f62012f384f6cc2a7a47a6",
+  "subject": "A container ship loaded with shipping containers beside gantry cranes at sunset",
+  "source": "AI generated original image from the JI Ventures image bank (/workspace/image-bank/fiscalhour/port-container-ship.png), converted to WebP at 1280x720; added 2026-11-21 for the net exports and capital flows explainer. Bank use was already marked by the coordinating run; this page does not increment the use count again.",
+  "licence": "Owned by the site (original AI generated asset, no third party photo, stock or editorial licence involved)",
+  "people_or_marks": "No identifiable person. Container faces and the distant skyline do not show a readable brand name, logo, or legible text.",
+  "permitted_use": "Site pages, og/twitter images, any format",
+  "recorded": "2026-11-21"
  }
 ]
